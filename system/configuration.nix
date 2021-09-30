@@ -51,12 +51,19 @@
   # Poor imagination, maybe I should rename it to "emacs-church.org", pun intended
   networking.hostName = "aru-hackZ";
 
+  time.timeZone = "Europe/Madrid";
+
   # This one is deprecated
   networking.useDHCP = false;
   # Use this
   networking.interfaces.enp2s0.useDHCP = true;
   networking.interfaces.wlp3s0.useDHCP = true;
   networking.networkmanager.enable = true;
+
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
 
   # Current unstable version
   system.stateVersion = "21.11";
