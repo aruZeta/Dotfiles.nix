@@ -48,6 +48,16 @@
     { device = "/dev/disk/by-uuid/dafb92fe-c36f-4895-a8cd-b18e7325a2da"; }
   ];
 
+  # Poor imagination, maybe I should rename it to "emacs-church.org", pun intended
+  networking.hostName = "aru-hackZ";
+
+  # This one is deprecated
+  networking.useDHCP = false;
+  # Use this
+  networking.interfaces.enp2s0.useDHCP = true;
+  networking.interfaces.wlp3s0.useDHCP = true;
+  networking.networkmanager.enable = true;
+
   # Current unstable version
   system.stateVersion = "21.11";
 
