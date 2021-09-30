@@ -48,6 +48,9 @@
     { device = "/dev/disk/by-uuid/dafb92fe-c36f-4895-a8cd-b18e7325a2da"; }
   ];
 
+  # I think it's me!
+  nix.allowedUsers = [ "aru" ];
+
   # Poor imagination, maybe I should rename it to "emacs-church.org", pun intended
   networking.hostName = "aru-hackZ";
 
@@ -64,6 +67,20 @@
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+
+  users = {
+    mutableUsers = false;
+    users = {
+      aru = {
+        isNormalUser = true;
+        createHome = true;
+        uid = 6262;
+	# Pretty long right
+        hashedPassword = "$6$kW4T4vV/$JjK0WjLDpsD.9jVqFsdAfy267.W8iEia6wEsrbD/DWNk2spUr2UxTRRsBdLgk2DfSRoaAdUC/PhW7o2UAjyed0";
+        extraGroups = [ "wheel" "networkmanager" "vboxusers" ];
+      };
+    };
+  };
 
   # Current unstable version
   system.stateVersion = "21.11";
