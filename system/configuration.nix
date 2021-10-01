@@ -17,6 +17,12 @@
     };
   };
 
+  # So sway works
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+  };
+
   # My btrfs subvols
   fileSystems = {
     "/" = {
