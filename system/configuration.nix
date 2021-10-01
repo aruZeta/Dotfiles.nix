@@ -74,6 +74,9 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
+  # VMs are explosive, most of the times
+  virtualisation.virtualbox.host.enable = true;
+
   users = {
     mutableUsers = false;
     users = {
