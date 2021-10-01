@@ -12,6 +12,9 @@
     # Current unstable version
     stateVersion = "21.11";
     packages = with pkgs; [
+      # Browser
+      firefox
+
       # Window Manager stuff
       swaylock
       swayidle
@@ -19,5 +22,12 @@
       wofi
       wl-clipboard
       brightnessctl
+
+      # Fonts
+      iosevka-bin
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+    ];
   };
 }
