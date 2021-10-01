@@ -23,6 +23,9 @@
       wl-clipboard
       brightnessctl
 
+      # Git stuff
+      git-crypt
+
       # Fonts
       iosevka-bin
       noto-fonts
