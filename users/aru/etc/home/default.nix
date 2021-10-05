@@ -20,6 +20,8 @@
       swayidle
       mako
       wofi
+      slurp
+      grim
       wl-clipboard
       brightnessctl
 
