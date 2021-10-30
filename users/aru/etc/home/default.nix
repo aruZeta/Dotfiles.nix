@@ -4,7 +4,9 @@
 
 {
   # Enable home-manager
-  programs.home-manager.enable = true;
+  programs = {
+    home-manager.enable = true;
+  };
 
   home = {
     username = "aru";
@@ -33,6 +35,11 @@
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
+
+      # Utilities
+      sass
+      unzip
+      unrar
     ];
   };
 }
