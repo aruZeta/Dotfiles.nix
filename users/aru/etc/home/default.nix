@@ -2,6 +2,12 @@
 , ...
 }:
 
+let
+  my-python-pkgs = python-packages: with python-packages; [
+    tkinter
+  ];
+  my-python = pkgs.python39.withPackages my-python-pkgs;
+in
 {
   # Enable home-manager
   programs = {
@@ -36,10 +42,15 @@
       noto-fonts-cjk
       noto-fonts-emoji
 
+      # Some stuff needed for emacs && other programs
+      # TODO: move this to a better place / better way to set it
+      nodePackages.vscode-css-languageserver-bin
+      nodePackages.vscode-html-languageserver-bin
+      my-python
+
       # Utilities
       sass
       unzip
-      unrar
     ];
   };
 }
