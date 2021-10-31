@@ -25,6 +25,7 @@
         let mod = config.wayland.windowManager.sway.config.modifier;
         in lib.mkOptionDefault {
           "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
+	  "${mod}+Shift+s" = "exec ${config.home.homeDirectory}/Dotfiles/bin/screenshot.sh";
           "${mod}+Shift+w" = "kill";
 	  "${mod}+Escape" = "exec swaylock -f";
 	  "${mod}+Shift+Escape" = "exec swaynag -t warning -m 'End session?' -b 'Yes, exit sway' 'swaymsg exit'";
