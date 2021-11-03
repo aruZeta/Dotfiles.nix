@@ -50,7 +50,7 @@
     };
   };
 
-  # Swap partition, should have made a sway file instead
+  # Swap partition, should have made a swap file instead
   swapDevices = [
     { device = "/dev/disk/by-uuid/dafb92fe-c36f-4895-a8cd-b18e7325a2da"; }
   ];
