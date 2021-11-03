@@ -58,6 +58,9 @@
 	  resolution = "1920x1080@60Hz";
 	  position = "1366,0";
 	};
+	"*" = {
+	  bg = "${config.home.homeDirectory}/Archive/Images/Wallpapers/round-logo-wallpaper.png fill";
+	};
       };
 
       startup = [
