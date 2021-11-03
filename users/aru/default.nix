@@ -13,6 +13,7 @@
     ./etc/java/default.nix
     ./etc/nvim/default.nix
     ./etc/overlays/default.nix
+    ./etc/starship/default.nix
     ./etc/sway/default.nix
     ./etc/xdg/default.nix
     ./etc/zsh/default.nix
