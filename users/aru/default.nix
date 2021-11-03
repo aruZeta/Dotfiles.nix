@@ -15,5 +15,6 @@
     ./etc/overlays/default.nix
     ./etc/sway/default.nix
     ./etc/xdg/default.nix
+    ./etc/zsh/default.nix
   ];
 }
