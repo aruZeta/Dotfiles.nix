@@ -1,4 +1,5 @@
 { modulesPath
+, pkgs
 , ...
 }:
 
@@ -87,6 +88,7 @@
 	# Pretty long right
         hashedPassword = "$6$kW4T4vV/$JjK0WjLDpsD.9jVqFsdAfy267.W8iEia6wEsrbD/DWNk2spUr2UxTRRsBdLgk2DfSRoaAdUC/PhW7o2UAjyed0";
         extraGroups = [ "wheel" "networkmanager" "vboxusers" ];
+	shell = pkgs.zsh;
       };
     };
   };
