@@ -115,7 +115,7 @@
          :publishing-function org-html-publish-to-html)
 	("S1DAM_Notes.static"
          :recursive t
-         :base-extension "css\\|png"
+         :base-extension "css\\|png\\|eot\\|woff2\\|woff\\|ttf\\|svg"
          :base-directory "~/Archive/Classes/S1DAM/Notes.org/"
          :publishing-directory "~/Archive/Classes/S1DAM/Notes/"
          :publishing-function org-publish-attachment))
