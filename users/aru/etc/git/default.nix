@@ -17,5 +17,12 @@
     ignores = [
       "*~"
     ];
+
+    # Extra git config
+    extraConfig = {
+      init = {
+        defaultBranch = "main";
+      };
+    };
   };
 }
