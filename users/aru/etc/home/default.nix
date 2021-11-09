@@ -38,7 +38,8 @@ in
       git-crypt
 
       # Fonts
-      iosevka-bin
+      iosevka
+      (nerdfonts.override { fonts = [ "Iosevka" ]; })
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
