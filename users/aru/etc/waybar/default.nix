@@ -5,6 +5,7 @@
 {
   programs.waybar = {
     enable = true;
+    style = lib.strings.fileContents ./style.css;
     settings = [{
       height = 30;
       layer = "top";

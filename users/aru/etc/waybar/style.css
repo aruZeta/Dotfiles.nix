@@ -1,0 +1,46 @@
+* {
+	border: none;
+	border-radius: inherit;
+	margin: 0;
+	padding: 0;
+	font-family: 'Iosevka Term', monospace;
+	font-size: inherit;
+	background: none;
+	background-color: inherit;
+	box-shadow: none;
+	text-shadow: none;
+}
+
+window#waybar {
+	background-color: transparent;
+	color: #ebdbb2;
+	font-size: 13px;
+	transition-duration: .5s;
+}
+
+#workspaces,
+#clock {
+	padding: 0 10px;
+	background-color: #282828;
+	border-radius: 10px;
+}
+
+#workspaces {
+	padding: 0;
+	border-radius: 15px;
+}
+
+#workspaces button {
+	font-size: 23px;
+	min-width: 30px;
+	color: #b16286;
+	border-radius: 15px;
+}
+
+#workspaces button:hover {
+	background-color: #3c3836;
+}
+
+#workspaces button.focused {
+	color: #98971a;
+}
