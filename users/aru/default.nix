@@ -15,6 +15,7 @@
     ./etc/overlays/default.nix
     ./etc/starship/default.nix
     ./etc/sway/default.nix
+    ./etc/waybar/default.nix
     ./etc/xdg/default.nix
     ./etc/zsh/default.nix
   ];
