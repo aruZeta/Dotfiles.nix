@@ -17,8 +17,14 @@
           format = "{icon}";
           format-icons = {
             "1" = "";
-	    "2" = "";
-	    "3" = "";
+	    "2" = ""; # I need an emacs icon
+	    "3" = "";
+	    "4" = ""; # There is no vbox icon
+	    "5" = "";
+	    "6" = "";
+	    "7" = "";
+	    "8" = ""; # Random stuff
+	    "9" = "ﭮ";
           };
         };
       };
