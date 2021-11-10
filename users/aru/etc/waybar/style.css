@@ -22,12 +22,11 @@ window#waybar {
 #clock {
 	padding: 0 10px;
 	background-color: #282828;
-	border-radius: 10px;
+	border-radius: 15px;
 }
 
 #workspaces {
 	padding: 0;
-	border-radius: 15px;
 }
 
 #workspaces button {
