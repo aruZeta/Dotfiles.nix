@@ -22,7 +22,8 @@ window#waybar {
 #workspaces,
 #clock,
 #cpu,
-#memory {
+#memory,
+#backlight {
 	padding: 0 10px;
 	background-color: #282828;
 	border-radius: 15px;
@@ -39,6 +40,11 @@ window#waybar {
 #memory {
 	margin-left: 10px;
 	color: #458588;
+}
+
+#backlight {
+	margin-left: 10px;
+	color: #689d6a;
 }
 
 #workspaces {

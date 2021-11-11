@@ -12,7 +12,7 @@
       margin = "5 5 0";
       modules-left = [ "sway/workspaces" ];
       modules-center = [ "clock" ];
-      modules-right = [ "cpu" "memory" ];
+      modules-right = [ "cpu" "memory" "backlight" ];
       modules = {
         "sway/workspaces" = {
           format = "{icon}";
@@ -50,6 +50,13 @@
 	  interval = 5;
 	  format = "<big> </big>";
 	  format-alt = "{used:0.1f}G/{total:0.1f}G <big></big>";
+	  tooltip = false;
+	};
+
+	backlight = {
+	  interval = 5;
+	  format = "<big> </big>";
+	  format-alt = "{percent}% <big></big>";
 	  tooltip = false;
 	};
       };
