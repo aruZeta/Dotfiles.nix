@@ -55,8 +55,9 @@
 
 	backlight = {
 	  interval = 5;
-	  format = "<span font='17' rise='-3000'> </span>";
-	  format-alt = "{percent}% <span font='17' rise='-3000'></span>";
+	  format = "<span font='17' rise='-3000'> {icon}</span>";
+	  format-alt = "{percent}% <span font='17' rise='-3000'>{icon}</span>";
+	  format-icons = [ "" "" ];
 	  tooltip = false;
 	};
 
@@ -71,8 +72,11 @@
 	battery = {
 	  interval = 60;
 	  bat = "BAT1";
-	  format = "<span font='17' rise='-3000'> </span>";
-	  format-alt = "{capacity}% <span font='17' rise='-3000'></span>";
+	  format = "<span font='17' rise='-3000'> {icon}</span>";
+	  format-alt = "{capacity}% <span font='17' rise='-3000'>{icon}</span>";
+	  format-icons = [ "" "" "" "" "" ];
+	  tooltip = false;
+	};
 	  tooltip = false;
 	};
       };
