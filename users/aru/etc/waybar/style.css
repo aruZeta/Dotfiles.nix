@@ -20,10 +20,15 @@ window#waybar {
 
 #workspaces,
 #clock,
-#cpu {
+#cpu,
+#memory {
 	padding: 0 10px;
 	background-color: #282828;
 	border-radius: 15px;
+}
+
+#memory {
+	margin-left: 10px;
 }
 
 #workspaces {
