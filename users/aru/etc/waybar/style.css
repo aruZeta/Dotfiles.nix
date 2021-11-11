@@ -29,24 +29,6 @@ window#waybar {
 	border-radius: 15px;
 }
 
-#clock {
-	color: #b16286;
-}
-
-#cpu {
-	color: #cc241d;
-}
-
-#memory {
-	margin-left: 10px;
-	color: #458588;
-}
-
-#backlight {
-	margin-left: 10px;
-	color: #689d6a;
-}
-
 #workspaces {
 	padding: 0;
 }
@@ -64,6 +46,24 @@ window#waybar {
 
 #workspaces button.focused {
 	color: #98971a;
+}
+
+#clock {
+	color: #b16286;
+}
+
+#cpu {
+	color: #cc241d;
+}
+
+#memory {
+	margin-left: 10px;
+	color: #458588;
+}
+
+#backlight {
+	margin-left: 10px;
+	color: #689d6a;
 }
 
 big {
