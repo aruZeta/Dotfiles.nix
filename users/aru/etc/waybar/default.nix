@@ -15,7 +15,7 @@
       modules-right = [ "cpu" "memory" "backlight" "disk" "battery" ];
       modules = {
         "sway/workspaces" = {
-          format = "{icon}";
+          format = "<span font='17' rise='-3000'>{icon}</span>";
           format-icons = {
             "1" = "";
 	    "2" = ""; # I need an emacs icon
@@ -34,36 +34,36 @@
 
 	clock = {
 	  interval = 1;
-	  format = "{:%H:%M:%S} <big></big>";
-	  format-alt = "{:%A %d, %B %Y} <big></big>";
+	  format = "{:%H:%M:%S} <span font='17' rise='-3000'></span>";
+	  format-alt = "{:%A %d, %B %Y} <span font='17' rise='-3000'></span>";
 	  tooltip = false;
 	};
 
 	cpu = {
 	  interval = 5;
-	  format = "<big> </big>";
-	  format-alt = "{usage}% <big></big>";
+	  format = "<span font='17' rise='-3000'> </span>";
+	  format-alt = "{usage}% <span font='17' rise='-3000'></span>";
 	  tooltip = false;
 	};
 
 	memory = {
 	  interval = 5;
-	  format = "<big> </big>";
-	  format-alt = "{used:0.1f}G/{total:0.1f}G <big></big>";
+	  format = "<span font='17' rise='-3000'> </span>";
+	  format-alt = "{used:0.1f}G/{total:0.1f}G <span font='17' rise='-3000'></span>";
 	  tooltip = false;
 	};
 
 	backlight = {
 	  interval = 5;
-	  format = "<big> </big>";
-	  format-alt = "{percent}% <big></big>";
+	  format = "<span font='17' rise='-3000'> </span>";
+	  format-alt = "{percent}% <span font='17' rise='-3000'></span>";
 	  tooltip = false;
 	};
 
 	disk = {
 	  interval = 30;
-	  format = "<big> </big>";
-	  format-alt = "{used}/{total} <big></big>";
+	  format = "<span font='17' rise='-3000'> </span>";
+	  format-alt = "{used}/{total} <span font='17' rise='-3000'></span>";
 	  path = "/";
 	  tooltip = false;
 	};
@@ -71,8 +71,8 @@
 	battery = {
 	  interval = 60;
 	  bat = "BAT1";
-	  format = "<big> </big>";
-	  format-alt = "{capacity}% <big></big>";
+	  format = "<span font='17' rise='-3000'> </span>";
+	  format-alt = "{capacity}% <span font='17' rise='-3000'></span>";
 	  tooltip = false;
 	};
       };

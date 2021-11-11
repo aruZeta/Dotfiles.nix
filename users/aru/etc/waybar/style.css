@@ -36,7 +36,6 @@ window#waybar {
 }
 
 #workspaces button {
-	font-size: 23px;
 	min-width: 30px;
 	color: #b16286;
 	border-radius: 15px;
@@ -76,8 +75,4 @@ window#waybar {
 #battery {
 	margin-left: 10px;
 	color: #689d6a;
-}
-
-big {
-	font-size: 23px;
 }
