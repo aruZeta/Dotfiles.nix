@@ -11,7 +11,7 @@
       layer = "top";
       margin = "5 5 0";
       modules-left = [ "sway/workspaces" ];
-      modules-right = [ "clock" ];
+      modules-center = [ "clock" ];
       modules = {
         "sway/workspaces" = {
           format = "{icon}";
@@ -27,6 +27,13 @@
 	    "9" = "ﭮ";
           };
         };
+
+	clock = {
+	  interval = 1;
+	  format = "{:%H:%M:%S} <big></big>";
+	  format-alt = "{:%A %d, %B %Y} <big></big>";
+	  tooltip = false;
+	};
       };
     }];
   };

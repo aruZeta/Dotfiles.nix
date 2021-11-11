@@ -20,6 +20,7 @@ window#waybar {
 
 #workspaces,
 #clock {
+#clock,
 	padding: 0 10px;
 	background-color: #282828;
 	border-radius: 15px;
@@ -42,4 +43,8 @@ window#waybar {
 
 #workspaces button.focused {
 	color: #98971a;
+}
+
+big {
+	font-size: 23px;
 }
