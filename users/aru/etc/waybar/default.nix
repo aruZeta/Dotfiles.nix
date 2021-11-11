@@ -11,7 +11,7 @@
       layer = "top";
       margin = "5 5 0";
       modules-left = [ "sway/workspaces" ];
-      modules-center = [ "clock" ];
+      modules-center = [ "clock" "idle_inhibitor" ];
       modules-right = [ "cpu" "memory" "backlight" "disk" "battery" ];
       modules = {
         "sway/workspaces" = {
@@ -77,6 +77,13 @@
 	  format-icons = [ "" "" "" "" "" ];
 	  tooltip = false;
 	};
+
+	idle_inhibitor = {
+	  format = "<span font='17' rise='-3000'>{icon}</span>";
+	  format-icons = {
+	    activated = "";
+	    deactivated = "";
+	  };
 	  tooltip = false;
 	};
       };

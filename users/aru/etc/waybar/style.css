@@ -21,6 +21,7 @@ window#waybar {
 
 #workspaces,
 #clock,
+#idle_inhibitor,
 #cpu,
 #memory,
 #backlight,
@@ -50,6 +51,11 @@ window#waybar {
 }
 
 #clock {
+	color: #b16286;
+}
+
+#idle_inhibitor {
+	margin-left: 10px;
 	color: #b16286;
 }
 
