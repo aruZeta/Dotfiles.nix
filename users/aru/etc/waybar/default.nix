@@ -12,6 +12,7 @@
       margin = "5 5 0";
       modules-left = [ "sway/workspaces" ];
       modules-center = [ "clock" ];
+      modules-right = [ "cpu" ];
       modules = {
         "sway/workspaces" = {
           format = "{icon}";
@@ -35,6 +36,13 @@
 	  interval = 1;
 	  format = "{:%H:%M:%S} <big></big>";
 	  format-alt = "{:%A %d, %B %Y} <big></big>";
+	  tooltip = false;
+	};
+
+	cpu = {
+	  interval = 5;
+	  format = "<big></big>";
+	  format-alt = "{usage}% <big></big>";
 	  tooltip = false;
 	};
       };

@@ -19,8 +19,8 @@ window#waybar {
 }
 
 #workspaces,
-#clock {
 #clock,
+#cpu {
 	padding: 0 10px;
 	background-color: #282828;
 	border-radius: 15px;
