@@ -12,7 +12,7 @@
       margin = "5 5 0";
       modules-left = [ "sway/workspaces" ];
       modules-center = [ "clock" ];
-      modules-right = [ "cpu" "memory" "backlight" "disk" ];
+      modules-right = [ "cpu" "memory" "backlight" "disk" "battery" ];
       modules = {
         "sway/workspaces" = {
           format = "{icon}";
@@ -65,6 +65,14 @@
 	  format = "<big> </big>";
 	  format-alt = "{used}/{total} <big></big>";
 	  path = "/";
+	  tooltip = false;
+	};
+
+	battery = {
+	  interval = 60;
+	  bat = "BAT1";
+	  format = "<big> </big>";
+	  format-alt = "{capacity}% <big></big>";
 	  tooltip = false;
 	};
       };

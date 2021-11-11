@@ -24,7 +24,8 @@ window#waybar {
 #cpu,
 #memory,
 #backlight,
-#disk {
+#disk,
+#battery {
 	padding: 0 10px;
 	background-color: #282828;
 	border-radius: 15px;
@@ -70,6 +71,11 @@ window#waybar {
 #disk {
 	margin-left: 10px;
 	color: #458588;
+}
+
+#battery {
+	margin-left: 10px;
+	color: #689d6a;
 }
 
 big {
