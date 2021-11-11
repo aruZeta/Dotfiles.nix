@@ -41,21 +41,21 @@
 
 	cpu = {
 	  interval = 5;
-	  format = "<span font='17' rise='-3000'> </span>";
+	  format = "<span font='17' rise='-3000'> </span>";
 	  format-alt = "{usage}% <span font='17' rise='-3000'></span>";
 	  tooltip = false;
 	};
 
 	memory = {
 	  interval = 5;
-	  format = "<span font='17' rise='-3000'> </span>";
+	  format = "<span font='17' rise='-3000'> </span>";
 	  format-alt = "{used:0.1f}G/{total:0.1f}G <span font='17' rise='-3000'></span>";
 	  tooltip = false;
 	};
 
 	backlight = {
 	  interval = 5;
-	  format = "<span font='17' rise='-3000'> {icon}</span>";
+	  format = "<span font='17' rise='-3000'> {icon}</span>";
 	  format-alt = "{percent}% <span font='17' rise='-3000'>{icon}</span>";
 	  format-icons = [ "" "" ];
 	  tooltip = false;
@@ -63,7 +63,7 @@
 
 	disk = {
 	  interval = 30;
-	  format = "<span font='17' rise='-3000'> </span>";
+	  format = "<span font='17' rise='-3000'> </span>";
 	  format-alt = "{used}/{total} <span font='17' rise='-3000'></span>";
 	  path = "/";
 	  tooltip = false;
@@ -72,7 +72,7 @@
 	battery = {
 	  interval = 60;
 	  bat = "BAT1";
-	  format = "<span font='17' rise='-3000'> {icon}</span>";
+	  format = "<span font='17' rise='-3000'> {icon}</span>";
 	  format-alt = "{capacity}% <span font='17' rise='-3000'>{icon}</span>";
 	  format-icons = [ "" "" "" "" "" ];
 	  tooltip = false;
