@@ -26,7 +26,8 @@ window#waybar {
 #memory,
 #backlight,
 #disk,
-#battery {
+#battery,
+#network {
 	padding: 0 10px;
 	background-color: #282828;
 	border-radius: 15px;
@@ -81,4 +82,9 @@ window#waybar {
 #battery {
 	margin-left: 10px;
 	color: #689d6a;
+}
+
+#network {
+	margin-left: 10px;
+	color: #458588;
 }
