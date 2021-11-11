@@ -25,6 +25,9 @@
 	    "7" = "";
 	    "8" = ""; # Random stuff
 	    "9" = "ﭮ";
+            "urgent" = "";
+            "focused" = "";
+            "default" = "";
           };
         };
 
