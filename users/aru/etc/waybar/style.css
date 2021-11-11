@@ -23,7 +23,8 @@ window#waybar {
 #clock,
 #cpu,
 #memory,
-#backlight {
+#backlight,
+#disk {
 	padding: 0 10px;
 	background-color: #282828;
 	border-radius: 15px;
@@ -64,6 +65,11 @@ window#waybar {
 #backlight {
 	margin-left: 10px;
 	color: #689d6a;
+}
+
+#disk {
+	margin-left: 10px;
+	color: #458588;
 }
 
 big {

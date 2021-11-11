@@ -12,7 +12,7 @@
       margin = "5 5 0";
       modules-left = [ "sway/workspaces" ];
       modules-center = [ "clock" ];
-      modules-right = [ "cpu" "memory" "backlight" ];
+      modules-right = [ "cpu" "memory" "backlight" "disk" ];
       modules = {
         "sway/workspaces" = {
           format = "{icon}";
@@ -57,6 +57,14 @@
 	  interval = 5;
 	  format = "<big> </big>";
 	  format-alt = "{percent}% <big></big>";
+	  tooltip = false;
+	};
+
+	disk = {
+	  interval = 30;
+	  format = "<big> </big>";
+	  format-alt = "{used}/{total} <big></big>";
+	  path = "/";
 	  tooltip = false;
 	};
       };
