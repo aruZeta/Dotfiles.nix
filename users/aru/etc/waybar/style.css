@@ -31,10 +31,12 @@ window#waybar {
 	padding: 0 10px;
 	background-color: #282828;
 	border-radius: 15px;
+	margin-left: 10px;
 }
 
 #workspaces {
 	padding: 0;
+	margin: 0;
 }
 
 #workspaces button {
@@ -51,41 +53,19 @@ window#waybar {
 	color: #98971a;
 }
 
-#clock {
-	color: #b16286;
-}
-
+#clock,
 #idle_inhibitor {
-	margin-left: 10px;
 	color: #b16286;
 }
 
-#cpu {
-	margin-left: 10px;
-	color: #689d6a;
-}
-
-#memory {
-	margin-left: 10px;
-	color: #458588;
-}
-
-#backlight {
-	margin-left: 10px;
-	color: #689d6a;
-}
-
-#disk {
-	margin-left: 10px;
-	color: #458588;
-}
-
+#cpu,
+#backlight,
 #battery {
-	margin-left: 10px;
 	color: #689d6a;
 }
 
+#memory,
+#disk,
 #network {
-	margin-left: 10px;
 	color: #458588;
 }
