@@ -35,6 +35,10 @@
 	"sway/window" = {
 	  format = "{}";
 	  max-length = 80;
+	  rewrite = {
+	    "(.*) — Mozilla Firefox" = " $1";
+	    "(.*) - GNU Emacs.*" = "<span font='17' rise='-3000'></span> $1";
+	  };
 	  tooltip = false;
 	};
 
