@@ -12,7 +12,7 @@
       margin = "5 5 0";
       modules-left = [ "sway/workspaces" ];
       modules-center = [ "clock" "idle_inhibitor" ];
-      modules-right = [ "cpu" "memory" "backlight" "disk" "battery" "network" ];
+      modules-right = [ "cpu" "memory" "backlight" "disk" "battery" "network" "pulseaudio" ];
       modules = {
         "sway/workspaces" = {
           format = "<span font='17' rise='-3000'>{icon}</span>";
@@ -93,6 +93,24 @@
 	  format-ethernet = "<span font='17' rise='-3000'> </span>";
 	  format-disconnected = "<span font='17' rise='-3000'></span>";
 	  format-alt = "{essid}: {ipaddr} | {bandwidthUpBits} <span font='17' rise='-3000'></span> {bandwidthDownBits} <span font='17' rise='-3000'></span>";
+	  tooltip = false;
+	};
+
+	pulseaudio = {
+	  format = "<span font='17' rise='-3000'> {icon}</span>";
+	  format-alt = "{volume}% {format_source} <span font='17' rise='-3000'>{icon}</span>";
+          format-icons = {
+            headphone = "";
+            headset = "";
+            hands-free = "";
+	    speaker = "蓼";
+	    hifi = "醙";
+	    hdmi = "﴿";
+            phone = "";
+            portable = "";
+            car = "";
+      	    default = [ "" "" "" ];
+      	  };
 	  tooltip = false;
 	};
       };

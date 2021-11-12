@@ -27,7 +27,8 @@ window#waybar {
 #backlight,
 #disk,
 #battery,
-#network {
+#network,
+#pulseaudio {
 	padding: 0 10px;
 	background-color: #282828;
 	border-radius: 15px;
@@ -60,7 +61,8 @@ window#waybar {
 
 #cpu,
 #backlight,
-#battery {
+#battery,
+#pulseaudio {
 	color: #689d6a;
 }
 
