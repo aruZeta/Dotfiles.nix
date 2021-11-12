@@ -5,18 +5,11 @@
 	padding: 0;
 	font-family: 'Iosevka Term', monospace;
 	font-weight: 700;
-	font-size: inherit;
+	font-size: 13px;
 	background: none;
 	background-color: inherit;
 	box-shadow: none;
 	text-shadow: none;
-}
-
-window#waybar {
-	background-color: transparent;
-	color: #ebdbb2;
-	font-size: 13px;
-	transition-duration: .5s;
 }
 
 #workspaces,
@@ -28,7 +21,8 @@ window#waybar {
 #disk,
 #battery,
 #network,
-#pulseaudio {
+#pulseaudio,
+#window {
 	padding: 0 10px;
 	background-color: #282828;
 	border-radius: 15px;

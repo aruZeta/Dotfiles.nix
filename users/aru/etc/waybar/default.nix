@@ -10,7 +10,7 @@
       height = 30;
       layer = "top";
       margin = "5 5 0";
-      modules-left = [ "sway/workspaces" ];
+      modules-left = [ "sway/workspaces" "sway/window" ];
       modules-center = [ "clock" "idle_inhibitor" ];
       modules-right = [ "cpu" "memory" "backlight" "disk" "battery" "network" "pulseaudio" ];
       modules = {
@@ -31,6 +31,12 @@
             "default" = "";
           };
         };
+
+	"sway/window" = {
+	  format = "{}";
+	  max-length = 80;
+	  tooltip = false;
+	};
 
 	clock = {
 	  interval = 1;
