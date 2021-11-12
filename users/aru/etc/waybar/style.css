@@ -61,6 +61,7 @@ window#waybar {
 }
 
 #cpu {
+	margin-left: 10px;
 	color: #689d6a;
 }
 
