@@ -114,6 +114,8 @@
 
         pulseaudio = {
           format = "<span font='17' rise='-3000'> {icon}</span>";
+          format-muted = "<span font='17' rise='-3000'>  {icon}</span>";
+          format-source-muted = "<span font='17' rise='-3000'>  {icon}</span>";
           format-alt = "{volume}% {format_source} <span font='17' rise='-3000'>{icon}</span>";
           tooltip = false;
 
