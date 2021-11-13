@@ -33,6 +33,7 @@
       lsp-treemacs
       lsp-ui
       magit
+      nix-mode
       pinentry
       projectile
       treemacs

@@ -46,6 +46,7 @@
 (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.scss?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.nix?\\'" . nix-mode))
 
 (add-to-list 'lsp-language-id-configuration '(".*\\.scss" . "scss"))
 
