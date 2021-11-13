@@ -12,7 +12,7 @@
       margin = "5 5 0";
       modules-left = [ "sway/workspaces" "sway/window" ];
       modules-center = [ "clock" "idle_inhibitor" ];
-      modules-right = [ "cpu" "memory" "backlight" "disk" "battery" "network" "pulseaudio" ];
+      modules-right = [ "cpu" "memory" "backlight" "disk" "battery" "network" "pulseaudio" "temperature" ];
       modules = {
         "sway/workspaces" = {
           format = "<span font='17' rise='-3000'>{icon}</span>";
@@ -122,6 +122,15 @@
       	    default = [ "" "" "" ];
       	  };
 	  tooltip = false;
+	};
+
+	temperature = {
+	  interval = 5;
+	  format = "<span font='17' rise='-3000'> {icon}</span>";
+	  format-alt = "{temperatureC}°C <span font='17' rise='-3000'>{icon}</span>";
+	  format-icons = [ "" "" "" "" ];
+	  tooltip = false;
+	  critical-threshold = 80;
 	};
       };
     }];

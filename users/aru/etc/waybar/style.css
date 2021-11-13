@@ -16,6 +16,7 @@
 #clock,
 #idle_inhibitor,
 #cpu,
+#temperature,
 #memory,
 #backlight,
 #disk,
@@ -66,6 +67,11 @@
 
 #memory,
 #disk,
-#network {
+#network,
+#temperature {
 	color: #458588;
+}
+
+#temperature.critical {
+	color: #cc241d;
 }
