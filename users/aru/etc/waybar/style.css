@@ -29,6 +29,10 @@
 	margin-left: 10px;
 }
 
+#window {
+	color: #ebdbb2;
+}
+
 #workspaces {
 	padding: 0;
 	margin: 0;
