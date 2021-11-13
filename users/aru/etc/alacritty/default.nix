@@ -7,13 +7,20 @@
 
     # Alacritty config
     settings = {
+      draw_bold_text_with_bright_colors = true;
+      background_opacity = 0.8;
+      live_config_reload = true;
+      working_directory = "None";
+
       window = {
+        title = "Alacritty";
+        dynamic_title = true;
+
         padding = {
           x = 5;
           y = 5;
         };
-        title = "Alacritty";
-        dynamic_title = true;
+
         class = {
           instance = "Alacritty";
           general = "Alacritty";
@@ -27,33 +34,33 @@
 
       font = {
         size = 12.0;
+
         normal = {
           family = "Iosevka Term";
           style = "Medium";
         };
+
         bold = {
           family = "Iosevka Term";
           style = "Bold";
         };
+
         italic = {
           family = "Iosevka Term";
           style = "Italic";
         };
+
         bold_italic = {
           family = "Iosevka Term";
           style = "Bold Italic";
         };
       };
 
-      draw_bold_text_with_bright_colors = true;
-      background_opacity = 0.8;
-      live_config_reload = true;
-      working_directory = "None";
-
       cursor = {
         blink_interval = 1000;
         unfocused_hollow = false;
         thickness = 1;
+
         style = {
           shape = "Block";
           blinking = "Never";

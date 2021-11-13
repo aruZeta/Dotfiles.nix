@@ -12,6 +12,7 @@
   boot = {
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "ehci_pci" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
     kernelModules = [ "kvm-amd" ];
+
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -81,14 +82,15 @@
   users = {
     mutableUsers = false;
     users = {
+
       aru = {
         isNormalUser = true;
         createHome = true;
         uid = 6262;
-	# Pretty long right
+        # Pretty long right
         hashedPassword = "$6$kW4T4vV/$JjK0WjLDpsD.9jVqFsdAfy267.W8iEia6wEsrbD/DWNk2spUr2UxTRRsBdLgk2DfSRoaAdUC/PhW7o2UAjyed0";
         extraGroups = [ "wheel" "networkmanager" "vboxusers" ];
-	shell = pkgs.zsh;
+        shell = pkgs.zsh;
       };
     };
   };

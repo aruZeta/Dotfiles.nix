@@ -19,7 +19,7 @@
     pinentryFlavor = "emacs";
     extraConfig =
       ''
-        allow-emacs-pinentry
+      allow-emacs-pinentry
       '';
   };
 }

@@ -17,8 +17,10 @@ in
   home = {
     username = "aru";
     homeDirectory = "/home/aru";
+
     # Current unstable version
     stateVersion = "21.11";
+
     packages = with pkgs; [
       # Browser
       firefox

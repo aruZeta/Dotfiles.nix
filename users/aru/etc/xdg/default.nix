@@ -4,6 +4,7 @@
 {
   xdg = {
     enable = true;
+
     userDirs = {
       enable = true;
       desktop = "\$HOME/Tmp/Desktop";
@@ -13,6 +14,7 @@
       pictures = "\$HOME/Archive/Images";
       templates = "\$HOME/Archive/Templates";
       videos = "\$HOME/Archive/Video";
+
       extraConfig = {
         XDG_DOTFILES_DIR = "\$HOME/Dotfiles";
       };
