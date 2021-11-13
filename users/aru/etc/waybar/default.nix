@@ -16,7 +16,6 @@
       modules-right = [ "cpu" "memory" "backlight" "disk" "battery" "network" "pulseaudio" "temperature" ];
 
       modules = {
-
         "sway/workspaces" = {
           format = "<span font='17' rise='-3000'>{icon}</span>";
 
@@ -38,6 +37,7 @@
 
         "sway/window" = {
           format = "{}";
+          format-alt = "<span font='17' rise='-3000'></span>";
           max-length = 80;
           tooltip = false;
 
