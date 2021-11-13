@@ -1,4 +1,5 @@
 { lib
+, pkgs
 , ...
 }:
 
@@ -74,6 +75,8 @@
           format-alt = "{percent}% <span font='17' rise='-3000'>{icon}</span>";
           format-icons = [ "" "" ];
           tooltip = false;
+          on-scroll-up = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +1%";
+          on-scroll-down = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 1%-";
         };
 
         disk = {
@@ -96,6 +99,8 @@
         idle_inhibitor = {
           format = "<span font='17' rise='-3000'>{icon}</span>";
           tooltip = false;
+          on-click-right = "exec swaylock -f";
+          on-click-middle = "exec swayidle timeout 1 'swaylock -f' timeout 2 'swaymsg \"output * dpms off\"' resume 'swaymsg \"output * dpms on\" && pkill -n swayidle' before-sleep 'swaylock -f'";
 
           format-icons = {
             activated = "";
@@ -118,6 +123,8 @@
           format-source-muted = "<span font='17' rise='-3000'>  {icon}</span>";
           format-alt = "{volume}% {format_source} <span font='17' rise='-3000'>{icon}</span>";
           tooltip = false;
+          on-click-right = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          on-click-middle = "exec ${pkgs.pavucontrol}/bin/pavucontrol";
 
           format-icons = {
             headphone = "";

@@ -55,6 +55,7 @@ in
       # Utilities
       sass
       unzip
+      pavucontrol
     ];
   };
 }
