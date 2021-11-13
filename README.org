@@ -1,0 +1,4 @@
+#+AUTHOR: aru
+* aru's Dotfiles made with nix
+
+TODO: future me should write something here, present me is too lazy
