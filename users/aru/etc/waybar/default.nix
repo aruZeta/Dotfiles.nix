@@ -3,6 +3,9 @@
 , ...
 }:
 
+let
+  big = text: "<span font='17' rise='-3000'>" + text + "</span>";
+in
 {
   programs.waybar = {
     enable = true;
@@ -18,7 +21,7 @@
 
       modules = {
         "sway/workspaces" = {
-          format = "<span font='17' rise='-3000'>{icon}</span>";
+          format = ''${big "{icon}"}'';
 
           format-icons = {
             "1" = "";
@@ -38,41 +41,41 @@
 
         "sway/window" = {
           format = "{}";
-          format-alt = "<span font='17' rise='-3000'></span>";
+          format-alt = ''${big ""}'';
           max-length = 80;
           tooltip = false;
 
           rewrite = {
-            "(.*) — Mozilla Firefox" = " $1";
-            "(.*) - GNU Emacs.*" = "<span font='17' rise='-3000'></span> $1";
+            "(.*) — Mozilla Firefox" = ''${big ""} $1'';
+            "(.*) - GNU Emacs.*" = ''${big ""} $1'';
           };
         };
 
         clock = {
           interval = 1;
-          format = "{:%H:%M:%S} <span font='17' rise='-3000'></span>";
-          format-alt = "{:%A %d, %B %Y} <span font='17' rise='-3000'></span>";
+          format = ''{:%H:%M:%S} ${big ""}'';
+          format-alt = ''{:%A %d, %B %Y} ${big ""}'';
           tooltip = false;
         };
 
         cpu = {
           interval = 5;
-          format = "<span font='17' rise='-3000'> </span>";
-          format-alt = "{usage}% <span font='17' rise='-3000'></span>";
+          format = ''${big " "}'';
+          format-alt = ''{usage}% ${big ""}'';
           tooltip = false;
         };
 
         memory = {
           interval = 5;
-          format = "<span font='17' rise='-3000'> </span>";
-          format-alt = "{used:0.1f}G/{total:0.1f}G <span font='17' rise='-3000'></span>";
+          format = ''${big " "}'';
+          format-alt = ''{used:0.1f}G/{total:0.1f}G ${big ""}'';
           tooltip = false;
         };
 
         backlight = {
           interval = 5;
-          format = "<span font='17' rise='-3000'> {icon}</span>";
-          format-alt = "{percent}% <span font='17' rise='-3000'>{icon}</span>";
+          format = ''${big " {icon}"}'';
+          format-alt = ''{percent}% ${big "{icon}"}'';
           format-icons = [ "" "" ];
           tooltip = false;
           on-scroll-up = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +1%";
@@ -81,8 +84,8 @@
 
         disk = {
           interval = 30;
-          format = "<span font='17' rise='-3000'> </span>";
-          format-alt = "{used}/{total} <span font='17' rise='-3000'></span>";
+          format = ''${big " "}'';
+          format-alt = ''{used}/{total} ${big ""}'';
           path = "/";
           tooltip = false;
         };
@@ -90,14 +93,14 @@
         battery = {
           interval = 60;
           bat = "BAT1";
-          format = "<span font='17' rise='-3000'> {icon}</span>";
-          format-alt = "{capacity}% <span font='17' rise='-3000'>{icon}</span>";
+          format = ''${big " {icon}"}'';
+          format-alt = ''{capacity}% ${big "{icon}"}'';
           format-icons = [ "" "" "" "" "" ];
           tooltip = false;
         };
 
         idle_inhibitor = {
-          format = "<span font='17' rise='-3000'>{icon}</span>";
+          format = ''${big "{icon}"}'';
           tooltip = false;
           on-click-right = "exec swaylock -f";
           on-click-middle = "exec swayidle timeout 1 'swaylock -f' timeout 2 'swaymsg \"output * dpms off\"' resume 'swaymsg \"output * dpms on\" && pkill -n swayidle' before-sleep 'swaylock -f'";
@@ -110,18 +113,18 @@
 
         network = {
           interval = 5;
-          format-wifi = "<span font='17' rise='-3000'> 直</span>";
-          format-ethernet = "<span font='17' rise='-3000'> </span>";
-          format-disconnected = "<span font='17' rise='-3000'></span>";
-          format-alt = "{essid}: {ipaddr} | {bandwidthUpBits} <span font='17' rise='-3000'></span> {bandwidthDownBits} <span font='17' rise='-3000'></span>";
+          format-wifi = ''${big " 直"}'';
+          format-ethernet = ''${big " "}'';
+          format-disconnected = ''${big ""}'';
+          format-alt = ''{essid}: {ipaddr} | {bandwidthUpBits} ${big ""} {bandwidthDownBits} ${big ""}'';
           tooltip = false;
         };
 
         pulseaudio = {
-          format = "<span font='17' rise='-3000'> {icon}</span>";
-          format-muted = "<span font='17' rise='-3000'>  {icon}</span>";
-          format-source-muted = "<span font='17' rise='-3000'>  {icon}</span>";
-          format-alt = "{volume}% {format_source} <span font='17' rise='-3000'>{icon}</span>";
+          format = ''${big " {icon}"}'';
+          format-muted = ''${big "  {icon}"}'';
+          format-source-muted = ''${big "  {icon}"}'';
+          format-alt = ''{volume}% {format_source} ${big "{icon}"}'';
           tooltip = false;
           on-click-right = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
           on-click-middle = "exec ${pkgs.pavucontrol}/bin/pavucontrol";
@@ -142,8 +145,8 @@
 
         temperature = {
           interval = 5;
-          format = "<span font='17' rise='-3000'> {icon}</span>";
-          format-alt = "{temperatureC}°C <span font='17' rise='-3000'>{icon}</span>";
+          format = ''${big " {icon}"}'';
+          format-alt = ''{temperatureC}°C ${big "{icon}"}'';
           format-icons = [ "" "" "" "" ];
           tooltip = false;
           critical-threshold = 80;
