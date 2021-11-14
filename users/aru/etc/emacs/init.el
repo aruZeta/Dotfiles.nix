@@ -54,12 +54,13 @@
   (setq indent-tabs-mode t
 	tab-width        2)
   (web-mode-use-tabs)
-  (global-set-key (kbd "C-SPC") 'emmet-expand-line))
+  (global-set-key (kbd "C-SPC") 'emmet-expand-line)
+  (add-hook 'after-save-hook #'aru/scss-compile-maybe))
 
 (setq aru/scss-sass-options '()
       aru/scss-output-directory nil)
 
-(defun aru/scss-compile()
+(defun aru/scss-compile ()
   (interactive)
   (compile (concat "sass" " " (mapconcat 'identity aru/scss-sass-options " ") " --update "
                    (when (string-match ".*/" buffer-file-name)
@@ -70,6 +71,16 @@
 (defun aru/emmet-mode-hook ()
   (setq emmet-self-closing-tag-style " /"
 	emmet-move-cursor-between-quotes t))
+
+(defun aru/is-scss-file ()
+  (interactive)
+  (if (string=
+       (file-name-extension (buffer-file-name (window-buffer (minibuffer-selected-window))))
+       "scss")
+      t nil))
+
+(defun aru/scss-compile-maybe ()
+  (if (aru/is-scss-file) (aru/scss-compile)))
 
 ;;; Hooks Config
 
