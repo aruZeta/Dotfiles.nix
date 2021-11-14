@@ -67,6 +67,10 @@
                    (when aru/scss-output-directory
                      (concat ":'" aru/scss-output-directory "'")))))
 
+(defun aru/emmet-mode-hook ()
+  (setq emmet-self-closing-tag-style " /"
+	emmet-move-cursor-between-quotes t))
+
 ;;; Hooks Config
 
 (add-hook 'lsp-mode #'lsp-ui-mode)
@@ -81,6 +85,8 @@
 (add-hook 'org-after-todo-state-change-hook #'aru/log-todo-next-creation-date)
 (add-hook 'org-mode-hook                    #'aru/org-hook)
 (add-hook 'org-mode-hook                    #'turn-on-auto-fill)
+
+(add-hook 'emmet-mode-hook #'aru/emmet-mode-hook)
 
 ;;; Keybindings config
 
