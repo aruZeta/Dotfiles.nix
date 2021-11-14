@@ -47,6 +47,7 @@ in
 
           rewrite = {
             "(.*) — Mozilla Firefox" = ''${big ""} $1'';
+            "(.*) — Mozilla Firefox \\(Private Browsing\\)" = ''${big " ﴣ"} $1'';
             "(.*) - GNU Emacs.*" = ''${big ""} $1'';
           };
         };
