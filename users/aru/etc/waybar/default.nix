@@ -50,6 +50,7 @@ in
             "(.*) — Mozilla Firefox \\(Private Browsing\\)" = ''${big " ﴣ"} $1'';
             "(.*) - GNU Emacs.*" = ''${big ""} $1'';
             "(.*) - Eclipse IDE.*" = ''${big ""} $1'';
+            "(.*) - Oracle VM VirtualBox" = ''${big ""} $1'';
           };
         };
 
