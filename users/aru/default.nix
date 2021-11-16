@@ -15,6 +15,7 @@
     ./etc/overlays
     ./etc/starship
     ./etc/sway
+    ./etc/swaylock
     ./etc/waybar
     ./etc/xdg
     ./etc/zsh
