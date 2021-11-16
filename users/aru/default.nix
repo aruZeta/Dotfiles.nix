@@ -17,6 +17,7 @@
     ./etc/sway
     ./etc/swaylock
     ./etc/waybar
+    ./etc/wofi
     ./etc/xdg
     ./etc/zsh
   ];
