@@ -25,6 +25,12 @@
     driSupport = true;
   };
 
+  # So swaylock works
+  security.pam.services.swaylock.text =
+    ''
+    auth include login
+    '';
+
   # My btrfs subvols
   fileSystems = {
     "/" = {
