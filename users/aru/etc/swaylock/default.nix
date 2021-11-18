@@ -3,9 +3,6 @@
 
 {
   home.file = {
-    "swaylock" = {
-      source = ../swaylock;
-      target = ".config/swaylock";
-    };
+    ".config/swaylock/config".source = ./config;
   };
 }

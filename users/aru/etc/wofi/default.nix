@@ -3,9 +3,6 @@
 
 {
   home.file = {
-    "wofi" = {
-      source = ../wofi;
-      target = ".config/wofi";
-    };
+    ".config/wofi/config".source = ./config;
   };
 }
