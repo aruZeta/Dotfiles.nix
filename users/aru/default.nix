@@ -9,6 +9,7 @@
     ./etc/emacs
     ./etc/git
     ./etc/gpg
+    ./etc/gtk
     ./etc/home
     ./etc/java
     ./etc/nvim

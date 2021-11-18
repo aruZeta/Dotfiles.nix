@@ -25,6 +25,9 @@
     driSupport = true;
   };
 
+  # So home-manager doesn't complain (when adding gtk)
+  programs.dconf.enable = true;
+
   # So swaylock works
   security.pam.services.swaylock.text =
     ''
