@@ -1,2 +1,10 @@
-width=50%
-height=50%
+width=40%
+lines=8
+
+allow_images=true
+image_size=24
+
+term=alacritty
+
+prompt=
+insensitive=true

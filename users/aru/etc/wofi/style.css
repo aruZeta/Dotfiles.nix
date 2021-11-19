@@ -1,0 +1,35 @@
+window {
+	border-radius: 10px;
+}
+
+#outer-box {
+	padding: 5px;
+}
+
+#inner-box {
+	margin-right: 15px;
+}
+
+#input {
+	border-radius: 10px;
+	padding: 5px;
+	border: none;
+}
+
+#scroll {
+	margin-top: 5px;
+}
+
+#entry {
+	border-radius: 10px;
+	padding: 5px;
+	outline: none;
+}
+
+#text {
+	font-weight: 700;
+}
+
+#img {
+	margin-right: 5px;
+}
