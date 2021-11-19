@@ -1,8 +1,9 @@
-{ ...
+{ config
+, ...
 }:
 
 {
   home.file = {
-    ".config/wofi/config".source = ./config;
+    "${config.xdg.configHome}/wofi/config".source = ./config;
   };
 }
