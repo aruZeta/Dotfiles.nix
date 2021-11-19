@@ -5,6 +5,11 @@
   xdg = {
     enable = true;
 
+    configHome = ~/.dotfiles/config;
+    cacheHome = ~/.dotfiles/cache;
+    dataHome = ~/.dotfiles/local/share;
+    stateHome = ~/.dotfiles/local/state;
+
     userDirs = {
       enable = true;
       desktop = "\$HOME/Tmp/Desktop";
