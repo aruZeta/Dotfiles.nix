@@ -1,7 +1,7 @@
 show-failed-attempts
 ignore-empty-password
 
-image=$HOME/Dotfiles/share/img/black-hole.jpg
+image=$(xdg-user-dir DOTFILES)/share/img/black-hole.jpg
 scaling=stretch
 color=000000
 

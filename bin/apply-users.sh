@@ -1,5 +1,5 @@
 #!/bin/sh
 
-pushd ~/Dotfiles
+pushd $(xdg-user-dir DOTFILES)
 home-manager switch -f ./users/$USER/default.nix
 popd

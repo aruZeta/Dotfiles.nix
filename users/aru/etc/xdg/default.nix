@@ -21,7 +21,7 @@
       videos = "$HOME/Archive/Video";
 
       extraConfig = {
-        XDG_DOTFILES_DIR = "$HOME/Dotfiles";
+        XDG_DOTFILES_DIR = "$HOME/Dotfiles.nix";
       };
     };
   };
