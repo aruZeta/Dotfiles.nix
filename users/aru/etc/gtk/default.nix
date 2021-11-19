@@ -21,4 +21,10 @@
       name = "gruvbox-dark";
     };
   };
+
+  home.file.".config/Trolltech.conf".text =
+    ''
+    [Qt]
+    style=GTK+
+    '';
 }
