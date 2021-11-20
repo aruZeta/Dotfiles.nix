@@ -118,6 +118,9 @@
   };
 
   system = {
+    # Current unstable version
+    stateVersion = "21.11";
+
     activationScripts = {
       setGitReposPermissions =
         ''
@@ -127,7 +130,5 @@
     };
   };
 
-  # Current unstable version
-  system.stateVersion = "21.11";
 
 }
