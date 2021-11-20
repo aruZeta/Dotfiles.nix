@@ -105,9 +105,25 @@
         uid = 6262;
         # Pretty long right
         hashedPassword = "$6$kW4T4vV/$JjK0WjLDpsD.9jVqFsdAfy267.W8iEia6wEsrbD/DWNk2spUr2UxTRRsBdLgk2DfSRoaAdUC/PhW7o2UAjyed0";
-        extraGroups = [ "wheel" "networkmanager" "vboxusers" ];
+        extraGroups = [ "wheel" "networkmanager" "vboxusers" "GitReposEditors" ];
         shell = pkgs.zsh;
       };
+    };
+
+    groups = {
+      GitReposEditors = {
+        gid = 2001;
+      };
+    };
+  };
+
+  system = {
+    activationScripts = {
+      setGitReposPermissions =
+        ''
+        chown root:2001 /GitRepos
+        chmod 2775 /GitRepos
+        '';
     };
   };
 
