@@ -10,6 +10,7 @@
     ];
 
   boot = {
+    kernelPackages = pkgs.linuxPackages_zen;
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "ehci_pci" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
     kernelModules = [ "kvm-amd" ];
 
