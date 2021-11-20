@@ -55,6 +55,12 @@
       options = [ "subvol=nixos/nix/store" "compress-force=lzo" ];
     };
 
+    "/GitRepos" = {
+      device = "/dev/disk/by-uuid/506fcdab-eb1d-4fa6-9ab1-3511fc7c3e22";
+      fsType = "btrfs";
+      options = [ "subvol=@GitRepos" "compress-force=lzo" ];
+    };
+
     "/boot" = {
       device = "/dev/disk/by-uuid/9152-BAE9";
       fsType = "vfat";
