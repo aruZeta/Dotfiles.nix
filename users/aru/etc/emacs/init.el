@@ -38,10 +38,6 @@
  'org-babel-load-languages
  '((java . t)))
 
-(setq org-babel-default-header-args:java
-             '((:dir . nil)
-	       (:results . output)))
-
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.scss?\\'" . web-mode))
@@ -125,7 +121,7 @@
       org-publish-project-alist
       '(("S1DAM - Notes" :components ("S1DAM_Notes.org" "S1DAM_Notes.static"))
 	("S1DAM_Notes.org"
-         :headline-levels 3
+         :headline-levels 6
          :recursive t
          :base-extension "org"
          :base-directory "~/Archive/Classes/S1DAM/Notes.org/"
