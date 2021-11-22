@@ -36,6 +36,8 @@
         grim
         wl-clipboard
         brightnessctl
+        libsForQt5.qtstyleplugins
+        qt5ct
 
         # Git stuff
         git-crypt
