@@ -111,6 +111,19 @@
 
  "t t" '(treemacs :which-key "Toggle treemacs sidebar")
 
+ ; Buffer
+ "b" '(:ignore t :which-key "Buffer")
+
+ "b k" '(:ignore t :which-key "Kill")
+ "b k o" '(kill-buffer :which-key "Other")
+ "b k f" '(kill-current-buffer :which-key "Focused")
+
+ "b s" '(:ignore t :which-key "Switch")
+ "b s n" '(switch-to-next-buffer :which-key "Next")
+ "b s p" '(switch-to-prev-buffer :which-key "Previous")
+ "b s s" '(switch-to-buffer :which-key "Select")
+ "b s w" '(switch-to-buffer-other-window :which-key "Select to other window")
+
  ; Magit
  "m" '(magit :which-key "Magit"))
 
