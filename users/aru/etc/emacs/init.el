@@ -101,6 +101,11 @@
 ; (define-key lsp-mode-map (kbd "TAB") 'completion-at-point)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
+(general-define-key
+ :states '(normal)
+ :prefix "SPC"
+ :non-normal-prefix "M-<return>")
+
 ;;; Org config
 
 (setq org-agenda-fontify-priorities t

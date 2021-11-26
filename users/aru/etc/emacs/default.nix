@@ -23,6 +23,7 @@
       emmet-mode
       evil
       flycheck
+      general
       gruvbox-theme
       htmlize
       ivy
