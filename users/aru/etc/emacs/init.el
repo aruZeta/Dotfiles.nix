@@ -104,7 +104,10 @@
 (general-define-key
  :states '(normal)
  :prefix "SPC"
- :non-normal-prefix "M-<return>")
+ :non-normal-prefix "M-<return>"
+
+ ; Magit
+ "m" '(magit :which-key "Magit"))
 
 ;;; Org config
 
