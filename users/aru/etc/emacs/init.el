@@ -124,6 +124,26 @@
  "b s s" '(switch-to-buffer :which-key "Select")
  "b s w" '(switch-to-buffer-other-window :which-key "Select to other window")
 
+ ; Window
+ "w" '(:ignore t :which-key "Window")
+
+ "w <up>" '(windmove-up :which-key "Top")
+ "w <right>" '(windmove-right :which-key "Right")
+ "w <down>" '(windmove-down :which-key "Bottom")
+ "w <left>" '(windmove-left :which-key "Left")
+
+ "w s" '(:ignore t :which-key "Split")
+ "w s <right>" '(split-window-right :which-key "Right")
+ "w s <down>" '(split-window-below :which-key "Below")
+
+ "w d" '(:ignore t :which-key "Delete")
+ "w d o" '(delete-other-window :which-key "Other")
+ "w d f" '(delete-window :which-key "Focused")
+ "w d <up>" '(windmove-delete-up :which-key "Top")
+ "w d <right>" '(windmove-delete-right :which-key "Right")
+ "w d <down>" '(windmove-delete-down :which-key "Bottom")
+ "w d <left>" '(windmove-delete-left :which-key "Left")
+
  ; Magit
  "m" '(magit :which-key "Magit"))
 
