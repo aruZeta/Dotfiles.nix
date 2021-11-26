@@ -106,6 +106,11 @@
  :prefix "SPC"
  :non-normal-prefix "M-<return>"
 
+ ; Treemacs
+ "t" '(:ignore t :which-key "Treemacs")
+
+ "t t" '(treemacs :which-key "Toggle treemacs sidebar")
+
  ; Magit
  "m" '(magit :which-key "Magit"))
 
