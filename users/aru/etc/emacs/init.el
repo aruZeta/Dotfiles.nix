@@ -34,7 +34,7 @@
 
 (set-face-attribute 'default nil :font "Iosevka Term" :height 120)
 
-(load-theme 'gruvbox-dark-hard)
+(load-theme 'gruvbox-dark-hard t)
 
 (org-babel-do-load-languages
  'org-babel-load-languages
