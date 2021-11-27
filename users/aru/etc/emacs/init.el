@@ -151,6 +151,8 @@
 
 ;;; Org config
 
+(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+
 (setq org-agenda-fontify-priorities t
       org-agenda-hide-tags-regexp "."
       org-directory "~/Archive/Org/"

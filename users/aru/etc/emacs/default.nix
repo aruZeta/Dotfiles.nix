@@ -30,6 +30,7 @@
       lsp-ui
       magit
       nix-mode
+      org-superstar
       pinentry
       projectile
       treemacs
