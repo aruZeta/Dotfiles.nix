@@ -1,5 +1,5 @@
 window {
-	border-radius: 10px;
+	border-radius: 15px;
 }
 
 #outer-box {
@@ -11,7 +11,7 @@ window {
 }
 
 #input {
-	border-radius: 10px;
+	border-radius: 15px;
 	padding: 5px;
 	border: none;
 }
@@ -21,7 +21,7 @@ window {
 }
 
 #entry {
-	border-radius: 10px;
+	border-radius: 15px;
 	padding: 5px;
 	outline: none;
 }
