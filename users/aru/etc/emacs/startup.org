@@ -1,0 +1,32 @@
+#+TITLE: Emacs Startup Buffer
+#+STARTUP: showall
+* Welcome to emacs
+** Useful keybindings
+*** SPC (Leader keybinding)
+**** t -> treemacs
+***** t -> toggle
+**** b -> buffer
+***** k -> kill
+****** o -> other
+****** f -> focused
+***** s -> switch
+****** n -> next
+****** p -> previous
+****** s -> select
+****** w -> select to other window
+**** w -> window
+***** <up> -> top
+***** <right> -> right
+***** <down> -> bottom
+***** <left> -> left
+***** s -> split
+****** <right> -> right
+****** <down> -> below
+***** d -> delete
+****** o -> other
+****** f -> focused
+****** <up> -> top
+****** <right> -> right
+****** <down> -> bottom
+****** <left> -> left
+**** m -> magit

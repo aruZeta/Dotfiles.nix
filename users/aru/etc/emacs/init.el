@@ -5,7 +5,8 @@
       which-key-idle-delay 2)
 
 (custom-set-variables
- '(inhibit-startup-screen t))
+ '(inhibit-startup-screen t)
+ '(initial-buffer-choice (substitute-in-file-name "$XDG_CONFIG_HOME/emacs/startup.org")))
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
