@@ -31,7 +31,7 @@ in
     };
 
     shellAliases = {
-      "l" = "ls -lhA";
+      "l" = "ls --color=always --group-directories-first -lhA";
     };
 
     sessionVariables = {
