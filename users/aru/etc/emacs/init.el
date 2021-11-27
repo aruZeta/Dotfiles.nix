@@ -1,9 +1,11 @@
 ;;; Emacs Config
 
-(setq inhibit-startup-message t
-      user-full-name "Alberto Robles Gomez"
+(setq user-full-name "Alberto Robles Gomez"
       user-mail-address "aru_hackZ.official@zohomail.eu"
       which-key-idle-delay 2)
+
+(custom-set-variables
+ '(inhibit-startup-screen t))
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
