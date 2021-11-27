@@ -1,4 +1,5 @@
-{ pkgs
+{ config
+, pkgs
 , lib
 , ...
 }:
@@ -9,12 +10,6 @@
 
     # Emacs pure gtk package
     package = pkgs.emacsPgtk;
-
-    # Emacs config
-    # TODO: Better way to set this with infile imports from within init.el
-    extraConfig = builtins.concatStringsSep "\n" [
-      (lib.strings.fileContents ./init.el)
-    ];
 
     # No use-package
     extraPackages = (epkgs: with epkgs; [
@@ -42,5 +37,9 @@
       which-key
       yasnippet
     ]);
+  };
+
+  home.file = {
+    "${config.xdg.configHome}/emacs/init.el".source = ./init.el;
   };
 }
