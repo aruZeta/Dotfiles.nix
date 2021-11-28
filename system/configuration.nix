@@ -7,6 +7,7 @@
   # I think this was auto-generated?
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
+      /etc/nixos/cachix.nix
     ];
 
   boot = {
