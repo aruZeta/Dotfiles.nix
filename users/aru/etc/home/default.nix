@@ -29,7 +29,6 @@
         # Window Manager stuff
         swaylock
         swayidle
-        swaybg
         mako
         wofi
         slurp

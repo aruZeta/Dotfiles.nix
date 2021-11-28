@@ -74,7 +74,7 @@
         };
 
         "*" = {
-          bg = "${config.home.homeDirectory}/Archive/Images/Wallpapers/round-logo-wallpaper.png fill";
+          bg = "#1d2021 solid_color";
         };
       };
 
