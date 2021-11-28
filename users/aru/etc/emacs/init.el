@@ -268,12 +268,24 @@
   (set-face-attribute 'org-ellipsis nil :underline nil)
   (org-superstar-mode 1)
   (turn-on-auto-fill)
+  (aru/org-faces)
   (aru/org-mode-visual-fill))
 
 (defun aru/org-mode-visual-fill ()
   (setq visual-fill-column-width 100
 	visual-fill-column-center-text t)
   (visual-fill-column-mode 1))
+
+(defun aru/org-faces ()
+  (dolist (face '((org-document-title . 1.5)
+                  (org-level-1 . 1.4)
+		  (org-level-2 . 1.25)
+		  (org-level-3 . 1.1)
+		  (org-level-4 . 1.1)
+		  (org-level-5 . 1.1)
+		  (org-level-6 . 1.05)
+		  (org-level-7 . 1.05)))
+    (set-face-attribute (car face) nil :font "Iosevka Term" :height (cdr face))))
 
 (defun aru/org-export-delete-special-cols-n-rows (back-end)
    (while (re-search-forward "^[ \t]*| +\\(_\\) +|" nil t)
