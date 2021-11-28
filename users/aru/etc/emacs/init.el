@@ -267,7 +267,13 @@
 (defun aru/org-hook ()
   (set-face-attribute 'org-ellipsis nil :underline nil)
   (org-superstar-mode 1)
-  (turn-on-auto-fill))
+  (turn-on-auto-fill)
+  (aru/org-mode-visual-fill))
+
+(defun aru/org-mode-visual-fill ()
+  (setq visual-fill-column-width 100
+	visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
 
 (defun aru/org-export-delete-special-cols-n-rows (back-end)
    (while (re-search-forward "^[ \t]*| +\\(_\\) +|" nil t)

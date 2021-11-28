@@ -34,6 +34,7 @@
       pinentry
       projectile
       treemacs
+      visual-fill-column
       web-mode
       which-key
       yasnippet
