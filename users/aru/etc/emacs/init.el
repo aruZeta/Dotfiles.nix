@@ -78,8 +78,14 @@
        "scss")
       t nil))
 
+(defcustom aru/do-compile-scss t
+  "Wanna compile scss?"
+  :type 'boolean)
+
 (defun aru/scss-compile-maybe ()
-  (if (aru/is-scss-file) (aru/scss-compile)))
+  (if (and (aru/is-scss-file)
+	   aru/do-compile-scss)
+      (aru/scss-compile)))
 
 ;;; Hooks Config
 
