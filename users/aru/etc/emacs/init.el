@@ -94,7 +94,6 @@
 
 (add-hook 'org-after-todo-state-change-hook #'aru/log-todo-next-creation-date)
 (add-hook 'org-mode-hook                    #'aru/org-hook)
-(add-hook 'org-mode-hook                    #'turn-on-auto-fill)
 
 (add-hook 'emmet-mode-hook #'aru/emmet-mode-hook)
 
@@ -151,8 +150,6 @@
  "m" '(magit :which-key "Magit"))
 
 ;;; Org config
-
-(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
 
 (setq org-agenda-fontify-priorities t
       org-agenda-hide-tags-regexp "."
@@ -268,7 +265,9 @@
 	      (org-save-all-org-buffers)))
 
 (defun aru/org-hook ()
-  (set-face-attribute 'org-ellipsis nil :underline nil))
+  (set-face-attribute 'org-ellipsis nil :underline nil)
+  (org-superstar-mode 1)
+  (turn-on-auto-fill))
 
 (defun aru/org-export-delete-special-cols-n-rows (back-end)
    (while (re-search-forward "^[ \t]*| +\\(_\\) +|" nil t)
