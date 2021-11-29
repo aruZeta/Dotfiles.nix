@@ -114,8 +114,18 @@
 ; (define-key lsp-mode-map (kbd "TAB") 'completion-at-point)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
+(setq general-override-states '(insert
+				emacs
+				hybrid
+				normal
+				visual
+				motion
+				operator
+				replace))
+
 (general-define-key
- :states '(normal)
+ :states '(normal visual motion)
+ :keymaps 'override
  :prefix "SPC"
  :non-normal-prefix "M-<return>"
 
