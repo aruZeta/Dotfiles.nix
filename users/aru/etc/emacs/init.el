@@ -16,7 +16,12 @@
 (counsel-mode 1)
 (ivy-mode 1)
 (ivy-rich-mode 1)
+(setq evil-want-keybinding nil)
 (evil-mode 1)
+(evil-collection-init)
+(setq evil-collection-outline-bind-tab-p t
+      evil-collection-calendar-want-org-bindings t
+      evil-collection-setup-minibuffer t)
 (lsp-treemacs-sync-mode 1)
 
 (projectile-mode +1)

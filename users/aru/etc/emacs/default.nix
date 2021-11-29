@@ -17,6 +17,7 @@
       counsel
       emmet-mode
       evil
+      evil-collection
       flycheck
       general
       gruvbox-theme
