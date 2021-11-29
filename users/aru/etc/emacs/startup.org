@@ -6,14 +6,13 @@
 **** t -> treemacs
 ***** t -> toggle
 **** b -> buffer
+***** n -> next
+***** p -> previous
+***** s -> select
+***** w -> select to other window
 ***** k -> kill
 ****** o -> other
 ****** f -> focused
-***** s -> switch
-****** n -> next
-****** p -> previous
-****** s -> select
-****** w -> select to other window
 **** w -> window
 ***** <up> -> top
 ***** <right> -> right
