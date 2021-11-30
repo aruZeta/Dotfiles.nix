@@ -11,6 +11,11 @@
     # Emacs pure gtk package
     package = pkgs.emacsPgtk;
 
+    # Override org package to use elpa instead of builtin
+    overrides = self: super: {
+      org = self.elpaPackages.org;
+    };
+
     # No use-package
     extraPackages = (epkgs: with epkgs; [
       company
