@@ -45,5 +45,6 @@
   home.file = {
     "${config.xdg.configHome}/emacs/init.el".source = ./init.el;
     "${config.xdg.configHome}/emacs/startup.org".source = ./startup.org;
+    "${config.xdg.configHome}/emacs/config.org".source = ./config.org;
   };
 }
