@@ -7,6 +7,7 @@
     ./etc/alacritty
     ./etc/eclipse
     ./etc/emacs
+    ./etc/eww
     ./etc/git
     ./etc/gpg
     ./etc/gtk

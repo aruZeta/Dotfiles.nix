@@ -35,6 +35,8 @@
         grim
         wl-clipboard
         brightnessctl
+        eww-wayland-master
+
         libsForQt5.qtstyleplugins
         qt5ct
 
