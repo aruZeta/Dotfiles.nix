@@ -324,25 +324,30 @@ again tho.
 **** Basic config
 
 #+begin_src emacs-lisp
-  (setq org-html-head-include-default-style nil
-        org-html-htmlize-output-type 'css
-        org-html-html5-fancy t
-        org-html-doctype "html5"
+    (setq org-html-head-include-default-style nil
+          org-html-htmlize-output-type 'css
+          org-html-html5-fancy t
+          org-html-doctype "html5"
+          org-export-allow-bind-keywords t)
+#+end_src
 
-        org-publish-project-alist
+**** Project list
+
+#+begin_src emacs-lisp
+  (setq org-publish-project-alist
         '(("S1DAM - Notes" :components ("S1DAM_Notes.org" "S1DAM_Notes.static"))
           ("S1DAM_Notes.org"
            :headline-levels 6
            :recursive t
            :base-extension "org"
-           :base-directory "~/Archive/Classes/S1DAM/Notes.org/"
-           :publishing-directory "~/Archive/Classes/S1DAM/Notes/"
+           :base-directory "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas/docs.org/"
+           :publishing-directory "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas/docs/"
            :publishing-function org-html-publish-to-html)
           ("S1DAM_Notes.static"
            :recursive t
-           :base-extension "css\\|png\\|eot\\|woff2\\|woff\\|ttf\\|svg"
-           :base-directory "~/Archive/Classes/S1DAM/Notes.org/"
-           :publishing-directory "~/Archive/Classes/S1DAM/Notes/"
+           :base-extension "css\\|png\\|jpg\\|jpeg\\|eot\\|woff2\\|woff\\|ttf\\|svg"
+           :base-directory "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas/docs.org/"
+           :publishing-directory "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas/docs/"
            :publishing-function org-publish-attachment)))
 #+end_src
 
