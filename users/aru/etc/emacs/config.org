@@ -82,6 +82,12 @@ By default column number will be enabled in all buffers but
   (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 #+end_src
 
+Make emacs recognize ~_~ as part of a word:
+
+#+begin_src emacs-lisp
+  (modify-syntax-entry ?_ "w")
+#+end_src
+
 ** Evil
 
 So evil-collection works:
