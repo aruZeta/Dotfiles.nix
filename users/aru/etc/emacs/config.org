@@ -45,6 +45,8 @@ By default column number will be enabled in all buffers but
 
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil :font "Iosevka Term" :height 120)
+  (set-face-attribute 'fixed-pitch nil :font "Iosevka Term" :height 120)
+  (set-face-attribute 'variable-pitch nil :font "Iosevka Term" :height 120)
 #+end_src
 
 ** Theme
