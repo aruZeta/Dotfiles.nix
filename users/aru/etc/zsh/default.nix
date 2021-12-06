@@ -2,6 +2,8 @@
 , ...
 }:
 
+# Gets rid of the $HOME part of $XDG_CONFIG_HOME
+# Since zDotDir is a relative path to $HOME
 let configHome =
       builtins.elemAt
         (builtins.split
