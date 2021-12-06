@@ -39,6 +39,11 @@ in
       "l" = "ls --color=always --group-directories-first -lhA";
     };
 
+    shellGlobalAliases = {
+      G = "| grep";
+      L = "| less";
+    };
+
     sessionVariables = {
       STARSHIP_CACHE = "${config.xdg.cacheHome}/starship/history";
     };
