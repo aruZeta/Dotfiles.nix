@@ -47,5 +47,12 @@ in
     sessionVariables = {
       STARSHIP_CACHE = "${config.xdg.cacheHome}/starship/history";
     };
+
+    initExtra =
+      ''
+      bindkey "^[[1;5C" forward-word
+      bindkey "^[[1;5D" backward-word
+      bindkey "\e[3~"   delete-char
+      '';
   };
 }
