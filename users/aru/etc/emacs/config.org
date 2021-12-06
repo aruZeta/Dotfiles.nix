@@ -466,7 +466,6 @@ This is still in WIP, no idea how to add the atributte ~rowspan~ or
 
 * Development
 ** LSP
-
 *** Hooks
 
 #+begin_src emacs-lisp
@@ -475,12 +474,14 @@ This is still in WIP, no idea how to add the atributte ~rowspan~ or
 #+end_src
 
 ** Treemacs
+*** Basic config
 
 #+begin_src emacs-lisp
   (lsp-treemacs-sync-mode 1)
 #+end_src
 
 ** Projectile
+*** Basic config
 
 #+begin_src emacs-lisp
   (projectile-mode +1)
@@ -515,13 +516,13 @@ This is still in WIP, no idea how to add the atributte ~rowspan~ or
 #+end_src
 
 ** Scss
+*** Basic config
 
 Adding scss to lsp languages (giving it an id/name):
 
 #+begin_src emacs-lisp
   (add-to-list 'lsp-language-id-configuration '(".*\\.scss" . "scss"))
 #+end_src
-
 
 *** Functions
 
