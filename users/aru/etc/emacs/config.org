@@ -598,3 +598,21 @@ If it's a scss file, compile unless it was declared not to do so.
 #+begin_src emacs-lisp
   (add-hook 'java-mode-hook #'lsp)
 #+end_src
+
+** Lua
+*** Basic config
+
+#+begin_src emacs-lisp
+  (setq lua-indent-level 4)
+#+end_src
+
+*** Hooks
+
+#+begin_src emacs-lisp
+  (defun aru/lua-mode-hook ()
+    (setq indent-tabs-mode nil))
+#+end_src
+
+#+begin_src emacs-lisp
+  (add-hook 'lua-mode-hook #'aru/lua-mode-hook)
+#+end_src

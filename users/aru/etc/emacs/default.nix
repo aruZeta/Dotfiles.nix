@@ -19,11 +19,13 @@
     # No use-package
     extraPackages = (epkgs: with epkgs; [
       company
+      company-lua
 
       counsel
 
       emmet-mode
       lsp-mode
+      lua-mode
       nix-mode
       web-mode
 
