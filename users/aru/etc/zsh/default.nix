@@ -25,8 +25,11 @@ in
 
     history = {
       extended = true;
-      ignoreDups = false;
       ignoreSpace = true;
+      ignorePatterns = [
+        "l"
+        "kill *"
+      ];
       save = 99999;
       size = 99999;
       path = "${config.xdg.dataHome}/zsh/history";
