@@ -19,31 +19,43 @@
     # No use-package
     extraPackages = (epkgs: with epkgs; [
       company
+
       counsel
+
       emmet-mode
-      evil
-      evil-collection
-      flycheck
-      general
-      gruvbox-theme
-      htmlize
-      ivy
-      ivy-rich
+      lsp-mode
+      nix-mode
+      web-mode
+
       lsp-ivy
       lsp-java
-      lsp-mode
       lsp-treemacs
       lsp-ui
-      magit
-      nix-mode
-      org-superstar
-      pinentry
-      projectile
+
+      evil
+      evil-collection
+
+      ivy
+      ivy-rich
+
+      flycheck
       treemacs
-      visual-fill-column
-      web-mode
+      projectile
+
+      general
       which-key
-      yasnippet
+
+      magit
+      pinentry
+
+      gruvbox-theme
+      org-superstar
+      visual-fill-column
+
+      htmlize
+
+      # Idk why this is here, tho its interesting
+      # yasnippet
     ]);
   };
 
