@@ -23,7 +23,7 @@
     };
   };
 
-  home.file."${config.xdg.configHome}/config/Trolltech.conf".text =
+  home.file."${config.xdg.configHome}/Trolltech.conf".text =
     ''
     [Qt]
     style=GTK+
