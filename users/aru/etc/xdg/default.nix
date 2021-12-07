@@ -1,4 +1,5 @@
-{ ...
+{ config
+, ...
 }:
 
 {
@@ -15,10 +16,10 @@
       desktop = "$HOME/Tmp/Desktop";
       documents = "$HOME/Archive";
       download = "$HOME/Tmp";
-      music = "$HOME/Archive/Audio";
-      pictures = "$HOME/Archive/Images";
-      templates = "$HOME/Archive/Templates";
-      videos = "$HOME/Archive/Video";
+      music = "${config.xdg.userDirs.documents}/Audio";
+      pictures = "${config.xdg.userDirs.documents}/Images";
+      templates = "${config.xdg.userDirs.documents}/Templates";
+      videos = "${config.xdg.userDirs.documents}/Video";
 
       extraConfig = {
         XDG_DOTFILES_DIR = "$HOME/Dotfiles.nix";
