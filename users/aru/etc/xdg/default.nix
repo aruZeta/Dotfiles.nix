@@ -23,6 +23,8 @@
 
       extraConfig = {
         XDG_DOTFILES_DIR = "$HOME/Dotfiles.nix";
+        XDG_MAIL_DIR = "${config.xdg.userDirs.documents}/Mail";
+        XDG_KEYS_DIR = "${config.xdg.userDirs.documents}/Keys";
       };
     };
   };
