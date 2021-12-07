@@ -2,15 +2,6 @@
 , ...
 }:
 
-# Gets rid of the $HOME part of $XDG_CONFIG_HOME
-# Since zDotDir is a relative path to $HOME
-let configHome =
-      builtins.elemAt
-        (builtins.split
-          "${config.home.homeDirectory}/"
-          "${builtins.toString config.xdg.configHome}")
-        2;
-in
 {
   programs.zsh = {
     enable = true;
@@ -19,9 +10,16 @@ in
     enableSyntaxHighlighting = true;
     autocd = true;
 
-    # The path already has the `config.home.homeDir` at the start
-    # so I need to take it off
-    dotDir = "${configHome}/zsh";
+    # Gets rid of the $HOME part of $XDG_CONFIG_HOME
+    # Since zDotDir is a relative path to $HOME
+    dotDir =
+      let configHome =
+            builtins.elemAt
+              (builtins.split
+                "${config.home.homeDirectory}/"
+                "${builtins.toString config.xdg.configHome}")
+              2;
+      in "${configHome}/zsh";
 
     history = {
       extended = true;
