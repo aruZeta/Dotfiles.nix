@@ -530,6 +530,11 @@ Setting up the auth store:
        "echo $(xdg-user-dir KEYS) | awk '{printf(\"%s\", $0);}'"))
 #+end_src
 
+With that you can create folders in ~XDG_KEYS_HOME~ named with the
+server and inside place gpg files named after the username of the SMTP
+server with the password. In my case it would be
+~smtp.zoho.eu/aru_hackZ.official@zohomail.eu.gpg~.
+
 ** MML config
 
 Using some gpg key as default
