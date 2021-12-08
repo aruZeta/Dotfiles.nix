@@ -515,6 +515,33 @@ config:
       message-send-mail-function 'smtpmail-send-it)
 #+end_src
 
+** Auth config
+
+Setting up the auth store:
+
+#+begin_src emacs-lisp
+(auth-source-pass-enable)
+
+(setq auth-source-debug t
+      auth-source-do-cache nil
+      auth-sources '(password-store)
+      auth-source-pass-filename
+      (shell-command-to-string
+       "echo $(xdg-user-dir KEYS) | awk '{printf(\"%s\", $0);}'"))
+#+end_src
+
+** MML config
+
+Using some gpg key as default
+
+#+begin_src emacs-lisp
+(setq mml-secure-key-preferences
+      '((OpenPGP
+	 (sign)
+	 (encrypt ("aru_hackZ.official@zohomail.eu"
+		   "3A581BDE765C0DFA")))))
+#+end_src
+
 * Development
 ** LSP
 *** Hooks
