@@ -7,11 +7,11 @@
   programs.mu.enable = true;
   programs.mbsync.enable = true;
 
-  services.mbsync = {
-    enable = true;
-    frequency = "5min";
-    postExec = "${pkgs.mu}/bin/mu index";
-  };
+  # services.mbsync = {
+  #   enable = true;
+  #   frequency = "*-*-* *:*:00";
+  #   postExec = "${pkgs.mu}/bin/mu index";
+  # };
 
   accounts.email = {
     maildirBasePath =
