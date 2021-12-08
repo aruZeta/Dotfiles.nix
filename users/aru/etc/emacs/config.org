@@ -2,19 +2,19 @@
 * User data
 
 #+begin_src emacs-lisp
-  (setq user-full-name    "Alberto Robles Gomez"
-        user-mail-address "aru_hackZ.official@zohomail.eu")
+(setq user-full-name    "Alberto Robles Gomez"
+      user-mail-address "aru_hackZ.official@zohomail.eu")
 #+end_src
 
 * UI
 ** Basic config
 
 #+begin_src emacs-lisp
-  (scroll-bar-mode -1)
-  (tool-bar-mode -1)
-  (tooltip-mode -1)
-  (menu-bar-mode -1)
-  (set-fringe-mode 10)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(tooltip-mode -1)
+(menu-bar-mode -1)
+(set-fringe-mode 10)
 #+end_src
 
 ** Column numbers
@@ -23,69 +23,69 @@ By default column number will be enabled in all buffers but
 ~org-mode~, ~term-mode~ and ~shell-mode~ won't do so.
 
 #+begin_src emacs-lisp
-  (column-number-mode)
-  (global-display-line-numbers-mode t)
+(column-number-mode)
+(global-display-line-numbers-mode t)
 
-  (dolist (mode '(org-mode-hook
-                  term-mode-hook
-                  shell-mode-hook))
-          (add-hook mode (lambda () (display-line-numbers-mode 0))))
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                shell-mode-hook))
+        (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src
 
 ** Startup
 
 #+begin_src emacs-lisp
-  (custom-set-variables
-   '(inhibit-startup-screen t)
-   '(initial-buffer-choice
-     (substitute-in-file-name "$XDG_CONFIG_HOME/emacs/startup.org")))
+(custom-set-variables
+ '(inhibit-startup-screen t)
+ '(initial-buffer-choice
+   (substitute-in-file-name "$XDG_CONFIG_HOME/emacs/startup.org")))
 #+end_src
 
 ** Fonts
 
 #+begin_src emacs-lisp
-  (set-face-attribute 'default nil :font "Iosevka Term" :height 120)
-  (set-face-attribute 'fixed-pitch nil :font "Iosevka Term" :height 120)
-  (set-face-attribute 'variable-pitch nil :font "Iosevka Term" :height 120)
+(set-face-attribute 'default nil :font "Iosevka Term" :height 120)
+(set-face-attribute 'fixed-pitch nil :font "Iosevka Term" :height 120)
+(set-face-attribute 'variable-pitch nil :font "Iosevka Term" :height 120)
 #+end_src
 
 ** Theme
 
 #+begin_src emacs-lisp
-  (load-theme 'gruvbox-dark-hard t)
+(load-theme 'gruvbox-dark-hard t)
 #+end_src
 
 ** Ivy
 
 #+begin_src emacs-lisp
-  (ivy-mode 1)
-  (ivy-rich-mode 1)
+(ivy-mode 1)
+(ivy-rich-mode 1)
 #+end_src
 
 ** Counsel
 
 #+begin_src emacs-lisp
-  (counsel-mode 1)
+(counsel-mode 1)
 #+end_src
 
 ** Which key
 
 #+begin_src emacs-lisp
-  (setq which-key-idle-delay .5)
-  (which-key-mode)
+(setq which-key-idle-delay .5)
+(which-key-mode)
 #+end_src
 
 * Keybindigs
 ** Random stuff
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 #+end_src
 
 Make emacs recognize ~_~ as part of a word:
 
 #+begin_src emacs-lisp
-  (modify-syntax-entry ?_ "w")
+(modify-syntax-entry ?_ "w")
 #+end_src
 
 ** Evil
@@ -93,117 +93,120 @@ Make emacs recognize ~_~ as part of a word:
 So evil-collection works:
 
 #+begin_src emacs-lisp
-  (setq evil-want-keybinding nil)
+(setq evil-want-keybinding nil)
 #+end_src
 
 Activating evil mode:
 
 #+begin_src emacs-lisp
-  (evil-mode 1)
+(evil-mode 1)
 #+end_src
 
 ** Evil collection
 
 #+begin_src emacs-lisp
-  (evil-collection-init)
+(evil-collection-init)
 
-  (setq evil-collection-outline-bind-tab-p t
-        evil-collection-calendar-want-org-bindings t
-        evil-collection-setup-minibuffer t)
+(setq evil-collection-outline-bind-tab-p t
+      evil-collection-calendar-want-org-bindings t
+      evil-collection-setup-minibuffer t)
 #+end_src
 
 ** General
 
 #+begin_src emacs-lisp
-  (setq general-override-states '(insert
-                                  emacs
-                                  hybrid
-                                  normal
-                                  visual
-                                  motion
-                                  operator
-                                  replace))
+(setq general-override-states '(insert
+                                emacs
+                                hybrid
+                                normal
+                                visual
+                                motion
+                                operator
+                                replace))
 #+end_src
 
 #+begin_src emacs-lisp
-  (general-define-key
-   :states '(normal visual motion)
-   :keymaps 'override
-   :prefix "SPC"
-   :non-normal-prefix "M-<return>"
+(general-define-key
+ :states '(normal visual motion)
+ :keymaps 'override
+ :prefix "SPC"
+ :non-normal-prefix "M-<return>"
 
-   ; Treemacs
-   "t" '(:ignore t :which-key "Treemacs")
+ ; Treemacs
+ "t" '(:ignore t :which-key "Treemacs")
 
-   "t t" '(treemacs :which-key "Toggle treemacs sidebar")
+ "t t" '(treemacs :which-key "Toggle treemacs sidebar")
 
-   ; Buffer
-   "b" '(:ignore t :which-key "Buffer")
+ ; Buffer
+ "b" '(:ignore t :which-key "Buffer")
 
-   "b <right>" '(switch-to-next-buffer :which-key "Next")
-   "b <left>" '(switch-to-prev-buffer :which-key "Previous")
-   "b s" '(switch-to-buffer :which-key "Select")
-   "b w" '(switch-to-buffer-other-window :which-key "Select to other window")
+ "b <right>" '(switch-to-next-buffer :which-key "Next")
+ "b <left>" '(switch-to-prev-buffer :which-key "Previous")
+ "b s" '(switch-to-buffer :which-key "Select")
+ "b w" '(switch-to-buffer-other-window :which-key "Select to other window")
 
-   "b k" '(:ignore t :which-key "Kill")
-   "b k o" '(kill-buffer :which-key "Other")
-   "b k f" '(kill-current-buffer :which-key "Focused")
+ "b k" '(:ignore t :which-key "Kill")
+ "b k o" '(kill-buffer :which-key "Other")
+ "b k f" '(kill-current-buffer :which-key "Focused")
 
-   ; Window
-   "w" '(:ignore t :which-key "Window")
+ ; Window
+ "w" '(:ignore t :which-key "Window")
 
-   "w <up>" '(windmove-up :which-key "Top")
-   "w <right>" '(windmove-right :which-key "Right")
-   "w <down>" '(windmove-down :which-key "Bottom")
-   "w <left>" '(windmove-left :which-key "Left")
+ "w <up>" '(windmove-up :which-key "Top")
+ "w <right>" '(windmove-right :which-key "Right")
+ "w <down>" '(windmove-down :which-key "Bottom")
+ "w <left>" '(windmove-left :which-key "Left")
 
-   "w s" '(:ignore t :which-key "Split")
-   "w s <right>" '(split-window-right :which-key "Right")
-   "w s <down>" '(split-window-below :which-key "Below")
+ "w s" '(:ignore t :which-key "Split")
+ "w s <right>" '(split-window-right :which-key "Right")
+ "w s <down>" '(split-window-below :which-key "Below")
 
-   "w d" '(:ignore t :which-key "Delete")
-   "w d o" '(delete-other-window :which-key "Other")
-   "w d f" '(delete-window :which-key "Focused")
-   "w d <up>" '(windmove-delete-up :which-key "Top")
-   "w d <right>" '(windmove-delete-right :which-key "Right")
-   "w d <down>" '(windmove-delete-down :which-key "Bottom")
-   "w d <left>" '(windmove-delete-left :which-key "Left")
+ "w d" '(:ignore t :which-key "Delete")
+ "w d o" '(delete-other-window :which-key "Other")
+ "w d f" '(delete-window :which-key "Focused")
+ "w d <up>" '(windmove-delete-up :which-key "Top")
+ "w d <right>" '(windmove-delete-right :which-key "Right")
+ "w d <down>" '(windmove-delete-down :which-key "Bottom")
+ "w d <left>" '(windmove-delete-left :which-key "Left")
 
-   ; Magit
-   "m" '(magit :which-key "Magit"))
+ ; Magit
+ "m" '(magit :which-key "Magit"))
 #+end_src
 
 * Org
 ** Basic config
 
 #+begin_src emacs-lisp
-  (setq org-directory "~/Archive/Org/"
-        org-ellipsis " ▾"
-        org-priority-default 5
-        org-priority-highest 1
-        org-priority-lowest 5
-        org-startup-folded t
-        org-startup-indented t
+(setq org-directory "~/Archive/Org/"
 
-        org-edit-src-content-indentation 0
+      org-ellipsis " ▾"
 
-        org-todo-keywords '((sequencep "TODO(t)"
-                                       "NEXT(n)"
-                                       "|"
-                                       "DONE(d)"
-                                       "CANCELED(x)"))
+      org-priority-default 5
+      org-priority-highest 1
+      org-priority-lowest 5
 
-        org-fancy-priorities-list '((?1 . "➀")
-                                    (?2 . "➁")
-                                    (?3 . "➂")
-                                    (?4 . "➃")
-                                    (?5 . "➄"))
+      org-startup-folded t
+      org-startup-indented t
 
-        org-priority-faces '((?1 . (:foreground "#cc241d" :weight extrabold))
-                             (?2 . (:foreground "#d65d0e" :weight bold))
-                             (?3 . (:foreground "#d79921" :weight semibold))
-                             (?4 . (:foreground "#98971a"))
-                             (?5 . (:foreground "#689d6a"))))
+      org-edit-src-content-indentation 0
+
+      org-todo-keywords '((sequencep "TODO(t)"
+                                     "NEXT(n)"
+                                     "|"
+                                     "DONE(d)"
+                                     "CANCELED(x)"))
+
+      org-fancy-priorities-list '((?1 . "➀")
+                                  (?2 . "➁")
+                                  (?3 . "➂")
+                                  (?4 . "➃")
+                                  (?5 . "➄"))
+
+      org-priority-faces '((?1 . (:foreground "#cc241d" :weight extrabold))
+                           (?2 . (:foreground "#d65d0e" :weight bold))
+                           (?3 . (:foreground "#d79921" :weight semibold))
+                           (?4 . (:foreground "#98971a"))
+                           (?5 . (:foreground "#689d6a"))))
 #+end_src
 
 ** UI tweaks
@@ -212,10 +215,10 @@ Activating evil mode:
 Making org buffers display on the center of the available space
 
 #+begin_src emacs-lisp
-  (defun aru/org-mode-visual-fill ()
-    (setq visual-fill-column-width 100
-          visual-fill-column-center-text t)
-    (visual-fill-column-mode 1))
+(defun aru/org-mode-visual-fill ()
+  (setq visual-fill-column-width 100
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
 #+end_src
 
 ** Agenda
@@ -226,107 +229,107 @@ again tho.
 *** Basic config
 
 #+begin_src emacs-lisp
-  (setq org-agenda-fontify-priorities t
-        org-agenda-hide-tags-regexp "."
+(setq org-agenda-fontify-priorities t
+      org-agenda-hide-tags-regexp "."
 
-        org-agenda-files '("~/Archive/Org/inbox.org"
-                           "~/Archive/Org/agenda.org"
-                           "~/Archive/Org/notes.org"
-                           "~/Archive/Org/projects.org")
+      org-agenda-files '("~/Archive/Org/inbox.org"
+                         "~/Archive/Org/agenda.org"
+                         "~/Archive/Org/notes.org"
+                         "~/Archive/Org/projects.org")
 
-        org-agenda-prefix-format '((agenda . " %i %-12:c%?-12t% s")
-                                   (todo   . " ")
-                                   (tags   . " %i %-12:c")
-                                   (search . " %i %-12:c"))
+      org-agenda-prefix-format '((agenda . " %i %-12:c%?-12t% s")
+                                 (todo   . " ")
+                                 (tags   . " %i %-12:c")
+                                 (search . " %i %-12:c"))
 
-        org-agenda-custom-commands
-        '(("g" "Get Things Done (GTD)"
-           ((todo "NEXT"
-                  ((org-agenda-skip-function
-                    '(org-agenda-skip-entry-if 'deadline))
-                   (org-agenda-prefix-format " % i%-16 c% s[%e]: ")
-                   (org-agenda-overriding-header "\nTasks\n")))
-            (tags-todo "inbox"
-                       ((org-agenda-prefix-format " % i%-16 c% s[%e]: ")
-                        (org-agenda-overriding-header "\nInbox\n")))
-            (tags-todo "projects"
-                       ((org-agenda-prefix-format " % i%-16 c% s[%e]: ")
-                        (org-agenda-skip-function
-                         '(org-agenda-skip-entry-if 'nottodo '("TODO")))
-                        (org-agenda-overriding-header "\nProjects\n")))
-            (tags "CLOSED>=\"<today>\""
-                  ((org-agenda-prefix-format " % i%-16 c% s[%e]: ")
-                   (org-agenda-overriding-header "\nCompleted today\n")))))
-          ("d" "Deadlines"
-            (agenda nil
-                    ((org-agenda-entry-types '(:deadline))
-                     (org-agenda-skip-function
-                      '(org-agenda-skip-entry-if 'nottode '("NEXT")))
-                     (org-agenda-format-date "")
-                     (org-deadline-warning-days 7)
-                     (org-agenda-overriding-header "\nDeadlines\n"))))))
+      org-agenda-custom-commands
+      '(("g" "Get Things Done (GTD)"
+         ((todo "NEXT"
+                ((org-agenda-skip-function
+                  '(org-agenda-skip-entry-if 'deadline))
+                 (org-agenda-prefix-format " % i%-16 c% s[%e]: ")
+                 (org-agenda-overriding-header "\nTasks\n")))
+          (tags-todo "inbox"
+                     ((org-agenda-prefix-format " % i%-16 c% s[%e]: ")
+                      (org-agenda-overriding-header "\nInbox\n")))
+          (tags-todo "projects"
+                     ((org-agenda-prefix-format " % i%-16 c% s[%e]: ")
+                      (org-agenda-skip-function
+                       '(org-agenda-skip-entry-if 'nottodo '("TODO")))
+                      (org-agenda-overriding-header "\nProjects\n")))
+          (tags "CLOSED>=\"<today>\""
+                ((org-agenda-prefix-format " % i%-16 c% s[%e]: ")
+                 (org-agenda-overriding-header "\nCompleted today\n")))))
+        ("d" "Deadlines"
+          (agenda nil
+                  ((org-agenda-entry-types '(:deadline))
+                   (org-agenda-skip-function
+                    '(org-agenda-skip-entry-if 'nottode '("NEXT")))
+                   (org-agenda-format-date "")
+                   (org-deadline-warning-days 7)
+                   (org-agenda-overriding-header "\nDeadlines\n"))))))
 #+end_src
 
 *** Advices
 
 #+begin_src emacs-lisp
-  (advice-add 'org-agenda-quit :before
-              (lambda (&rest _)
-                (org-save-all-org-buffers)))
+(advice-add 'org-agenda-quit :before
+            (lambda (&rest _)
+              (org-save-all-org-buffers)))
 #+end_src
 
 ** Capture
 *** Basic config
 
 #+begin_src emacs-lisp
-  (setq org-capture-templates
-        '(("i" "Inbox" entry (file "~/Archive/Org/inbox.org")
-           "* TODO %?\n/Entered on/ %U")
-          ("m" "Meeting" entry (file+headline "~/Archive/Org/agenda.org" "Future")
-           "* %? :meeting:\n<%<%Y-%m-%d %a %H:00>>")
-          ("n" "Note" entry (file "~/Archive/Org/notes.org")
-           "* NOTE (%a)\n/Entered on/ %U/n/n%?")
-          ("@" "Inbox [mu4e]" entry (file "~/Archive/Org/inbox.org")
-           "* TODO Reply to \"%a\" %?\n/Entered on/ %U")))
+(setq org-capture-templates
+      '(("i" "Inbox" entry (file "~/Archive/Org/inbox.org")
+         "* TODO %?\n/Entered on/ %U")
+        ("m" "Meeting" entry (file+headline "~/Archive/Org/agenda.org" "Future")
+         "* %? :meeting:\n<%<%Y-%m-%d %a %H:00>>")
+        ("n" "Note" entry (file "~/Archive/Org/notes.org")
+         "* NOTE (%a)\n/Entered on/ %U/n/n%?")
+        ("@" "Inbox [mu4e]" entry (file "~/Archive/Org/inbox.org")
+         "* TODO Reply to \"%a\" %?\n/Entered on/ %U")))
 #+end_src
 
 ** Refile
 *** Basic config
 
 #+begin_src emacs-lisp
-  (setq org-refile-targets '(("~/Documents/ORG/projects.org"
-                        :regexp . "\\(?:\\(?:Note\\|Task\\)s\\)")))
+(setq org-refile-targets '(("~/Documents/ORG/projects.org"
+                      :regexp . "\\(?:\\(?:Note\\|Task\\)s\\)")))
 #+end_src
 
 *** Advices
 
 #+begin_src emacs-lisp
-  (advice-add 'org-refile :before
-              (lambda (&rest _)
-                (org-save-all-org-buffers)))
+(advice-add 'org-refile :before
+            (lambda (&rest _)
+              (org-save-all-org-buffers)))
 #+end_src
 
 ** Log
 *** Basic config
 
 #+begin_src emacs-lisp
-  (setq org-log-done 'time)
+(setq org-log-done 'time)
 #+end_src
 
 *** Functions
 
 #+begin_src emacs-lisp
-  (defun aru/log-todo-next-creation-date (&rest _)
-    "Log NEXT creation time inthe property drawer under the key 'ACTIVATED'"
-    (when (and (string= (org-get-todo-state) "NEXT")
-               (not (org-entry-get nil "ACTIVATED")))
-          (org-entry-put nil "ACTIVATED" (format-time-string "[%Y-%m-%d %H:%M]"))))
+(defun aru/log-todo-next-creation-date (&rest _)
+  "Log NEXT creation time inthe property drawer under the key 'ACTIVATED'"
+  (when (and (string= (org-get-todo-state) "NEXT")
+             (not (org-entry-get nil "ACTIVATED")))
+        (org-entry-put nil "ACTIVATED" (format-time-string "[%Y-%m-%d %H:%M]"))))
 #+end_src
 
 *** Hooks
 
 #+begin_src emacs-lisp
-  (add-hook 'org-after-todo-state-change-hook #'aru/log-todo-next-creation-date)
+(add-hook 'org-after-todo-state-change-hook #'aru/log-todo-next-creation-date)
 #+end_src
 
 ** Publish
@@ -334,31 +337,31 @@ again tho.
 **** Basic config
 
 #+begin_src emacs-lisp
-    (setq org-html-head-include-default-style nil
-          org-html-htmlize-output-type 'css
-          org-html-html5-fancy t
-          org-html-doctype "html5"
-          org-export-allow-bind-keywords t)
+(setq org-html-head-include-default-style nil
+      org-html-htmlize-output-type 'css
+      org-html-html5-fancy t
+      org-html-doctype "html5"
+      org-export-allow-bind-keywords t)
 #+end_src
 
 **** Project list
 
 #+begin_src emacs-lisp
-  (setq org-publish-project-alist
-        '(("S1DAM - Notes" :components ("S1DAM_Notes.org" "S1DAM_Notes.static"))
-          ("S1DAM_Notes.org"
-           :headline-levels 6
-           :recursive t
-           :base-extension "org"
-           :base-directory "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas/docs.org/"
-           :publishing-directory "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas/docs/"
-           :publishing-function org-html-publish-to-html)
-          ("S1DAM_Notes.static"
-           :recursive t
-           :base-extension "css\\|png\\|jpg\\|jpeg\\|eot\\|woff2\\|woff\\|ttf\\|svg"
-           :base-directory "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas/docs.org/"
-           :publishing-directory "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas/docs/"
-           :publishing-function org-publish-attachment)))
+(setq org-publish-project-alist
+      '(("S1DAM - Notes" :components ("S1DAM_Notes.org" "S1DAM_Notes.static"))
+        ("S1DAM_Notes.org"
+         :headline-levels 6
+         :recursive t
+         :base-extension "org"
+         :base-directory "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas/docs.org/"
+         :publishing-directory "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas/docs/"
+         :publishing-function org-html-publish-to-html)
+        ("S1DAM_Notes.static"
+         :recursive t
+         :base-extension "css\\|png\\|jpg\\|jpeg\\|eot\\|woff2\\|woff\\|ttf\\|svg"
+         :base-directory "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas/docs.org/"
+         :publishing-directory "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas/docs/"
+         :publishing-function org-publish-attachment)))
 #+end_src
 
 **** Modified export functions
@@ -373,16 +376,16 @@ with a ~<~>~ are searched and removed at export (the original file
 isn't overwritten).
 
 #+begin_src emacs-lisp
-  (defun aru/org-export-delete-special-cols-n-rows (back-end)
-     (while (re-search-forward "^[ \t]*| +\\(<_>\\) +|" nil t)
-            (goto-char (match-beginning 1))
-            (org-table-kill-row)
-            (beginning-of-line))
-     (beginning-of-buffer)
-     (while (re-search-forward "| +\\(<~>\\) +|" nil t)
-            (goto-char (match-beginning 1))
-            (org-table-delete-column)
-            (beginning-of-line)))
+(defun aru/org-export-delete-special-cols-n-rows (back-end)
+   (while (re-search-forward "^[ \t]*| +\\(<_>\\) +|" nil t)
+          (goto-char (match-beginning 1))
+          (org-table-kill-row)
+          (beginning-of-line))
+   (beginning-of-buffer)
+   (while (re-search-forward "| +\\(<~>\\) +|" nil t)
+          (goto-char (match-beginning 1))
+          (org-table-delete-column)
+          (beginning-of-line)))
 #+end_src
 
 ***** Remove empty table cells and make its siblings expand
@@ -391,79 +394,79 @@ This is still in WIP, no idea how to add the atributte ~rowspan~ or
 ~collspan~ to the sibling cells.
 
 #+begin_src emacs-lisp
-  (defun org-html-table-cell (table-cell contents info)
-    (let* ((table-cell-address (org-export-table-cell-address table-cell info))
-           (table-row (org-export-get-parent table-cell))
-           (table (org-export-get-parent-table table-cell))
-           (cell-attrs
-             (if (not (plist-get info :html-table-align-individual-fields))
-                 ""
-                 (format (if (and (boundp 'org-html-format-table-no-css)
-                                  org-html-format-table-no-css)
-                             " align=\"%s\""
-                             " class=\"org-%s\"")
-                         (org-export-table-cell-alignment table-cell info)))))
-      (cond
-        ((or (not contents)
-             (string= "" (org-trim contents)))
-         "")
-        ((and (org-export-table-has-header-p table info)
-              (= 1 (org-export-table-row-group table-row info)))
-         (let ((header-tags (plist-get info :html-table-header-tags)))
-           (concat "\n"
-                   (format (car header-tags) "col" cell-attrs)
-                   contents
-                   (cdr header-tags))))
-        ((and (plist-get info :html-table-use-header-tags-for-first-column)
-              (zerop (cdr (org-export-table-cell-address table-cell info))))
-         (let ((header-tags (plist-get info :html-table-header-tags)))
-           (concat "\n"
-                   (format (car header-tags) "row" cell-attrs)
-                   contents
-                   (cdr header-tags))))
-        (t
-         (let ((data-tags (plist-get info :html-table-data-tags)))
-           (concat "\n"
-                   (format (car data-tags) cell-attrs)
-                   contents
-                   (cdr data-tags)))))))
+(defun org-html-table-cell (table-cell contents info)
+  (let* ((table-cell-address (org-export-table-cell-address table-cell info))
+         (table-row (org-export-get-parent table-cell))
+         (table (org-export-get-parent-table table-cell))
+         (cell-attrs
+           (if (not (plist-get info :html-table-align-individual-fields))
+               ""
+               (format (if (and (boundp 'org-html-format-table-no-css)
+                                org-html-format-table-no-css)
+                           " align=\"%s\""
+                           " class=\"org-%s\"")
+                       (org-export-table-cell-alignment table-cell info)))))
+    (cond
+      ((or (not contents)
+           (string= "" (org-trim contents)))
+       "")
+      ((and (org-export-table-has-header-p table info)
+            (= 1 (org-export-table-row-group table-row info)))
+       (let ((header-tags (plist-get info :html-table-header-tags)))
+         (concat "\n"
+                 (format (car header-tags) "col" cell-attrs)
+                 contents
+                 (cdr header-tags))))
+      ((and (plist-get info :html-table-use-header-tags-for-first-column)
+            (zerop (cdr (org-export-table-cell-address table-cell info))))
+       (let ((header-tags (plist-get info :html-table-header-tags)))
+         (concat "\n"
+                 (format (car header-tags) "row" cell-attrs)
+                 contents
+                 (cdr header-tags))))
+      (t
+       (let ((data-tags (plist-get info :html-table-data-tags)))
+         (concat "\n"
+                 (format (car data-tags) cell-attrs)
+                 contents
+                 (cdr data-tags)))))))
 #+end_src
 
 **** Hooks
 
 #+begin_src emacs-lisp
-  (add-hook 'org-export-before-processing-hook
-            #'aru/org-export-delete-special-cols-n-rows)
+(add-hook 'org-export-before-processing-hook
+          #'aru/org-export-delete-special-cols-n-rows)
 #+end_src
 
 ** Faces
 
 #+begin_src emacs-lisp
-  (defun aru/org-faces ()
-    (dolist (face '((org-document-title . 1.5)
-                    (org-level-1 . 1.4)
-                    (org-level-2 . 1.25)
-                    (org-level-3 . 1.1)
-                    (org-level-4 . 1.1)
-                    (org-level-5 . 1.1)
-                    (org-level-6 . 1.05)
-                    (org-level-7 . 1.05)))
-      (set-face-attribute (car face) nil :font "Iosevka Term" :height (cdr face))))
+(defun aru/org-faces ()
+  (dolist (face '((org-document-title . 1.5)
+                  (org-level-1 . 1.4)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.1)
+                  (org-level-4 . 1.1)
+                  (org-level-5 . 1.1)
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.05)))
+    (set-face-attribute (car face) nil :font "Iosevka Term" :height (cdr face))))
 #+end_src
 
 ** Hooks
 
 #+begin_src emacs-lisp
-  (defun aru/org-hook ()
-    (set-face-attribute 'org-ellipsis nil :underline nil)
-    (org-superstar-mode 1)
-    (turn-on-auto-fill)
-    (aru/org-faces)
-    (aru/org-mode-visual-fill))
+(defun aru/org-hook ()
+  (set-face-attribute 'org-ellipsis nil :underline nil)
+  (org-superstar-mode 1)
+  (turn-on-auto-fill)
+  (aru/org-faces)
+  (aru/org-mode-visual-fill))
 #+end_src
 
 #+begin_src emacs-lisp
-  (add-hook 'org-mode-hook #'aru/org-hook)
+(add-hook 'org-mode-hook #'aru/org-hook)
 #+end_src
 
 * Email
@@ -472,42 +475,42 @@ This is still in WIP, no idea how to add the atributte ~rowspan~ or
 First time I needed to add this ...
 
 #+begin_src emacs-lisp
-  (require 'mu4e)
+(require 'mu4e)
 #+end_src
 
 Also autostart pinentry (I need it also for git):
 
 #+begin_src emacs-lisp
-  (pinentry-start)
+(pinentry-start)
 #+end_src
 
 I would like if this was auto generated in some way from the nix
 config:
 
 #+begin_src emacs-lisp
-  (setq mu4e-refile-folder "/Archive"
-        mu4e-drafts-folder "/Drafts"
-        mu4e-sent-folder "/Sent"
-        mu4e-trash-folder "/Trash"
-        mu4e-attachment-dir
-        (concat (shell-command-to-string "xdg-user-dir MAIL")
-                "/aru/Attachments")
+(setq mu4e-refile-folder "/Archive"
+      mu4e-drafts-folder "/Drafts"
+      mu4e-sent-folder "/Sent"
+      mu4e-trash-folder "/Trash"
+      mu4e-attachment-dir
+      (concat (shell-command-to-string "xdg-user-dir MAIL")
+              "/aru/Attachments")
 
-        mu4e-compose-signature "\n------\nBy aru\n"
-        mu4e-compose-signature-auto-include t
-        mu4e-view-show-images t
-        mu4e-use-fancy-chars t
-        mu4e-get-mail-command "mbsync aru"
-        mu4e-update-interval 60
+      mu4e-compose-signature "\n------\nBy aru\n"
+      mu4e-compose-signature-auto-include t
+      mu4e-view-show-images t
+      mu4e-use-fancy-chars t
+      mu4e-get-mail-command "mbsync aru"
+      mu4e-update-interval 60
 
-        mail-user-agent 'mu4e-user-agent
+      mail-user-agent 'mu4e-user-agent
 
-        smtpmail-smtp-server "smtp.zoho.eu"
-        smtpmail-smtp-service 465
-        smtpmail-smtp-user "aru_hackz.official@zohomail.eu"
-        smtpmail-stream-type 'ssl
+      smtpmail-smtp-server "smtp.zoho.eu"
+      smtpmail-smtp-service 465
+      smtpmail-smtp-user "aru_hackz.official@zohomail.eu"
+      smtpmail-stream-type 'ssl
 
-        message-send-mail-function 'smtpmail-send-it)
+      message-send-mail-function 'smtpmail-send-it)
 #+end_src
 
 * Development
@@ -515,50 +518,50 @@ config:
 *** Hooks
 
 #+begin_src emacs-lisp
-  (add-hook 'lsp-mode #'lsp-ui-mode)
-  (add-hook 'lsp-mode #'flycheck-mode)
+(add-hook 'lsp-mode #'lsp-ui-mode)
+(add-hook 'lsp-mode #'flycheck-mode)
 #+end_src
 
 ** Treemacs
 *** Basic config
 
 #+begin_src emacs-lisp
-  (lsp-treemacs-sync-mode 1)
+(lsp-treemacs-sync-mode 1)
 #+end_src
 
 ** Projectile
 *** Basic config
 
 #+begin_src emacs-lisp
-  (projectile-mode +1)
+(projectile-mode +1)
 #+end_src
 
 ** Web mode
 *** Auto modes
 
 #+begin_src emacs-lisp
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.scss?\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.nix?\\'" . nix-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.scss?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.nix?\\'" . nix-mode))
 #+end_src
 
 *** Hooks
 
 #+begin_src emacs-lisp
-  (defun aru/web-mode-hook ()
-    (setq indent-tabs-mode t
-          tab-width        2)
-    (web-mode-use-tabs)
-    (global-set-key (kbd "C-SPC") 'emmet-expand-line)
-    (add-hook 'after-save-hook #'aru/scss-compile-maybe))
+(defun aru/web-mode-hook ()
+  (setq indent-tabs-mode t
+        tab-width        2)
+  (web-mode-use-tabs)
+  (global-set-key (kbd "C-SPC") 'emmet-expand-line)
+  (add-hook 'after-save-hook #'aru/scss-compile-maybe))
 #+end_src
 
 #+begin_src emacs-lisp
-  (add-hook 'web-mode-hook #'lsp)
-  (add-hook 'web-mode-hook #'emmet-mode)
-  (add-hook 'web-mode-hook #'aru/web-mode-hook)
+(add-hook 'web-mode-hook #'lsp)
+(add-hook 'web-mode-hook #'emmet-mode)
+(add-hook 'web-mode-hook #'aru/web-mode-hook)
 #+end_src
 
 ** Scss
@@ -567,7 +570,7 @@ config:
 Adding scss to lsp languages (giving it an id/name):
 
 #+begin_src emacs-lisp
-  (add-to-list 'lsp-language-id-configuration '(".*\\.scss" . "scss"))
+(add-to-list 'lsp-language-id-configuration '(".*\\.scss" . "scss"))
 #+end_src
 
 *** Functions
@@ -575,90 +578,90 @@ Adding scss to lsp languages (giving it an id/name):
 Default variables:
 
 #+begin_src emacs-lisp
-  (defcustom aru/do-compile-scss t
-    "Wanna compile scss?"
-    :type 'boolean)
+(defcustom aru/do-compile-scss t
+  "Wanna compile scss?"
+  :type 'boolean)
 
-  (defcustom aru/scss-sass-options '()
-    "Scss compile options"
-    :type '(repeat string))
+(defcustom aru/scss-sass-options '()
+  "Scss compile options"
+  :type '(repeat string))
 
-  (defcustom aru/scss-output-directory nil
-    "Output directory for compiled files"
-    :type '(choice (const :tag "Same dir" nil)
-                   (string :tag "Relative dir")))
+(defcustom aru/scss-output-directory nil
+  "Output directory for compiled files"
+  :type '(choice (const :tag "Same dir" nil)
+                 (string :tag "Relative dir")))
 #+end_src
 
 Scss compile function:
 
 #+begin_src emacs-lisp
-  (defun aru/scss-compile ()
-    (interactive)
-    (compile (concat "sass"
-                     " "
-                     (mapconcat 'identity aru/scss-sass-options " ")
-                     " --update "
-                     (when (string-match ".*/" buffer-file-name)
-                       (concat "'" (match-string 0 buffer-file-name) "'"))
-                     (when aru/scss-output-directory
-                       (concat ":'" aru/scss-output-directory "'")))))
+(defun aru/scss-compile ()
+  (interactive)
+  (compile (concat "sass"
+                   " "
+                   (mapconcat 'identity aru/scss-sass-options " ")
+                   " --update "
+                   (when (string-match ".*/" buffer-file-name)
+                     (concat "'" (match-string 0 buffer-file-name) "'"))
+                   (when aru/scss-output-directory
+                     (concat ":'" aru/scss-output-directory "'")))))
 #+end_src
 
 Check if the file is a scss file:
 *TODO: Make a scss mode for an easier way to do this*
 
 #+begin_src emacs-lisp
-  (defun aru/is-scss-file ()
-    (interactive)
-    (if (string=
-         (file-name-extension (buffer-file-name (window-buffer (minibuffer-selected-window))))
-         "scss")
-        t nil))
+(defun aru/is-scss-file ()
+  (interactive)
+  (if (string=
+       (file-name-extension (buffer-file-name (window-buffer (minibuffer-selected-window))))
+       "scss")
+      t nil))
 #+end_src
 
 If it's a scss file, compile unless it was declared not to do so.
 
 #+begin_src emacs-lisp
-  (defun aru/scss-compile-maybe ()
-    (if (and (aru/is-scss-file)
-             aru/do-compile-scss)
-        (aru/scss-compile)))
+(defun aru/scss-compile-maybe ()
+  (if (and (aru/is-scss-file)
+           aru/do-compile-scss)
+      (aru/scss-compile)))
 #+end_src
 
 ** Emmet
 *** Hooks
 
 #+begin_src emacs-lisp
-  (defun aru/emmet-mode-hook ()
-    (setq emmet-self-closing-tag-style " /"
-          emmet-move-cursor-between-quotes t))
+(defun aru/emmet-mode-hook ()
+  (setq emmet-self-closing-tag-style " /"
+        emmet-move-cursor-between-quotes t))
 #+end_src
 
 #+begin_src emacs-lisp
-  (add-hook 'emmet-mode-hook #'aru/emmet-mode-hook)
+(add-hook 'emmet-mode-hook #'aru/emmet-mode-hook)
 #+end_src
 
 ** Java
 *** Hooks
 
 #+begin_src emacs-lisp
-  (add-hook 'java-mode-hook #'lsp)
+(add-hook 'java-mode-hook #'lsp)
 #+end_src
 
 ** Lua
 *** Basic config
 
 #+begin_src emacs-lisp
-  (setq lua-indent-level 4)
+(setq lua-indent-level 4)
 #+end_src
 
 *** Hooks
 
 #+begin_src emacs-lisp
-  (defun aru/lua-mode-hook ()
-    (setq indent-tabs-mode nil))
+(defun aru/lua-mode-hook ()
+  (setq indent-tabs-mode nil))
 #+end_src
 
 #+begin_src emacs-lisp
-  (add-hook 'lua-mode-hook #'aru/lua-mode-hook)
+(add-hook 'lua-mode-hook #'aru/lua-mode-hook)
 #+end_src
