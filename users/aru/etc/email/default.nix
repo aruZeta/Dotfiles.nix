@@ -26,7 +26,7 @@
     accounts = {
       aru = {
         address = "aru_hackZ.official@zohomail.eu";
-        userName = "aru_hackz.official@zohomail.eu";
+        userName = "aru_hackZ.official@zohomail.eu";
         realName = "Alberto Robles Gomez";
         primary = true;
         mu.enable = true;

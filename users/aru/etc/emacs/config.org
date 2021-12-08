@@ -507,7 +507,7 @@ config:
 
       smtpmail-smtp-server "smtp.zoho.eu"
       smtpmail-smtp-service 465
-      smtpmail-smtp-user "aru_hackz.official@zohomail.eu"
+      smtpmail-smtp-user "aru_hackZ.official@zohomail.eu"
       smtpmail-stream-type 'ssl
 
       message-send-mail-function 'smtpmail-send-it)
