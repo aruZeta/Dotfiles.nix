@@ -56,6 +56,10 @@
 
       htmlize
 
+      # To make sure that mu is in load-path, since it seems there are people
+      # reporting it doesn't appear in their's, no problem in mine tho
+      pkgs.mu
+
       # Idk why this is here, tho its interesting
       # yasnippet
     ]);

@@ -464,6 +464,50 @@ This is still in WIP, no idea how to add the atributte ~rowspan~ or
   (add-hook 'org-mode-hook #'aru/org-hook)
 #+end_src
 
+* Email
+** Basic config
+
+First time I needed to add this ...
+
+#+begin_src emacs-lisp
+  (require 'mu4e)
+#+end_src
+
+Also autostart pinentry (I need it also for git):
+
+#+begin_src emacs-lisp
+  (pinentry-start)
+#+end_src
+
+I would like if this was auto generated in some way from the nix
+config:
+
+#+begin_src emacs-lisp
+  (setq mu4e-refile-folder "/Archive"
+        mu4e-drafts-folder "/Drafts"
+        mu4e-sent-folder "/Sent"
+        mu4e-trash-folder "/Trash"
+        mu4e-attachment-dir
+        (concat (shell-command-to-string "xdg-user-dir MAIL")
+                "/aru/Attachments")
+
+        mu4e-compose-signature "\n------\nBy aru\n"
+        mu4e-compose-signature-auto-include t
+        mu4e-view-show-images t
+        mu4e-use-fancy-chars t
+        mu4e-get-mail-command "mbsync aru"
+        mu4e-update-interval 60
+
+        mail-user-agent 'mu4e-user-agent
+
+        smtpmail-smtp-server "smtp.zoho.eu"
+        smtpmail-smtp-service 465
+        smtpmail-smtp-user "aru_hackz.official@zohomail.eu"
+        smtpmail-stream-type 'ssl
+
+        message-send-mail-function 'smtpmail-send-it)
+#+end_src
+
 * Development
 ** LSP
 *** Hooks
