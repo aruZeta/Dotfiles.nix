@@ -493,8 +493,10 @@ config:
       mu4e-sent-folder "/Sent"
       mu4e-trash-folder "/Trash"
       mu4e-attachment-dir
-      (concat (shell-command-to-string "xdg-user-dir MAIL")
-              "/aru/Attachments")
+      (concat
+       (shell-command-to-string
+        "echo $(xdg-user-dir MAIL) | awk '{printf(\"%s\", $0);}'")
+        "/aru/Attachments")
 
       mu4e-compose-signature "\n------\nBy aru\n"
       mu4e-compose-signature-auto-include t
