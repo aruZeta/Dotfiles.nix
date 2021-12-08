@@ -30,6 +30,7 @@
         swaylock
         swayidle
         mako
+        libnotify
         wofi
         slurp
         grim

@@ -547,6 +547,25 @@ Using some gpg key as default
 		   "3A581BDE765C0DFA")))))
 #+end_src
 
+** Notifications
+
+I will be using ~mu4e-alert~ for this.
+
+*** Basic config
+
+Using libnotify
+
+#+begin_src emacs-lisp
+(mu4e-alert-set-default-style 'libnotify)
+#+end_src
+
+*** Hooks
+
+#+begin_src emacs-lisp
+(add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
+(add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)
+#+end_src
+
 * Development
 ** LSP
 *** Hooks
