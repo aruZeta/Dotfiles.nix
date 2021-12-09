@@ -170,7 +170,10 @@ Activating evil mode:
  "w d <left>" '(windmove-delete-left :which-key "Left")
 
  ; Magit
- "m" '(magit :which-key "Magit"))
+ "m" '(magit :which-key "Magit")
+
+ ; Mu4e (Email)
+ "e" '(mu4e :which-key "Mu4e"))
 #+end_src
 
 * Org
