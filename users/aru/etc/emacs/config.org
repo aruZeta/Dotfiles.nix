@@ -549,6 +549,7 @@ Using some gpg key as default
                 "D7D93ECFDA731BE3159F6BD93A581BDE765C0DFA"))
          (encrypt ("aru_hackZ.official@zohomail.eu"
                    "D7D93ECFDA731BE3159F6BD93A581BDE765C0DFA"))))
+      mml-secure-openpgp-sign-with-sender t)
 #+end_src
 
 ** Notifications
@@ -568,6 +569,12 @@ Using libnotify
 #+begin_src emacs-lisp
 (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
 (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)
+#+end_src
+
+** Hooks
+
+#+begin_src emacs-lisp
+(add-hook 'message-send-hook #'mml-secure-message-sign-pgpmime)
 #+end_src
 
 * Development
