@@ -507,6 +507,7 @@ config:
       mu4e-use-fancy-chars t
       mu4e-get-mail-command "mbsync aru"
       mu4e-update-interval 60
+      mu4e-sent-messages-behavior 'delete
 
       mail-user-agent 'mu4e-user-agent
 
