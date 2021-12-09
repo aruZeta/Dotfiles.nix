@@ -120,7 +120,7 @@
 
   system = {
     # Current unstable version
-    stateVersion = "21.11";
+    stateVersion = "22.05";
 
     activationScripts = {
       setGitReposPermissions =
