@@ -545,9 +545,10 @@ Using some gpg key as default
 #+begin_src emacs-lisp
 (setq mml-secure-key-preferences
       '((OpenPGP
-	 (sign)
-	 (encrypt ("aru_hackZ.official@zohomail.eu"
-		   "3A581BDE765C0DFA")))))
+         (sign ("aru_hackZ.official@zohomail.eu"
+                "D7D93ECFDA731BE3159F6BD93A581BDE765C0DFA"))
+         (encrypt ("aru_hackZ.official@zohomail.eu"
+                   "D7D93ECFDA731BE3159F6BD93A581BDE765C0DFA"))))
 #+end_src
 
 ** Notifications
