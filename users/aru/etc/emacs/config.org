@@ -511,12 +511,16 @@ config:
 
       mail-user-agent 'mu4e-user-agent
 
-      smtpmail-smtp-server "smtp.zoho.eu"
+      message-send-mail-function 'smtpmail-send-it)
+#+end_src
+
+** SMTP config
+
+#+begin_src emacs-lisp
+(setq smtpmail-smtp-server "smtp.zoho.eu"
       smtpmail-smtp-service 465
       smtpmail-smtp-user "aru_hackZ.official@zohomail.eu"
-      smtpmail-stream-type 'ssl
-
-      message-send-mail-function 'smtpmail-send-it)
+      smtpmail-stream-type 'ssl)
 #+end_src
 
 ** Auth config
