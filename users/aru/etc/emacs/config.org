@@ -483,7 +483,13 @@ This is still in WIP, no idea how to add the atributte ~rowspan~ or
 #+end_src
 
 #+begin_src emacs-lisp
+(defun aru/org-src-hook ()
+  (setq indent-tabs-mode nil))
+#+end_src
+
+#+begin_src emacs-lisp
 (add-hook 'org-mode-hook #'aru/org-hook)
+(add-hook 'org-src-mode-hook #'aru/org-src-hook)
 #+end_src
 
 * Email
