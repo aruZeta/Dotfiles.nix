@@ -30,7 +30,7 @@
       web-mode
 
       lsp-ivy
-      lsp-java
+      # lsp-java
       lsp-treemacs
       lsp-ui
 
