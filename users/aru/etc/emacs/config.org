@@ -89,6 +89,10 @@ Getting those juicy icons
 (doom-modeline-mode 1)
 #+end_src
 
+#+begin_src emacs-lisp
+(setq doom-modeline-height 30)
+#+end_src
+
 ** Which key
 
 #+begin_src emacs-lisp
