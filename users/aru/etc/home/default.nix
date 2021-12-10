@@ -50,6 +50,7 @@
         noto-fonts
         noto-fonts-cjk
         noto-fonts-emoji
+        emacs-all-the-icons-fonts
 
         # Some stuff needed for emacs && other programs
         # TODO: move this to a better place / better way to set it

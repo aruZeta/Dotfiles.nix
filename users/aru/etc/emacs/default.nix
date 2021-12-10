@@ -63,6 +63,11 @@
 
       # Idk why this is here, tho its interesting
       # yasnippet
+
+      all-the-icons
+      all-the-icons-dired
+      all-the-icons-ivy-rich
+      treemacs-all-the-icons
     ]);
   };
 

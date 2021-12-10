@@ -62,10 +62,24 @@ By default column number will be enabled in all buffers but
 (ivy-rich-mode 1)
 #+end_src
 
+*** Theming
+
+#+begin_src emacs-lisp
+(all-the-icons-ivy-rich-mode)
+#+end_src
+
 ** Counsel
 
 #+begin_src emacs-lisp
 (counsel-mode 1)
+#+end_src
+
+** All the icons
+
+Getting those juicy icons
+
+#+begin_src emacs-lisp
+(require 'all-the-icons)
 #+end_src
 
 ** Which key
@@ -595,6 +609,24 @@ Using libnotify
 
 #+begin_src emacs-lisp
 (lsp-treemacs-sync-mode 1)
+#+end_src
+
+*** Theming
+
+Making it use all-the-icons instead of default icons.
+
+#+begin_src emacs-lisp
+(require 'treemacs-all-the-icons)
+(treemacs-load-theme "all-the-icons")
+#+end_src
+
+** Dired
+*** Theming
+
+Making dired use all-the-icons too!
+
+#+begin_src emacs-lisp
+(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 #+end_src
 
 ** Projectile
