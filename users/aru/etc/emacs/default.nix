@@ -53,6 +53,7 @@
       gruvbox-theme
       org-superstar
       visual-fill-column
+      doom-modeline
 
       htmlize
 
