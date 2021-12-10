@@ -471,6 +471,13 @@ This is still in WIP, no idea how to add the atributte ~rowspan~ or
     (set-face-attribute (car face) nil :font "Iosevka Term" :height (cdr face))))
 #+end_src
 
+** Superstar
+*** Basic config
+
+#+begin_src emacs-lisp
+(setq org-superstar-headline-bullets-list '("◉" "◈" "⬠" "⬡" "○"))
+#+end_src
+
 ** Hooks
 
 #+begin_src emacs-lisp
