@@ -93,6 +93,55 @@ Getting those juicy icons
 (setq doom-modeline-height 30)
 #+end_src
 
+** Svg Tags
+*** Basic config
+
+#+begin_src emacs-lisp
+(require 'svg-tag-mode)
+#+end_src
+
+#+begin_src emacs-lisp
+(setq svg-tag-tags
+      '((":TODO:" . aru/org-svg-tag-todo)
+        ("#\\+[a-zA-Z]+:" . aru/org-svg-tag-settings)))
+#+end_src
+
+*** Custom faces
+**** Org
+
+#+begin_src emacs-lisp
+(defface aru/face-org-svg-tag-todo
+  `((t :foreground "#98971a"
+       :background "#282828"
+       :box        (:line-width 1 :color "#98971a" :style nil)
+       :weight     bold
+       :height     ,(- (face-attribute 'default :height) 20)
+       :family     "Iosevka Extended"))
+  "Face for todo svg tags"
+  :group nil)
+
+(defface aru/face-org-svg-tag-settings
+  `((t :foreground "#7c6f64"
+       :background "#282828"
+       :box        (:line-width 1 :color "#7c6f64" :style nil)
+       :weight     bold
+       :height     ,(- (face-attribute 'default :height) 20)
+       :family     "Iosevka Extended"))
+  "Face for title svg tags"
+  :group nil)
+#+end_src
+
+*** Custom tags
+**** Org
+
+#+begin_src emacs-lisp
+(setq aru/org-svg-tag-todo
+      (svg-tag-make "TODO" 'aru/face-org-svg-tag-todo 2 0 5))
+
+(defun aru/org-svg-tag-settings (text)
+  (svg-tag-make (substring text 2 -1) 'aru/face-org-svg-tag-settings 0 0 5))
+#+end_src
+
 ** Which key
 
 #+begin_src emacs-lisp
@@ -497,6 +546,7 @@ This is still in WIP, no idea how to add the atributte ~rowspan~ or
   (org-superstar-mode 1)
   (turn-on-auto-fill)
   (aru/org-faces)
+  (svg-tag-mode 1)
   (aru/org-mode-visual-fill))
 #+end_src
 

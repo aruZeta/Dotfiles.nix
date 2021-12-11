@@ -69,6 +69,8 @@
       all-the-icons-dired
       all-the-icons-ivy-rich
       treemacs-all-the-icons
+
+      svg-tag-mode
     ]);
   };
 
