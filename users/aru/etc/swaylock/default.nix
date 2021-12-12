@@ -1,9 +1,8 @@
-{ config
-, ...
+{ ...
 }:
 
 {
-  home.file = {
-    "${config.xdg.configHome}/swaylock/config".source = ./config;
+  xdg.configFile = {
+    "swaylock/config".source = ./config;
   };
 }

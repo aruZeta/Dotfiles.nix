@@ -1,5 +1,4 @@
 { pkgs
-, config
 , ...
 }:
 
@@ -23,7 +22,7 @@
     };
   };
 
-  home.file."${config.xdg.configHome}/Trolltech.conf".text =
+  xdg.configFile."Trolltech.conf".text =
     ''
     [Qt]
     style=GTK+
