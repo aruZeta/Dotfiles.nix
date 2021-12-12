@@ -839,3 +839,14 @@ If it's a scss file, compile unless it was declared not to do so.
 #+begin_src emacs-lisp
 (add-hook 'lua-mode-hook #'aru/lua-mode-hook)
 #+end_src
+
+** Elisp
+*** Hooks
+#+begin_src emacs-lisp
+(defun aru/elisp-mode-hook ()
+  (setq indent-tabs-mode nil))
+#+end_src
+
+#+begin_src emacs-lisp
+(add-hook 'emacs-lisp-mode-hook #'aru/elisp-mode-hook)
+#+end_src
