@@ -213,10 +213,7 @@ xdg.configFile = {
     <<emacs-config>>
     '';
 
-  "emacs/startup.org".text =
-    ''
-    <<emacs-startup>>
-    '';
+  "emacs/startup.org".source = ./startup.org;
 };
 #+end_src
 
