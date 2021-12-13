@@ -294,9 +294,71 @@ accounts.email = {
 #+NAME: eww
 #+begin_src nix
 xdg.configFile = {
-  "eww/eww.yuck".source = ./eww.yuck;
-  "eww/eww.scss".source = ./eww.scss;
+  "eww/eww.yuck".text =
+    ''
+    <<eww-config>>
+    '';
+
+  "eww/eww.scss".text =
+    ''
+    <<eww-style>>
+    '';
 };
+#+end_src
+
+#+NAME:eww-config
+#+begin_src lisp
+(defwindow Test1
+  :monitor 0
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "60%"
+                      :height "60%"
+                      :anchor "center")
+  :stacking "bottom"
+  :exclusive false
+  :focusable true
+  (cpu-usage))
+
+(defwidget cpu-usage []
+  (box :class "cpu-usage"
+       :space-evenly true
+       :halign "start"
+       :valign "start"
+    (circular-progress :value {EWW_CPU.avg}
+                       :start-at 25
+                       :width 100
+                       :height 100
+                       :thickness 5.0
+                       :clockwise true
+      (label :text "CPU"))))
+#+end_src
+
+#+NAME: eww-style
+#+begin_src scss
+/* Nothing */
+#+end_src
+
+#+NAME: eww-overlay
+#+begin_src nix
+self: super:
+{
+  eww-wayland-master = super.eww-wayland.overrideAttrs ( drv: rec {
+    version = "master";
+    src = super.fetchFromGitHub {
+      owner = "elkowar";
+      repo = "eww";
+      rev = "${version}";
+      sha256 = "1xyd21bd9k4hp0yjy480z0g41bz94ni49imvxqv1ffqxlvl52z5s";
+    };
+
+    cargoDeps = drv.cargoDeps.overrideAttrs (super.lib.const {
+      inherit src;
+      name = "eww-vendor.tar.gz";
+      outputHash = "sha256-gXO82CUjSuOuuxYFdk7/NYMvCPv9CnkNyzIACWGLj0U=";
+    });
+  } );
+}
 #+end_src
 
 * Git
@@ -473,10 +535,37 @@ programs.neovim = {
   package = pkgs.neovim-nightly;
 
   # Extra config, using lua
-  extraConfig = builtins.concatStringsSep "\n" [
-    (lib.strings.fileContents ./init.vim)
-  ];
+  extraConfig =
+    ''
+    <<neovim-config>>
+    '';
 };
+#+end_src
+
+#+NAME: neovim-config
+#+begin_src lua
+lua << EOF
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.title = true
+vim.opt.hidden = true
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.showmode = false
+vim.opt.wrap = false
+vim.opt.updatetime = 300
+vim.opt.encoding = 'UTF-8'
+vim.opt.tabstop = 8
+vim.opt.shiftwidth = 8
+vim.opt.softtabstop = 0
+vim.opt.expandtab = false
+vim.opt.colorcolumn = '80'
+vim.opt.filetype = 'on'
+vim.opt.spelllang = { 'en', 'es' }
+vim.opt.shortmess = vim.opt.shortmess + { c = true }
+vim.opt.termguicolors = true
+vim.opt.mouse = 'a'
+EOF
 #+end_src
 
 * Overlays
@@ -494,7 +583,9 @@ nixpkgs.overlays = [
     url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
   }))
 
-  (import ./eww-master.nix)
+  (
+    <<eww-overlay>>
+  )
 ];
 #+end_src
 
@@ -608,8 +699,56 @@ wayland.windowManager.sway = {
 #+NAME: swaylock
 #+begin_src nix
 xdg.configFile = {
-  "swaylock/config".source = ./config;
+  "swaylock/config".text =
+    ''
+    <<swaylock-config>>
+    '';
 };
+#+end_src
+
+#+NAME: swaylock-config
+#+begin_src conf
+show-failed-attempts
+ignore-empty-password
+
+image=$(xdg-user-dir DOTFILES)/share/img/black-hole.jpg
+scaling=stretch
+color=000000
+
+font=Iosevka
+font-size=16
+
+indicator-radius=60
+indicator-thickness=6
+
+inside-color=1d2021ff
+inside-clear-color=1d2021ff
+inside-caps-lock-color=1d2021ff
+inside-ver-color=1d2021ff
+inside-wrong-color=1d2021ff
+
+key-hl-color=689d6aff
+bs-hl-color=d79921ff
+
+ring-color=282828ff
+ring-clear-color=8ec07cff
+ring-caps-lock-color=fe8019ff
+ring-ver-color=b8bb26ff
+ring-wrong-color=fb4934ff
+
+line-color=00000000
+line-clear-color=00000000
+line-caps-lock-color=00000000
+line-ver-color=00000000
+line-wrong-color=00000000
+
+separator-color=00000000
+
+text-color=ebdbb2ff
+text-clear-color=689d6aff
+text-caps-lock-color=d65d0eff
+text-ver-color=98971aff
+text-wrong-color=cc241dff
 #+end_src
 
 * Waybar
@@ -618,7 +757,10 @@ xdg.configFile = {
 #+begin_src nix
 programs.waybar = {
   enable = true;
-  style = lib.strings.fileContents ./style.css;
+  style =
+    ''
+    <<waybar-style>>
+    '';
 
   settings = [{
     height = 30;
@@ -770,14 +912,155 @@ programs.waybar = {
 };
 #+end_src
 
+#+NAME: waybar-style
+#+begin_src css
+*{
+	border: none;
+	border-radius: inherit;
+	margin: 0;
+	padding: 0;
+	font-family: 'Iosevka Term', monospace;
+	font-weight: 700;
+	font-size: 13px;
+	background: none;
+	background-color: inherit;
+	box-shadow: none;
+	text-shadow: none;
+}
+
+#workspaces,
+#clock,
+#idle_inhibitor,
+#cpu,
+#temperature,
+#memory,
+#backlight,
+#disk,
+#battery,
+#network,
+#pulseaudio,
+#window {
+	padding: 0 10px;
+	background-color: #282828;
+	border-radius: 15px;
+	margin-left: 10px;
+}
+
+#window {
+	color: #ebdbb2;
+}
+
+#workspaces {
+	padding: 0;
+	margin: 0;
+}
+
+#workspaces button {
+	min-width: 30px;
+	color: #b16286;
+	border-radius: 15px;
+}
+
+#workspaces button:hover {
+	background-color: #3c3836;
+}
+
+#workspaces button.focused {
+	color: #98971a;
+}
+
+#clock,
+#idle_inhibitor {
+	color: #b16286;
+}
+
+#cpu,
+#backlight,
+#battery,
+#pulseaudio {
+	color: #689d6a;
+}
+
+#memory,
+#disk,
+#network,
+#temperature {
+	color: #458588;
+}
+
+#temperature.critical {
+	color: #cc241d;
+}
+#+end_src
+
 * Wofi
 
 #+NAME: wofi
 #+begin_src nix
 xdg.configFile = {
-  "wofi/config".source = ./config;
-  "wofi/style.css".source = ./style.css;
+  "wofi/config".text =
+    ''
+    <<wofi-config>>
+    '';
+
+  "wofi/style.css".text =
+    ''
+    <<wofi-style>>
+    '';
 };
+#+end_src
+
+#+NAME: wofi-config
+#+begin_src conf
+width=40%
+lines=8
+
+allow_images=true
+image_size=24
+
+term=alacritty
+
+prompt=
+insensitive=true
+#+end_src
+
+#+NAME: wofi-style
+#+begin_src css
+window {
+	border-radius: 15px;
+}
+
+#outer-box {
+	padding: 5px;
+}
+
+#inner-box {
+	margin-right: 15px;
+}
+
+#input {
+	border-radius: 15px;
+	padding: 5px;
+	border: none;
+}
+
+#scroll {
+	margin-top: 5px;
+}
+
+#entry {
+	border-radius: 15px;
+	padding: 5px;
+	outline: none;
+}
+
+#text {
+	font-weight: 700;
+}
+
+#img {
+	margin-right: 5px;
+}
 #+end_src
 
 * Xdg
