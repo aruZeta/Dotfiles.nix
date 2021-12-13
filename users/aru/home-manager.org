@@ -1,12 +1,24 @@
 #+TITLE: Home Manager Configuration
-#+PROPERTY: header-args :noweb no-export
+#+PROPERTY: header-args :noweb no-export :mkdirp yes
 
 This is my home-manager literate configuration which you can generate
 with ~M-x org-babel-tangle~.
 
-This is the main ~default.nix~ file.
+This is the main ~default.nix~ which just imports the generated
+home-manager config.
 
 #+begin_src nix :tangle default.nix
+{ ...
+}:
+
+{
+  imports = [ ./generated/home-manager-config.nix ];
+}
+#+end_src
+
+This is the generated ~home-manager-config.nix~ file.
+
+#+begin_src nix :tangle generated/home-manager-config.nix
 # Auto-generated from "home-manager.org"
 { pkgs
 , lib
@@ -208,13 +220,13 @@ programs.emacs = {
 };
 
 xdg.configFile = {
-  "emacs/init.el".text =
-    ''
-    <<emacs-config>>
-    '';
-
-  "emacs/startup.org".source = ./startup.org;
+  "emacs/init.el".source = ./emacs-config.el;
+  "emacs/startup.org".source = ../startup.org;
 };
+#+end_src
+
+#+begin_src lisp :tangle generated/emacs-config.el
+<<emacs-config>>
 #+end_src
 
 ** User data
@@ -1171,20 +1183,13 @@ accounts.email = {
 #+NAME: eww
 #+begin_src nix
 xdg.configFile = {
-  "eww/eww.yuck".text =
-    ''
-    <<eww-config>>
-    '';
-
-  "eww/eww.scss".text =
-    ''
-    <<eww-style>>
-    '';
+  "eww/eww.yuck".source = ./eww-config.yuck;
+  "eww/eww.scss".source = ./eww-style.scss;
 };
 #+end_src
 
 #+NAME:eww-config
-#+begin_src lisp
+#+begin_src lisp :tangle generated/eww-config.yuck
 (defwindow Test1
   :monitor 0
   :geometry (geometry :x "0%"
@@ -1212,7 +1217,7 @@ xdg.configFile = {
 #+end_src
 
 #+NAME: eww-style
-#+begin_src scss
+#+begin_src scss :tangle generated/eww-style.scss
 /* Nothing */
 #+end_src
 
@@ -1315,11 +1320,13 @@ gtk = {
   };
 };
 
-xdg.configFile."Trolltech.conf".text =
-  ''
-  [Qt]
-  style=GTK+
-  '';
+xdg.configFile."Trolltech.conf".source = ./trolltech-config.conf;
+#+end_src
+
+#+NAME: trolltech-config
+#+begin_src conf :tangle generated/trolltech-config.conf
+[Qt]
+style=GTK+
 #+end_src
 
 * Home
@@ -1576,15 +1583,12 @@ wayland.windowManager.sway = {
 #+NAME: swaylock
 #+begin_src nix
 xdg.configFile = {
-  "swaylock/config".text =
-    ''
-    <<swaylock-config>>
-    '';
+  "swaylock/config".source = ./swaylock-config;
 };
 #+end_src
 
 #+NAME: swaylock-config
-#+begin_src conf
+#+begin_src conf :tangle generated/swaylock-config
 show-failed-attempts
 ignore-empty-password
 
@@ -1875,20 +1879,13 @@ programs.waybar = {
 #+NAME: wofi
 #+begin_src nix
 xdg.configFile = {
-  "wofi/config".text =
-    ''
-    <<wofi-config>>
-    '';
-
-  "wofi/style.css".text =
-    ''
-    <<wofi-style>>
-    '';
+  "wofi/config".source = ./wofi-config;
+  "wofi/style.css".source = ./wofi-style.css;
 };
 #+end_src
 
 #+NAME: wofi-config
-#+begin_src conf
+#+begin_src conf :tangle generated/wofi-config
 width=40%
 lines=8
 
@@ -1902,7 +1899,7 @@ insensitive=true
 #+end_src
 
 #+NAME: wofi-style
-#+begin_src css
+#+begin_src css :tangle generated/wofi-style.css
 window {
 	border-radius: 15px;
 }
