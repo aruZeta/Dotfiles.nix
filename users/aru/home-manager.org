@@ -1,12 +1,12 @@
 #+TITLE: Home Manager Configuration
-#+PROPERTY: header-args :noweb yes
+#+PROPERTY: header-args :noweb no-export
 
 This is my home-manager literate configuration which you can generate
 with ~M-x org-babel-tangle~.
 
 This is the main ~default.nix~ file.
 
-#+begin_src nix :tangle default.nix :noweb no-export
+#+begin_src nix :tangle default.nix
 # Auto-generated from "home-manager.org"
 { pkgs
 , lib
