@@ -79,7 +79,9 @@ Select the stuff to import:
 
 #+NAME: user-imports
 #+begin_src nix
+(
 <<user-config>>
+)
 #+end_src
 
 ** Config
@@ -88,14 +90,12 @@ The actual user configuration and home directory.
 
 #+NAME: user-config
 #+begin_src nix
-(
-  let
-    user = "aru";
-  in {
-    home.username = user;
-    home.homeDirectory = "/home/${user}";
-  }
-)
+let
+  user = "aru";
+in {
+  home.username = user;
+  home.homeDirectory = "/home/${user}";
+}
 #+end_src
 
 * Alacritty
