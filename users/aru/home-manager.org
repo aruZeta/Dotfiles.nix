@@ -16,7 +16,12 @@ home-manager config.
 }
 #+end_src
 
-This is the generated ~home-manager-config.nix~ file.
+* Home manager
+
+** Config
+
+This is the actual main config, which imports the selected
+configurations for each package, like alacritty, zsh, nvim, etc.
 
 #+begin_src nix :tangle generated/home-manager-config.nix
 # Auto-generated from "home-manager.org"
@@ -27,6 +32,7 @@ This is the generated ~home-manager-config.nix~ file.
 }:
 
 {
+  <<home-manager-setup>>
   <<alacritty>>
   <<eclipse>>
   <<emacs>>
@@ -49,6 +55,18 @@ This is the generated ~home-manager-config.nix~ file.
 }
 #+end_src
 
+** Setup
+
+Home manager setup, which actually just enables home-manager and sets
+its version.
+*TODO: Learn nix flakes and use that*
+
+#+NAME: home-manager-setup
+#+begin_src nix
+programs.home-manager.enable = true;
+# TODO: update to 22.05
+home.stateVersion = "21.11";
+#+end_src
 * Alacritty
 
 #+NAME: alacritty
@@ -1458,16 +1476,9 @@ style=GTK+
 #+NAME: home
 #+begin_src nix
 # Enable home-manager
-programs = {
-  home-manager.enable = true;
-};
-
 home = {
   username = "aru";
   homeDirectory = "/home/aru";
-
-  # Current unstable version
-  stateVersion = "21.11";
 
   packages =
     with pkgs;
