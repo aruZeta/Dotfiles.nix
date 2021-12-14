@@ -163,59 +163,10 @@ programs.emacs = {
 
   # No use-package
   extraPackages = (epkgs: with epkgs; [
-    company
-    company-lua
-
-    counsel
-
-    emmet-mode
-    lsp-mode
-    lua-mode
-    nix-mode
-    web-mode
-
-    lsp-ivy
-    # lsp-java
-    lsp-treemacs
-    lsp-ui
-
-    evil
-    evil-collection
-
-    ivy
-    ivy-rich
-
-    flycheck
-    treemacs
-    projectile
-
-    general
-    which-key
-
-    magit
-    pinentry
-
-    gruvbox-theme
-    org-superstar
-    visual-fill-column
-    doom-modeline
-
-    htmlize
-
-    # To make sure that mu is in load-path, since it seems there are people
-    # reporting it doesn't appear in their's, no problem in mine tho
-    pkgs.mu
-    mu4e-alert
+    <<emacs-pkgs>>
 
     # Idk why this is here, tho its interesting
     # yasnippet
-
-    all-the-icons
-    all-the-icons-dired
-    all-the-icons-ivy-rich
-    treemacs-all-the-icons
-
-    svg-tag-mode
   ]);
 };
 
@@ -292,6 +243,12 @@ By default column number will be enabled in all buffers but
 (load-theme 'gruvbox-dark-hard t)
 #+end_src
 
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+gruvbox-theme
+#+end_src
+
 *** Ivy
 
 #+begin_src emacs-lisp
@@ -305,10 +262,25 @@ By default column number will be enabled in all buffers but
 (all-the-icons-ivy-rich-mode)
 #+end_src
 
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+ivy
+lsp-ivy
+ivy-rich
+all-the-icons-ivy-rich
+#+end_src
+
 *** Counsel
 
 #+begin_src emacs-lisp
 (counsel-mode 1)
+#+end_src
+
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+counsel
 #+end_src
 
 *** All the icons
@@ -319,7 +291,19 @@ Getting those juicy icons
 (require 'all-the-icons)
 #+end_src
 
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+all-the-icons
+#+end_src
+
 *** Doom modeline
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+doom-modeline
+#+end_src
+
 **** Basic config
 
 #+begin_src emacs-lisp
@@ -331,6 +315,12 @@ Getting those juicy icons
 #+end_src
 
 *** Svg Tags
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+svg-tag-mode
+#+end_src
+
 **** Basic config
 
 #+begin_src emacs-lisp
@@ -386,6 +376,12 @@ Getting those juicy icons
 (which-key-mode)
 #+end_src
 
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+which-key
+#+end_src
+
 ** Keybindigs
 :PROPERTIES:
 :header-args: :noweb-ref emacs-config
@@ -417,6 +413,12 @@ Activating evil mode:
 (evil-mode 1)
 #+end_src
 
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+evil
+#+end_src
+
 *** Evil collection
 
 #+begin_src emacs-lisp
@@ -425,6 +427,12 @@ Activating evil mode:
 (setq evil-collection-outline-bind-tab-p t
       evil-collection-calendar-want-org-bindings t
       evil-collection-setup-minibuffer t)
+#+end_src
+
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+evil-collection
 #+end_src
 
 *** General
@@ -491,6 +499,12 @@ Activating evil mode:
  "e" '(mu4e :which-key "Mu4e"))
 #+end_src
 
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+general
+#+end_src
+
 ** Org
 :PROPERTIES:
 :header-args: :noweb-ref emacs-config
@@ -541,6 +555,12 @@ Making org buffers display on the center of the available space
   (setq visual-fill-column-width 100
         visual-fill-column-center-text t)
   (visual-fill-column-mode 1))
+#+end_src
+
+***** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+visual-fill-column
 #+end_src
 
 *** Agenda
@@ -656,6 +676,12 @@ again tho.
 
 *** Publish
 **** HTML
+***** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+htmlize
+#+end_src
+
 ***** Basic config
 
 #+begin_src emacs-lisp
@@ -781,6 +807,12 @@ This is still in WIP, no idea how to add the atributte ~rowspan~ or
 
 #+begin_src emacs-lisp
 (setq org-superstar-headline-bullets-list '("◉" "◈" "⬠" "⬡" "○"))
+#+end_src
+
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+org-superstar
 #+end_src
 
 *** Hooks
@@ -917,12 +949,30 @@ Using libnotify
 (add-hook 'message-send-hook #'mml-secure-message-sign-pgpmime)
 #+end_src
 
+*** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+# To make sure that mu is in load-path, since it seems there are people
+# reporting it doesn't appear in their's, no problem in mine tho
+pkgs.mu
+
+mu4e-alert
+pinentry
+#+end_src
+
 ** Development
 :PROPERTIES:
 :header-args: :noweb-ref emacs-config
 :END:
 
 *** LSP
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+lsp-mode
+lsp-ui
+#+end_src
+
 **** Hooks
 
 #+begin_src emacs-lisp
@@ -930,7 +980,23 @@ Using libnotify
 (add-hook 'lsp-mode #'flycheck-mode)
 #+end_src
 
+*** Flycheck
+
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+flycheck
+#+end_src
+
 *** Treemacs
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+treemacs
+lsp-treemacs
+treemacs-all-the-icons
+#+end_src
+
 **** Basic config
 
 #+begin_src emacs-lisp
@@ -947,6 +1013,12 @@ Making it use all-the-icons instead of default icons.
 #+end_src
 
 *** Dired
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+all-the-icons-dired
+#+end_src
+
 **** Theming
 
 Making dired use all-the-icons too!
@@ -956,6 +1028,12 @@ Making dired use all-the-icons too!
 #+end_src
 
 *** Projectile
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+projectile
+#+end_src
+
 **** Basic config
 
 #+begin_src emacs-lisp
@@ -963,6 +1041,12 @@ Making dired use all-the-icons too!
 #+end_src
 
 *** Web mode
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+web-mode
+#+end_src
+
 **** Auto modes
 
 #+begin_src emacs-lisp
@@ -1055,6 +1139,12 @@ If it's a scss file, compile unless it was declared not to do so.
 #+end_src
 
 *** Emmet
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+emmet-mode
+#+end_src
+
 **** Hooks
 
 #+begin_src emacs-lisp
@@ -1068,6 +1158,12 @@ If it's a scss file, compile unless it was declared not to do so.
 #+end_src
 
 *** Java
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+# lsp-java
+#+end_src
+
 **** Hooks
 
 #+begin_src emacs-lisp
@@ -1075,6 +1171,13 @@ If it's a scss file, compile unless it was declared not to do so.
 #+end_src
 
 *** Lua
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+lua-mode
+company-lua
+#+end_src
+
 **** Basic config
 
 #+begin_src emacs-lisp
@@ -1101,6 +1204,27 @@ If it's a scss file, compile unless it was declared not to do so.
 
 #+begin_src emacs-lisp
 (add-hook 'emacs-lisp-mode-hook #'aru/elisp-mode-hook)
+#+end_src
+
+*** Nix
+**** Packges
+
+#+begin_src nix :noweb-ref emacs-pkgs
+nix-mode
+#+end_src
+
+*** Magit
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+magit
+#+end_src
+
+*** Company
+**** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+company
 #+end_src
 
 * Email
