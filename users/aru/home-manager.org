@@ -232,6 +232,7 @@ cursor = {
 
 When I need my mouse (rarely) I cant find it.
 
+#+NAME: alacritty-config-mouse
 #+begin_src nix
 mouse = {
   hide_when_typing = false;
