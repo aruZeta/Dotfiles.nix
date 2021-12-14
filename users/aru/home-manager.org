@@ -52,6 +52,10 @@ configurations for each package, like alacritty, zsh, nvim, etc.
   <<wofi>>
   <<xdg>>
   <<zsh>>
+
+  imports = [
+    <<user-imports>>
+  ];
 }
 #+end_src
 
@@ -67,6 +71,34 @@ programs.home-manager.enable = true;
 # TODO: update to 22.05
 home.stateVersion = "21.11";
 #+end_src
+
+* User
+
+** Imports
+
+Select the stuff to import:
+
+#+NAME: user-imports
+#+begin_src nix
+<<user-config>>
+#+end_src
+
+** Config
+
+The actual user configuration and home directory.
+
+#+NAME: user-config
+#+begin_src nix
+(
+  let
+    user = "aru";
+  in {
+    home.username = user;
+    home.homeDirectory = "/home/${user}";
+  }
+)
+#+end_src
+
 * Alacritty
 
 #+NAME: alacritty
@@ -1477,9 +1509,6 @@ style=GTK+
 #+begin_src nix
 # Enable home-manager
 home = {
-  username = "aru";
-  homeDirectory = "/home/aru";
-
   packages =
     with pkgs;
     let
