@@ -17,7 +17,6 @@ home-manager config.
 #+end_src
 
 * Home manager
-
 ** Config
 
 This is the actual main config, which imports the selected
@@ -73,7 +72,6 @@ home.stateVersion = "21.11";
 #+end_src
 
 * User
-
 ** Imports
 
 Select the stuff to import:
