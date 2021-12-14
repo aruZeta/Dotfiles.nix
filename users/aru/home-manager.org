@@ -101,6 +101,8 @@ in {
 * Alacritty
 ** Imports
 
+Select the stuff to import:
+
 #+NAME: alacritty-imports
 #+begin_src nix
 {
@@ -121,6 +123,8 @@ programs.alacritty.enable = true;
 
 ** Config
 
+I have separated the config in diferent chunks for better
+organization:
 
 #+NAME: alacritty-config
 #+begin_src nix
@@ -138,6 +142,8 @@ programs.alacritty.settings = {
 
 *** Window
 
+*TODO: Actually use dynamic title (configuring starship I think you
+can, or with zsh).*
 
 #+NAME: alacritty-config-window
 #+begin_src nix
@@ -161,6 +167,8 @@ window = {
 
 *** Scrolling
 
+Nix' switch generations uses a lot of output.
+
 #+NAME: alacritty-config-scrolling
 #+begin_src nix
 scrolling = {
@@ -170,6 +178,8 @@ scrolling = {
 #+end_src
 
 *** Fonts
+
+I like Iosevka.
 
 #+NAME: alacritty-config-fonts
 #+begin_src nix
@@ -202,6 +212,8 @@ font = {
 
 *** Cursor
 
+Do not blink, but if you did each second should do.
+
 #+NAME: alacritty-config-cursor
 #+begin_src nix
 cursor = {
@@ -218,6 +230,8 @@ cursor = {
 
 *** Mouse
 
+When I need my mouse (rarely) I cant find it.
+
 #+begin_src nix
 mouse = {
   hide_when_typing = false;
@@ -227,6 +241,8 @@ mouse = {
 
 *** Bindings
 **** Keys
+
+Heresy not to have ~C-S-v~ and ~C-S-c~ to copy and paste.
 
 #+NAME: alacritty-config-bindings-keys
 #+begin_src nix
@@ -239,6 +255,8 @@ key_bindings = [
 
 **** Mouse
 
+If ya lazy to ~C-S-v~, use ~mouse-3~.
+
 #+NAME: alacritty-config-bindings-mouse
 #+begin_src nix
     mouse_bindings = [
@@ -247,6 +265,8 @@ key_bindings = [
 #+end_src
 
 *** Others
+
+Idk where to put these.
 
 #+NAME: alacritty-config-others
 #+begin_src nix
