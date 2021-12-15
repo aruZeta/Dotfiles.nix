@@ -32,7 +32,6 @@ configurations for each package, like alacritty, zsh, nvim, etc.
 
 {
   <<home-manager-setup>>
-  <<gtk>>
   <<home>>
   <<java>>
   <<neovim>>
@@ -54,6 +53,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<eww-imports>>
     <<git-imports>>
     <<gpg-imports>>
+    <<gtk-imports>>
   ];
 }
 #+end_src
@@ -1803,35 +1803,97 @@ extraConfig =
 #+end_src
 
 * Gtk
+** Imports
 
-#+NAME: gtk
+#+NAME: gtk-imports
+#+begin_src nix
+{
+  <<gtk-enable>>
+}
+
+{
+  <<gtk-config>>
+}
+#+end_src
+
+** Enable
+
+#+NAME: gtk-enable
+#+begin_src nix
+gtk.enable = true;
+#+end_src
+
+** Config
+
+#+NAME: gtk-config
 #+begin_src nix
 gtk = {
-  enable = true;
-
-  font = {
-    name = "Iosevka Term";
-    size = 12;
-  };
-
-  iconTheme = {
-    package = pkgs.gruvbox-dark-icons-gtk;
-    name = "oomox-gruvbox-dark";
-  };
-
-  theme = {
-    package = pkgs.gruvbox-dark-gtk;
-    name = "gruvbox-dark";
-  };
+  <<gtk-config-font>>
+  <<gtk-config-theme>>
+  <<gtk-config-icon-theme>>
 };
 
-xdg.configFile."Trolltech.conf".source = ./trolltech-config.conf;
+<<gtk-symlinked-files>>
 #+end_src
+
+*** Font
+
+#+NAME: gtk-config-font
+#+begin_src nix
+font = {
+  name = "Iosevka Term";
+  size = 12;
+};
+#+end_src
+
+*** Theme
+
+#+NAME: gtk-config-theme
+#+begin_src nix
+theme = {
+  <<gtk-package-theme>>
+  name = "gruvbox-dark";
+};
+#+end_src
+
+*** Icon theme
+
+#+NAME: gtk-config-icon-theme
+#+begin_src nix
+iconTheme = {
+  <<gtk-package-icon-theme>>
+  name = "oomox-gruvbox-dark";
+};
+#+end_src
+
+*** Trolltech
 
 #+NAME: trolltech-config
 #+begin_src conf :tangle generated/trolltech-config.conf
 [Qt]
 style=GTK+
+#+end_src
+
+** Package
+*** Theme
+
+#+NAME: gtk-package-theme
+#+begin_src nix
+package = pkgs.gruvbox-dark-gtk;
+#+end_src
+
+*** Icon theme
+
+#+NAME: gtk-package-icon-theme
+#+begin_src nix
+package = pkgs.gruvbox-dark-icons-gtk;
+#+end_src
+
+** Symlinked files
+
+#+NAME: gtk-symlinked-files
+#+begin_src nix
+xdg.configFile."Trolltech.conf".source = ./trolltech-config.conf;
 #+end_src
 
 * Home
