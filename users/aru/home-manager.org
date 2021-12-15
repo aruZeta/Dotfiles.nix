@@ -353,6 +353,12 @@ programs.emacs = {
   ]);
 };
 
+nixpkgs.overlays = [
+  (
+    <<emacs-overlay>>
+  )
+];
+
 <<emacs-symlinked-files>>
 #+end_src
 
@@ -1441,6 +1447,17 @@ xdg.configFile = {
 };
 #+end_src
 
+** Overlay
+
+Using emacs pure gtk package since I'm using wayland.
+
+#+NAME: emacs-overlay
+#+begin_src nix
+import (builtins.fetchTarball {
+  url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+})
+#+end_src
+
 * Email
 ** Imports
 
@@ -2067,11 +2084,6 @@ nixpkgs.overlays = [
   # Neovim nightly overlay
   (import (builtins.fetchTarball {
     url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-  }))
-
-  # Emacs overlay
-  (import (builtins.fetchTarball {
-    url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
   }))
 ];
 #+end_src
