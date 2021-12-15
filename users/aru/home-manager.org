@@ -52,6 +52,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<alacritty-imports>>
     <<eclipse-imports>>
     <<emacs-imports>>
+    <<email-imports>>
     <<eww-imports>>
   ];
 }
