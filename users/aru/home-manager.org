@@ -1836,6 +1836,8 @@ extraConfig =
 * Gtk
 ** Imports
 
+Select the stuff to import:
+
 #+NAME: gtk-imports
 #+begin_src nix
 {
@@ -1856,6 +1858,12 @@ gtk.enable = true;
 
 ** Config
 
+I have separated the config in diferent chunks for better
+organization, and inside them I also import the package required.
+
+Also the trolltech config goes to it's own generated file and then
+symlinked to ~XDG_CONFIG_HOME~.
+
 #+NAME: gtk-config
 #+begin_src nix
 gtk = {
@@ -1869,6 +1877,8 @@ gtk = {
 
 *** Font
 
+Iosevka everywhere.
+
 #+NAME: gtk-config-font
 #+begin_src nix
 font = {
@@ -1878,6 +1888,8 @@ font = {
 #+end_src
 
 *** Theme
+
+Gruvbox is good for my eyes.
 
 #+NAME: gtk-config-theme
 #+begin_src nix
@@ -1889,6 +1901,8 @@ theme = {
 
 *** Icon theme
 
+I said it was good for my eyes.
+
 #+NAME: gtk-config-icon-theme
 #+begin_src nix
 iconTheme = {
@@ -1898,6 +1912,8 @@ iconTheme = {
 #+end_src
 
 *** Trolltech
+
+Setting qt to use gtk+ style.
 
 #+NAME: trolltech-config
 #+begin_src conf :tangle generated/trolltech-config.conf
@@ -1921,6 +1937,9 @@ package = pkgs.gruvbox-dark-icons-gtk;
 #+end_src
 
 ** Symlinked files
+
+Files to be symlinked in the user directory (actually under
+~XDG_CONFIG_HOME~).
 
 #+NAME: gtk-symlinked-files
 #+begin_src nix
