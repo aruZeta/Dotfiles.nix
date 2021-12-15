@@ -32,7 +32,6 @@ configurations for each package, like alacritty, zsh, nvim, etc.
 
 {
   <<home-manager-setup>>
-  <<git>>
   <<gpg>>
   <<gtk>>
   <<home>>
@@ -54,6 +53,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<emacs-imports>>
     <<email-imports>>
     <<eww-imports>>
+    <<git-imports>>
   ];
 }
 #+end_src
@@ -1659,30 +1659,70 @@ self: super:
 #+end_src
 
 * Git
+** Imports
 
-#+NAME: git
+#+NAME: git-imports
+#+begin_src nix
+{
+  <<git-enable>>
+}
+
+{
+  <<git-config>>
+}
+#+end_src
+
+** Enable
+
+#+NAME: git-enable
+#+begin_src nix
+programs.git.enable = true;
+#+end_src
+
+** Config
+
+#+NAME: git-config
 #+begin_src nix
 programs.git = {
-  enable = true;
+  <<git-config-user>>
+  <<git-config-gpg-signing>>
+  <<git-config-ignores>>
+  <<git-config-extra>>
+};
+#+end_src
 
-  # Don't spam me :P
-  userEmail = "aru_hackZ.official@zohomail.eu";
-  userName = "aru-hackZ";
+*** User
 
-  # PGP signing
-  signing.signByDefault = true;
-  signing.key = "62F49107DB7386A7";
+#+NAME: git-config-user
+#+begin_src nix
+userEmail = "aru_hackZ.official@zohomail.eu";
+userName = "aru-hackZ";
+#+end_src
 
-  # Global git ignores
-  ignores = [
-    "*~"
-  ];
+*** GPG signing
 
-  # Extra git config
-  extraConfig = {
-    init = {
-      defaultBranch = "main";
-    };
+#+NAME: git-config-gpg-signing
+#+begin_src nix
+signing.signByDefault = true;
+signing.key = "62F49107DB7386A7";
+#+end_src
+
+*** Ignores
+
+#+NAME: git-config-ignores
+#+begin_src nix
+ignores = [
+  "*~"
+];
+#+end_src
+
+*** Extra
+
+#+NAME: git-config-extra
+#+begin_src nix
+extraConfig = {
+  init = {
+    defaultBranch = "main";
   };
 };
 #+end_src
