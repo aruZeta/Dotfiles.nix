@@ -32,8 +32,6 @@ configurations for each package, like alacritty, zsh, nvim, etc.
 
 {
   <<home-manager-setup>>
-  <<emacs>>
-  <<email>>
   <<eww>>
   <<git>>
   <<gpg>>
@@ -54,6 +52,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<user-imports>>
     <<alacritty-imports>>
     <<eclipse-imports>>
+    <<emacs-imports>>
   ];
 }
 #+end_src
