@@ -1661,6 +1661,8 @@ self: super:
 * Git
 ** Imports
 
+Select the stuff to import:
+
 #+NAME: git-imports
 #+begin_src nix
 {
@@ -1681,6 +1683,9 @@ programs.git.enable = true;
 
 ** Config
 
+Setting up git config, it is separated in minor chunks (again) for
+better organization.
+
 #+NAME: git-config
 #+begin_src nix
 programs.git = {
@@ -1693,6 +1698,9 @@ programs.git = {
 
 *** User
 
+Setting both my email and username used in github.
+*TODO: Get the email from email accounts config*
+
 #+NAME: git-config-user
 #+begin_src nix
 userEmail = "aru_hackZ.official@zohomail.eu";
@@ -1700,6 +1708,8 @@ userName = "aru-hackZ";
 #+end_src
 
 *** GPG signing
+
+Use gpg to sign commits.
 
 #+NAME: git-config-gpg-signing
 #+begin_src nix
@@ -1709,6 +1719,8 @@ signing.key = "62F49107DB7386A7";
 
 *** Ignores
 
+Ignore ~<file-name>.<extension>~~ files generated from emacs.
+
 #+NAME: git-config-ignores
 #+begin_src nix
 ignores = [
@@ -1717,6 +1729,8 @@ ignores = [
 #+end_src
 
 *** Extra
+
+Setting the default branch name to be ~main~.
 
 #+NAME: git-config-extra
 #+begin_src nix
