@@ -1716,11 +1716,10 @@ programs.git = {
 *** User
 
 Setting both my email and username used in github.
-*TODO: Get the email from email accounts config*
 
 #+NAME: git-config-user
 #+begin_src nix
-userEmail = "aru_hackZ.official@zohomail.eu";
+userEmail = config.accounts.email.accounts.aru.address;
 userName = "aru-hackZ";
 #+end_src
 
