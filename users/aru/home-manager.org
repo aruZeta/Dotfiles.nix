@@ -32,7 +32,6 @@ configurations for each package, like alacritty, zsh, nvim, etc.
 
 {
   <<home-manager-setup>>
-  <<alacritty>>
   <<eclipse>>
   <<emacs>>
   <<email>>
