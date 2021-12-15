@@ -353,10 +353,7 @@ programs.emacs = {
   ]);
 };
 
-xdg.configFile = {
-  "emacs/init.el".source = ./emacs-config.el;
-  "emacs/startup.org".source = ../startup.org;
-};
+<<emacs-symlinked-files>>
 #+end_src
 
 Here is the emacs config, also seperated in chunks:
@@ -1428,6 +1425,19 @@ Override org package to use elpa instead of builtin
 #+begin_src nix
 overrides = self: super: {
   org = self.elpaPackages.org;
+};
+#+end_src
+
+** Symlinked files
+
+Files to be symlinked in the user directory (actually under
+~XDG_CONFIG_HOME~).
+
+#+NAME: emacs-symlinked-files
+#+begin_src nix
+xdg.configFile = {
+  "emacs/init.el".source = ./emacs-config.el;
+  "emacs/startup.org".source = ../startup.org;
 };
 #+end_src
 
