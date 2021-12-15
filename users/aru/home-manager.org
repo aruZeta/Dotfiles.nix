@@ -32,7 +32,6 @@ configurations for each package, like alacritty, zsh, nvim, etc.
 
 {
   <<home-manager-setup>>
-  <<eww>>
   <<git>>
   <<gpg>>
   <<gtk>>
@@ -53,6 +52,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<alacritty-imports>>
     <<eclipse-imports>>
     <<emacs-imports>>
+    <<eww-imports>>
   ];
 }
 #+end_src
@@ -1549,16 +1549,31 @@ aru =
 #+end_src
 
 * Eww
+** Imports
 
-#+NAME: eww
+#+NAME: eww-imports
 #+begin_src nix
-xdg.configFile = {
-  "eww/eww.yuck".source = ./eww-config.yuck;
-  "eww/eww.scss".source = ./eww-style.scss;
-};
+{
+  <<eww-config>>
+}
 #+end_src
 
-#+NAME:eww-config
+** Config
+
+#+NAME: eww-config
+#+begin_src nix
+<<eww-symlinked-files>>
+
+nixpkgs.overlays = [
+  (
+    <<eww-overlay>>
+  )
+];
+#+end_src
+
+*** Test config
+
+#+NAME: eww-config-test
 #+begin_src lisp :tangle generated/eww-config.yuck
 (defwindow Test1
   :monitor 0
@@ -1586,10 +1601,24 @@ xdg.configFile = {
       (label :text "CPU"))))
 #+end_src
 
-#+NAME: eww-style
+*** Style
+
+#+NAME: eww-config-style
 #+begin_src scss :tangle generated/eww-style.scss
 /* Nothing */
 #+end_src
+
+** Symlinked files
+
+#+NAME: eww-symlinked-files
+#+begin_src nix
+xdg.configFile = {
+  "eww/eww.yuck".source = ./eww-config.yuck;
+  "eww/eww.scss".source = ./eww-style.scss;
+};
+#+end_src
+
+** Overlay
 
 #+NAME: eww-overlay
 #+begin_src nix
@@ -1826,10 +1855,6 @@ nixpkgs.overlays = [
   (import (builtins.fetchTarball {
     url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
   }))
-
-  (
-    <<eww-overlay>>
-  )
 ];
 #+end_src
 
