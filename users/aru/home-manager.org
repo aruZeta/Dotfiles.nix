@@ -54,6 +54,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<git-imports>>
     <<gpg-imports>>
     <<gtk-imports>>
+    <<lisp-imports>>
   ];
 }
 #+end_src
@@ -1415,6 +1416,20 @@ magit
 company
 #+end_src
 
+**** Slime
+***** Basic config
+
+#+begin_src emacs-lisp
+(setq inferior-lisp-program "sbcl")
+#+end_src
+
+***** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+slime
+slime-company
+#+end_src
+
 ** Package
 
 #+NAME: emacs-package
@@ -2636,4 +2651,32 @@ programs.zsh = {
     bindkey "\e[3~"   delete-char
     '';
 };
+#+end_src
+
+* Lisp
+** Imports
+
+#+NAME: lisp-imports
+#+begin_src nix
+{
+  <<lisp-config>>
+}
+#+end_src
+
+** Config
+
+#+NAME: lisp-config
+#+begin_src nix
+home.packages = with pkgs; [
+  <<lisp-package>>
+];
+#+end_src
+
+** Package
+
+#+NAME: lisp-package
+#+begin_src nix
+sbcl
+lispPackages.quicklisp
+lispPackages.asdf
 #+end_src
