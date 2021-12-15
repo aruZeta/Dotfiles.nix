@@ -1434,6 +1434,8 @@ overrides = self: super: {
 * Email
 ** Imports
 
+Select the stuff to import:
+
 #+NAME: email-imports
 #+begin_src nix
 {
@@ -1454,6 +1456,9 @@ programs.mbsync.enable = true;
 #+end_src
 
 ** Config
+
+My email config uses the ~XDG_MAIL_DIR~ as mail home, which is defined
+under the xdg config.
 
 #+NAME: email-config
 #+begin_src nix
@@ -1479,6 +1484,9 @@ accounts.email = {
 #+end_src
 
 *** Aru's config
+
+My main mail config.
+*TODO: Set up a way to auto generate emacs mu4e config*
 
 #+NAME: email-config-aru
 #+begin_src nix
