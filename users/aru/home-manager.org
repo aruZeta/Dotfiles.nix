@@ -1739,7 +1739,7 @@ programs.gpg = {
 services.gpg-agent = {
   enable = true;
   enableSshSupport = true;
-  sshKeys = [ "62F49107DB7386A7" ];
+  sshKeys = [ "2DFF735B955F966CA0A33CE3EBECBBFF6EA666FF" ];
 
   # Dont judge me, im lazy
   defaultCacheTtl    = 3600 * 8;
