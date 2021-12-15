@@ -277,6 +277,8 @@ working_directory = "None";
 * Eclipse
 ** Imports
 
+Select the stuff to import:
+
 #+NAME: eclipse-imports
 #+begin_src nix
 {
@@ -297,6 +299,8 @@ programs.eclipse.enable = true;
 
 ** Config
 
+Not much config possible for eclipse, just the package to use:
+
 #+NAME: eclipse-config
 #+begin_src nix
 programs.eclipse = {
@@ -313,6 +317,8 @@ package = pkgs.eclipses.eclipse-java;
 
 * Emacs
 ** Imports
+
+Select the stuff to import:
 
 #+NAME: emacs-imports
 #+begin_src nix
@@ -334,6 +340,8 @@ programs.emacs.enable = true;
 
 ** Config
 
+The config is separated in diferent chunks:
+
 #+NAME: emacs-config
 #+begin_src nix :noweb-ref nil
 programs.emacs = {
@@ -350,6 +358,8 @@ xdg.configFile = {
   "emacs/startup.org".source = ../startup.org;
 };
 #+end_src
+
+Here is the emacs config, also seperated in chunks:
 
 #+begin_src lisp :tangle generated/emacs-config.el :noweb-ref nil
 <<emacs-config-user-data>>
@@ -1412,9 +1422,10 @@ package = pkgs.emacsPgtk;
 
 ** Override
 
+Override org package to use elpa instead of builtin
+
 #+NAME: emacs-override
 #+begin_src nix
-# Override org package to use elpa instead of builtin
 overrides = self: super: {
   org = self.elpaPackages.org;
 };
