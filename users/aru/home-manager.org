@@ -32,7 +32,6 @@ configurations for each package, like alacritty, zsh, nvim, etc.
 
 {
   <<home-manager-setup>>
-  <<gpg>>
   <<gtk>>
   <<home>>
   <<java>>
@@ -54,6 +53,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<email-imports>>
     <<eww-imports>>
     <<git-imports>>
+    <<gpg-imports>>
   ];
 }
 #+end_src
@@ -1729,9 +1729,23 @@ extraConfig = {
 
 * Gpg
 
-#+NAME: gpg
+** Imports
+
+#+NAME: gpg-imports
 #+begin_src nix
-# Need me to introduce it?
+{
+  <<gpg-enable>>
+}
+
+{
+  <<gpg-config>>
+}
+#+end_src
+
+** Enable
+
+#+NAME: gpg-enable
+#+begin_src nix
 programs.gpg = {
   enable = true;
 };
@@ -1739,20 +1753,53 @@ programs.gpg = {
 services.gpg-agent = {
   enable = true;
   enableSshSupport = true;
-  sshKeys = [ "2DFF735B955F966CA0A33CE3EBECBBFF6EA666FF" ];
-
-  # Dont judge me, im lazy
-  defaultCacheTtl    = 3600 * 8;
-  maxCacheTtl        = 3600 * 8;
-  defaultCacheTtlSsh = 3600 * 8;
-  maxCacheTtlSsh     = 3600 * 8;
-
-  pinentryFlavor = "emacs";
-  extraConfig =
-    ''
-    allow-emacs-pinentry
-    '';
 };
+#+end_src
+
+** Config
+
+#+NAME: gpg-config
+#+begin_src nix
+services.gpg-agent = {
+  <<gpg-config-ssh-keys>>
+  <<gpg-config-ttl>>
+  <<gpg-config-pinentry>>
+  <<gpg-config-extra>>
+};
+#+end_src
+
+*** SSH keys
+
+#+NAME: gpg-config-ssh-keys
+#+begin_src nix
+sshKeys = [ "2DFF735B955F966CA0A33CE3EBECBBFF6EA666FF" ];
+#+end_src
+
+*** TTL
+
+#+NAME: gpg-config-ttl
+#+begin_src nix
+defaultCacheTtl    = 3600 * 8;
+maxCacheTtl        = 3600 * 8;
+defaultCacheTtlSsh = 3600 * 8;
+maxCacheTtlSsh     = 3600 * 8;
+#+end_src
+
+*** Pinentry
+
+#+NAME: gpg-config-pinentry
+#+begin_src nix
+pinentryFlavor = "emacs";
+#+end_src
+
+*** Extra
+
+#+NAME: gpg-config-extra
+#+begin_src nix
+extraConfig =
+  ''
+  allow-emacs-pinentry
+  '';
 #+end_src
 
 * Gtk
