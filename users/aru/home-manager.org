@@ -2031,6 +2031,7 @@ home = {
       unzip
       pavucontrol
       xdg-user-dirs
+      xdg-utils
     ];
 };
 #+end_src
@@ -2572,6 +2573,7 @@ window {
 #+begin_src nix
 xdg = {
   enable = true;
+  mimeApps.enable = true;
 
   configHome = ~/.dotfiles/config;
   cacheHome = ~/.dotfiles/cache;
