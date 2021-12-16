@@ -311,7 +311,7 @@ programs.eclipse = {
 
 ** Package
 
-#+NAME: eclipse-config-package
+#+NAME: eclipse-package
 #+begin_src nix
 package = pkgs.eclipses.eclipse-java;
 #+end_src
