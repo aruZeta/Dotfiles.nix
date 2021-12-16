@@ -1416,6 +1416,12 @@ magit
 company
 #+end_src
 
+***** Basic config
+
+#+begin_src emacs-lisp
+(add-hook 'after-init-hook 'global-company-mode)
+#+end_src
+
 **** Slime
 ***** Basic config
 
@@ -1428,6 +1434,13 @@ company
 #+begin_src nix :noweb-ref emacs-pkgs
 slime
 slime-company
+#+end_src
+
+**** Yasnippet
+***** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+yasnippet
 #+end_src
 
 ** Package
