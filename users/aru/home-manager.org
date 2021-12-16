@@ -2670,6 +2670,10 @@ programs.zsh = {
 home.packages = with pkgs; [
   <<lisp-package>>
 ];
+
+home.sessionVariables = {
+  <<lisp-session-variables>>
+};
 #+end_src
 
 ** Package
@@ -2679,4 +2683,13 @@ home.packages = with pkgs; [
 sbcl
 lispPackages.quicklisp
 lispPackages.asdf
+#+end_src
+
+** Session Variables
+
+*TODO: Better xdg config to set this in a better way*.
+
+#+NAME: lisp-session-variables
+#+begin_src nix
+NIX_QUICKLISP_DIR = "${config.home.homeDirectory}/.dotfiles/local/quicklisp";
 #+end_src
