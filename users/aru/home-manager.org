@@ -33,7 +33,6 @@ configurations for each package, like alacritty, zsh, nvim, etc.
 {
   <<home-manager-setup>>
   <<home>>
-  <<swaylock>>
   <<waybar>>
   <<wofi>>
   <<xdg>>
@@ -53,6 +52,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<neovim-imports>>
     <<starship-imports>>
     <<sway-imports>>
+    <<swaylock-imports>>
     <<lisp-imports>>
   ];
 }
@@ -2348,57 +2348,135 @@ extraSessionCommands =
 #+end_src
 
 * Swaylock
+** Imports
 
-#+NAME: swaylock
+#+NAME: swaylock-imports
 #+begin_src nix
-xdg.configFile = {
-  "swaylock/config".source = ./swaylock-config;
-};
+{
+  <<swaylock-config>>
+}
 #+end_src
 
+** Config
+
 #+NAME: swaylock-config
+#+begin_src nix
+<<swaylock-symlinked-files>>
+#+end_src
+
 #+begin_src conf :tangle generated/swaylock-config
+<<swaylock-config-attempts>>
+<<swaylock-config-background>>
+<<swaylock-config-font>>
+<<swaylock-config-indicator>>
+<<swaylock-config-colors-inside>>
+<<swaylock-config-colors-highlight>>
+<<swaylock-config-colors-ring>>
+<<swaylock-config-colors-line>>
+<<swaylock-config-colors-separator>>
+<<swaylock-config-colors-text>>
+#+end_src
+
+*** Attempts
+
+#+NAME: swaylock-config-attempts
+#+begin_src conf
 show-failed-attempts
 ignore-empty-password
+#+end_src
 
+*** Background
+
+#+NAME: swaylock-config-background
+#+begin_src conf
 image=$(xdg-user-dir DOTFILES)/share/img/black-hole.jpg
 scaling=stretch
 color=000000
+#+end_src
 
+*** Font
+
+#+NAME: swaylock-config-font
+#+begin_src conf
 font=Iosevka
 font-size=16
+#+end_src
 
+*** Indicator
+
+#+NAME: swaylock-config-indicator
+#+begin_src conf
 indicator-radius=60
 indicator-thickness=6
+#+end_src
 
+*** Colors
+**** Inside
+
+#+NAME: swaylock-config-colors-inside
+#+begin_src conf
 inside-color=1d2021ff
 inside-clear-color=1d2021ff
 inside-caps-lock-color=1d2021ff
 inside-ver-color=1d2021ff
 inside-wrong-color=1d2021ff
+#+end_src
 
+**** Highlight
+
+#+NAME: swaylock-config-colors-highlight
+#+begin_src conf
 key-hl-color=689d6aff
 bs-hl-color=d79921ff
+#+end_src
 
+**** Ring
+
+#+NAME: swaylock-config-colors-ring
+#+begin_src conf
 ring-color=282828ff
 ring-clear-color=8ec07cff
 ring-caps-lock-color=fe8019ff
 ring-ver-color=b8bb26ff
 ring-wrong-color=fb4934ff
+#+end_src
 
+**** Line
+
+#+NAME: swaylock-config-colors-line
+#+begin_src conf
 line-color=00000000
 line-clear-color=00000000
 line-caps-lock-color=00000000
 line-ver-color=00000000
 line-wrong-color=00000000
+#+end_src
 
+**** Separator
+
+#+NAME: swaylock-config-colors-separator
+#+begin_src conf
 separator-color=00000000
+#+end_src
 
+**** Text
+
+#+NAME: swaylock-config-colors-text
+#+begin_src conf
 text-color=ebdbb2ff
 text-clear-color=689d6aff
 text-caps-lock-color=d65d0eff
 text-ver-color=98971aff
 text-wrong-color=cc241dff
+#+end_src
+
+** Symlinked files
+
+#+NAME: swaylock-symlinked-files
+#+begin_src nix
+xdg.configFile = {
+  "swaylock/config".source = ./swaylock-config;
+};
 #+end_src
 
 * Waybar
