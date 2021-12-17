@@ -1057,14 +1057,13 @@ config:
       (concat
        (shell-command-to-string
         "echo $(xdg-user-dir MAIL) | awk '{printf(\"%s\", $0);}'")
-        "/aru/Attachments")
-
-      mu4e-compose-signature "\n------\nBy aru\n"
+       "/aru/Attachments")
+      mu4e-compose-signature "Alberto (a.k.a. aru)"
       mu4e-compose-signature-auto-include t
       mu4e-use-fancy-chars t
       mu4e-get-mail-command "mbsync aru"
       mu4e-update-interval 60
-      mu4e-sent-messages-behavior 'delete
+      mu4e-sent-messages-behavior 'sent
 
       mail-user-agent 'mu4e-user-agent
 
