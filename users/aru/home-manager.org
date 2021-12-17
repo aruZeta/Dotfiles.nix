@@ -574,7 +574,7 @@ svg-tag-mode
 which-key
 #+end_src
 
-*** Keybindigs
+*** Keybindings
 :PROPERTIES:
 :header-args: :noweb-ref emacs-config-keybindings
 :END:
