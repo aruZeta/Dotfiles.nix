@@ -33,7 +33,6 @@ configurations for each package, like alacritty, zsh, nvim, etc.
 {
   <<home-manager-setup>>
   <<home>>
-  <<sway>>
   <<swaylock>>
   <<waybar>>
   <<wofi>>
@@ -53,6 +52,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<java-imports>>
     <<neovim-imports>>
     <<starship-imports>>
+    <<sway-imports>>
     <<lisp-imports>>
   ];
 }
@@ -2179,98 +2179,172 @@ programs.starship.enableZshIntegration = true;
 #+end_src
 
 * Sway
+** Imports
 
-#+NAME: sway
+#+NAME: sway-imports
+#+begin_src nix
+{
+  <<sway-enable>>
+}
+
+{
+  <<sway-config>>
+}
+#+end_src
+
+** Enable
+
+#+NAME: sway-enable
+#+begin_src nix
+wayland.windowManager.sway.enable = true;
+wayland.windowManager.sway.wrapperFeatures.gtk = true;
+#+end_src
+
+** Config
+
+#+NAME: sway-config
 #+begin_src nix
 wayland.windowManager.sway = {
-  enable = true;
-  wrapperFeatures.gtk = true;
+  <<sway-config-session-commands>>
 
-  extraSessionCommands =
-    ''
-    export SDL_VIDEODRIVER=wayland
-    export QT_QPA_PLATFORM=wayland
-    export QT_QPA_PLATFORMTHEME=qt5ct
-    export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-    export _JAVA_AWT_WM_NONREPARENTING=1
-    export MOZ_ENABLE_WAYLAND=1
-    export GDK_BACKEND=wayland
-    export GDK_DPI_SCALE=1
-    '';
-
-  # Sway config
   config = {
-    modifier = "Mod4";
-    menu = "${pkgs.wofi}/bin/wofi";
-    terminal = "${pkgs.alacritty}/bin/alacritty";
-    workspaceAutoBackAndForth = true;
-
     # TODO: reassign all default keybindings
     # left = "h";
     # down = "t";
     # up = "n";
     # right = "s";
     keybindings =
-      let mod = config.wayland.windowManager.sway.config.modifier;
-      in lib.mkOptionDefault {
-        "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
-        "${mod}+Shift+s" = "exec ${config.xdg.userDirs.extraConfig.XDG_DOTFILES_DIR}/bin/screenshot.sh";
-        "${mod}+Shift+w" = "kill";
-        "${mod}+Escape" = "exec swaylock -f";
-        "${mod}+Shift+Escape" = "exec swaynag -t warning -m 'End session?' -b 'Yes, exit sway' 'swaymsg exit'";
-        "Mod1+Space" = "exec ${pkgs.wofi}/bin/wofi --show drun";
-        "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +2%";
-        "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 2%-";
-      };
+      <<sway-config-keybindings>>
 
     gaps = {
-      inner = 5;
+      <<sway-config-gaps>>
     };
 
     input = {
-      "18003:1:foostan_Corne" = {
-        xkb_layout = "us";
-        xkb_numlock = "disabled";
-      };
-
-      "type:keyboard" = {
-        xkb_layout = "dvorak";
-        xkb_numlock = "enabled";
-      };
+      <<sway-config-input>>
     };
 
     output = {
-      "eDP-1" = {
-        resolution = "1366x768@60Hz";
-        position = "0,0";
-      };
-
-      "HDMI-A-1" = {
-        resolution = "1920x1080@60Hz";
-        position = "1366,0";
-      };
-
-      "*" = {
-        bg = "#1d2021 solid_color";
-      };
+      <<sway-config-output>>
     };
 
     startup = [
-      { command =
-          ''
-          exec swayidle -w \
-               timeout 300 'swaylock -f' \
-               timeout 305 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-               before-sleep 'swaylock -f'
-          '';
-      }
+      <<sway-config-startup>>
     ];
 
     bars = [{
-      command = "${pkgs.waybar}/bin/waybar";
+      <<sway-config-bars>>
     }];
+
+    <<sway-config-others>>
   };
 };
+#+end_src
+
+*** Bars
+
+#+NAME: sway-config-bars
+#+begin_src nix
+command = "${pkgs.waybar}/bin/waybar";
+#+end_src
+
+*** Gaps
+
+#+NAME: sway-config-gaps
+#+begin_src nix
+inner = 5;
+#+end_src
+
+*** Input
+
+#+NAME: sway-config-input
+#+begin_src nix
+"18003:1:foostan_Corne" = {
+  xkb_layout = "us";
+  xkb_numlock = "disabled";
+};
+
+"type:keyboard" = {
+  xkb_layout = "dvorak";
+  xkb_numlock = "enabled";
+};
+#+end_src
+
+*** Keybindings
+
+#+NAME: sway-config-keybindings
+#+begin_src nix
+let mod = config.wayland.windowManager.sway.config.modifier;
+in lib.mkOptionDefault {
+  "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
+  "${mod}+Shift+s" = "exec ${config.xdg.userDirs.extraConfig.XDG_DOTFILES_DIR}/bin/screenshot.sh";
+  "${mod}+Shift+w" = "kill";
+  "${mod}+Escape" = "exec swaylock -f";
+  "${mod}+Shift+Escape" = "exec swaynag -t warning -m 'End session?' -b 'Yes, exit sway' 'swaymsg exit'";
+  "Mod1+Space" = "exec ${pkgs.wofi}/bin/wofi --show drun";
+  "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +2%";
+  "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 2%-";
+};
+#+end_src
+
+*** Others
+
+#+NAME: sway-config-others
+#+begin_src nix
+modifier = "Mod4";
+menu = "${pkgs.wofi}/bin/wofi";
+terminal = "${pkgs.alacritty}/bin/alacritty";
+workspaceAutoBackAndForth = true;
+#+end_src
+
+*** Output
+
+#+NAME: sway-config-output
+#+begin_src nix
+"eDP-1" = {
+  resolution = "1366x768@60Hz";
+  position = "0,0";
+};
+
+"HDMI-A-1" = {
+  resolution = "1920x1080@60Hz";
+  position = "1366,0";
+};
+
+"*" = {
+  bg = "#1d2021 solid_color";
+};
+#+end_src
+
+*** Session Commands
+
+#+NAME: sway-config-session-commands
+#+begin_src nix
+extraSessionCommands =
+  ''
+  export SDL_VIDEODRIVER=wayland
+  export QT_QPA_PLATFORM=wayland
+  export QT_QPA_PLATFORMTHEME=qt5ct
+  export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+  export _JAVA_AWT_WM_NONREPARENTING=1
+  export MOZ_ENABLE_WAYLAND=1
+  export GDK_BACKEND=wayland
+  export GDK_DPI_SCALE=1
+  '';
+#+end_src
+
+*** Startup
+
+#+NAME: sway-config-startup
+#+begin_src nix
+{ command =
+    ''
+    exec swayidle -w \
+         timeout 300 'swaylock -f' \
+         timeout 305 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f'
+    '';
+}
 #+end_src
 
 * Swaylock
