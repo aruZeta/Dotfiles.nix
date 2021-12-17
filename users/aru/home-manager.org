@@ -33,7 +33,6 @@ configurations for each package, like alacritty, zsh, nvim, etc.
 {
   <<home-manager-setup>>
   <<home>>
-  <<java>>
   <<neovim>>
   <<overlays>>
   <<starship>>
@@ -54,6 +53,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<git-imports>>
     <<gpg-imports>>
     <<gtk-imports>>
+    <<java-imports>>
     <<lisp-imports>>
   ];
 }
@@ -2052,13 +2052,20 @@ home = {
 #+end_src
 
 * Java
+** Imports
 
-#+NAME: java
+#+NAME: java-imports
 #+begin_src nix
-# ... nothing to say here
-programs.java = {
-  enable = true;
-};
+{
+  <<java-enable>>
+}
+#+end_src
+
+** Enable
+
+#+NAME: java-enable
+#+begin_src nix
+programs.java.enable = true;
 #+end_src
 
 * Neovim
