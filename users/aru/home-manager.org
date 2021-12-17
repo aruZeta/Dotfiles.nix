@@ -2738,5 +2738,6 @@ Files to be symlinked in the user directory (actually under
 #+begin_src nix
 xdg.configFile = {
   "sbcl/sbclrc".source = ./sbcl-config.lisp;
+  "sbcl/sbcl.core".source = "${pkgs.sbcl}/lib/sbcl/sbcl.core";
 };
 #+end_src
