@@ -33,8 +33,6 @@ configurations for each package, like alacritty, zsh, nvim, etc.
 {
   <<home-manager-setup>>
   <<home>>
-  <<neovim>>
-  <<overlays>>
   <<starship>>
   <<sway>>
   <<swaylock>>
@@ -54,6 +52,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<gpg-imports>>
     <<gtk-imports>>
     <<java-imports>>
+    <<neovim-imports>>
     <<lisp-imports>>
   ];
 }
@@ -2069,26 +2068,46 @@ programs.java.enable = true;
 #+end_src
 
 * Neovim
+** Imports
 
-#+NAME: neovim
+#+NAME: neovim-imports
 #+begin_src nix
-programs.neovim = {
-  enable = true;
+{
+  <<neovim-enable>>
+}
 
-  # Neovim nightly, for the ones who want to compile it each morning
-  # TODO: pin the $!@$% package, tired of recompiling
-  package = pkgs.neovim-nightly;
-
-  # Extra config, using lua
-  extraConfig =
-    ''
-    <<neovim-config>>
-    '';
-};
+{
+  <<neovim-config>>
+}
 #+end_src
 
+** Enable
+
+#+NAME: neovim-enable
+#+begin_src nix
+programs.neovim.enable = true;
+#+end_src
+
+** Config
+
 #+NAME: neovim-config
-#+begin_src lua
+#+begin_src nix
+programs.neovim = {
+  <<neovim-package>>
+};
+
+nixpkgs.overlays = [
+  (
+    <<neovim-overlay>>
+  )
+];
+
+<<neovim-symlinked-files>>
+#+end_src
+
+*** Init.vim
+
+#+begin_src lua :tangle generated/neovim-config.vim
 lua << EOF
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -2113,21 +2132,32 @@ vim.opt.mouse = 'a'
 EOF
 #+end_src
 
-* Overlays
+** Package
 
-#+NAME: overlays
+#+NAME: neovim-package
 #+begin_src nix
-nixpkgs.overlays = [
-  # Neovim nightly overlay
-  (
-    let
-      repo = "https://github.com/nix-community/neovim-nightly-overlay";
-      commit = "7933df62bb350d2f4a258f9e110decc08baaf627";
-    in import (builtins.fetchTarball {
-      url = "${repo}/archive/${commit}.tar.gz";
-    })
-  )
-];
+package = pkgs.neovim-nightly;
+#+end_src
+
+** Symlinked files
+
+#+NAME: neovim-symlinked-files
+#+begin_src nix
+xdg.configFile = {
+  "nvim/init.vim".source = ./neovim-config.vim;
+};
+#+end_src
+
+** Overlay
+
+#+NAME: neovim-overlay
+#+begin_src nix
+let
+  repo = "https://github.com/nix-community/neovim-nightly-overlay";
+  commit = "7933df62bb350d2f4a258f9e110decc08baaf627";
+in import (builtins.fetchTarball {
+  url = "${repo}/archive/${commit}.tar.gz";
+})
 #+end_src
 
 * Starship
