@@ -1481,8 +1481,11 @@ Using emacs pure gtk package since I'm using wayland.
 
 #+NAME: emacs-overlay
 #+begin_src nix
-import (builtins.fetchTarball {
-  url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+let
+  repo = "https://github.com/nix-community/emacs-overlay";
+  commit = "7368fbf298996bc024396c1cdb1e194f7a2cd3c6";
+in import (builtins.fetchTarball {
+  url = "${repo}/archive/${commit}.tar.gz";
 })
 #+end_src
 
