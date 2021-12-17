@@ -33,7 +33,6 @@ configurations for each package, like alacritty, zsh, nvim, etc.
 {
   <<home-manager-setup>>
   <<home>>
-  <<starship>>
   <<sway>>
   <<swaylock>>
   <<waybar>>
@@ -53,6 +52,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<gtk-imports>>
     <<java-imports>>
     <<neovim-imports>>
+    <<starship-imports>>
     <<lisp-imports>>
   ];
 }
@@ -2161,13 +2161,21 @@ in import (builtins.fetchTarball {
 #+end_src
 
 * Starship
+** Imports
 
-#+NAME: starship
+#+NAME: starship-imports
 #+begin_src nix
-programs.starship = {
-  enable = true;
-  enableZshIntegration = true;
-};
+{
+  <<starship-enable>>
+}
+#+end_src
+
+** Enable
+
+#+NAME: starship-enable
+#+begin_src nix
+programs.starship.enable = true;
+programs.starship.enableZshIntegration = true;
 #+end_src
 
 * Sway
