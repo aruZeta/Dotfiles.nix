@@ -3041,9 +3041,10 @@ home.sessionVariables = {
 
 *** Sbclrc
 
-Sbcl config:
+Sbcl init file:
 
-#+begin_src lisp :tangle generated/sbcl-config.lisp
+#+begin_src lisp :tangle generated/sbcl-config-init.lisp
+#-quicklisp
 (let ((ql-init
         (merge-pathnames "setup.lisp"
                          (concatenate 'string
@@ -3069,7 +3070,6 @@ lispPackages.asdf
 #+NAME: lisp-session-variables
 #+begin_src nix
 NIX_QUICKLISP_DIR = "${config.home.homeDirectory}/.dotfiles/local/quicklisp";
-SBCL_HOME = "${config.xdg.configHome}/sbcl";
 #+end_src
 
 ** Symlinked files
@@ -3079,8 +3079,7 @@ Files to be symlinked in the user directory (actually under
 
 #+NAME: lisp-symlinked-files
 #+begin_src nix
-xdg.configFile = {
-  "sbcl/sbclrc".source = ./sbcl-config.lisp;
-  "sbcl/sbcl.core".source = "${pkgs.sbcl}/lib/sbcl/sbcl.core";
+home.file = {
+  ".sbclrc".source = ./sbcl-config-init.lisp;
 };
 #+end_src
