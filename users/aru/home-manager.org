@@ -3064,6 +3064,8 @@ Sbcl init file:
                                       "/"))))
   (when (probe-file ql-init)
     (load ql-init)))
+
+(setf sb-impl::*default-external-format* :utf-8)
 #+end_src
 
 ** Package
