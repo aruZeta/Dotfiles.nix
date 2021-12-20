@@ -1393,6 +1393,18 @@ company-lua
 (add-hook 'emacs-lisp-mode-hook #'aru/elisp-mode-hook)
 #+end_src
 
+**** Lisp
+***** Hooks
+
+#+begin_src emacs-lisp
+(defun aru/lisp-mode-hook ()
+  (setq indent-tabs-mode nil))
+#+end_src
+
+#+begin_src emacs-lisp
+(add-hook 'lisp-mode-hook #'aru/lisp-mode-hook)
+#+end_src
+
 **** Nix
 ***** Packges
 
