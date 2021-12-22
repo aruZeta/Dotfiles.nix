@@ -38,7 +38,7 @@ jobs:
           
       - name: Move changes to generated
         run: |
-          for x in $(ls -a generated/); do \
+          for x in $(ls -A generated/); do \
           [[ "$x" != ".git" ]] && rm -rf "generated/$x" \
           ; done
           rm -rf changes/.git
