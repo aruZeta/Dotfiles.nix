@@ -3,5 +3,5 @@
 
 TODO: future me should write something here, present me is too lazy
 
-Dont have emacs and want to the generated files? Check the branch
+Dont have emacs and want to see the generated files? Check the branch
 [[https://github.com/aru-hackZ/Dotfiles.nix/tree/generated][generated]].
