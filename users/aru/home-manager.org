@@ -33,7 +33,6 @@ configurations for each package, like alacritty, zsh, nvim, etc.
 {
   <<home-manager-setup>>
   <<home>>
-  <<wofi>>
   <<xdg>>
   <<zsh>>
 
@@ -53,6 +52,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<sway-imports>>
     <<swaylock-imports>>
     <<waybar-imports>>
+    <<wofi-imports>>
     <<lisp-imports>>
   ];
 }
@@ -2876,30 +2876,62 @@ margin = "5 5 0";
 #+end_src
 
 * Wofi
+** Imports
 
-#+NAME: wofi
+#+NAME: wofi-imports
 #+begin_src nix
-xdg.configFile = {
-  "wofi/config".source = ./wofi-config;
-  "wofi/style.css".source = ./wofi-style.css;
-};
+{
+  <<wofi-config>>
+}
 #+end_src
 
+** Config
+
 #+NAME: wofi-config
+#+begin_src nix
+<<wofi-symlinked-files>>
+#+end_src
+
 #+begin_src conf :tangle generated/wofi-config
+<<wofi-config-size>>
+<<wofi-config-images>>
+<<wofi-config-search>>
+<<wofi-config-others>>
+#+end_src
+
+*** Size
+
+#+NAME: wofi-config-size
+#+begin_src conf
 width=40%
 lines=8
+#+end_src
 
+*** Images
+
+#+NAME: wofi-config-images
+#+begin_src conf
 allow_images=true
 image_size=24
+#+end_src
 
-term=alacritty
+*** Search
 
+#+NAME: wofi-config-search
+#+begin_src conf
 prompt=
 insensitive=true
 #+end_src
 
-#+NAME: wofi-style
+*** Others
+
+#+NAME: wofi-config-others
+#+begin_src conf
+term=alacritty
+#+end_src
+
+*** Style
+
 #+begin_src css :tangle generated/wofi-style.css
 window {
 	border-radius: 15px;
@@ -2936,6 +2968,16 @@ window {
 #img {
 	margin-right: 5px;
 }
+#+end_src
+
+** Symlinked files
+
+#+NAME: wofi-symlinked-files
+#+begin_src nix
+xdg.configFile = {
+  "wofi/config".source = ./wofi-config;
+  "wofi/style.css".source = ./wofi-style.css;
+};
 #+end_src
 
 * Xdg
