@@ -42,7 +42,9 @@ jobs:
           [[ "$x" != ".git" ]] && rm -rf "generated/$x" \
           ; done
           rm -rf changes/.git
-          mv -t generated/ changes/* changes/.*
+          cd changes/
+          mv -t ../generated/ $(ls -A .)
+          cd ..
 
       - name: Push generated files
         run: |
