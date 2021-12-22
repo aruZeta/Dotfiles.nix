@@ -12,7 +12,16 @@ jobs:
   HomeManagerConfig:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Fetch new changes
+        uses: actions/checkout@v2
+        with:
+          path: changes
+          
+      - name: Fetch generated branch
+        uses: actions/checkout@v2
+        with:
+          path: generated
+          ref: generated
 
       - name: Setup Emacs
         uses: purcell/setup-emacs@master
@@ -21,17 +30,26 @@ jobs:
 
       - name: Generate files
         run: |
-          for i in $(ls users/*/home-manager.org); do \
+          for i in $(ls changes/users/*/home-manager.org); do \
           emacs --batch \
                 --eval "(require 'org)" \
                 --eval "(org-babel-tangle-file \"$PWD/$i\")" \
           ; done
+          
+      - name: Move changes to generated
+        run: |
+          for x in $(ls -a generated/); do \
+          [[ "$x" != ".git" ]] && rm -rf "generated/$x" \
+          ; done
+          rm -rf changes/.git
+          mv -t generated/ changes/* changes/.*
 
       - name: Push generated files
         run: |
+          cd generated/
           git config user.name github-actions
           git config user.email github-actions@github.com
           rm .gitignore
           git add .
           git commit -m "[workflow] Generated"
-          git push --force origin HEAD:generated
+          git push
