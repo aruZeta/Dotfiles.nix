@@ -1467,6 +1467,15 @@ yasnippet
 #+end_src
 
 **** Lispy
+***** Keybindings
+
+#+begin_src emacs-lisp
+(general-define-key
+ :states '(insert)
+ :keymaps '(lisp-mode-map emacs-lisp-mode-map)
+ "(" 'lispy-parens)
+#+end_src
+
 ***** Hooks
 
 #+begin_src emacs-lisp
