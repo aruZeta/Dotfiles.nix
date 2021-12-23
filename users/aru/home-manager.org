@@ -574,6 +574,19 @@ svg-tag-mode
 which-key
 #+end_src
 
+**** Rainbow delimiters
+***** Hooks
+
+#+begin_src emacs-lisp
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+#+end_src
+
+***** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+rainbow-delimiters
+#+end_src
+
 *** Keybindings
 :PROPERTIES:
 :header-args: :noweb-ref emacs-config-keybindings
