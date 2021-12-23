@@ -1466,6 +1466,26 @@ slime-company
 yasnippet
 #+end_src
 
+**** Smartparens
+***** Basic config
+
+#+begin_src emacs-lisp
+(require 'smartparens-config)
+#+end_src
+
+***** Hooks
+
+#+begin_src emacs-lisp
+(add-hook 'lisp-mode-hook #'smartparens-mode)
+(add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
+#+end_src
+
+***** Packages
+
+#+begin_src nix :noweb-ref emacs-pkgs
+smartparens
+#+end_src
+
 ** Package
 
 #+NAME: emacs-package
