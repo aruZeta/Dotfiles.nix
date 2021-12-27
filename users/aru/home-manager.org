@@ -1467,13 +1467,24 @@ yasnippet
 #+end_src
 
 **** Lispy
+***** Basic config
+
+#+begin_src emacs-lisp
+(defun aru/check-closing-paren ()
+  (interactive "*")
+  (if (= (char-after) ?\))
+      (forward-char)
+    (insert ")")))
+#+end_src
+
 ***** Keybindings
 
 #+begin_src emacs-lisp
 (general-define-key
  :states '(insert)
  :keymaps '(lisp-mode-map emacs-lisp-mode-map)
- "(" 'lispy-parens)
+ "(" 'lispy-parens
+ ")" 'aru/check-closing-paren)
 #+end_src
 
 ***** Hooks
