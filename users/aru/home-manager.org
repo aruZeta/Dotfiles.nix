@@ -53,7 +53,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<swaylock-imports>>
     <<waybar-imports>>
     <<wofi-imports>>
-    <<lisp-imports>>
+    <<common-lisp-imports>>
   ];
 }
 #+end_src
@@ -3115,29 +3115,29 @@ programs.zsh = {
 };
 #+end_src
 
-* Lisp
+* Common Lisp
 ** Imports
 
-#+NAME: lisp-imports
+#+NAME: common-lisp-imports
 #+begin_src nix
 {
-  <<lisp-config>>
+  <<common-lisp-config>>
 }
 #+end_src
 
 ** Config
 
-#+NAME: lisp-config
+#+NAME: common-lisp-config
 #+begin_src nix
 home.packages = with pkgs; [
-  <<lisp-package>>
+  <<common-lisp-package>>
 ];
 
 home.sessionVariables = {
-  <<lisp-session-variables>>
+  <<common-lisp-session-variables>>
 };
 
-<<lisp-symlinked-files>>
+<<common-lisp-symlinked-files>>
 #+end_src
 
 *** Sbclrc
@@ -3159,7 +3159,7 @@ Sbcl init file:
 
 ** Package
 
-#+NAME: lisp-package
+#+NAME: common-lisp-package
 #+begin_src nix
 sbcl
 lispPackages.quicklisp
@@ -3170,7 +3170,7 @@ lispPackages.asdf
 
 *TODO: Better xdg config to set this in a better way*.
 
-#+NAME: lisp-session-variables
+#+NAME: common-lisp-session-variables
 #+begin_src nix
 NIX_QUICKLISP_DIR = "${config.home.homeDirectory}/.dotfiles/local/quicklisp";
 #+end_src
@@ -3180,7 +3180,7 @@ NIX_QUICKLISP_DIR = "${config.home.homeDirectory}/.dotfiles/local/quicklisp";
 Files to be symlinked in the user directory (actually under
 ~XDG_CONFIG_HOME~).
 
-#+NAME: lisp-symlinked-files
+#+NAME: common-lisp-symlinked-files
 #+begin_src nix
 home.file = {
   ".sbclrc".source = ./sbcl-config-init.lisp;
