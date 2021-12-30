@@ -3159,7 +3159,7 @@ Sbcl init file:
 
 *** Common Lisp registry
 
-#+begin_src conf :tangle generated/cl-source-registry.conf
+#+begin_src conf :tangle generated/asdf-config.conf
 (:tree "/GitRepos/common-lisp/")
 #+end_src
 
@@ -3192,7 +3192,9 @@ home.file = {
   ".sbclrc".source = ./sbcl-config-init.lisp;
 };
 
-xdg.configFile = {
-  "common-lisp/source-registry.conf".source = ./cl-source-registry.conf;
-};
+xdg.configFile =
+  let cl-registry = "common-lisp/source-registry.conf.d";
+  in {
+    "${cl-registry}/asdf.conf".source = ./asdf-config.conf;
+  };
 #+end_src
