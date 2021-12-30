@@ -3157,6 +3157,12 @@ Sbcl init file:
 (setf sb-impl::*default-external-format* :utf-8)
 #+end_src
 
+*** Common Lisp registry
+
+#+begin_src conf :tangle generated/cl-source-registry.conf
+(:tree "/GitRepos/common-lisp/")
+#+end_src
+
 ** Package
 
 #+NAME: common-lisp-package
@@ -3184,5 +3190,9 @@ Files to be symlinked in the user directory (actually under
 #+begin_src nix
 home.file = {
   ".sbclrc".source = ./sbcl-config-init.lisp;
+};
+
+xdg.configFile = {
+  "common-lisp/source-registry.conf".source = ./cl-source-registry.conf;
 };
 #+end_src
