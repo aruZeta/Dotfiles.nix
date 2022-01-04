@@ -408,7 +408,9 @@ By default column number will be enabled in all buffers but
 
 (dolist (mode '(org-mode-hook
                 term-mode-hook
-                shell-mode-hook))
+                shell-mode-hook
+                slime-repl-mode-hook
+                treemacs-mode-hook))
         (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src
 
