@@ -33,7 +33,6 @@ configurations for each package, like alacritty, zsh, nvim, etc.
 {
   <<home-manager-setup>>
   <<home>>
-  <<xdg>>
   <<zsh>>
 
   imports = [
@@ -54,6 +53,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<waybar-imports>>
     <<wofi-imports>>
     <<common-lisp-imports>>
+    <<xdg-imports>>
   ];
 }
 #+end_src
@@ -3076,35 +3076,75 @@ xdg.configFile = {
 #+end_src
 
 * Xdg
+** Imports
 
-#+NAME: xdg
+#+NAME: xdg-imports
+#+begin_src nix
+{
+  <<xdg-enable>>
+}
+
+{
+  <<xdg-config>>
+}
+#+end_src
+
+** Enable
+
+#+NAME: xdg-enable
+#+begin_src nix
+xdg.enable = true;
+xdg.mimeApps.enable = true;
+xdg.userDirs.enable = true;
+#+end_src
+
+** Config
+
+#+NAME: xdg-config
 #+begin_src nix
 xdg = {
-  enable = true;
-  mimeApps.enable = true;
-
-  configHome = ~/.dotfiles/config;
-  cacheHome = ~/.dotfiles/cache;
-  dataHome = ~/.dotfiles/local/share;
-  stateHome = ~/.dotfiles/local/state;
+  <<xdg-config-user-dot-directories>>
 
   userDirs = {
-    enable = true;
-    desktop = "$HOME/Tmp/Desktop";
-    documents = "$HOME/Archive";
-    download = "$HOME/Tmp";
-    music = "${config.xdg.userDirs.documents}/Audio";
-    pictures = "${config.xdg.userDirs.documents}/Images";
-    templates = "${config.xdg.userDirs.documents}/Templates";
-    videos = "${config.xdg.userDirs.documents}/Video";
+    <<xdg-config-user-directories>>
 
     extraConfig = {
-      XDG_DOTFILES_DIR = "$HOME/Dotfiles.nix";
-      XDG_MAIL_DIR = "${config.xdg.userDirs.documents}/Mail";
-      XDG_KEYS_DIR = "${config.xdg.userDirs.documents}/Keys";
+      <<xdg-config-extra-directories>>
     };
   };
 };
+#+end_src
+
+*** User directories
+
+#+NAME: xdg-config-user-directories
+#+begin_src nix
+desktop = "$HOME/Tmp/Desktop";
+documents = "$HOME/Archive";
+download = "$HOME/Tmp";
+music = "${config.xdg.userDirs.documents}/Audio";
+pictures = "${config.xdg.userDirs.documents}/Images";
+templates = "${config.xdg.userDirs.documents}/Templates";
+videos = "${config.xdg.userDirs.documents}/Video";
+#+end_src
+
+*** User "dot" directories
+
+#+NAME: xdg-config-user-dot-directories
+#+begin_src nix
+configHome = ~/.dotfiles/config;
+cacheHome = ~/.dotfiles/cache;
+dataHome = ~/.dotfiles/local/share;
+stateHome = ~/.dotfiles/local/state;
+#+end_src
+
+*** Extra directories
+
+#+NAME: xdg-config-extra-directories
+#+begin_src nix
+XDG_DOTFILES_DIR = "$HOME/Dotfiles.nix";
+XDG_MAIL_DIR = "${config.xdg.userDirs.documents}/Mail";
+XDG_KEYS_DIR = "${config.xdg.userDirs.documents}/Keys";
 #+end_src
 
 * Zsh
