@@ -12,8 +12,19 @@
 
   boot = {
     # kernelPackages = pkgs.linuxPackages_zen;
-    initrd.availableKernelModules = [ "xhci_pci" "ahci" "ehci_pci" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
-    kernelModules = [ "kvm-amd" ];
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "ahci"
+      "ehci_pci"
+      "usbhid"
+      "usb_storage"
+      "sd_mod"
+      "sr_mod"
+    ];
+
+    kernelModules = [
+      "kvm-amd"
+    ];
 
     loader = {
       systemd-boot.enable = true;
@@ -105,9 +116,16 @@
         createHome = true;
         uid = 6262;
         # Pretty long right
-        hashedPassword = "$6$kW4T4vV/$JjK0WjLDpsD.9jVqFsdAfy267.W8iEia6wEsrbD/DWNk2spUr2UxTRRsBdLgk2DfSRoaAdUC/PhW7o2UAjyed0";
-        extraGroups = [ "wheel" "networkmanager" "vboxusers" "GitReposEditors" ];
+        hashedPassword =
+          "$6$kW4T4vV/$JjK0WjLDpsD.9jVqFsdAfy267.W8iEia6wEsrbD/DWNk2spUr2UxTRRsBdLgk2DfSRoaAdUC/PhW7o2UAjyed0" ;
         shell = pkgs.zsh;
+
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+          "vboxusers"
+          "GitReposEditors"
+        ];
       };
     };
 
