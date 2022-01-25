@@ -2144,6 +2144,15 @@ home = {
       pavucontrol
       xdg-user-dirs
       xdg-utils
+
+      # Pdf ocr
+      ocrmypdf
+      tesseract4
+      ghostscript
+
+      # Ebook reader & editor
+      koreader
+      sigil
     ];
 };
 #+end_src
