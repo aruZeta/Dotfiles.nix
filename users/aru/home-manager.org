@@ -341,13 +341,13 @@ Not much config possible for eclipse, just the package to use:
 #+NAME: eclipse-config
 #+begin_src nix
 programs.eclipse = {
-  <<eclipse-package>>
+  <<eclipse-pkg>>
 };
 #+end_src
 
-** Package
+** Packages
 
-#+NAME: eclipse-package
+#+NAME: eclipse-pkg
 #+begin_src nix
 package = pkgs.eclipses.eclipse-java;
 #+end_src
@@ -382,7 +382,7 @@ The config is separated in diferent chunks:
 #+NAME: emacs-config
 #+begin_src nix :noweb-ref nil
 programs.emacs = {
-  <<emacs-package>>
+  <<emacs-pkg>>
   <<emacs-override>>
 
   extraPackages = (epkgs: with epkgs; [
@@ -1539,9 +1539,9 @@ yasnippet
 lispy
 #+end_src
 
-** Package
+** Packages
 
-#+NAME: emacs-package
+#+NAME: emacs-pkg
 #+begin_src nix
 # Emacs pure gtk package
 package = pkgs.emacsPgtk;
@@ -2037,7 +2037,7 @@ Gruvbox is good for my eyes.
 #+NAME: gtk-config-theme
 #+begin_src nix
 theme = {
-  <<gtk-package-theme>>
+  <<gtk-pkg-theme>>
   name = "gruvbox-dark";
 };
 #+end_src
@@ -2049,7 +2049,7 @@ I said it was good for my eyes.
 #+NAME: gtk-config-icon-theme
 #+begin_src nix
 iconTheme = {
-  <<gtk-package-icon-theme>>
+  <<gtk-pkg-icon-theme>>
   name = "oomox-gruvbox-dark";
 };
 #+end_src
@@ -2064,17 +2064,17 @@ Setting qt to use gtk+ style.
 style=GTK+
 #+end_src
 
-** Package
+** Packages
 *** Theme
 
-#+NAME: gtk-package-theme
+#+NAME: gtk-pkg-theme
 #+begin_src nix
 package = pkgs.gruvbox-dark-gtk;
 #+end_src
 
 *** Icon theme
 
-#+NAME: gtk-package-icon-theme
+#+NAME: gtk-pkg-icon-theme
 #+begin_src nix
 package = pkgs.gruvbox-dark-icons-gtk;
 #+end_src
@@ -2200,7 +2200,7 @@ programs.neovim.enable = true;
 #+NAME: neovim-config
 #+begin_src nix
 programs.neovim = {
-  <<neovim-package>>
+  <<neovim-pkg>>
 };
 
 nixpkgs.overlays = [
@@ -2239,9 +2239,9 @@ vim.opt.mouse = 'a'
 EOF
 #+end_src
 
-** Package
+** Packages
 
-#+NAME: neovim-package
+#+NAME: neovim-pkg
 #+begin_src nix
 package = pkgs.neovim-nightly;
 #+end_src
@@ -3292,7 +3292,7 @@ L = "| less";
 #+NAME: common-lisp-config
 #+begin_src nix
 home.packages = with pkgs; [
-  <<common-lisp-package>>
+  <<common-lisp-packages>>
 ];
 
 home.sessionVariables = {
@@ -3325,9 +3325,9 @@ Sbcl init file:
 (:tree "/GitRepos/common-lisp/")
 #+end_src
 
-** Package
+** Packages
 
-#+NAME: common-lisp-package
+#+NAME: common-lisp-packages
 #+begin_src nix
 sbcl
 lispPackages.quicklisp
