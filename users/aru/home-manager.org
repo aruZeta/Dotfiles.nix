@@ -2141,9 +2141,6 @@ home = {
       ];
       my-python = pkgs.python39.withPackages my-python-pkgs;
     in [
-      # Window Manager stuff
-      swaylock
-
       libsForQt5.qtstyleplugins
       qt5ct
 
@@ -2513,6 +2510,10 @@ brightnessctl
 #+NAME: swaylock-config
 #+begin_src nix
 <<swaylock-symlinked-files>>
+
+home.packages = with packages; [
+  <<swaylock-packages>>
+];
 #+end_src
 
 #+begin_src conf :tangle generated/swaylock-config
@@ -2619,6 +2620,13 @@ text-clear-color=689d6aff
 text-caps-lock-color=d65d0eff
 text-ver-color=98971aff
 text-wrong-color=cc241dff
+#+end_src
+
+** Packages
+
+#+NAME: swaylock-packages
+#+begin_src nix
+swaylock
 #+end_src
 
 ** Symlinked files
