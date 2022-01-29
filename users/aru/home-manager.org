@@ -1719,6 +1719,10 @@ nixpkgs.overlays = [
     <<eww-overlay>>
   )
 ];
+
+home.packages = with packages; [
+  <<eww-packages>>
+];
 #+end_src
 
 *** Test config
@@ -1760,6 +1764,13 @@ The css to make everything look better.
 #+NAME: eww-config-style
 #+begin_src scss :tangle generated/eww-style.scss
 /* Nothing */
+#+end_src
+
+** Packages
+
+#+NAME: eww-packages
+#+begin_src nix
+eww-wayland-master
 #+end_src
 
 ** Symlinked files
@@ -2116,7 +2127,6 @@ home = {
       grim
       wl-clipboard
       brightnessctl
-      eww-wayland-master
 
       libsForQt5.qtstyleplugins
       qt5ct
