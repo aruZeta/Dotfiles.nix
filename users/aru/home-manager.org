@@ -1721,7 +1721,7 @@ nixpkgs.overlays = [
   )
 ];
 
-home.packages = with packages; [
+home.packages = with pkgs; [
   <<eww-packages>>
 ];
 #+end_src
@@ -2370,7 +2370,7 @@ wayland.windowManager.sway = {
   };
 };
 
-home.packages = with packages; [
+home.packages = with pkgs; [
   <<sway-packages>>
 ];
 #+end_src
@@ -2511,7 +2511,7 @@ brightnessctl
 #+begin_src nix
 <<swaylock-symlinked-files>>
 
-home.packages = with packages; [
+home.packages = with pkgs; [
   <<swaylock-packages>>
 ];
 #+end_src
