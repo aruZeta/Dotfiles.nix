@@ -33,7 +33,6 @@ configurations for each package, like alacritty, zsh, nvim, etc.
 {
   <<home-manager-setup>>
   <<home>>
-  <<zsh>>
 
   imports = [
     <<user-imports>>
@@ -54,6 +53,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<wofi-imports>>
     <<common-lisp-imports>>
     <<xdg-imports>>
+    <<zsh-imports>>
   ];
 }
 #+end_src
@@ -3153,11 +3153,11 @@ XDG_KEYS_DIR = "${config.xdg.userDirs.documents}/Keys";
 #+NAME: zsh-imports
 #+begin_src nix
 {
-  <<xdg-enable>>
+  <<zsh-enable>>
 }
 
 {
-  <<xdg-config>>
+  <<zsh-config>>
 }
 #+end_src
 
