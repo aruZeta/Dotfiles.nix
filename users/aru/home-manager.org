@@ -2143,14 +2143,6 @@ home = {
     in [
       # Window Manager stuff
       swaylock
-      swayidle
-      mako
-      libnotify
-      wofi
-      slurp
-      grim
-      wl-clipboard
-      brightnessctl
 
       libsForQt5.qtstyleplugins
       qt5ct
@@ -2380,6 +2372,10 @@ wayland.windowManager.sway = {
     <<sway-config-others>>
   };
 };
+
+home.packages = with packages; [
+  <<sway-packages>>
+];
 #+end_src
 
 *** Bars
@@ -2486,6 +2482,20 @@ extraSessionCommands =
          before-sleep 'swaylock -f'
     '';
 }
+#+end_src
+
+** Packages
+
+#+NAME: sway-packages
+#+begin_src nix
+swayidle
+mako
+libnotify
+wofi
+slurp
+grim
+wl-clipboard
+brightnessctl
 #+end_src
 
 * Swaylock
