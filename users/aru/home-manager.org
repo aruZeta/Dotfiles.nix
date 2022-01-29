@@ -41,6 +41,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<emacs-imports>>
     <<email-imports>>
     <<eww-imports>>
+    <<firefox-imports>>
     <<git-imports>>
     <<gpg-imports>>
     <<gtk-imports>>
@@ -1813,6 +1814,32 @@ self: super:
 }
 #+end_src
 
+* Firefox
+** Imports
+
+#+NAME: firefox-imports
+#+begin_src nix
+{
+  <<firefox-config>>
+}
+#+end_src
+
+** Config
+
+#+NAME: firefox-config
+#+begin_src nix
+home.packages = with pkgs; [
+  <<firefox-packages>>
+];
+#+end_src
+
+** Packages
+
+#+NAME: firefox-packages
+#+begin_src nix
+firefox
+#+end_src
+
 * Git
 ** Imports
 
@@ -2114,9 +2141,6 @@ home = {
       ];
       my-python = pkgs.python39.withPackages my-python-pkgs;
     in [
-      # Browser
-      firefox
-
       # Window Manager stuff
       swaylock
       swayidle
