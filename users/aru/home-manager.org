@@ -148,9 +148,9 @@ can, or with zsh).*
 
 #+NAME: alacritty-config-window
 #+begin_src nix
-background_opacity = 0.8;
 
 window = {
+  opacity = 0.8;
   title = "Alacritty";
   dynamic_title = true;
 
