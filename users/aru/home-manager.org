@@ -1802,7 +1802,7 @@ self: super:
       owner = "elkowar";
       repo = "eww";
       rev = "${version}";
-      sha256 = "1xyd21bd9k4hp0yjy480z0g41bz94ni49imvxqv1ffqxlvl52z5s";
+      sha256 = "17gws0l9h2kycmhxl1fadzpsfv5v04vl4n5jl1bfqwgw14qfs0z3";
     };
 
     cargoDeps = drv.cargoDeps.overrideAttrs (super.lib.const {
