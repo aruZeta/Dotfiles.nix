@@ -627,6 +627,19 @@ which-key
 rainbow-delimiters
 #+end_src
 
+**** Diff
+***** Basic config
+
+#+begin_src emacs-lisp
+(defun aru/diff-faces ()
+  (set-face-attribute 'diff-refine-removed nil
+		      :background "#252122"
+		      :foreground "#fb4934")
+  (set-face-attribute 'diff-refine-added nil
+		      :background "#212421"
+		      :foreground "#98971a"))
+#+end_src
+
 *** Keybindings
 :PROPERTIES:
 :header-args: :noweb-ref emacs-config-keybindings
@@ -1466,10 +1479,25 @@ nix-mode
 #+end_src
 
 **** Magit
+***** Basic config
+
+#+begin_src emacs-lisp
+(setq magit-diff-highlight-trailing t
+      magit-diff-paint-whitespace t
+      magit-diff-refine-ignore-whitespace nil
+      magit-diff-refine-hunk 'all)
+#+end_src
+
 ***** Packages
 
 #+begin_src nix :noweb-ref emacs-pkgs
 magit
+#+end_src
+
+***** Hooks
+
+#+begin_src emacs-lisp
+(add-hook 'magit-mode-hook #'aru/diff-faces)
 #+end_src
 
 **** Company
