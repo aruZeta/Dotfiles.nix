@@ -46,6 +46,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<gpg-imports>>
     <<gtk-imports>>
     <<java-imports>>
+    <<koreader-imports>>
     <<neovim-imports>>
     <<starship-imports>>
     <<sway-imports>>
@@ -2202,7 +2203,6 @@ home = {
       ghostscript
 
       # Ebook reader & editor
-      koreader
       sigil
     ];
 };
@@ -2223,6 +2223,32 @@ home = {
 #+NAME: java-enable
 #+begin_src nix
 programs.java.enable = true;
+#+end_src
+
+* Koreader
+** Imports
+
+#+NAME: koreader-imports
+#+begin_src nix
+{
+  <<koreader-config>>
+}
+#+end_src
+
+** Config
+
+#+NAME: koreader-config
+#+begin_src nix
+home.packages = with pkgs; [
+  <<koreader-packages>>
+];
+#+end_src
+
+** Packages
+
+#+NAME: koreader-packages
+#+begin_src nix
+koreader
 #+end_src
 
 * Neovim
