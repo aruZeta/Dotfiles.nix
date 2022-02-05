@@ -2486,7 +2486,6 @@ inner = 5;
 #+begin_src nix
 let
   mod = config.wayland.windowManager.sway.config.modifier;
-  workspaces = lib.range 1 9;
   capitalize = string:
     let splits = builtins.split "(^.)" string;
     in
@@ -2497,6 +2496,17 @@ let
       (val: lib.nameValuePair
         (fname (toString val))
         (fvalue (toString val)))
+      values);
+  concatSets = list:
+    builtins.foldl' (result: val: result // val) {} list;
+  genSet' = values: fnames-fvalues:
+    concatSets (builtins.map
+      (val: builtins.listToAttrs
+        (builtins.map (item:
+          lib.nameValuePair
+            ((builtins.elemAt item 0) (toString val))
+            ((builtins.elemAt item 1) (toString val)))
+          fnames-fvalues))
       values);
 in {
   "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
@@ -2509,19 +2519,23 @@ in {
   "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 2%-";
 }
 # Movement
-// genSet ["left" "down" "up" "right"]
-  (val: "${mod}+${capitalize val}")
-  (val: "focus ${val}")
-// genSet ["left" "down" "up" "right"]
-  (val: "${mod}+Shift+${capitalize val}")
-  (val: "move ${val}")
+// genSet' ["left" "down" "up" "right"] [
+  [ (val: "${mod}+${capitalize val}")
+    (val: "focus ${val}")
+  ]
+  [ (val: "${mod}+Shift+${capitalize val}")
+    (val: "move ${val}")
+  ]
+]
 # Workspaces
-// genSet workspaces
-  (val: "${mod}+${val}")
-  (val: "workspace number ${val}")
-// genSet workspaces
-  (val: "${mod}+Shift+${val}")
-  (val: "move container to workspace number ${val}")
+// genSet' (lib.range 1 9) [
+  [ (val: "${mod}+${val}")
+    (val: "workspace number ${val}")
+  ]
+  [ (val: "${mod}+Shift+${val}")
+    (val: "move container to workspace number ${val}")
+  ]
+]
 ;
 #+end_src
 
