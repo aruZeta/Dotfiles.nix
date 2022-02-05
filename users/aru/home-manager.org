@@ -1958,6 +1958,10 @@ programs.git = {
   <<git-config-ignores>>
   <<git-config-extra>>
 };
+
+home.packages = with pkgs; [
+  <<git-packages>>
+];
 #+end_src
 
 *** User
@@ -2002,6 +2006,13 @@ extraConfig = {
     defaultBranch = "main";
   };
 };
+#+end_src
+
+** Packages
+
+#+NAME: git-packages
+#+begin_src nix
+git-crypt
 #+end_src
 
 * Gpg
@@ -2225,9 +2236,6 @@ home = {
     in [
       libsForQt5.qtstyleplugins
       qt5ct
-
-      # Git stuff
-      git-crypt
 
       # Some stuff needed for emacs && other programs
       # TODO: move this to a better place / better way to set it
