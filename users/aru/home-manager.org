@@ -42,6 +42,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<email-imports>>
     <<eww-imports>>
     <<firefox-imports>>
+    <<fonts-imports>>
     <<git-imports>>
     <<gpg-imports>>
     <<gtk-imports>>
@@ -1869,6 +1870,58 @@ home.packages = with pkgs; [
 firefox
 #+end_src
 
+* Fonts
+** Imports
+
+#+NAME: fonts-imports
+#+begin_src nix
+{
+  <<fonts-config>>
+}
+#+end_src
+
+** Config
+
+#+NAME: fonts-config
+#+begin_src nix
+home.packages = with pkgs; [
+  <<fonts-packages>>
+];
+#+end_src
+
+** Packages
+
+#+NAME: fonts-packages
+#+begin_src nix
+<<fonts-packages-iosevka>>
+<<fonts-packages-noto>>
+<<fonts-packages-emacs-icons>>
+#+end_src
+
+*** Iosevka
+
+#+NAME: fonts-packages-iosevka
+#+begin_src nix
+iosevka
+(nerdfonts.override { fonts = [ "Iosevka" ]; })
+#+end_src
+
+*** Noto
+
+#+NAME: fonts-packages-noto
+#+begin_src nix
+noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
+#+end_src
+
+*** Emacs icons
+
+#+NAME: fonts-packages-emacs-icons
+#+begin_src nix
+emacs-all-the-icons-fonts
+#+end_src
+
 * Git
 ** Imports
 
@@ -2175,14 +2228,6 @@ home = {
 
       # Git stuff
       git-crypt
-
-      # Fonts
-      iosevka
-      (nerdfonts.override { fonts = [ "Iosevka" ]; })
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      emacs-all-the-icons-fonts
 
       # Some stuff needed for emacs && other programs
       # TODO: move this to a better place / better way to set it
