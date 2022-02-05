@@ -2239,6 +2239,12 @@ programs.java.enable = true;
 
 #+NAME: koreader-config
 #+begin_src nix
+nixpkgs.overlays = [
+  (
+    <<koreader-overlay>>
+  )
+];
+
 home.packages = with pkgs; [
   <<koreader-packages>>
 ];
@@ -2248,7 +2254,28 @@ home.packages = with pkgs; [
 
 #+NAME: koreader-packages
 #+begin_src nix
-koreader
+koreader-2021-12
+#+end_src
+
+** Overlay
+
+#+NAME: koreader-overlay
+#+begin_src nix
+self: super:
+{
+  koreader-2021-12 = super.koreader.overrideAttrs(oldAttr: rec {
+    version = "2021.12";
+
+    src = super.fetchurl {
+      url =
+        let repo = "https://github.com/koreader/koreader";
+        in "${repo}/releases/download/v${version}/koreader-${version}-amd64.deb";
+      sha256 = "sha256-duOIbYavqmUUkH6RthTYu/SeM8zOeeLm7CIAQwhw6AY=";
+    };
+
+    unpackCmd = "dpkg-deb -x ${src} .";
+  });
+}
 #+end_src
 
 * Neovim
