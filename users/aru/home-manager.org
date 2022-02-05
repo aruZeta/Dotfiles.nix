@@ -2419,11 +2419,6 @@ wayland.windowManager.sway = {
   <<sway-config-session-commands>>
 
   config = {
-    # TODO: reassign all default keybindings
-    # left = "h";
-    # down = "t";
-    # up = "n";
-    # right = "s";
     keybindings =
       <<sway-config-keybindings>>
 
@@ -2489,8 +2484,21 @@ inner = 5;
 
 #+NAME: sway-config-keybindings
 #+begin_src nix
-let mod = config.wayland.windowManager.sway.config.modifier;
-in lib.mkOptionDefault {
+let
+  mod = config.wayland.windowManager.sway.config.modifier;
+  workspaces = lib.range 1 9;
+  capitalize = string:
+    let splits = builtins.split "(^.)" string;
+    in
+      (lib.toUpper (builtins.elemAt (builtins.elemAt splits 1) 0))
+      + (builtins.elemAt splits 2);
+  genSet = values: fname: fvalue:
+    builtins.listToAttrs (builtins.map
+      (val: lib.nameValuePair
+        (fname (toString val))
+        (fvalue (toString val)))
+      values);
+in {
   "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
   "${mod}+Shift+s" = "exec ${config.xdg.userDirs.extraConfig.XDG_DOTFILES_DIR}/bin/screenshot.sh";
   "${mod}+Shift+w" = "kill";
@@ -2499,7 +2507,22 @@ in lib.mkOptionDefault {
   "Mod1+Space" = "exec ${pkgs.wofi}/bin/wofi --show drun";
   "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +2%";
   "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 2%-";
-};
+}
+# Movement
+// genSet ["left" "down" "up" "right"]
+  (val: "${mod}+${capitalize val}")
+  (val: "focus ${val}")
+// genSet ["left" "down" "up" "right"]
+  (val: "${mod}+Shift+${capitalize val}")
+  (val: "move ${val}")
+# Workspaces
+// genSet workspaces
+  (val: "${mod}+${val}")
+  (val: "workspace number ${val}")
+// genSet workspaces
+  (val: "${mod}+Shift+${val}")
+  (val: "move container to workspace number ${val}")
+;
 #+end_src
 
 *** Others
