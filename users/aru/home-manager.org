@@ -34,8 +34,8 @@ configurations for each package, like alacritty, zsh, nvim, etc.
   <<home-manager-setup>>
 
   imports = [
-    <<user-imports>>
     <<alacritty-imports>>
+    <<common-lisp-imports>>
     <<eclipse-imports>>
     <<emacs-imports>>
     <<email-imports>>
@@ -53,9 +53,9 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<starship-imports>>
     <<sway-imports>>
     <<swaylock-imports>>
+    <<user-imports>>
     <<waybar-imports>>
     <<wofi-imports>>
-    <<common-lisp-imports>>
     <<xdg-imports>>
     <<zsh-imports>>
   ];
@@ -73,51 +73,6 @@ its version.
 programs.home-manager.enable = true;
 # TODO: update to 22.05
 home.stateVersion = "21.11";
-#+end_src
-
-* User
-** Imports
-
-Select the stuff to import:
-
-#+NAME: user-imports
-#+begin_src nix
-{
-  <<user-config>>
-}
-#+end_src
-
-** Config
-
-The actual user configuration and home directory.
-
-#+NAME: user-config
-#+begin_src nix
-home.username = "aru";
-home.homeDirectory = "/home/${config.home.username}";
-
-home.packages = with pkgs; [
-  <<user-packages>>
-];
-#+end_src
-
-** Packages
-
-Other packages not directly under any section:
-
-#+NAME: user-packages
-#+begin_src nix
-# Utilities
-sass
-unzip
-
-# Pdf ocr
-ocrmypdf
-tesseract4
-ghostscript
-
-# Ebook reader & editor
-sigil
 #+end_src
 
 * Alacritty
@@ -332,6 +287,90 @@ Idk where to put these.
 #+begin_src nix
 live_config_reload = true;
 working_directory = "None";
+#+end_src
+
+* Common Lisp
+** Imports
+
+#+NAME: common-lisp-imports
+#+begin_src nix
+{
+  <<common-lisp-config>>
+}
+#+end_src
+
+** Config
+
+#+NAME: common-lisp-config
+#+begin_src nix
+home.packages = with pkgs; [
+  <<common-lisp-packages>>
+];
+
+home.sessionVariables = {
+  <<common-lisp-session-variables>>
+};
+
+<<common-lisp-symlinked-files>>
+#+end_src
+
+*** Sbclrc
+
+Sbcl init file:
+
+#+begin_src lisp :tangle generated/sbcl-config-init.lisp
+#-quicklisp
+(let ((ql-init
+        (merge-pathnames "setup.lisp"
+                         (concatenate 'string
+                                      (sb-ext:posix-getenv "NIX_QUICKLISP_DIR")
+                                      "/"))))
+  (when (probe-file ql-init)
+    (load ql-init)))
+
+(setf sb-impl::*default-external-format* :utf-8)
+#+end_src
+
+*** Common Lisp registry
+
+#+begin_src conf :tangle generated/asdf-config.conf
+(:tree "/GitRepos/common-lisp/")
+#+end_src
+
+** Packages
+
+#+NAME: common-lisp-packages
+#+begin_src nix
+sbcl
+lispPackages.quicklisp
+lispPackages.asdf
+#+end_src
+
+** Session Variables
+
+*TODO: Better xdg config to set this in a better way*.
+
+#+NAME: common-lisp-session-variables
+#+begin_src nix
+NIX_QUICKLISP_DIR = "${config.home.homeDirectory}/.dotfiles/local/quicklisp";
+#+end_src
+
+** Symlinked files
+
+Files to be symlinked in the user directory (actually under
+~XDG_CONFIG_HOME~).
+
+#+NAME: common-lisp-symlinked-files
+#+begin_src nix
+home.file = {
+  ".sbclrc".source = ./sbcl-config-init.lisp;
+};
+
+xdg.configFile =
+  let cl-registry = "common-lisp/source-registry.conf.d";
+  in {
+    "${cl-registry}/asdf.conf".source = ./asdf-config.conf;
+  };
 #+end_src
 
 * Eclipse
@@ -2917,6 +2956,51 @@ xdg.configFile = {
 };
 #+end_src
 
+* User
+** Imports
+
+Select the stuff to import:
+
+#+NAME: user-imports
+#+begin_src nix
+{
+  <<user-config>>
+}
+#+end_src
+
+** Config
+
+The actual user configuration and home directory.
+
+#+NAME: user-config
+#+begin_src nix
+home.username = "aru";
+home.homeDirectory = "/home/${config.home.username}";
+
+home.packages = with pkgs; [
+  <<user-packages>>
+];
+#+end_src
+
+** Packages
+
+Other packages not directly under any section:
+
+#+NAME: user-packages
+#+begin_src nix
+# Utilities
+sass
+unzip
+
+# Pdf ocr
+ocrmypdf
+tesseract4
+ghostscript
+
+# Ebook reader & editor
+sigil
+#+end_src
+
 * Waybar
 ** Imports
 
@@ -3620,86 +3704,3 @@ G = "| grep";
 L = "| less";
 #+end_src
 
-* Common Lisp
-** Imports
-
-#+NAME: common-lisp-imports
-#+begin_src nix
-{
-  <<common-lisp-config>>
-}
-#+end_src
-
-** Config
-
-#+NAME: common-lisp-config
-#+begin_src nix
-home.packages = with pkgs; [
-  <<common-lisp-packages>>
-];
-
-home.sessionVariables = {
-  <<common-lisp-session-variables>>
-};
-
-<<common-lisp-symlinked-files>>
-#+end_src
-
-*** Sbclrc
-
-Sbcl init file:
-
-#+begin_src lisp :tangle generated/sbcl-config-init.lisp
-#-quicklisp
-(let ((ql-init
-        (merge-pathnames "setup.lisp"
-                         (concatenate 'string
-                                      (sb-ext:posix-getenv "NIX_QUICKLISP_DIR")
-                                      "/"))))
-  (when (probe-file ql-init)
-    (load ql-init)))
-
-(setf sb-impl::*default-external-format* :utf-8)
-#+end_src
-
-*** Common Lisp registry
-
-#+begin_src conf :tangle generated/asdf-config.conf
-(:tree "/GitRepos/common-lisp/")
-#+end_src
-
-** Packages
-
-#+NAME: common-lisp-packages
-#+begin_src nix
-sbcl
-lispPackages.quicklisp
-lispPackages.asdf
-#+end_src
-
-** Session Variables
-
-*TODO: Better xdg config to set this in a better way*.
-
-#+NAME: common-lisp-session-variables
-#+begin_src nix
-NIX_QUICKLISP_DIR = "${config.home.homeDirectory}/.dotfiles/local/quicklisp";
-#+end_src
-
-** Symlinked files
-
-Files to be symlinked in the user directory (actually under
-~XDG_CONFIG_HOME~).
-
-#+NAME: common-lisp-symlinked-files
-#+begin_src nix
-home.file = {
-  ".sbclrc".source = ./sbcl-config-init.lisp;
-};
-
-xdg.configFile =
-  let cl-registry = "common-lisp/source-registry.conf.d";
-  in {
-    "${cl-registry}/asdf.conf".source = ./asdf-config.conf;
-  };
-#+end_src
