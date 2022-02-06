@@ -2495,12 +2495,42 @@ wayland.windowManager.sway = {
       <<sway-config-bars>>
     }];
 
+    assigns = {
+      <<sway-config-assigns>>
+    };
+
     <<sway-config-others>>
   };
 };
 
 home.packages = with pkgs; [
   <<sway-packages>>
+];
+#+end_src
+
+*** Assigns
+
+#+NAME: sway-config-assigns
+#+begin_src nix
+"1" = [
+  { app_id = "firefox"; }
+];
+
+"2" = [
+  { app_id = "emacs"; }
+  { app_id = "Eclipse"; }
+];
+
+"3" = [
+  { app_id = "Alacritty"; }
+];
+
+"4" = [
+  { class = "VirtualBox Manager"; }
+];
+
+"5" = [
+  { app_id = "luajit-2.1.0-beta3"; } # koreader
 ];
 #+end_src
 
