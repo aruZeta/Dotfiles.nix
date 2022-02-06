@@ -49,6 +49,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<java-imports>>
     <<koreader-imports>>
     <<neovim-imports>>
+    <<qt-imports>>
     <<starship-imports>>
     <<sway-imports>>
     <<swaylock-imports>>
@@ -2243,9 +2244,6 @@ home = {
       ];
       my-python = pkgs.python39.withPackages my-python-pkgs;
     in [
-      libsForQt5.qtstyleplugins
-      qt5ct
-
       # Some stuff needed for emacs && other programs
       # TODO: move this to a better place / better way to set it
       my-python
@@ -2429,6 +2427,33 @@ let
 in import (builtins.fetchTarball {
   url = "${repo}/archive/${commit}.tar.gz";
 })
+#+end_src
+
+* QT
+** Imports
+
+#+NAME: qt-imports
+#+begin_src nix
+{
+  <<qt-config>>
+}
+#+end_src
+
+** Config
+
+#+NAME: qt-config
+#+begin_src nix
+home.packages = with pkgs; [
+  <<qt-packages>>
+];
+#+end_src
+
+** Packages
+
+#+NAME: qt-packages
+#+begin_src nix
+libsForQt5.qtstyleplugins
+qt5ct
 #+end_src
 
 * Starship
