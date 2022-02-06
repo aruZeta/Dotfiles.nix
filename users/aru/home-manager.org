@@ -399,6 +399,10 @@ nixpkgs.overlays = [
   )
 ];
 
+home.packages = with pkgs; [
+  <<emacs-packages>>
+];
+
 <<emacs-symlinked-files>>
 #+end_src
 
@@ -1226,6 +1230,11 @@ pinentry
 #+begin_src nix :noweb-ref emacs-pkgs
 lsp-mode
 lsp-ui
+#+end_src
+
+#+begin_src nix :noweb-ref emacs-packages
+nodePackages.vscode-css-languageserver-bin
+nodePackages.vscode-html-languageserver-bin
 #+end_src
 
 ***** Hooks
@@ -2239,8 +2248,6 @@ home = {
 
       # Some stuff needed for emacs && other programs
       # TODO: move this to a better place / better way to set it
-      nodePackages.vscode-css-languageserver-bin
-      nodePackages.vscode-html-languageserver-bin
       my-python
 
       # Utilities
