@@ -96,6 +96,29 @@ The actual user configuration and home directory.
 #+begin_src nix
 home.username = "aru";
 home.homeDirectory = "/home/${config.home.username}";
+
+home.packages = with pkgs; [
+  <<user-packages>>
+];
+#+end_src
+
+** Packages
+
+Other packages not directly under any section:
+
+#+NAME: user-packages
+#+begin_src nix
+# Utilities
+sass
+unzip
+
+# Pdf ocr
+ocrmypdf
+tesseract4
+ghostscript
+
+# Ebook reader & editor
+sigil
 #+end_src
 
 * Alacritty
@@ -1481,7 +1504,7 @@ company-lua
 #+end_src
 
 **** Nix
-***** Packges
+***** Packages
 
 #+begin_src nix :noweb-ref emacs-pkgs
 nix-mode
@@ -2225,28 +2248,6 @@ Files to be symlinked in the user directory (actually under
 #+NAME: gtk-symlinked-files
 #+begin_src nix
 xdg.configFile."Trolltech.conf".source = ./trolltech-config.conf;
-#+end_src
-
-* Home
-
-#+NAME: home
-#+begin_src nix
-# Enable home-manager
-home = {
-  packages = with pkgs; [
-    # Utilities
-    sass
-    unzip
-
-    # Pdf ocr
-    ocrmypdf
-    tesseract4
-    ghostscript
-
-    # Ebook reader & editor
-    sigil
-  ];
-};
 #+end_src
 
 * Java
