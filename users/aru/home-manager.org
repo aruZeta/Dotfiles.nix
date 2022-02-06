@@ -49,6 +49,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<java-imports>>
     <<koreader-imports>>
     <<neovim-imports>>
+    <<python-imports>>
     <<qt-imports>>
     <<starship-imports>>
     <<sway-imports>>
@@ -2236,33 +2237,22 @@ xdg.configFile."Trolltech.conf".source = ./trolltech-config.conf;
 #+begin_src nix
 # Enable home-manager
 home = {
-  packages =
-    with pkgs;
-    let
-      my-python-pkgs = python-packages: with python-packages; [
-        tkinter
-      ];
-      my-python = pkgs.python39.withPackages my-python-pkgs;
-    in [
-      # Some stuff needed for emacs && other programs
-      # TODO: move this to a better place / better way to set it
-      my-python
+  packages = with pkgs; [
+    # Utilities
+    sass
+    unzip
+    pavucontrol
+    xdg-user-dirs
+    xdg-utils
 
-      # Utilities
-      sass
-      unzip
-      pavucontrol
-      xdg-user-dirs
-      xdg-utils
+    # Pdf ocr
+    ocrmypdf
+    tesseract4
+    ghostscript
 
-      # Pdf ocr
-      ocrmypdf
-      tesseract4
-      ghostscript
-
-      # Ebook reader & editor
-      sigil
-    ];
+    # Ebook reader & editor
+    sigil
+  ];
 };
 #+end_src
 
@@ -2427,6 +2417,35 @@ let
 in import (builtins.fetchTarball {
   url = "${repo}/archive/${commit}.tar.gz";
 })
+#+end_src
+
+* Python
+** Imports
+
+#+NAME: python-imports
+#+begin_src nix
+{
+  <<python-config>>
+}
+#+end_src
+
+** Config
+
+#+NAME: python-config
+#+begin_src nix
+home.packages = with pkgs; [
+  <<python-packages>>
+];
+#+end_src
+
+** Packages
+
+#+NAME: python-packages
+#+begin_src nix
+(let py-pkgs = python-packages: with python-packages; [
+       tkinter
+     ];
+ in python39.withPackages py-pkgs)
 #+end_src
 
 * QT
