@@ -2241,7 +2241,6 @@ home = {
     # Utilities
     sass
     unzip
-    pavucontrol
 
     # Pdf ocr
     ocrmypdf
@@ -2757,6 +2756,7 @@ slurp
 grim
 wl-clipboard
 brightnessctl
+pavucontrol
 #+end_src
 
 * Swaylock
