@@ -2242,8 +2242,6 @@ home = {
     sass
     unzip
     pavucontrol
-    xdg-user-dirs
-    xdg-utils
 
     # Pdf ocr
     ocrmypdf
@@ -3450,6 +3448,10 @@ xdg = {
     };
   };
 };
+
+home.packages = with pkgs; [
+  <<xdg-packages>>
+];
 #+end_src
 
 *** User directories
@@ -3482,6 +3484,14 @@ stateHome = ~/.dotfiles/local/state;
 XDG_DOTFILES_DIR = "$HOME/Dotfiles.nix";
 XDG_MAIL_DIR = "${config.xdg.userDirs.documents}/Mail";
 XDG_KEYS_DIR = "${config.xdg.userDirs.documents}/Keys";
+#+end_src
+
+** Packages
+
+#+NAME: xdg-packages
+#+begin_src nix
+xdg-user-dirs
+xdg-utils
 #+end_src
 
 * Zsh
