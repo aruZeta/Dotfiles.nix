@@ -1638,6 +1638,22 @@ yasnippet
 lispy
 #+end_src
 
+**** Nxml
+***** Hooks
+
+#+begin_src emacs-lisp
+(defun aru/nxml-mode-hook ()
+  (setq indent-tabs-mode t
+        tab-width        2)
+  (global-set-key (kbd "C-SPC") 'emmet-expand-line))
+#+end_src
+
+#+begin_src emacs-lisp
+(add-hook 'nxml-mode-hook #'aru/nxml-mode-hook)
+(add-hook 'nxml-mode-hook #'lsp)
+(add-hook 'nxml-mode-hook #'emmet-mode)
+#+end_src
+
 ** Packages
 
 #+NAME: emacs-pkg
