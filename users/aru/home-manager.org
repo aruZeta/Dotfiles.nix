@@ -83,8 +83,8 @@ Select the stuff to import:
 #+NAME: alacritty-imports
 #+begin_src nix
 {
-  <<alacritty-enable>>
   <<alacritty-config>>
+  <<alacritty-enable>>
 }
 #+end_src
 
