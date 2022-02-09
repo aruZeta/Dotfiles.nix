@@ -291,30 +291,17 @@ programs.alacritty.enable = true;
 #+end_src
 
 * Common Lisp
-** Imports
 
 #+NAME: common-lisp-imports
 #+begin_src nix
 {
-  <<common-lisp-config>>
+  <<common-lisp-packages>>
+  <<common-lisp-session-variables>>
+  <<common-lisp-symlinked-files>>
 }
 #+end_src
 
 ** Config
-
-#+NAME: common-lisp-config
-#+begin_src nix
-home.packages = with pkgs; [
-  <<common-lisp-packages>>
-];
-
-home.sessionVariables = {
-  <<common-lisp-session-variables>>
-};
-
-<<common-lisp-symlinked-files>>
-#+end_src
-
 *** Sbclrc
 
 Sbcl init file:
@@ -342,9 +329,11 @@ Sbcl init file:
 
 #+NAME: common-lisp-packages
 #+begin_src nix
-sbcl
-lispPackages.quicklisp
-lispPackages.asdf
+home.packages = with pkgs; [
+  sbcl
+  lispPackages.quicklisp
+  lispPackages.asdf
+];
 #+end_src
 
 ** Session Variables
@@ -353,7 +342,9 @@ lispPackages.asdf
 
 #+NAME: common-lisp-session-variables
 #+begin_src nix
-NIX_QUICKLISP_DIR = "${config.home.homeDirectory}/.dotfiles/local/quicklisp";
+home.sessionVariables = {
+  NIX_QUICKLISP_DIR = "${config.home.homeDirectory}/.dotfiles/local/quicklisp";
+};
 #+end_src
 
 ** Symlinked files
