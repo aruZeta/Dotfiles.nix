@@ -396,26 +396,19 @@ programs.eclipse.enable = true;
 #+end_src
 
 * Emacs
-** Imports
 
 Select the stuff to import:
 
 #+NAME: emacs-imports
 #+begin_src nix
 {
-  <<emacs-enable>>
-}
-
-{
   <<emacs-config>>
+  <<emacs-enable>>
+  <<emacs-overlays>>
+  <<emacs-overrides>>
+  <<emacs-packages>>
+  <<emacs-symlinked-files>>
 }
-#+end_src
-
-** Enable
-
-#+NAME: emacs-enable
-#+begin_src nix
-programs.emacs.enable = true;
 #+end_src
 
 ** Config
@@ -423,32 +416,15 @@ programs.emacs.enable = true;
 The config is separated in diferent chunks:
 
 #+NAME: emacs-config
-#+begin_src nix :noweb-ref nil
+#+begin_src nix
 programs.emacs = {
-  <<emacs-pkg>>
-  <<emacs-override>>
-
-  extraPackages = (epkgs: with epkgs; [
-    <<emacs-pkgs>>
-  ]);
+  package = pkgs.emacsPgtk;
 };
-
-nixpkgs.overlays = [
-  (
-    <<emacs-overlay>>
-  )
-];
-
-home.packages = with pkgs; [
-  <<emacs-packages>>
-];
-
-<<emacs-symlinked-files>>
 #+end_src
 
 Here is the emacs config, also seperated in chunks:
 
-#+begin_src lisp :tangle generated/emacs-config.el :noweb-ref nil
+#+begin_src lisp :tangle generated/emacs-config.el
 <<emacs-config-user-data>>
 <<emacs-config-ui>>
 <<emacs-config-keybindings>>
@@ -523,7 +499,7 @@ By default column number will be enabled in all buffers but
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 gruvbox-theme
 #+end_src
 
@@ -542,7 +518,7 @@ gruvbox-theme
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 ivy
 lsp-ivy
 ivy-rich
@@ -557,7 +533,7 @@ all-the-icons-ivy-rich
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 counsel
 #+end_src
 
@@ -571,14 +547,14 @@ Getting those juicy icons
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 all-the-icons
 #+end_src
 
 **** Doom modeline
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 doom-modeline
 #+end_src
 
@@ -595,7 +571,7 @@ doom-modeline
 **** Svg Tags
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 svg-tag-mode
 #+end_src
 
@@ -656,7 +632,7 @@ svg-tag-mode
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 which-key
 #+end_src
 
@@ -669,7 +645,7 @@ which-key
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 rainbow-delimiters
 #+end_src
 
@@ -718,7 +694,7 @@ Activating evil mode:
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 evil
 #+end_src
 
@@ -734,7 +710,7 @@ evil
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 evil-collection
 #+end_src
 
@@ -804,7 +780,7 @@ evil-collection
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 general
 #+end_src
 
@@ -861,7 +837,7 @@ Making org buffers display on the center of the available space
 
 ****** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 visual-fill-column
 #+end_src
 
@@ -980,7 +956,7 @@ again tho.
 ***** HTML
 ****** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 htmlize
 #+end_src
 
@@ -1113,7 +1089,7 @@ This is still in WIP, no idea how to add the atributte ~rowspan~ or
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 org-superstar
 #+end_src
 
@@ -1251,7 +1227,7 @@ Using libnotify
 
 **** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 # To make sure that mu is in load-path, since it seems there are people
 # reporting it doesn't appear in their's, no problem in mine tho
 pkgs.mu
@@ -1267,12 +1243,12 @@ pinentry
 **** LSP
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 lsp-mode
 lsp-ui
 #+end_src
 
-#+begin_src nix :noweb-ref emacs-packages
+#+begin_src nix :noweb-ref emacs-packages+
 nodePackages.vscode-css-languageserver-bin
 nodePackages.vscode-html-languageserver-bin
 #+end_src
@@ -1288,14 +1264,14 @@ nodePackages.vscode-html-languageserver-bin
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 flycheck
 #+end_src
 
 **** Treemacs
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 treemacs
 lsp-treemacs
 treemacs-all-the-icons
@@ -1319,7 +1295,7 @@ Making it use all-the-icons instead of default icons.
 **** Dired
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 all-the-icons-dired
 #+end_src
 
@@ -1334,7 +1310,7 @@ Making dired use all-the-icons too!
 **** Projectile
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 projectile
 #+end_src
 
@@ -1347,7 +1323,7 @@ projectile
 **** Web mode
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 web-mode
 #+end_src
 
@@ -1445,7 +1421,7 @@ If it's a scss file, compile unless it was declared not to do so.
 **** Emmet
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 emmet-mode
 #+end_src
 
@@ -1464,7 +1440,7 @@ emmet-mode
 **** Java
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 # lsp-java
 #+end_src
 
@@ -1477,7 +1453,7 @@ emmet-mode
 **** Lua
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 lua-mode
 company-lua
 #+end_src
@@ -1525,7 +1501,7 @@ company-lua
 **** Nix
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 nix-mode
 #+end_src
 
@@ -1541,7 +1517,7 @@ nix-mode
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 magit
 #+end_src
 
@@ -1554,7 +1530,7 @@ magit
 **** Company
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 company
 #+end_src
 
@@ -1573,7 +1549,7 @@ company
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 slime
 slime-company
 #+end_src
@@ -1581,7 +1557,7 @@ slime-company
 **** Yasnippet
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 yasnippet
 #+end_src
 
@@ -1615,7 +1591,7 @@ yasnippet
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-pkgs
+#+begin_src nix :noweb-ref emacs-extra-packages+
 lispy
 #+end_src
 
@@ -1635,23 +1611,60 @@ lispy
 (add-hook 'nxml-mode-hook #'emmet-mode)
 #+end_src
 
-** Packages
+** Enable
 
-#+NAME: emacs-pkg
+#+NAME: emacs-enable
 #+begin_src nix
-# Emacs pure gtk package
-package = pkgs.emacsPgtk;
+programs.emacs.enable = true;
 #+end_src
 
-** Override
+** Overlays
+
+Using emacs pure gtk package since I'm using wayland.
+
+#+NAME: emacs-overlays
+#+begin_src nix
+nixpkgs.overlays = [
+  (
+    <<emacs-overlays-emacs-nixpkgs>>
+  )
+];
+#+end_src
+
+*** Emacs nixpkgs
+
+#+NAME: emacs-overlays-emacs-nixpkgs
+#+begin_src nix
+let
+  repo = "https://github.com/nix-community/emacs-overlay";
+  commit = "7368fbf298996bc024396c1cdb1e194f7a2cd3c6";
+in import (builtins.fetchTarball {
+  url = "${repo}/archive/${commit}.tar.gz";
+})
+#+end_src
+
+** Overrides
 
 Override org package to use elpa instead of builtin
 
-#+NAME: emacs-override
+#+NAME: emacs-overrides
 #+begin_src nix
-overrides = self: super: {
+programs.emacs.overrides = self: super: {
   org = self.elpaPackages.org;
 };
+#+end_src
+
+** Packages
+
+#+NAME: emacs-packages
+#+begin_src nix
+home.packages = with pkgs; [
+  <<emacs-packages+>>
+];
+
+programs.emacs.extraPackages = (epkgs: with epkgs; [
+  <<emacs-extra-packages+>>
+]);
 #+end_src
 
 ** Symlinked files
@@ -1665,20 +1678,6 @@ xdg.configFile = {
   "emacs/init.el".source = ./emacs-config.el;
   "emacs/startup.org".source = ../startup.org;
 };
-#+end_src
-
-** Overlay
-
-Using emacs pure gtk package since I'm using wayland.
-
-#+NAME: emacs-overlay
-#+begin_src nix
-let
-  repo = "https://github.com/nix-community/emacs-overlay";
-  commit = "7368fbf298996bc024396c1cdb1e194f7a2cd3c6";
-in import (builtins.fetchTarball {
-  url = "${repo}/archive/${commit}.tar.gz";
-})
 #+end_src
 
 * Email
