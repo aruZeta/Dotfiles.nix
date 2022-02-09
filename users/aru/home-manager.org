@@ -51,6 +51,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<python-imports>>
     <<qt-imports>>
     <<starship-imports>>
+    <<swappy-imports>>
     <<sway-imports>>
     <<swaylock-imports>>
     <<user-imports>>
@@ -2541,6 +2542,53 @@ programs.starship.enable = true;
 programs.starship.enableZshIntegration = true;
 #+end_src
 
+* Swappy
+** Imports
+
+#+NAME: swappy-imports
+#+begin_src nix
+{
+  <<swappy-config>>
+}
+#+end_src
+
+** Config
+
+#+NAME: swappy-config
+#+begin_src nix
+home.packages = with pkgs; [
+  <<swappy-packages>>
+];
+
+<<swappy-symlinked-files>>
+#+end_src
+
+#+begin_src conf :tangle generated/swappy-config
+[Default]
+save_dir="$(xdg-user-dir PICTURES)/SS"
+save_filename_format=%a-%d-%b-%Y_%H-%M-%S.png
+show_panel=true
+text_font=Iosevka Term
+#+end_src
+
+** Packages
+
+#+NAME: swappy-packages
+#+begin_src nix
+slurp
+grim
+swappy
+#+end_src
+
+** Symlinked files
+
+#+NAME: swappy-symlinked-files
+#+begin_src nix
+xdg.configFile = {
+  "swappy/config".source = ./swappy-config;
+};
+#+end_src
+
 * Sway
 ** Imports
 
@@ -2706,7 +2754,7 @@ let
       values);
 in {
   "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
-  "${mod}+Shift+s" = "exec ${config.xdg.userDirs.extraConfig.XDG_DOTFILES_DIR}/bin/screenshot.sh";
+  "${mod}+Shift+s" = "exec grim -g \"$(slurp)\" -t png - | swappy -f -";
   "${mod}+Shift+w" = "kill";
   "${mod}+Escape" = "exec swaylock -f";
   "${mod}+Shift+Escape" = "exec swaynag -t warning -m 'End session?' -b 'Yes, exit sway' 'swaymsg exit'";
@@ -2803,8 +2851,6 @@ swayidle
 mako
 libnotify
 wofi
-slurp
-grim
 wl-clipboard
 brightnessctl
 pavucontrol
