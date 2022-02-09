@@ -31,13 +31,13 @@ configurations for each package, like alacritty, zsh, nvim, etc.
 }:
 
 {
-  <<home-manager-setup>>
+  <<home.manager.setup>>
 
   imports = [
-    <<alacritty-imports>>
-    <<common-lisp-imports>>
-    <<eclipse-imports>>
-    <<emacs-imports>>
+    <<alacritty.imports>>
+    <<common-lisp.imports>>
+    <<eclipse.imports>>
+    <<emacs.imports>>
     <<email-imports>>
     <<eww-imports>>
     <<firefox-imports>>
@@ -69,7 +69,7 @@ Home manager setup, which actually just enables home-manager and sets
 its version.
 *TODO: Learn nix flakes and use that*
 
-#+NAME: home-manager-setup
+#+NAME: home.manager.setup
 #+begin_src nix
 programs.home-manager.enable = true;
 # TODO: update to 22.05
@@ -80,11 +80,11 @@ home.stateVersion = "21.11";
 
 Select the stuff to import:
 
-#+NAME: alacritty-imports
+#+NAME: alacritty.imports
 #+begin_src nix
 {
-  <<alacritty-config>>
-  <<alacritty-enable>>
+  <<alacritty.config>>
+  <<alacritty.enable>>
 }
 #+end_src
 
@@ -93,42 +93,42 @@ Select the stuff to import:
 I have separated the config in diferent chunks for better
 organization:
 
-#+NAME: alacritty-config
+#+NAME: alacritty.config
 #+begin_src nix
 programs.alacritty.settings = {
   window = {
-    <<alacritty-config-window>>
+    <<alacritty.config.window>>
   };
 
   scrolling = {
-    <<alacritty-config-scrolling>>
+    <<alacritty.config.scrolling>>
   };
 
   font = {
-    <<alacritty-config-fonts>>
+    <<alacritty.config.fonts>>
   };
 
   colors = {
-    <<alacritty-config-colors>>
+    <<alacritty.config.colors>>
   };
 
   cursor = {
-    <<alacritty-config-cursor>>
+    <<alacritty.config.cursor>>
   };
 
   mouse = {
-    <<alacritty-config-mouse>>
+    <<alacritty.config.mouse>>
   };
 
   key_bindings = [
-    <<alacritty-config-bindings-keys>>
+    <<alacritty.config.bindings.keys>>
   ];
 
   mouse_bindings = [
-    <<alacritty-config-bindings-mouse>>
+    <<alacritty.config.bindings.mouse>>
   ];
 
-  <<alacritty-config-others>>
+  <<alacritty.config.others>>
 };
 #+end_src
 
@@ -137,7 +137,7 @@ programs.alacritty.settings = {
 *TODO: Actually use dynamic title (configuring starship I think you
 can, or with zsh).*
 
-#+NAME: alacritty-config-window
+#+NAME: alacritty.config.window
 #+begin_src nix
 opacity = 0.8;
 title = "Alacritty";
@@ -158,7 +158,7 @@ class = {
 
 Nix' switch generations uses a lot of output.
 
-#+NAME: alacritty-config-scrolling
+#+NAME: alacritty.config.scrolling
 #+begin_src nix
 history = 10000;
 multiplier = 4;
@@ -168,7 +168,7 @@ multiplier = 4;
 
 I like Iosevka.
 
-#+NAME: alacritty-config-fonts
+#+NAME: alacritty.config.fonts
 #+begin_src nix
 size = 12.0;
 
@@ -197,7 +197,7 @@ bold_italic = {
 
 I like gruvbox.
 
-#+NAME: alacritty-config-colors
+#+NAME: alacritty.config.colors
 #+begin_src nix
 primary = {
   background = "0x1d2021";
@@ -231,7 +231,7 @@ bright = {
 
 Do not blink, but if you did each second should do.
 
-#+NAME: alacritty-config-cursor
+#+NAME: alacritty.config.cursor
 #+begin_src nix
 blink_interval = 1000;
 unfocused_hollow = false;
@@ -247,7 +247,7 @@ style = {
 
 When I need my mouse (rarely) I cant find it.
 
-#+NAME: alacritty-config-mouse
+#+NAME: alacritty.config.mouse
 #+begin_src nix
 hide_when_typing = false;
 # hints.launcher.program = "";
@@ -258,7 +258,7 @@ hide_when_typing = false;
 
 Heresy not to have ~C-S-v~ and ~C-S-c~ to copy and paste.
 
-#+NAME: alacritty-config-bindings-keys
+#+NAME: alacritty.config.bindings.keys
 #+begin_src nix
 { mods = "Control";       key = "L"; action = "ClearLogNotice"; }
 { mods = "Control|Shift"; key = "V"; action = "Paste"; }
@@ -269,14 +269,14 @@ Heresy not to have ~C-S-v~ and ~C-S-c~ to copy and paste.
 
 If ya lazy to ~C-S-v~, use ~mouse-3~.
 
-#+NAME: alacritty-config-bindings-mouse
+#+NAME: alacritty.config.bindings.mouse
 #+begin_src nix
 { mouse = "Middle"; action = "PasteSelection"; }
 #+end_src
 
 *** Others
 
-#+NAME: alacritty-config-others
+#+NAME: alacritty.config.others
 #+begin_src nix
 live_config_reload = true;
 working_directory = "None";
@@ -285,19 +285,19 @@ draw_bold_text_with_bright_colors = true;
 
 ** Enable
 
-#+NAME: alacritty-enable
+#+NAME: alacritty.enable
 #+begin_src nix
 programs.alacritty.enable = true;
 #+end_src
 
 * Common Lisp
 
-#+NAME: common-lisp-imports
+#+NAME: common-lisp.imports
 #+begin_src nix
 {
-  <<common-lisp-packages>>
-  <<common-lisp-session-variables>>
-  <<common-lisp-symlinked-files>>
+  <<common-lisp.packages>>
+  <<common-lisp.session-variables>>
+  <<common-lisp.symlinked-files>>
 }
 #+end_src
 
@@ -327,7 +327,7 @@ Sbcl init file:
 
 ** Packages
 
-#+NAME: common-lisp-packages
+#+NAME: common-lisp.packages
 #+begin_src nix
 home.packages = with pkgs; [
   sbcl
@@ -340,7 +340,7 @@ home.packages = with pkgs; [
 
 *TODO: Better xdg config to set this in a better way*.
 
-#+NAME: common-lisp-session-variables
+#+NAME: common-lisp.session-variables
 #+begin_src nix
 home.sessionVariables = {
   NIX_QUICKLISP_DIR = "${config.home.homeDirectory}/.dotfiles/local/quicklisp";
@@ -352,7 +352,7 @@ home.sessionVariables = {
 Files to be symlinked in the user directory (actually under
 ~XDG_CONFIG_HOME~).
 
-#+NAME: common-lisp-symlinked-files
+#+NAME: common-lisp.symlinked-files
 #+begin_src nix
 home.file = {
   ".sbclrc".source = ./sbcl-config-init.lisp;
@@ -369,11 +369,11 @@ xdg.configFile =
 
 Select the stuff to import:
 
-#+NAME: eclipse-imports
+#+NAME: eclipse.imports
 #+begin_src nix
 {
-  <<eclipse-config>>
-  <<eclipse-enable>>
+  <<eclipse.config>>
+  <<eclipse.enable>>
 }
 #+end_src
 
@@ -381,7 +381,7 @@ Select the stuff to import:
 
 Not much config possible for eclipse, just the package to use:
 
-#+NAME: eclipse-config
+#+NAME: eclipse.config
 #+begin_src nix
 programs.eclipse = {
   package = pkgs.eclipses.eclipse-java;
@@ -390,7 +390,7 @@ programs.eclipse = {
 
 ** Enable
 
-#+NAME: eclipse-enable
+#+NAME: eclipse.enable
 #+begin_src nix
 programs.eclipse.enable = true;
 #+end_src
@@ -399,15 +399,15 @@ programs.eclipse.enable = true;
 
 Select the stuff to import:
 
-#+NAME: emacs-imports
+#+NAME: emacs.imports
 #+begin_src nix
 {
-  <<emacs-config>>
-  <<emacs-enable>>
-  <<emacs-overlays>>
-  <<emacs-overrides>>
-  <<emacs-packages>>
-  <<emacs-symlinked-files>>
+  <<emacs.config>>
+  <<emacs.enable>>
+  <<emacs.overlays>>
+  <<emacs.overrides>>
+  <<emacs.packages>>
+  <<emacs.symlinked-files>>
 }
 #+end_src
 
@@ -415,7 +415,7 @@ Select the stuff to import:
 
 The config is separated in diferent chunks:
 
-#+NAME: emacs-config
+#+NAME: emacs.config
 #+begin_src nix
 programs.emacs = {
   package = pkgs.emacsPgtk;
@@ -425,17 +425,17 @@ programs.emacs = {
 Here is the emacs config, also seperated in chunks:
 
 #+begin_src lisp :tangle generated/emacs-config.el
-<<emacs-config-user-data>>
-<<emacs-config-ui>>
-<<emacs-config-keybindings>>
-<<emacs-config-org>>
-<<emacs-config-email>>
-<<emacs-config-development>>
+<<emacs.config.user-data>>
+<<emacs.config.ui>>
+<<emacs.config.keybindings>>
+<<emacs.config.org>>
+<<emacs.config.email>>
+<<emacs.config.development>>
 #+end_src
 
 *** User data
 :PROPERTIES:
-:header-args: :noweb-ref emacs-config-user-data
+:header-args: :noweb-ref emacs.config.user-data
 :END:
 
 #+begin_src emacs-lisp
@@ -445,7 +445,7 @@ Here is the emacs config, also seperated in chunks:
 
 *** UI
 :PROPERTIES:
-:header-args: :noweb-ref emacs-config-ui
+:header-args: :noweb-ref emacs.config.ui
 :END:
 **** Basic config
 
@@ -499,7 +499,7 @@ By default column number will be enabled in all buffers but
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 gruvbox-theme
 #+end_src
 
@@ -518,7 +518,7 @@ gruvbox-theme
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 ivy
 lsp-ivy
 ivy-rich
@@ -533,7 +533,7 @@ all-the-icons-ivy-rich
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 counsel
 #+end_src
 
@@ -547,14 +547,14 @@ Getting those juicy icons
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 all-the-icons
 #+end_src
 
 **** Doom modeline
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 doom-modeline
 #+end_src
 
@@ -571,7 +571,7 @@ doom-modeline
 **** Svg Tags
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 svg-tag-mode
 #+end_src
 
@@ -632,7 +632,7 @@ svg-tag-mode
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 which-key
 #+end_src
 
@@ -645,7 +645,7 @@ which-key
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 rainbow-delimiters
 #+end_src
 
@@ -664,7 +664,7 @@ rainbow-delimiters
 
 *** Keybindings
 :PROPERTIES:
-:header-args: :noweb-ref emacs-config-keybindings
+:header-args: :noweb-ref emacs.config.keybindings
 :END:
 **** Random stuff
 
@@ -694,7 +694,7 @@ Activating evil mode:
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 evil
 #+end_src
 
@@ -710,7 +710,7 @@ evil
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 evil-collection
 #+end_src
 
@@ -780,13 +780,13 @@ evil-collection
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 general
 #+end_src
 
 *** Org
 :PROPERTIES:
-:header-args: :noweb-ref emacs-config-org
+:header-args: :noweb-ref emacs.config.org
 :END:
 **** Basic config
 
@@ -837,7 +837,7 @@ Making org buffers display on the center of the available space
 
 ****** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 visual-fill-column
 #+end_src
 
@@ -956,7 +956,7 @@ again tho.
 ***** HTML
 ****** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 htmlize
 #+end_src
 
@@ -1089,7 +1089,7 @@ This is still in WIP, no idea how to add the atributte ~rowspan~ or
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 org-superstar
 #+end_src
 
@@ -1116,7 +1116,7 @@ org-superstar
 
 *** Email
 :PROPERTIES:
-:header-args: :noweb-ref emacs-config-email
+:header-args: :noweb-ref emacs.config.email
 :END:
 **** Basic config
 
@@ -1227,7 +1227,7 @@ Using libnotify
 
 **** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 # To make sure that mu is in load-path, since it seems there are people
 # reporting it doesn't appear in their's, no problem in mine tho
 pkgs.mu
@@ -1238,17 +1238,17 @@ pinentry
 
 *** Development
 :PROPERTIES:
-:header-args: :noweb-ref emacs-config-development
+:header-args: :noweb-ref emacs.config.development
 :END:
 **** LSP
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 lsp-mode
 lsp-ui
 #+end_src
 
-#+begin_src nix :noweb-ref emacs-packages+
+#+begin_src nix :noweb-ref emacs.packages+
 nodePackages.vscode-css-languageserver-bin
 nodePackages.vscode-html-languageserver-bin
 #+end_src
@@ -1264,14 +1264,14 @@ nodePackages.vscode-html-languageserver-bin
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 flycheck
 #+end_src
 
 **** Treemacs
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 treemacs
 lsp-treemacs
 treemacs-all-the-icons
@@ -1295,7 +1295,7 @@ Making it use all-the-icons instead of default icons.
 **** Dired
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 all-the-icons-dired
 #+end_src
 
@@ -1310,7 +1310,7 @@ Making dired use all-the-icons too!
 **** Projectile
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 projectile
 #+end_src
 
@@ -1323,7 +1323,7 @@ projectile
 **** Web mode
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 web-mode
 #+end_src
 
@@ -1421,7 +1421,7 @@ If it's a scss file, compile unless it was declared not to do so.
 **** Emmet
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 emmet-mode
 #+end_src
 
@@ -1440,7 +1440,7 @@ emmet-mode
 **** Java
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 # lsp-java
 #+end_src
 
@@ -1453,7 +1453,7 @@ emmet-mode
 **** Lua
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 lua-mode
 company-lua
 #+end_src
@@ -1501,7 +1501,7 @@ company-lua
 **** Nix
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 nix-mode
 #+end_src
 
@@ -1517,7 +1517,7 @@ nix-mode
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 magit
 #+end_src
 
@@ -1530,7 +1530,7 @@ magit
 **** Company
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 company
 #+end_src
 
@@ -1549,7 +1549,7 @@ company
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 slime
 slime-company
 #+end_src
@@ -1557,7 +1557,7 @@ slime-company
 **** Yasnippet
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 yasnippet
 #+end_src
 
@@ -1591,7 +1591,7 @@ yasnippet
 
 ***** Packages
 
-#+begin_src nix :noweb-ref emacs-extra-packages+
+#+begin_src nix :noweb-ref emacs.extra-packages+
 lispy
 #+end_src
 
@@ -1613,7 +1613,7 @@ lispy
 
 ** Enable
 
-#+NAME: emacs-enable
+#+NAME: emacs.enable
 #+begin_src nix
 programs.emacs.enable = true;
 #+end_src
@@ -1622,18 +1622,18 @@ programs.emacs.enable = true;
 
 Using emacs pure gtk package since I'm using wayland.
 
-#+NAME: emacs-overlays
+#+NAME: emacs.overlays
 #+begin_src nix
 nixpkgs.overlays = [
   (
-    <<emacs-overlays-emacs-nixpkgs>>
+    <<emacs.overlays.emacs-nixpkgs>>
   )
 ];
 #+end_src
 
 *** Emacs nixpkgs
 
-#+NAME: emacs-overlays-emacs-nixpkgs
+#+NAME: emacs.overlays.emacs-nixpkgs
 #+begin_src nix
 let
   repo = "https://github.com/nix-community/emacs-overlay";
@@ -1647,7 +1647,7 @@ in import (builtins.fetchTarball {
 
 Override org package to use elpa instead of builtin
 
-#+NAME: emacs-overrides
+#+NAME: emacs.overrides
 #+begin_src nix
 programs.emacs.overrides = self: super: {
   org = self.elpaPackages.org;
@@ -1656,14 +1656,14 @@ programs.emacs.overrides = self: super: {
 
 ** Packages
 
-#+NAME: emacs-packages
+#+NAME: emacs.packages
 #+begin_src nix
 home.packages = with pkgs; [
-  <<emacs-packages+>>
+  <<emacs.packages+>>
 ];
 
 programs.emacs.extraPackages = (epkgs: with epkgs; [
-  <<emacs-extra-packages+>>
+  <<emacs.extra-packages+>>
 ]);
 #+end_src
 
@@ -1672,7 +1672,7 @@ programs.emacs.extraPackages = (epkgs: with epkgs; [
 Files to be symlinked in the user directory (actually under
 ~XDG_CONFIG_HOME~).
 
-#+NAME: emacs-symlinked-files
+#+NAME: emacs.symlinked-files
 #+begin_src nix
 xdg.configFile = {
   "emacs/init.el".source = ./emacs-config.el;
