@@ -2850,7 +2850,6 @@ extraSessionCommands =
 swayidle
 mako
 libnotify
-wofi
 wl-clipboard
 brightnessctl
 pavucontrol
@@ -3462,6 +3461,10 @@ margin = "5 5 0";
 #+NAME: wofi-config
 #+begin_src nix
 <<wofi-symlinked-files>>
+
+home.packages = with pkgs; [
+  <<wofi-packages>>
+];
 #+end_src
 
 #+begin_src conf :tangle generated/wofi-config
@@ -3540,6 +3543,13 @@ window {
 #img {
 	margin-right: 5px;
 }
+#+end_src
+
+** Packages
+
+#+NAME: wofi-packages
+#+begin_src nix
+wofi
 #+end_src
 
 ** Symlinked files
