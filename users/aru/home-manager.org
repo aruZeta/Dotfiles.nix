@@ -38,7 +38,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<common-lisp.imports>>
     <<eclipse.imports>>
     <<emacs.imports>>
-    <<email-imports>>
+    <<email.imports>>
     <<eww-imports>>
     <<firefox-imports>>
     <<fonts-imports>>
@@ -1681,27 +1681,15 @@ xdg.configFile = {
 #+end_src
 
 * Email
-** Imports
 
 Select the stuff to import:
 
-#+NAME: email-imports
+#+NAME: email.imports
 #+begin_src nix
 {
-  <<email-enable>>
+  <<email.config>>
+  <<email.enable>>
 }
-
-{
-  <<email-config>>
-}
-#+end_src
-
-** Enable
-
-#+NAME: email-enable
-#+begin_src nix
-programs.mu.enable = true;
-programs.mbsync.enable = true;
 #+end_src
 
 ** Config
@@ -1709,7 +1697,7 @@ programs.mbsync.enable = true;
 My email config uses the ~XDG_MAIL_DIR~ as mail home, which is defined
 under the xdg config.
 
-#+NAME: email-config
+#+NAME: email.config
 #+begin_src nix
 # services.mbsync = {
 #   enable = true;
@@ -1727,7 +1715,8 @@ accounts.email = {
             2;
     in mailHome;
   accounts = {
-    <<email-config-aru>>
+    aru =
+      <<email.config.aru>>
   };
 };
 #+end_src
@@ -1737,55 +1726,111 @@ accounts.email = {
 My main mail config.
 *TODO: Set up a way to auto generate emacs mu4e config*
 
-#+NAME: email-config-aru
+#+NAME: email.config.aru
 #+begin_src nix
-aru =
-  let email = "aru_hackZ.official@zohomail.eu";
-      imapHost = "imap.zoho.eu";
-  in {
-    address = email;
-    userName = email;
-    realName = "Alberto Robles Gomez";
-    primary = true;
-    mu.enable = true;
+let email = "aru_hackZ.official@zohomail.eu";
+    imapHost = "imap.zoho.eu";
+in {
+  address = email;
+  userName = email;
+  realName = "Alberto Robles Gomez";
+  primary = true;
+  mu.enable = true;
 
-    passwordCommand =
-      let keysDir = config.xdg.userDirs.extraConfig.XDG_KEYS_DIR;
-      in "gpg --quiet --decrypt ${keysDir}/${imapHost}/${email}.gpg";
+  passwordCommand =
+    <<email.config.aru.password-command>>
 
-    folders = {
-      drafts = "Drafts";
-      inbox = "Inbox";
-      sent = "Sent";
-      trash = "Trash";
-    };
-
-    signature = {
-      showSignature = "append";
-      text = "\n------\nBy aru\n";
-    };
-
-    gpg = {
-      signByDefault = true;
-      key = "3A581BDE765C0DFA";
-    };
-
-    imap = {
-      host = imapHost;
-      port = 993;
-    };
-
-    smtp = {
-      host = "smtp.zoho.eu";
-      port = 465;
-    };
-
-    mbsync = {
-      enable = true;
-      create = "both";
-      expunge = "both";
-    };
+  folders = {
+    <<email.config.aru.folders>>
   };
+
+  signature = {
+    <<email.config.aru.signature>>
+  };
+
+  gpg = {
+    <<email.config.aru.gpg>>
+  };
+
+  imap = {
+    <<email.config.aru.imap>>
+  };
+
+  smtp = {
+    <<email.config.aru.smtp>>
+  };
+
+  mbsync = {
+    <<email.config.aru.mbsync>>
+  };
+};
+#+end_src
+
+**** Folders
+
+#+NAME: email.config.aru.folders
+#+begin_src nix
+drafts = "Drafts";
+inbox = "Inbox";
+sent = "Sent";
+trash = "Trash";
+#+end_src
+
+**** Gpg
+
+#+NAME: email.config.aru.gpg
+#+begin_src nix
+signByDefault = true;
+key = "3A581BDE765C0DFA";
+#+end_src
+
+**** Imap
+
+#+NAME: email.config.aru.imap
+#+begin_src nix
+host = imapHost;
+port = 993;
+#+end_src
+
+**** Mbsync
+
+#+NAME: email.config.aru.mbsync
+#+begin_src nix
+enable = true;
+create = "both";
+expunge = "both";
+#+end_src
+
+**** Password command
+
+#+NAME: email.config.aru.password-command
+#+begin_src nix
+let keysDir = config.xdg.userDirs.extraConfig.XDG_KEYS_DIR;
+in "gpg --quiet --decrypt ${keysDir}/${imapHost}/${email}.gpg";
+#+end_src
+
+**** Signature
+
+#+NAME: email.config.aru.signature
+#+begin_src nix
+showSignature = "append";
+text = "\n------\nBy aru\n";
+#+end_src
+
+**** Smtp
+
+#+NAME: email.config.aru.smtp
+#+begin_src nix
+host = "smtp.zoho.eu";
+port = 465;
+#+end_src
+
+** Enable
+
+#+NAME: email.enable
+#+begin_src nix
+programs.mu.enable = true;
+programs.mbsync.enable = true;
 #+end_src
 
 * Eww
