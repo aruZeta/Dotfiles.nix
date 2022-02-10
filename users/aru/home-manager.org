@@ -39,7 +39,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<eclipse.imports>>
     <<emacs.imports>>
     <<email.imports>>
-    <<eww-imports>>
+    <<eww.imports>>
     <<firefox-imports>>
     <<fonts-imports>>
     <<git-imports>>
@@ -1838,38 +1838,21 @@ programs.mbsync.enable = true;
 
 Select the stuff to import:
 
-#+NAME: eww-imports
+#+NAME: eww.imports
 #+begin_src nix
 {
-  <<eww-config>>
+  <<eww.config>>
+  <<eww.overlays>>
+  <<eww.packages>>
+  <<eww.symlinked-files>>
 }
 #+end_src
 
 ** Config
-
-Just adding the files to symlink and the overlay to use the lattest
-commits in master.
-
-#+NAME: eww-config
-#+begin_src nix
-<<eww-symlinked-files>>
-
-nixpkgs.overlays = [
-  (
-    <<eww-overlay>>
-  )
-];
-
-home.packages = with pkgs; [
-  <<eww-packages>>
-];
-#+end_src
-
 *** Test config
 
 Testing some stuff.
 
-#+NAME: eww-config-test
 #+begin_src lisp :tangle generated/eww-config.yuck
 (defwindow Test1
   :monitor 0
@@ -1901,41 +1884,31 @@ Testing some stuff.
 
 The css to make everything look better.
 
-#+NAME: eww-config-style
 #+begin_src scss :tangle generated/eww-style.scss
 /* Nothing */
 #+end_src
 
-** Packages
-
-#+NAME: eww-packages
-#+begin_src nix
-eww-wayland-master
-#+end_src
-
-** Symlinked files
-
-Files to be symlinked in the user directory (actually under
-~XDG_CONFIG_HOME~).
-
-#+NAME: eww-symlinked-files
-#+begin_src nix
-xdg.configFile = {
-  "eww/eww.yuck".source = ./eww-config.yuck;
-  "eww/eww.scss".source = ./eww-style.scss;
-};
-#+end_src
-
-** Overlay
+** Overlays
 
 Use the lattest commit in the master branch instead of lattest
 release.
 
-#+NAME: eww-overlay
+#+NAME: eww.overlays
+#+begin_src nix
+nixpkgs.overlays = [
+  (
+    <<eww.overlays.eww-wayland-master>>
+  )
+];
+#+end_src
+
+*** Eww wayland master
+
+#+NAME: eww.overlays.eww-wayland-master
 #+begin_src nix
 self: super:
 {
-  eww-wayland-master = super.eww-wayland.overrideAttrs ( drv: rec {
+  eww-wayland-master = super.eww-wayland.overrideAttrs (oldAttrs: rec {
     version = "master";
     src = super.fetchFromGitHub {
       owner = "elkowar";
@@ -1944,13 +1917,35 @@ self: super:
       sha256 = "17gws0l9h2kycmhxl1fadzpsfv5v04vl4n5jl1bfqwgw14qfs0z3";
     };
 
-    cargoDeps = drv.cargoDeps.overrideAttrs (super.lib.const {
+    cargoDeps = oldAttrs.cargoDeps.overrideAttrs (super.lib.const {
       inherit src;
       name = "eww-vendor.tar.gz";
       outputHash = "sha256-gXO82CUjSuOuuxYFdk7/NYMvCPv9CnkNyzIACWGLj0U=";
     });
-  } );
+  });
 }
+#+end_src
+
+** Packages
+
+#+NAME: eww.packages
+#+begin_src nix
+home.packages = with pkgs; [
+  eww-wayland-master
+];
+#+end_src
+
+** Symlinked files
+
+Files to be symlinked in the user directory (actually under
+~XDG_CONFIG_HOME~).
+
+#+NAME: eww.symlinked-files
+#+begin_src nix
+xdg.configFile = {
+  "eww/eww.yuck".source = ./eww-config.yuck;
+  "eww/eww.scss".source = ./eww-style.scss;
+};
 #+end_src
 
 * Firefox
