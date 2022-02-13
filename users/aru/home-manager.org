@@ -1263,8 +1263,8 @@ nodePackages.vscode-html-languageserver-bin
 ***** Hooks
 
 #+begin_src emacs-lisp
-(add-hook 'lsp-mode #'lsp-ui-mode)
-(add-hook 'lsp-mode #'flycheck-mode)
+(add-hook 'lsp-mode-hook #'lsp-ui-mode)
+(add-hook 'lsp-mode-hook #'flycheck-mode)
 #+end_src
 
 **** Flycheck
