@@ -1311,7 +1311,7 @@ all-the-icons-dired
 Making dired use all-the-icons too!
 
 #+begin_src emacs-lisp
-(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+(add-hook 'dired-mode-hook #'all-the-icons-dired-mode)
 #+end_src
 
 **** Projectile
@@ -1548,10 +1548,10 @@ magit
 company
 #+end_src
 
-***** Basic config
+***** Hooks
 
 #+begin_src emacs-lisp
-(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'after-init-hook #'global-company-mode)
 #+end_src
 
 **** Slime
@@ -1616,7 +1616,7 @@ lispy
 (defun aru/nxml-mode-hook ()
   (setq indent-tabs-mode t
         tab-width        2)
-  (global-set-key (kbd "C-SPC") 'emmet-expand-line))
+  (global-set-key (kbd "C-SPC") #'emmet-expand-line))
 #+end_src
 
 #+begin_src emacs-lisp
