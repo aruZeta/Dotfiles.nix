@@ -1448,13 +1448,20 @@ emmet-mode
 ***** Packages
 
 #+begin_src nix :noweb-ref emacs.extra-packages+
-# lsp-java
+lsp-java
 #+end_src
 
 ***** Hooks
 
 #+begin_src emacs-lisp
+(defun aru/java-mode-hook ()
+  (setq indent-tabs-mode t
+        tab-width        4))
+#+end_src
+
+#+begin_src emacs-lisp
 (add-hook 'java-mode-hook #'lsp)
+(add-hook 'java-mode-hook #'aru/java-mode-hook)
 #+end_src
 
 **** Lua
