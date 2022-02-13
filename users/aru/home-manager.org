@@ -1575,6 +1575,12 @@ slime-company
 yasnippet
 #+end_src
 
+***** Hooks
+
+#+begin_src emacs-lisp
+(add-hook 'after-init-hook #'yas-global-mode)
+#+end_src
+
 **** Lispy
 ***** Basic config
 
