@@ -470,7 +470,14 @@ By default column number will be enabled in all buffers but
                 term-mode-hook
                 shell-mode-hook
                 slime-repl-mode-hook
-                treemacs-mode-hook))
+                treemacs-mode-hook
+                mu4e-main-mode-hook
+                mu4e-headers-mode-hook
+                mu4e-view-mode-hook
+                mu4e-compose-mode-hook
+                mu4e-org-mode-hook
+                mu4e~update-mail-mode-hook
+                mu4e-loading-mode-hook))
         (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src
 
