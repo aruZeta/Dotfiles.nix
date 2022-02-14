@@ -778,6 +778,11 @@ evil-collection
  "w d <down>" '(windmove-delete-down :which-key "Bottom")
  "w d <left>" '(windmove-delete-left :which-key "Left")
 
+ ; Web server
+ "C-w" '(:ignore t :which-key "Web server")
+ "C-w o" '(aru/web-server-open :which-key "Open web server")
+ "C-w k" '(aru/web-server-kill :which-key "Kill current web server")
+
  ; Magit
  "m" '(magit :which-key "Magit")
 
@@ -1629,6 +1634,25 @@ lispy
 (add-hook 'nxml-mode-hook #'aru/nxml-mode-hook)
 (add-hook 'nxml-mode-hook #'lsp)
 (add-hook 'nxml-mode-hook #'emmet-mode)
+#+end_src
+
+**** Web server
+
+#+begin_src emacs-lisp
+(defun aru/web-server-open ()
+  (interactive)
+  (let ((name (concat "web-server-" (projectile-project-name))))
+    (if (get-process name)
+        (message "Web server already started in this project.")
+      (start-process-shell-command name name "python3 -m http.server"))))
+
+(defun aru/web-server-close ()
+  (interactive)
+  (let* ((name (concat "web-server-" (projectile-project-name)))
+         (process (get-process name)))
+    (if process
+        (delete-process process)
+      (message "Can't stop what isn't started."))))
 #+end_src
 
 ** Enable
