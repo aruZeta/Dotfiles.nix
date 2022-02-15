@@ -1672,7 +1672,7 @@ Tag folding:
         (message "Web server already started in this project.")
       (start-process-shell-command name name "python3 -m http.server"))))
 
-(defun aru/web-server-close ()
+(defun aru/web-server-kill ()
   (interactive)
   (let* ((name (concat "web-server-" (projectile-project-name)))
          (process (get-process name)))
