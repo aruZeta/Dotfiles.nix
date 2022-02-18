@@ -1647,6 +1647,10 @@ Tag folding:
 (define-key nxml-mode-map (kbd "C-c C-f") 'hs-toggle-hiding)
 #+end_src
 
+#+begin_src emacs-lisp
+(setq nxml-attribute-indent 2)
+#+end_src
+
 ***** Hooks
 
 #+begin_src emacs-lisp
