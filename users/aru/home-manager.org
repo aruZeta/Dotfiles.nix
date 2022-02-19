@@ -2819,6 +2819,7 @@ home.packages = with pkgs; [
 
 "4" = [
   { class = "VirtualBox Manager"; }
+  { class = "VirtualBox Machine"; }
 ];
 
 "5" = [
