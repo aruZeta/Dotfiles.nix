@@ -1272,6 +1272,19 @@ nodePackages.vscode-html-languageserver-bin
 (add-hook 'lsp-mode-hook #'flycheck-mode)
 #+end_src
 
+**** Dap
+***** Packages
+
+#+begin_src nix :noweb-ref emacs.extra-packages+
+dap-mode
+#+end_src
+
+***** Hooks
+
+#+begin_src emacs-lisp
+(add-hook 'lsp-mode-hook #'dap-mode)
+#+end_src
+
 **** Flycheck
 
 ***** Packages
