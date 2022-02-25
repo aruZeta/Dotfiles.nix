@@ -1,30 +1,13 @@
-{ modulesPath
-, pkgs
-, ...
-}:
+{ config, pkgs, ... }:
 
 {
-  # I think this was auto-generated?
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-      /etc/nixos/cachix.nix
+    [
+      ./hardware/msi-bravo-15-b5dd.nix
     ];
 
   boot = {
-    # kernelPackages = pkgs.linuxPackages_zen;
-    initrd.availableKernelModules = [
-      "xhci_pci"
-      "ahci"
-      "ehci_pci"
-      "usbhid"
-      "usb_storage"
-      "sd_mod"
-      "sr_mod"
-    ];
-
-    kernelModules = [
-      "kvm-amd"
-    ];
+    kernelPackages = pkgs.linuxPackages_latest;
 
     loader = {
       systemd-boot.enable = true;
@@ -47,57 +30,22 @@
     auth include login
     '';
 
-  # My btrfs subvols
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/506fcdab-eb1d-4fa6-9ab1-3511fc7c3e22";
-      fsType = "btrfs";
-      options = [ "subvol=nixos" "compress-force=lzo" ];
-    };
+  # I think it's me!
+  nix.settings.allowed-users = [ "aru" ];
 
-    "/home" = {
-      device = "/dev/disk/by-uuid/506fcdab-eb1d-4fa6-9ab1-3511fc7c3e22";
-      fsType = "btrfs";
-      options = [ "subvol=nixos/home" "compress-force=lzo" ];
-    };
+  networking = {
+    # Poor imagination, maybe I should rename it to "emacs-church.org", pun intended
+    hostName = "aru-hackZ";
 
-    "/nix/store" = {
-      device = "/dev/disk/by-uuid/506fcdab-eb1d-4fa6-9ab1-3511fc7c3e22";
-      fsType = "btrfs";
-      options = [ "subvol=nixos/nix/store" "compress-force=lzo" ];
-    };
-
-    "/GitRepos" = {
-      device = "/dev/disk/by-uuid/506fcdab-eb1d-4fa6-9ab1-3511fc7c3e22";
-      fsType = "btrfs";
-      options = [ "subvol=@GitRepos" "compress-force=lzo" ];
-    };
-
-    "/boot" = {
-      device = "/dev/disk/by-uuid/9152-BAE9";
-      fsType = "vfat";
-    };
+    # This one is deprecated
+    useDHCP = false;
+    # Use this
+    interfaces.enp4s0.useDHCP = true;
+    # networking.interfaces.wlp3s0.useDHCP = true;
+    networkmanager.enable = true;
   };
 
-  # Swap partition, should have made a swap file instead
-  swapDevices = [
-    { device = "/dev/disk/by-uuid/dafb92fe-c36f-4895-a8cd-b18e7325a2da"; }
-  ];
-
-  # I think it's me!
-  nix.allowedUsers = [ "aru" ];
-
-  # Poor imagination, maybe I should rename it to "emacs-church.org", pun intended
-  networking.hostName = "aru-hackZ";
-
   time.timeZone = "Europe/Madrid";
-
-  # This one is deprecated
-  networking.useDHCP = false;
-  # Use this
-  networking.interfaces.enp2s0.useDHCP = true;
-  networking.interfaces.wlp3s0.useDHCP = true;
-  networking.networkmanager.enable = true;
 
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -109,8 +57,8 @@
 
   users = {
     mutableUsers = false;
-    users = {
 
+    users = {
       aru = {
         isNormalUser = true;
         createHome = true;
@@ -148,6 +96,4 @@
         '';
     };
   };
-
-
 }
