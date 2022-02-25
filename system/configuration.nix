@@ -1,4 +1,7 @@
-{ config, pkgs, ... }:
+{ config
+, pkgs
+, ...
+}:
 
 {
   imports =
@@ -39,10 +42,10 @@
 
     # This one is deprecated
     useDHCP = false;
-    # Use this
-    interfaces.enp4s0.useDHCP = true;
-    # networking.interfaces.wlp3s0.useDHCP = true;
+
     networkmanager.enable = true;
+
+    # Interfaces are activated in hardware/<your-laptop-or-pc-model>.nix
   };
 
   time.timeZone = "Europe/Madrid";
