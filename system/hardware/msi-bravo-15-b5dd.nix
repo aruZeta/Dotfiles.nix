@@ -55,7 +55,24 @@
 
   swapDevices = [ { device = "/swap/swapfile"; } ];
 
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware = {
+    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+    opengl = {
+      extraPackages = with pkgs; [
+        rocm-opencl-icd
+        rocm-opencl-runtime
+        amdvlk
+      ];
+
+      extraPackages32 = with pkgs; [
+        driversi686Linux.amdvlk
+      ];
+
+      driSupport = true;
+      driSupport32Bit = true;
+    };
+  };
 
   networking = {
     interfaces.enp4s0.useDHCP = true;
