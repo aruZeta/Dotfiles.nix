@@ -76,6 +76,7 @@
           "networkmanager"
           "vboxusers"
           "GitReposEditors"
+          "video"
         ];
       };
     };

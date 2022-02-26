@@ -12,8 +12,14 @@
 
   boot = {
     initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
-    initrd.kernelModules = [ ];
+    initrd.kernelModules = [ "amdgpu" ];
     kernelModules = [ "kvm-amd" ];
+
+    # doesn't seem to solve anything, will leave it there anyway
+    kernelParams = [
+      "video=eDP-1:1920x1080@144"
+      "video=HDMI-A-1:1920x1080@60"
+    ];
   };
 
   fileSystems = {
