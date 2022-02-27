@@ -40,6 +40,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<emacs.imports>>
     <<email.imports>>
     <<eww.imports>>
+    <<discord.imports>>
     <<firefox-imports>>
     <<fonts-imports>>
     <<git-imports>>
