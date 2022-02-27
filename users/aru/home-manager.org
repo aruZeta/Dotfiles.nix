@@ -2071,6 +2071,28 @@ xdg.configFile = {
 };
 #+end_src
 
+* Discord
+
+#+NAME: discord.imports
+#+begin_src nix
+{
+  <<discord.packages>>
+}
+#+end_src
+
+** Packages
+
+#+NAME: discord.packages
+#+begin_src nix
+nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+  "discord"
+];
+
+home.packages = with pkgs; [
+  discord
+];
+#+end_src
+
 * Firefox
 ** Imports
 
