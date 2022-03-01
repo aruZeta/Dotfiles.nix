@@ -2033,18 +2033,18 @@ nixpkgs.overlays = [
 self: super:
 {
   eww-wayland-master = super.eww-wayland.overrideAttrs (oldAttrs: rec {
-    version = "master";
+    version = "fb0e57a0149904e76fb33807a2804d4af82350de";
     src = super.fetchFromGitHub {
       owner = "elkowar";
       repo = "eww";
       rev = "${version}";
-      sha256 = "17gws0l9h2kycmhxl1fadzpsfv5v04vl4n5jl1bfqwgw14qfs0z3";
+      sha256 = "sha256-oAbB9aW/nqg02peqGEfETOGgeXarI6ZcAZ6DzDXbOSE=";
     };
 
     cargoDeps = oldAttrs.cargoDeps.overrideAttrs (super.lib.const {
       inherit src;
       name = "eww-vendor.tar.gz";
-      outputHash = "sha256-gXO82CUjSuOuuxYFdk7/NYMvCPv9CnkNyzIACWGLj0U=";
+      outputHash = "sha256-zN6qqCvFYCD3sUIqC9XZyyUVc/9zQ0UB/gRq96Gaf94=";
     });
   });
 }
