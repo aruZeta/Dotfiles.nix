@@ -78,4 +78,16 @@
     interfaces.enp4s0.useDHCP = true;
     # interfaces.wlp5s0.useDHCP = true;
   };
+
+  services = {
+    # Tlp
+    tlp = {
+      enable = true;
+
+      settings = {
+        CPU_SCALING_GOVERNOR_ON_AC = "performance";
+        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      };
+    };
+  };
 }
