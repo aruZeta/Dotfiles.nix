@@ -4,10 +4,9 @@
 }:
 
 {
-  imports =
-    [
-      ./hardware/msi-bravo-15-b5dd.nix
-    ];
+  imports = [
+    ./hardware/msi-bravo-15-b5dd.nix
+  ];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
