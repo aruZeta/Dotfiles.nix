@@ -2926,6 +2926,10 @@ inner = 5;
   xkb_layout = "dvorak";
   xkb_numlock = "enabled";
 };
+
+"type:touchpad" = {
+  tap = "enabled";
+};
 #+end_src
 
 *** Keybindings
