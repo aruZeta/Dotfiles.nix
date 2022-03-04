@@ -1958,7 +1958,6 @@ programs.mbsync.enable = true;
 #+end_src
 
 * Eww
-** Imports
 
 Select the stuff to import:
 
@@ -2073,6 +2072,8 @@ xdg.configFile = {
 #+end_src
 
 * Discord
+
+Select the stuff to import:
 
 #+NAME: discord.imports
 #+begin_src nix
