@@ -43,7 +43,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<discord.imports>>
     <<firefox.imports>>
     <<fonts.imports>>
-    <<git-imports>>
+    <<git.imports>>
     <<gpg-imports>>
     <<gtk-imports>>
     <<java-imports>>
@@ -2162,26 +2162,16 @@ emacs-all-the-icons-fonts
 #+end_src
 
 * Git
-** Imports
 
 Select the stuff to import:
 
-#+NAME: git-imports
+#+NAME: git.imports
 #+begin_src nix
 {
-  <<git-enable>>
+  <<git.config>>
+  <<git.enable>>
+  <<git.packages>>
 }
-
-{
-  <<git-config>>
-}
-#+end_src
-
-** Enable
-
-#+NAME: git-enable
-#+begin_src nix
-programs.git.enable = true;
 #+end_src
 
 ** Config
@@ -2189,25 +2179,21 @@ programs.git.enable = true;
 Setting up git config, it is separated in minor chunks (again) for
 better organization.
 
-#+NAME: git-config
+#+NAME: git.config
 #+begin_src nix
 programs.git = {
-  <<git-config-user>>
-  <<git-config-gpg-signing>>
-  <<git-config-ignores>>
-  <<git-config-extra>>
+  <<git.config.user>>
+  <<git.config.gpg-signing>>
+  <<git.config.ignores>>
+  <<git.config.extra>>
 };
-
-home.packages = with pkgs; [
-  <<git-packages>>
-];
 #+end_src
 
 *** User
 
 Setting both my email and username used in github.
 
-#+NAME: git-config-user
+#+NAME: git.config.user
 #+begin_src nix
 userEmail = config.accounts.email.accounts.aru.address;
 userName = "aru-hackZ";
@@ -2217,7 +2203,7 @@ userName = "aru-hackZ";
 
 Use gpg to sign commits.
 
-#+NAME: git-config-gpg-signing
+#+NAME: git.config.gpg-signing
 #+begin_src nix
 signing.signByDefault = true;
 signing.key = "62F49107DB7386A7";
@@ -2227,7 +2213,7 @@ signing.key = "62F49107DB7386A7";
 
 Ignore ~<file-name>.<extension>~~ files generated from emacs.
 
-#+NAME: git-config-ignores
+#+NAME: git.config.ignores
 #+begin_src nix
 ignores = [
   "*~"
@@ -2238,7 +2224,7 @@ ignores = [
 
 Setting the default branch name to be ~main~.
 
-#+NAME: git-config-extra
+#+NAME: git.config.extra
 #+begin_src nix
 extraConfig = {
   init = {
@@ -2247,11 +2233,20 @@ extraConfig = {
 };
 #+end_src
 
+** Enable
+
+#+NAME: git.enable
+#+begin_src nix
+programs.git.enable = true;
+#+end_src
+
 ** Packages
 
-#+NAME: git-packages
+#+NAME: git.packages
 #+begin_src nix
-git-crypt
+home.packages = with pkgs; [
+  git-crypt
+];
 #+end_src
 
 * Gpg
