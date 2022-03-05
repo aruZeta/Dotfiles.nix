@@ -40,6 +40,7 @@ configurations.
     <<nix.imports>>
     <<others.imports>>
     <<security.imports>>
+    <<services.imports>>
     <<users-and-groups.imports>>
     <<virtualisation.imports>>
   ];
@@ -229,6 +230,26 @@ security = {
     ''
     auth include login
     '';
+};
+#+end_src
+
+* Services
+
+#+NAME: services.imports
+#+begin_src nix
+{
+  <<services.config>>
+}
+#+end_src
+
+** Config
+
+#+NAME: services.config
+#+begin_src nix
+services = {
+  udev.packages = with pkgs; [
+    qmk-udev-rules
+  ];
 };
 #+end_src
 

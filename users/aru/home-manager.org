@@ -3254,6 +3254,9 @@ ghostscript
 
 # Ebook reader & editor
 sigil
+
+# QMK
+qmk
 #+end_src
 
 * Waybar
