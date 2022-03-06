@@ -74,8 +74,7 @@ its version.
 #+NAME: home.manager.setup
 #+begin_src nix
 programs.home-manager.enable = true;
-# TODO: update to 22.05
-home.stateVersion = "21.11";
+home.stateVersion = "22.05";
 #+end_src
 
 * Alacritty
@@ -3284,30 +3283,29 @@ programs.waybar.enable = true;
 #+begin_src nix
 programs.waybar = {
   <<waybar-style>>
-
-  settings = [{
-    <<waybar-config-others>>
-    <<waybar-config-modules-left>>
-    <<waybar-config-modules-center>>
-    <<waybar-config-modules-right>>
-
-    modules =
-      let big = text: "<span font='17' rise='-3000'>" + text + "</span>";
-      in {
-        <<waybar-config-modules-setup-sway-workspaces>>
-        <<waybar-config-modules-setup-sway-window>>
-        <<waybar-config-modules-setup-clock>>
-        <<waybar-config-modules-setup-idle-inhibitor>>
-        <<waybar-config-modules-setup-cpu>>
-        <<waybar-config-modules-setup-memory>>
-        <<waybar-config-modules-setup-backlight>>
-        <<waybar-config-modules-setup-disk>>
-        <<waybar-config-modules-setup-battery>>
-        <<waybar-config-modules-setup-network>>
-        <<waybar-config-modules-setup-pulse-audio>>
-        <<waybar-config-modules-setup-temperature>>
-      };
-  }];
+  
+  settings = [(
+    let big = text: "<span font='17' rise='-3000'>" + text + "</span>";
+    in {
+      <<waybar-config-others>>
+      <<waybar-config-modules-left>>
+      <<waybar-config-modules-center>>
+      <<waybar-config-modules-right>>
+      
+      <<waybar-config-modules-setup-sway-workspaces>>
+      <<waybar-config-modules-setup-sway-window>>
+      <<waybar-config-modules-setup-clock>>
+      <<waybar-config-modules-setup-idle-inhibitor>>
+      <<waybar-config-modules-setup-cpu>>
+      <<waybar-config-modules-setup-memory>>
+      <<waybar-config-modules-setup-backlight>>
+      <<waybar-config-modules-setup-disk>>
+      <<waybar-config-modules-setup-battery>>
+      <<waybar-config-modules-setup-network>>
+      <<waybar-config-modules-setup-pulse-audio>>
+      <<waybar-config-modules-setup-temperature>>
+    }
+  )];
 };
 #+end_src
 
