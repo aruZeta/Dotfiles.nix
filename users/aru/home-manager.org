@@ -488,8 +488,7 @@ By default column number will be enabled in all buffers but
 #+begin_src emacs-lisp
 (custom-set-variables
  '(inhibit-startup-screen t)
- '(initial-buffer-choice
-   (substitute-in-file-name "$XDG_CONFIG_HOME/emacs/startup.org")))
+ '(initial-buffer-choice t))
 #+end_src
 
 **** Fonts
@@ -1800,7 +1799,6 @@ Files to be symlinked in the user directory (actually under
 #+begin_src nix
 xdg.configFile = {
   "emacs/init.el".source = ./emacs-config.el;
-  "emacs/startup.org".source = ../startup.org;
 };
 #+end_src
 
