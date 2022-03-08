@@ -39,6 +39,7 @@ configurations.
     <<networking.imports>>
     <<nix.imports>>
     <<others.imports>>
+    <<programs.imports>>
     <<security.imports>>
     <<services.imports>>
     <<users-and-groups.imports>>
