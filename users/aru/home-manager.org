@@ -2867,6 +2867,11 @@ home.packages = with pkgs; [
 
 "5" = [
   { app_id = "luajit-2.1.0-beta3"; } # koreader
+  { app_id = "calibre-ebook-viewer"; }
+];
+
+"6" = [
+  { app_id = "calibre-gui"; }
 ];
 #+end_src
 
