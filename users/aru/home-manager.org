@@ -44,10 +44,10 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<firefox.imports>>
     <<fonts.imports>>
     <<git.imports>>
-    # <<koreader-imports>>
     <<gpg.imports>>
     <<gtk.imports>>
     <<java.imports>>
+    # <<koreader.imports>>
     <<neovim-imports>>
     <<python-imports>>
     <<qt-imports>>
@@ -2440,40 +2440,31 @@ programs.java.enable = true;
 #+end_src
 
 * Koreader
-** Imports
 
-#+NAME: koreader-imports
+Select the stuff to import:
+
+#+NAME: koreader.imports
 #+begin_src nix
 {
-  <<koreader-config>>
+  <<koreader.overlays>>
+  <<koreader.packages>>
 }
 #+end_src
 
-** Config
+** Overlays
 
-#+NAME: koreader-config
+#+NAME: koreader.overlays
 #+begin_src nix
 nixpkgs.overlays = [
   (
-    <<koreader-overlay>>
+    <<koreader.overlays.koreader-2021-12>>
   )
 ];
-
-home.packages = with pkgs; [
-  <<koreader-packages>>
-];
 #+end_src
 
-** Packages
+*** Koreader 2021/12
 
-#+NAME: koreader-packages
-#+begin_src nix
-koreader-2021-12
-#+end_src
-
-** Overlay
-
-#+NAME: koreader-overlay
+#+NAME: koreader.overlays.koreader-2021-12
 #+begin_src nix
 self: super:
 {
@@ -2490,6 +2481,15 @@ self: super:
     unpackCmd = "dpkg-deb -x ${src} .";
   });
 }
+#+end_src
+
+** Packages
+
+#+NAME: koreader.packages
+#+begin_src nix
+home.packages = with pkgs; [
+  koreader-2021-12
+];
 #+end_src
 
 * Neovim
