@@ -44,10 +44,10 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<firefox.imports>>
     <<fonts.imports>>
     <<git.imports>>
-    <<gtk-imports>>
     <<java-imports>>
     # <<koreader-imports>>
     <<gpg.imports>>
+    <<gtk.imports>>
     <<neovim-imports>>
     <<python-imports>>
     <<qt-imports>>
@@ -2330,26 +2330,16 @@ services.gpg-agent.enableSshSupport = true;
 #+end_src
 
 * Gtk
-** Imports
 
 Select the stuff to import:
 
-#+NAME: gtk-imports
+#+NAME: gtk.imports
 #+begin_src nix
 {
-  <<gtk-enable>>
+  <<gtk.config>>
+  <<gtk.enable>>
+  <<gtk.symlinked-files>>
 }
-
-{
-  <<gtk-config>>
-}
-#+end_src
-
-** Enable
-
-#+NAME: gtk-enable
-#+begin_src nix
-gtk.enable = true;
 #+end_src
 
 ** Config
@@ -2360,22 +2350,20 @@ organization, and inside them I also import the package required.
 Also the trolltech config goes to it's own generated file and then
 symlinked to ~XDG_CONFIG_HOME~.
 
-#+NAME: gtk-config
+#+NAME: gtk.config
 #+begin_src nix
 gtk = {
-  <<gtk-config-font>>
-  <<gtk-config-theme>>
-  <<gtk-config-icon-theme>>
+  <<gtk.config.font>>
+  <<gtk.config.theme>>
+  <<gtk.config.icon-theme>>
 };
-
-<<gtk-symlinked-files>>
 #+end_src
 
 *** Font
 
 Iosevka everywhere.
 
-#+NAME: gtk-config-font
+#+NAME: gtk.config.font
 #+begin_src nix
 font = {
   name = "Iosevka Term";
@@ -2387,10 +2375,10 @@ font = {
 
 Gruvbox is good for my eyes.
 
-#+NAME: gtk-config-theme
+#+NAME: gtk.config.theme
 #+begin_src nix
 theme = {
-  <<gtk-pkg-theme>>
+  package = pkgs.gruvbox-dark-gtk;
   name = "gruvbox-dark";
 };
 #+end_src
@@ -2399,10 +2387,10 @@ theme = {
 
 I said it was good for my eyes.
 
-#+NAME: gtk-config-icon-theme
+#+NAME: gtk.config.icon-theme
 #+begin_src nix
 iconTheme = {
-  <<gtk-pkg-icon-theme>>
+  package = pkgs.gruvbox-dark-icons-gtk;
   name = "oomox-gruvbox-dark";
 };
 #+end_src
@@ -2411,25 +2399,16 @@ iconTheme = {
 
 Setting qt to use gtk+ style.
 
-#+NAME: trolltech-config
 #+begin_src conf :tangle generated/trolltech-config.conf
 [Qt]
 style=GTK+
 #+end_src
 
-** Packages
-*** Theme
+** Enable
 
-#+NAME: gtk-pkg-theme
+#+NAME: gtk.enable
 #+begin_src nix
-package = pkgs.gruvbox-dark-gtk;
-#+end_src
-
-*** Icon theme
-
-#+NAME: gtk-pkg-icon-theme
-#+begin_src nix
-package = pkgs.gruvbox-dark-icons-gtk;
+gtk.enable = true;
 #+end_src
 
 ** Symlinked files
@@ -2437,7 +2416,7 @@ package = pkgs.gruvbox-dark-icons-gtk;
 Files to be symlinked in the user directory (actually under
 ~XDG_CONFIG_HOME~).
 
-#+NAME: gtk-symlinked-files
+#+NAME: gtk.symlinked-files
 #+begin_src nix
 xdg.configFile."Trolltech.conf".source = ./trolltech-config.conf;
 #+end_src
