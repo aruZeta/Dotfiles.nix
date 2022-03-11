@@ -44,10 +44,10 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<firefox.imports>>
     <<fonts.imports>>
     <<git.imports>>
-    <<java-imports>>
     # <<koreader-imports>>
     <<gpg.imports>>
     <<gtk.imports>>
+    <<java.imports>>
     <<neovim-imports>>
     <<python-imports>>
     <<qt-imports>>
@@ -2422,18 +2422,19 @@ xdg.configFile."Trolltech.conf".source = ./trolltech-config.conf;
 #+end_src
 
 * Java
-** Imports
 
-#+NAME: java-imports
+Select the stuff to import:
+
+#+NAME: java.imports
 #+begin_src nix
 {
-  <<java-enable>>
+  <<java.enable>>
 }
 #+end_src
 
 ** Enable
 
-#+NAME: java-enable
+#+NAME: java.enable
 #+begin_src nix
 programs.java.enable = true;
 #+end_src
