@@ -44,10 +44,10 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<firefox.imports>>
     <<fonts.imports>>
     <<git.imports>>
-    <<gpg-imports>>
     <<gtk-imports>>
     <<java-imports>>
     # <<koreader-imports>>
+    <<gpg.imports>>
     <<neovim-imports>>
     <<python-imports>>
     <<qt-imports>>
@@ -2247,46 +2247,28 @@ home.packages = with pkgs; [
 #+end_src
 
 * Gpg
-** Imports
 
 Select the stuff to import:
 
-#+NAME: gpg-imports
+#+NAME: gpg.imports
 #+begin_src nix
 {
-  <<gpg-enable>>
+  <<gpg.config>>
+  <<gpg.enable>>
 }
-
-{
-  <<gpg-config>>
-}
-#+end_src
-
-** Enable
-
-#+NAME: gpg-enable
-#+begin_src nix
-programs.gpg = {
-  enable = true;
-};
-
-services.gpg-agent = {
-  enable = true;
-  enableSshSupport = true;
-};
 #+end_src
 
 ** Config
 
 More config chunks!
 
-#+NAME: gpg-config
+#+NAME: gpg.config
 #+begin_src nix
 services.gpg-agent = {
-  <<gpg-config-ssh-keys>>
-  <<gpg-config-ttl>>
-  <<gpg-config-pinentry>>
-  <<gpg-config-extra>>
+  <<gpg.config.ssh-keys>>
+  <<gpg.config.ttl>>
+  <<gpg.config.pinentry>>
+  <<gpg.config.extra>>
 };
 #+end_src
 
@@ -2300,7 +2282,7 @@ ssh key and move it to ~~/.ssh/~ with ~gpg --export-ssh-key <key>
 ~/.ssh/id_rsa.pub~. And finally make sure to add it to the server you
 using that key with, like github.
 
-#+NAME: gpg-config-ssh-keys
+#+NAME: gpg.config.ssh-keys
 #+begin_src nix
 sshKeys = [ "2DFF735B955F966CA0A33CE3EBECBBFF6EA666FF" ];
 #+end_src
@@ -2309,7 +2291,7 @@ sshKeys = [ "2DFF735B955F966CA0A33CE3EBECBBFF6EA666FF" ];
 
 Dont ask me for a password again for 8h.
 
-#+NAME: gpg-config-ttl
+#+NAME: gpg.config.ttl
 #+begin_src nix
 defaultCacheTtl    = 3600 * 8;
 maxCacheTtl        = 3600 * 8;
@@ -2321,7 +2303,7 @@ maxCacheTtlSsh     = 3600 * 8;
 
 I use emacs, so ...
 
-#+NAME: gpg-config-pinentry
+#+NAME: gpg.config.pinentry
 #+begin_src nix
 pinentryFlavor = "emacs";
 #+end_src
@@ -2330,12 +2312,21 @@ pinentryFlavor = "emacs";
 
 I said I use emacs.
 
-#+NAME: gpg-config-extra
+#+NAME: gpg.config.extra
 #+begin_src nix
 extraConfig =
   ''
   allow-emacs-pinentry
   '';
+#+end_src
+
+** Enable
+
+#+NAME: gpg.enable
+#+begin_src nix
+programs.gpg.enable = true;
+services.gpg-agent.enable = true;
+services.gpg-agent.enableSshSupport = true;
 #+end_src
 
 * Gtk
