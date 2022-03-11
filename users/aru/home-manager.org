@@ -293,6 +293,8 @@ programs.alacritty.enable = true;
 
 * Common Lisp
 
+Select the stuff to import:
+
 #+NAME: common-lisp.imports
 #+begin_src nix
 {
