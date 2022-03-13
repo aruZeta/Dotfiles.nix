@@ -56,7 +56,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<swappy-imports>>
     <<sway-imports>>
     <<swaylock-imports>>
-    <<user-imports>>
+    <<user.imports>>
     <<waybar-imports>>
     <<wofi-imports>>
     <<xdg-imports>>
@@ -3187,14 +3187,14 @@ xdg.configFile = {
 #+end_src
 
 * User
-** Imports
 
 Select the stuff to import:
 
-#+NAME: user-imports
+#+NAME: user.imports
 #+begin_src nix
 {
-  <<user-config>>
+  <<user.config>>
+  <<user.packages>>
 }
 #+end_src
 
@@ -3202,37 +3202,35 @@ Select the stuff to import:
 
 The actual user configuration and home directory.
 
-#+NAME: user-config
+#+NAME: user.config
 #+begin_src nix
 home.username = "aru";
 home.homeDirectory = "/home/${config.home.username}";
-
-home.packages = with pkgs; [
-  <<user-packages>>
-];
 #+end_src
 
 ** Packages
 
 Other packages not directly under any section:
 
-#+NAME: user-packages
+#+NAME: user.packages
 #+begin_src nix
-# Utilities
-sass
-unzip
+home.packages = with pkgs; [
+  # Utilities
+  sass
+  unzip
 
-# Pdf ocr
-ocrmypdf
-tesseract4
-ghostscript
+  # Pdf ocr
+  ocrmypdf
+  tesseract4
+  ghostscript
 
-# Ebook reader & editor
-sigil
-calibre
+  # Ebook reader & editor
+  sigil
+  calibre
 
-# QMK
-qmk
+  # QMK
+  qmk
+];
 #+end_src
 
 * Waybar
@@ -3262,7 +3260,7 @@ programs.waybar.enable = true;
 #+begin_src nix
 programs.waybar = {
   <<waybar-style>>
-  
+
   settings = [(
     let big = text: "<span font='17' rise='-3000'>" + text + "</span>";
     in {
@@ -3270,7 +3268,7 @@ programs.waybar = {
       <<waybar-config-modules-left>>
       <<waybar-config-modules-center>>
       <<waybar-config-modules-right>>
-      
+
       <<waybar-config-modules-setup-sway-workspaces>>
       <<waybar-config-modules-setup-sway-window>>
       <<waybar-config-modules-setup-clock>>
