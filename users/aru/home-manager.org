@@ -1115,7 +1115,8 @@ org-superstar
   (org-superstar-mode 1)
   (turn-on-auto-fill)
   (aru/org-faces)
-  (aru/org-mode-visual-fill))
+  (aru/org-mode-visual-fill)
+  (aru/org-plantuml-mode-hook))
 #+end_src
 
 #+begin_src emacs-lisp
@@ -1126,6 +1127,26 @@ org-superstar
 #+begin_src emacs-lisp
 (add-hook 'org-mode-hook #'aru/org-hook)
 (add-hook 'org-src-mode-hook #'aru/org-src-hook)
+#+end_src
+
+**** Plantuml
+***** Basic config
+
+#+begin_src emacs-lisp
+(defun aru/org-plantuml-mode-hook ()
+  (setq org-plantuml-executable-path (getenv "PLANTUML_BIN"))
+  (setq org-plantuml-exec-mode 'plantuml)
+  (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+  (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t))))
+
+(setq plantuml-executable-path (getenv "PLANTUML_BIN"))
+(setq plantuml-default-exec-mode 'executable)
+#+end_src
+
+***** Packages
+
+#+begin_src nix :noweb-ref emacs.extra-packages+
+plantuml-mode
 #+end_src
 
 *** Email
@@ -3230,6 +3251,9 @@ home.packages = with pkgs; [
 
   # QMK
   qmk
+
+  # Uml
+  plantuml
 ];
 #+end_src
 
