@@ -3241,6 +3241,7 @@ Select the stuff to import:
 {
   <<user.config>>
   <<user.packages>>
+  <<user.session-variables>>
 }
 #+end_src
 
@@ -3280,6 +3281,15 @@ home.packages = with pkgs; [
   # Uml
   plantuml
 ];
+#+end_src
+
+** Session Variables
+
+#+NAME: user.session-variables
+#+begin_src nix
+home.sessionVariables = {
+  PLANTUML_BIN = "${pkgs.plantuml}/bin/plantuml";
+};
 #+end_src
 
 * Waybar
