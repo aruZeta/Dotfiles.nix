@@ -434,6 +434,7 @@ Here is the emacs config, also seperated in chunks:
 <<emacs.config.org>>
 <<emacs.config.email>>
 <<emacs.config.development>>
+<<emacs.config.others>>
 #+end_src
 
 *** User data
@@ -1754,6 +1755,21 @@ Tag folding:
   (delete-process process)
   (message "Web server on port %d closed."
            (aru/web-server-remove-opened-port name)))
+#+end_src
+
+*** Others
+:PROPERTIES:
+:header-args: :noweb-ref emacs.config.others
+:END:
+
+#+begin_src emacs-lisp
+(setq backup-directory-alist
+      `(("." . ,(concat (getenv "XDG_CONFIG_HOME") "/emacs/backup/")))
+      backup-by-copying t
+      version-control t
+      delete-old-versions t
+      kept-new-versions 20
+      kept-old-versions 5)
 #+end_src
 
 ** Enable
