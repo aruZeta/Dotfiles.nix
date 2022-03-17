@@ -1117,7 +1117,8 @@ org-superstar
   (turn-on-auto-fill)
   (aru/org-faces)
   (aru/org-mode-visual-fill)
-  (aru/org-plantuml-mode-hook))
+  (aru/org-plantuml-mode-hook)
+  (aru/org-shell-mode-hook))
 #+end_src
 
 #+begin_src emacs-lisp
@@ -1148,6 +1149,14 @@ org-superstar
 
 #+begin_src nix :noweb-ref emacs.extra-packages+
 plantuml-mode
+#+end_src
+
+**** Shell
+***** Basic config
+
+#+begin_src emacs-lisp
+(defun aru/org-shell-mode-hook ()
+  (org-babel-do-load-languages 'org-babel-load-languages '((shell . t))))
 #+end_src
 
 *** Email
