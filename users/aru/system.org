@@ -128,7 +128,6 @@ hardware = {
   # So sway works
   opengl = {
     enable = true;
-    driSupport = true;
   };
 };
 #+end_src
