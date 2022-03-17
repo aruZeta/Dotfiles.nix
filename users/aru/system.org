@@ -44,6 +44,7 @@ configurations.
     <<services.imports>>
     <<users-and-groups.imports>>
     <<virtualisation.imports>>
+    <<xdg.imports>>
   ];
 }
 #+end_src
@@ -251,6 +252,13 @@ services = {
   udev.packages = with pkgs; [
     qmk-udev-rules
   ];
+
+  pipewire = {
+    enable = true;
+    alsa.enable = true;
+    media-session.enable = true;
+    wireplumber.enable = false;
+  };
 };
 #+end_src
 
@@ -313,5 +321,26 @@ users = {
 #+begin_src nix
 virtualisation = {
   virtualbox.host.enable = true;
+};
+#+end_src
+
+* XDG
+
+#+NAME: xdg.imports
+#+begin_src nix
+{
+  <<xdg.config>>
+}
+#+end_src
+
+** Config
+
+#+NAME: xdg.config
+#+begin_src nix
+xdg = {
+  portal = {
+    enable = true;
+    wlr.enable = true;
+  };
 };
 #+end_src
