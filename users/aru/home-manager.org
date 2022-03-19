@@ -3297,6 +3297,7 @@ home.packages = with pkgs; [
 #+begin_src nix
 home.sessionVariables = {
   PLANTUML_BIN = "${pkgs.plantuml}/bin/plantuml";
+  CALIBRE_USE_DARK_PALETTE = 1;
 };
 #+end_src
 
