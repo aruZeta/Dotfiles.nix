@@ -2873,6 +2873,7 @@ home.packages = with pkgs; [
 "2" = [
   { app_id = "emacs"; }
   { app_id = "Eclipse"; }
+  { app_id = "calibre-ebook-edit"; }
 ];
 
 "3" = [
@@ -2892,6 +2893,10 @@ home.packages = with pkgs; [
 "6" = [
   { app_id = "calibre-gui"; }
 ];
+
+"9" = [
+  { class = "discord"; }
+];
 #+end_src
 
 *** Workspace Output Assign
@@ -2901,7 +2906,10 @@ home.packages = with pkgs; [
 { workspace = "1"; output = "eDP-1"; }
 { workspace = "2"; output = "HDMI-A-1 eDP-1"; }
 { workspace = "3"; output = "HDMI-A-1 eDP-1"; }
+{ workspace = "4"; output = "eDP-1"; }
 { workspace = "5"; output = "eDP-1"; }
+{ workspace = "6"; output = "HDMI-A-1 eDP-1"; }
+{ workspace = "9"; output = "HDMI-A-1 eDP-1"; }
 #+end_src
 
 *** Bars
