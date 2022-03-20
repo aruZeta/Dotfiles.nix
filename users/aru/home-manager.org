@@ -3484,6 +3484,11 @@ cpu = {
   interval = 5;
   format = ''{usage}% ${big ""}'';
   format-alt = ''${big " "}'';
+  states = {
+    notIdle = 20;
+    doinHeavyStuff = 50;
+    compiling = 80;
+  };
   tooltip = false;
 };
 #+end_src
@@ -3496,6 +3501,11 @@ memory = {
   interval = 5;
   format = ''{used:0.1f}G/{total:0.1f}G ${big ""}'';
   format-alt = ''${big " "}'';
+  states = {
+    someTabsOpened = 20;
+    VMOpened = 50;
+    chromeTabsOpened = 80;
+  };
   tooltip = false;
 };
 #+end_src
@@ -3524,6 +3534,11 @@ disk = {
   format = ''${big " "}'';
   format-alt = ''{used}/{total} ${big ""}'';
   path = "/";
+  states = {
+    cleanDownloads = 20;
+    cleanNixStore = 50;
+    removeISOsAndVMsLOL = 80;
+  };
   tooltip = false;
 };
 #+end_src
@@ -3538,6 +3553,11 @@ battery = {
   format = ''{capacity}% ${big "{icon}"}'';
   format-alt = ''${big " {icon}"}'';
   format-icons = [ "" "" "" "" "" ];
+  states = {
+    runAndGetTheCharger = 20;
+    prepareToRun = 40;
+    tisGoinLow = 60;
+  };
   tooltip = false;
 };
 #+end_src
@@ -3666,20 +3686,38 @@ style = ./waybar-style.css;
 	color: #b16286;
 }
 
-#cpu,
 #backlight,
-#battery,
-#pulseaudio {
-	color: #689d6a;
-}
-
-#memory,
-#disk,
 #network,
-#temperature {
+#pulseaudio {
 	color: #458588;
 }
 
+#cpu,
+#memory,
+#disk,
+#battery,
+#temperature {
+	color: #689d6a;
+}
+
+#cpu.notIdle,
+#memory.someTabsOpened,
+#disk.cleanDownloads,
+#battery.tisGoinLow {
+  color: #d79921;
+}
+
+#cpu.doinHeavyStuff,
+#memory.VMOpened,
+#disk.cleanNixStore,
+#battery.prepareToRun {
+  color: #d65d0e;
+}
+
+#cpu.compiling,
+#memory.chromeTabsOpened,
+#disk.removeISOsAndVMsLOL,
+#battery.runAndGetTheCharger,
 #temperature.critical {
 	color: #cc241d;
 }
