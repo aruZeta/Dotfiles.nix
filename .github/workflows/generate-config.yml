@@ -26,9 +26,17 @@ jobs:
         with:
           version: 27.1
 
-      - name: Generate files
+      - name: Generate home-manager files
         run: |
           for i in $(ls changes/users/*/home-manager.org); do \
+          emacs --batch \
+                --eval "(require 'org)" \
+                --eval "(org-babel-tangle-file \"$PWD/$i\")" \
+          ; done
+
+      - name: Generate system files
+        run: |
+          for i in $(ls changes/users/*/system.org); do \
           emacs --batch \
                 --eval "(require 'org)" \
                 --eval "(org-babel-tangle-file \"$PWD/$i\")" \
