@@ -16,6 +16,9 @@ home-manager config.
 }
 #+end_src
 
+There are also some useful functions I may use through the config,
+those are specified at the very bottom of this file, [[*Useful functions][here]].
+
 * Home manager
 ** Config
 
@@ -2951,28 +2954,9 @@ inner = 5;
 #+begin_src nix
 let
   mod = config.wayland.windowManager.sway.config.modifier;
-  capitalize = string:
-    let splits = builtins.split "(^.)" string;
-    in
-      (lib.toUpper (builtins.elemAt (builtins.elemAt splits 1) 0))
-      + (builtins.elemAt splits 2);
-  genSet = values: fname: fvalue:
-    builtins.listToAttrs (builtins.map
-      (val: lib.nameValuePair
-        (fname (toString val))
-        (fvalue (toString val)))
-      values);
-  concatSets = list:
-    builtins.foldl' (result: val: result // val) {} list;
-  genSet' = values: fnames-fvalues:
-    concatSets (builtins.map
-      (val: builtins.listToAttrs
-        (builtins.map (item:
-          lib.nameValuePair
-            ((builtins.elemAt item 0) (toString val))
-            ((builtins.elemAt item 1) (toString val)))
-          fnames-fvalues))
-      values);
+  <<useful-functions.concatSets>>
+  <<useful-functions.genSet'>>
+  <<useful-functions.capitalize>>
 in {
   "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
   "${mod}+Shift+s" = "exec grim -g \"$(slurp)\" -t png - | swappy -f -";
@@ -4012,4 +3996,44 @@ STARSHIP_CACHE = "${config.xdg.cacheHome}/starship/history";
 #+begin_src nix
 G = "| grep";
 L = "| less";
+#+end_src
+
+* Useful functions
+
+#+NAME: useful-functions.capitalize
+#+begin_src nix
+capitalize = string:
+  let splits = builtins.split "(^.)" string;
+  in
+    (lib.toUpper (builtins.elemAt (builtins.elemAt splits 1) 0))
+    + (builtins.elemAt splits 2);
+#+end_src
+
+#+NAME: useful-functions.genSet
+#+begin_src nix
+genSet = values: fname: fvalue:
+  builtins.listToAttrs (builtins.map
+    (val: lib.nameValuePair
+      (fname (toString val))
+      (fvalue (toString val)))
+    values);
+#+end_src
+
+#+NAME: useful-functions.concatSets
+#+begin_src nix
+concatSets = list:
+  builtins.foldl' (result: val: result // val) {} list;
+#+end_src
+
+#+NAME: useful-functions.genSet'
+#+begin_src nix
+genSet' = values: fnames-fvalues:
+  concatSets (builtins.map
+    (val: builtins.listToAttrs
+      (builtins.map (item:
+        lib.nameValuePair
+          ((builtins.elemAt item 0) (toString val))
+          ((builtins.elemAt item 1) (toString val)))
+        fnames-fvalues))
+    values);
 #+end_src
