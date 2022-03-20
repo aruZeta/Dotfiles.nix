@@ -2906,11 +2906,11 @@ home.packages = with pkgs; [
 
 #+NAME: sway-config-workspace-output-assign
 #+begin_src nix
-{ workspace = "1"; output = "eDP-1"; }
+{ workspace = "1"; output = "eDP-1 HDMI-A-1"; }
 { workspace = "2"; output = "HDMI-A-1 eDP-1"; }
 { workspace = "3"; output = "HDMI-A-1 eDP-1"; }
-{ workspace = "4"; output = "eDP-1"; }
-{ workspace = "5"; output = "eDP-1"; }
+{ workspace = "4"; output = "eDP-1 HDMI-A-1"; }
+{ workspace = "5"; output = "eDP-1 HDMI-A-1"; }
 { workspace = "6"; output = "HDMI-A-1 eDP-1"; }
 { workspace = "9"; output = "HDMI-A-1 eDP-1"; }
 #+end_src
@@ -2959,6 +2959,7 @@ let
   <<useful-functions.capitalize>>
 in {
   "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
+  "${mod}+n" = "move workspace to output right";
   "${mod}+Shift+s" = "exec sway-screenshot";
   "${mod}+Shift+w" = "kill";
   "${mod}+Escape" = "exec ${pkgs.swaylock}/bin/swaylock -f";
