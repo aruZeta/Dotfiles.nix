@@ -2959,10 +2959,10 @@ let
   <<useful-functions.capitalize>>
 in {
   "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
-  "${mod}+Shift+s" = "exec grim -g \"$(slurp)\" -t png - | swappy -f -";
+  "${mod}+Shift+s" = "exec sway-screenshot";
   "${mod}+Shift+w" = "kill";
-  "${mod}+Escape" = "exec swaylock -f";
-  "${mod}+Shift+Escape" = "exec swaynag -t warning -m 'End session?' -b 'Yes, exit sway' 'swaymsg exit'";
+  "${mod}+Escape" = "exec ${pkgs.swaylock}/bin/swaylock -f";
+  "${mod}+Shift+Escape" = "exec sway-exit";
   "Mod1+Space" = "exec ${pkgs.wofi}/bin/wofi --show drun";
   "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +2%";
   "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 2%-";
@@ -3060,6 +3060,31 @@ libnotify
 wl-clipboard
 brightnessctl
 pavucontrol
+<<sway-scripts>>
+#+end_src
+
+** Scripts
+
+#+NAME: sway-scripts
+#+begin_src nix
+(
+  writeShellScriptBin "sway-screenshot"
+    ''
+    ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" \
+                          -t png \
+                          - | ${pkgs.swappy}/bin/swappy -f -
+    ''
+)
+
+(
+  writeShellScriptBin "sway-exit"
+    ''
+    ${pkgs.sway}/bin/swaynag -t warning \
+                             -m 'End session?' \
+                             -b 'Yes, exit sway' \
+                             'swaymsg exit'
+    ''
+)
 #+end_src
 
 * Swaylock
