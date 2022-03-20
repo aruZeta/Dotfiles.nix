@@ -2959,6 +2959,8 @@ let
   <<useful-functions.capitalize>>
 in {
   "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
+  "${mod}+t" = "floating toggle";
+  "${mod}+f" = "fullscreen toggle";
   "${mod}+n" = "move workspace to output right";
   "${mod}+Shift+s" = "exec sway-screenshot";
   "${mod}+Shift+w" = "kill";
