@@ -3482,8 +3482,8 @@ idle_inhibitor = {
 #+begin_src nix
 cpu = {
   interval = 5;
-  format = ''${big " "}'';
-  format-alt = ''{usage}% ${big ""}'';
+  format = ''{usage}% ${big ""}'';
+  format-alt = ''${big " "}'';
   tooltip = false;
 };
 #+end_src
@@ -3494,8 +3494,8 @@ cpu = {
 #+begin_src nix
 memory = {
   interval = 5;
-  format = ''${big " "}'';
-  format-alt = ''{used:0.1f}G/{total:0.1f}G ${big ""}'';
+  format = ''{used:0.1f}G/{total:0.1f}G ${big ""}'';
+  format-alt = ''${big " "}'';
   tooltip = false;
 };
 #+end_src
@@ -3506,8 +3506,8 @@ memory = {
 #+begin_src nix
 backlight = {
   interval = 5;
-  format = ''${big " {icon}"}'';
-  format-alt = ''{percent}% ${big "{icon}"}'';
+  format = ''{percent}% ${big "{icon}"}'';
+  format-alt = ''${big " {icon}"}'';
   format-icons = [ "" "" ];
   tooltip = false;
   on-scroll-up = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +1%";
@@ -3535,8 +3535,8 @@ disk = {
 battery = {
   interval = 60;
   bat = "BAT1";
-  format = ''${big " {icon}"}'';
-  format-alt = ''{capacity}% ${big "{icon}"}'';
+  format = ''{capacity}% ${big "{icon}"}'';
+  format-alt = ''${big " {icon}"}'';
   format-icons = [ "" "" "" "" "" ];
   tooltip = false;
 };
@@ -3561,10 +3561,10 @@ network = {
 #+NAME: waybar-config-modules-setup-pulse-audio
 #+begin_src nix
 pulseaudio = {
-  format = ''${big " {icon}"}'';
-  format-muted = ''${big "  {icon}"}'';
-  format-source-muted = ''${big "  {icon}"}'';
-  format-alt = ''{volume}% {format_source} ${big "{icon}"}'';
+  format = ''{volume}% ${big "{icon}"}'';
+  format-muted = ''{volume}% ${big " {icon}"}'';
+  format-source-muted = ''{volume}% ${big " {icon}"}'';
+  format-alt = ''${big " {icon}"}'';
   tooltip = false;
   on-click-right = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
   on-click-middle = "exec ${pkgs.pavucontrol}/bin/pavucontrol";
@@ -3590,9 +3590,9 @@ pulseaudio = {
 #+begin_src nix
 temperature = {
   interval = 5;
-  format = ''${big " {icon}"}'';
-  format-alt = ''{temperatureC}°C ${big "{icon}"}'';
-  format-icons = [ "" "" "" "" ];
+  format = ''{temperatureC}°C ${big "{icon}"}'';
+  format-alt = ''${big " {icon}"}'';
+  format-icons = [ "" "" "" "" "" ];
   tooltip = false;
   critical-threshold = 80;
 };
