@@ -3704,14 +3704,14 @@ style = ./waybar-style.css;
 #memory.someTabsOpened,
 #disk.cleanDownloads,
 #battery.tisGoinLow {
-  color: #d79921;
+	color: #d79921;
 }
 
 #cpu.doinHeavyStuff,
 #memory.VMOpened,
 #disk.cleanNixStore,
 #battery.prepareToRun {
-  color: #d65d0e;
+	color: #d65d0e;
 }
 
 #cpu.compiling,
