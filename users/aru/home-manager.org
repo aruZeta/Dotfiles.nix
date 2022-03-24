@@ -177,22 +177,22 @@ I like Iosevka.
 size = 12.0;
 
 normal = {
-  family = "Iosevka Term";
+  family = "Iosevka";
   style = "Medium";
 };
 
 bold = {
-  family = "Iosevka Term";
+  family = "Iosevka";
   style = "Bold";
 };
 
 italic = {
-  family = "Iosevka Term";
+  family = "Iosevka";
   style = "Italic";
 };
 
 bold_italic = {
-  family = "Iosevka Term";
+  family = "Iosevka";
   style = "Bold Italic";
 };
 #+end_src
@@ -502,9 +502,9 @@ By default column number will be enabled in all buffers but
 **** Fonts
 
 #+begin_src emacs-lisp
-(set-face-attribute 'default nil :font "Iosevka Term" :height 120)
-(set-face-attribute 'fixed-pitch nil :font "Iosevka Term" :height 120)
-(set-face-attribute 'variable-pitch nil :font "Iosevka Term" :height 120)
+(set-face-attribute 'default nil :font "Iosevka" :height 120)
+(set-face-attribute 'fixed-pitch nil :font "Iosevka" :height 120)
+(set-face-attribute 'variable-pitch nil :font "Iosevka" :height 120)
 #+end_src
 
 **** Theme
@@ -1098,7 +1098,7 @@ This is still in WIP, no idea how to add the atributte ~rowspan~ or
                   (org-level-5 . 1.1)
                   (org-level-6 . 1.05)
                   (org-level-7 . 1.05)))
-    (set-face-attribute (car face) nil :font "Iosevka Term" :height (cdr face))))
+    (set-face-attribute (car face) nil :font "Iosevka" :height (cdr face))))
 #+end_src
 
 **** Superstar
@@ -2420,7 +2420,7 @@ Iosevka everywhere.
 #+NAME: gtk.config.font
 #+begin_src nix
 font = {
-  name = "Iosevka Term";
+  name = "Iosevka";
   size = 12;
 };
 #+end_src
@@ -2777,7 +2777,7 @@ home.packages = with pkgs; [
 save_dir="$(xdg-user-dir PICTURES)/SS"
 save_filename_format=%a-%d-%b-%Y_%H-%M-%S.png
 show_panel=true
-text_font=Iosevka Term
+text_font=Iosevka
 #+end_src
 
 ** Packages
@@ -3636,7 +3636,7 @@ style = ./waybar-style.css;
 	border-radius: inherit;
 	margin: 0;
 	padding: 0;
-	font-family: 'Iosevka Term', monospace;
+	font-family: 'Iosevka', monospace;
 	font-weight: 700;
 	font-size: 13px;
 	background: none;
