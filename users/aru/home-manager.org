@@ -391,6 +391,9 @@ Not much config possible for eclipse, just the package to use:
 #+begin_src nix
 programs.eclipse = {
   package = pkgs.eclipses.eclipse-java;
+  plugins = with pkgs.eclipses.plugins; [
+    vrapper
+  ];
 };
 #+end_src
 
