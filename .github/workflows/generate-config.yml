@@ -61,6 +61,7 @@ jobs:
           echo "/.github/" >> .gitignore
           echo "/users/*/home-manager.org" >> .gitignore
           echo "/users/*/system.org" >> .gitignore
-          git add .
+          rm -rf $(git ls-files -i -c --exclude-from=.gitignore)
+          git add -A
           git commit -m "[workflow] Generated"
           git push
