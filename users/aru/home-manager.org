@@ -2697,7 +2697,7 @@ home.packages = with pkgs; [
 #+NAME: plantuml.session-variables
 #+begin_src nix
 home.sessionVariables = {
-  PLANTUML_BIN = "${pkgs.plantuml}/bin/plantuml";
+  PLANTUML_BIN = "${pkgs.plantuml-2021-16}/bin/plantuml";
 };
 #+end_src
 
