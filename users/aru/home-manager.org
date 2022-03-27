@@ -56,7 +56,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<python.imports>>
     <<qt.imports>>
     <<ssh.imports>>
-    <<starship-imports>>
+    <<starship.imports>>
     <<swappy-imports>>
     <<sway-imports>>
     <<swaylock-imports>>
@@ -2800,18 +2800,19 @@ programs.ssh.enable = true;
 #+end_src
 
 * Starship
-** Imports
 
-#+NAME: starship-imports
+Select the stuff to import:
+
+#+NAME: starship.imports
 #+begin_src nix
 {
-  <<starship-enable>>
+  <<starship.enable>>
 }
 #+end_src
 
 ** Enable
 
-#+NAME: starship-enable
+#+NAME: starship.enable
 #+begin_src nix
 programs.starship.enable = true;
 programs.starship.enableZshIntegration = true;
