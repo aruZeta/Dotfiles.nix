@@ -37,7 +37,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
   <<home.manager.setup>>
 
   imports = [
-    <<alacritty.imports>>
+    # <<alacritty.imports>>
     <<common-lisp.imports>>
     <<eclipse.imports>>
     <<emacs.imports>>
@@ -62,6 +62,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<swaylock-imports>>
     <<user.imports>>
     <<waybar-imports>>
+    <<wezterm.imports>>
     <<wofi-imports>>
     <<xdg-imports>>
     <<zsh-imports>>
@@ -3028,7 +3029,7 @@ let
   <<useful-functions.genSet'>>
   <<useful-functions.capitalize>>
 in {
-  "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
+  "${mod}+Return" = "exec ${config.wayland.windowManager.sway.config.terminal}";
   "${mod}+t" = "floating toggle";
   "${mod}+f" = "fullscreen toggle";
   "${mod}+n" = "move workspace to output right";
@@ -3067,8 +3068,13 @@ in {
 #+begin_src nix
 modifier = "Mod4";
 menu = "${pkgs.wofi}/bin/wofi";
-terminal = "${pkgs.alacritty}/bin/alacritty";
+terminal = "${pkgs.wezterm}/bin/wezterm";
 workspaceAutoBackAndForth = true;
+fonts = {
+  names = [ "Iosevka" ];
+  style = "Regular";
+  size = 12.0;
+};
 #+end_src
 
 *** Output
@@ -3793,6 +3799,175 @@ style = ./waybar-style.css;
 height = 30;
 layer = "top";
 margin = "5 5 0";
+#+end_src
+
+* Wezterm
+
+Select the stuff to import:
+
+#+NAME: wezterm.imports
+#+begin_src nix
+{
+  <<wezterm.packages>>
+  <<wezterm.symlinked-files>>
+}
+#+end_src
+
+** Config
+
+#+begin_src lua :tangle generated/wezterm-config.lua
+local wezterm = require 'wezterm';
+
+return {
+    <<wezterm.config.fonts>>
+    <<wezterm.config.tab-bar>>
+    <<wezterm.config.scroll>>
+
+    colors = {
+        <<wezterm.config.colors>>
+    },
+
+    keys = {
+        <<wezterm.config.keys>>
+    },
+}
+#+end_src
+
+*** Fonts
+
+#+NAME: wezterm.config.fonts
+#+begin_src lua
+font = wezterm.font_with_fallback({
+    "Iosevka",
+    "Noto"
+}),
+bold_brightens_ansi_colors = true,
+font_size = 12.0,
+#+end_src
+
+*** Colors
+
+#+NAME: wezterm.config.colors
+#+begin_src lua
+foreground = "#ebdbb2",
+background = "#1d2021",
+cursor_bg = "#ebdbb2",
+cursor_border = "#ebdbb2",
+cursor_fg = "#1d2021",
+selection_bg = "#ebdbb2",
+selection_fg = "#1d2021",
+
+ansi = {
+    "#282828",
+    "#cc241d",
+    "#98971a",
+    "#d79921",
+    "#458588",
+    "#b16286",
+    "#689d6a",
+    "#a89984"
+},
+
+brights = {
+    "#928374",
+    "#fb4934",
+    "#b8bb26",
+    "#fabd2f",
+    "#83a598",
+    "#d3869b",
+    "#8ec07c",
+    "#ebdbb2"
+},
+
+tab_bar = {
+    <<wezterm.config.tab-bar.colors>>
+},
+#+end_src
+
+*** Tab bar
+
+#+NAME: wezterm.config.tab-bar
+#+begin_src lua
+use_fancy_tab_bar = false,
+-- hide_tab_bar_if_only_one_tab = true,
+tab_bar_at_bottom = true,
+#+end_src
+
+**** Colors
+
+#+NAME: wezterm.config.tab-bar.colors
+#+begin_src lua
+background = "#1d2021",
+
+active_tab = {
+    bg_color = "#282828",
+    fg_color = "#689d6a",
+},
+
+inactive_tab = {
+    bg_color = "#3c3836",
+    fg_color = "#427b58",
+},
+
+inactive_tab_hover = {
+    bg_color = "#504945",
+    fg_color = "#427b58",
+},
+
+new_tab = {
+    bg_color = "#282828",
+    fg_color = "#458588",
+},
+
+new_tab_hover = {
+    bg_color = "#504945",
+    fg_color = "#458588",
+},
+#+end_src
+
+*** Scroll
+
+#+NAME: wezterm.config.scroll
+#+begin_src lua
+scrollback_lines = 10000,
+#+end_src
+
+*** Keys
+
+#+NAME: wezterm.config.keys
+#+begin_src lua
+{
+    key = "Enter",
+    mods = "SHIFT|CTRL",
+    action = wezterm.action { SpawnTab = "CurrentPaneDomain" }
+},
+
+{
+    key = "w",
+    mods = "SHIFT|CTRL",
+    action = wezterm.action { CloseCurrentTab = { confirm = false } },
+},
+#+end_src
+
+** Packages
+
+#+NAME: wezterm.packages
+#+begin_src nix
+home.packages = with pkgs; [
+  wezterm
+];
+#+end_src
+
+** Symlinked files
+
+Files to be symlinked in the user directory (actually under
+~XDG_CONFIG_HOME~).
+
+#+NAME: wezterm.symlinked-files
+#+begin_src nix
+xdg.configFile = {
+  "wezterm/wezterm.lua".source = ./wezterm-config.lua;
+};
 #+end_src
 
 * Wofi
