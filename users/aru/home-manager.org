@@ -3886,6 +3886,8 @@ Select the stuff to import:
 local wezterm = require 'wezterm';
 
 return {
+    enable_wayland = true,
+
     <<wezterm.config.fonts>>
     <<wezterm.config.tab-bar>>
     <<wezterm.config.scroll>>
