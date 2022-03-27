@@ -3375,6 +3375,10 @@ home.packages = with pkgs; [
 
   # QMK
   qmk
+
+  # Music
+  termusic
+  yt-dlp
 ];
 #+end_src
 
