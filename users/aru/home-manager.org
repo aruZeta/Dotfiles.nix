@@ -3910,8 +3910,10 @@ font = wezterm.font_with_fallback({
     "Iosevka",
     "Noto"
 }),
+
 bold_brightens_ansi_colors = true,
 font_size = 12.0,
+allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace",
 #+end_src
 
 *** Colors
