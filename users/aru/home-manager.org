@@ -53,7 +53,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     # <<koreader.imports>>
     <<neovim.imports>>
     <<plantuml.imports>>
-    <<python-imports>>
+    <<python.imports>>
     <<qt-imports>>
     <<ssh.imports>>
     <<starship-imports>>
@@ -2707,32 +2707,35 @@ home.sessionVariables = {
 #+end_src
 
 * Python
-** Imports
 
-#+NAME: python-imports
+Select the stuff to import:
+
+#+NAME: python.imports
 #+begin_src nix
 {
-  <<python-config>>
+  <<python.packages>>
 }
-#+end_src
-
-** Config
-
-#+NAME: python-config
-#+begin_src nix
-home.packages = with pkgs; [
-  <<python-packages>>
-];
 #+end_src
 
 ** Packages
 
-#+NAME: python-packages
+#+NAME: python.packages
 #+begin_src nix
-(let py-pkgs = python-packages: with python-packages; [
-       tkinter
-     ];
- in python39.withPackages py-pkgs)
+home.packages = with pkgs; [
+  (
+    let py-pkgs = python-packages: with python-packages; [
+          <<python.packages.my-python-pkgs>>
+        ];
+    in python39.withPackages py-pkgs
+  )
+];
+#+end_src
+
+*** My python pkgs
+
+#+NAME: python.packages.my-python-pkgs
+#+begin_src nix
+tkinter
 #+end_src
 
 * QT
