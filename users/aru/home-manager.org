@@ -1640,6 +1640,13 @@ yasnippet
 (add-hook 'after-init-hook #'yas-global-mode)
 #+end_src
 
+**** Yaml
+***** Packages
+
+#+begin_src nix :noweb-ref emacs.extra-packages+
+yaml-mode
+#+end_src
+
 **** Lispy
 ***** Basic config
 
