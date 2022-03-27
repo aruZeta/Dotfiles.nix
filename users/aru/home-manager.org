@@ -58,7 +58,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<ssh.imports>>
     <<starship.imports>>
     <<swappy.imports>>
-    <<sway-imports>>
+    <<sway.imports>>
     <<swaylock-imports>>
     <<termusic.imports>>
     <<user.imports>>
@@ -2859,78 +2859,69 @@ xdg.configFile."swappy/config".source = ./swappy-config;
 #+end_src
 
 * Sway
-** Imports
 
-#+NAME: sway-imports
+Select the stuff to import:
+
+#+NAME: sway.imports
 #+begin_src nix
 {
-  <<sway-enable>>
+  <<sway.config>>
+  <<sway.enable>>
+  <<sway.packages>>
+  <<sway.scripts>>
 }
-
-{
-  <<sway-config>>
-}
-#+end_src
-
-** Enable
-
-#+NAME: sway-enable
-#+begin_src nix
-wayland.windowManager.sway.enable = true;
-wayland.windowManager.sway.wrapperFeatures.gtk = true;
 #+end_src
 
 ** Config
 
-#+NAME: sway-config
+#+NAME: sway.config
 #+begin_src nix
 wayland.windowManager.sway = {
-  <<sway-config-session-commands>>
+  extraSessionCommands =
+    ''
+    <<sway.config.session-commands>>
+    '';
 
   config = {
     keybindings =
-      <<sway-config-keybindings>>
+      <<sway.config.keybindings>>
 
     gaps = {
-      <<sway-config-gaps>>
+      <<sway.config.gaps>>
     };
 
     input = {
-      <<sway-config-input>>
+      <<sway.config.input>>
     };
 
     output = {
-      <<sway-config-output>>
+      <<sway.config.output>>
     };
 
     startup = [
-      <<sway-config-startup>>
+      <<sway.config.startup>>
     ];
 
     bars = [{
-      <<sway-config-bars>>
+      <<sway.config.bars>>
     }];
 
     assigns = {
-      <<sway-config-assigns>>
+      <<sway.config.assigns>>
     };
 
     workspaceOutputAssign = [
-      <<sway-config-workspace-output-assign>>
+      <<sway.config.workspace-output-assign>>
     ];
 
-    <<sway-config-others>>
+    <<sway.config.others>>
   };
 };
-
-home.packages = with pkgs; [
-  <<sway-packages>>
-];
 #+end_src
 
 *** Assigns
 
-#+NAME: sway-config-assigns
+#+NAME: sway.config.assigns
 #+begin_src nix
 "1" = [
   { app_id = "firefox"; }
@@ -2967,7 +2958,7 @@ home.packages = with pkgs; [
 
 *** Workspace Output Assign
 
-#+NAME: sway-config-workspace-output-assign
+#+NAME: sway.config.workspace-output-assign
 #+begin_src nix
 # Browser, VBox, Reader, Music
 { workspace = "1"; output = "eDP-1 HDMI-A-1"; }
@@ -2985,21 +2976,21 @@ home.packages = with pkgs; [
 
 *** Bars
 
-#+NAME: sway-config-bars
+#+NAME: sway.config.bars
 #+begin_src nix
 command = "${pkgs.waybar}/bin/waybar";
 #+end_src
 
 *** Gaps
 
-#+NAME: sway-config-gaps
+#+NAME: sway.config.gaps
 #+begin_src nix
 inner = 5;
 #+end_src
 
 *** Input
 
-#+NAME: sway-config-input
+#+NAME: sway.config.input
 #+begin_src nix
 "18003:1:foostan_Corne" = {
   xkb_layout = "us";
@@ -3018,7 +3009,7 @@ inner = 5;
 
 *** Keybindings
 
-#+NAME: sway-config-keybindings
+#+NAME: sway.config.keybindings
 #+begin_src nix
 let
   mod = config.wayland.windowManager.sway.config.modifier;
@@ -3038,8 +3029,18 @@ in {
   "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +2%";
   "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 2%-";
 }
-# Movement
-// genSet' ["left" "down" "up" "right"] [
+//
+  <<sway.config.keybindings.movement-keys>>
+//
+  <<sway.config.keybindings.workspaces-keys>>
+;
+#+end_src
+
+**** Movement keys
+
+#+NAME: sway.config.keybindings.movement-keys
+#+begin_src nix
+genSet' ["left" "down" "up" "right"] [
   [ (val: "${mod}+${capitalize val}")
     (val: "focus ${val}")
   ]
@@ -3047,8 +3048,13 @@ in {
     (val: "move ${val}")
   ]
 ]
-# Workspaces
-// genSet' (lib.range 1 9) [
+#+end_src
+
+**** Workspaces keys
+
+#+NAME: sway.config.keybindings.workspaces-keys
+#+begin_src nix
+genSet' (lib.range 1 9) [
   [ (val: "${mod}+${val}")
     (val: "workspace number ${val}")
   ]
@@ -3056,12 +3062,11 @@ in {
     (val: "move container to workspace number ${val}")
   ]
 ]
-;
 #+end_src
 
 *** Others
 
-#+NAME: sway-config-others
+#+NAME: sway.config.others
 #+begin_src nix
 modifier = "Mod4";
 menu = "${pkgs.wofi}/bin/wofi";
@@ -3076,7 +3081,7 @@ fonts = {
 
 *** Output
 
-#+NAME: sway-config-output
+#+NAME: sway.config.output
 #+begin_src nix
 "eDP-1" = {
   resolution = "1920x1080@144.001Hz";
@@ -3096,27 +3101,25 @@ fonts = {
 
 *** Session Commands
 
-#+NAME: sway-config-session-commands
-#+begin_src nix
-extraSessionCommands =
-  ''
-  export SDL_VIDEODRIVER=wayland
-  export QT_QPA_PLATFORM=wayland
-  export QT_QPA_PLATFORMTHEME=qt5ct
-  export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-  export _JAVA_AWT_WM_NONREPARENTING=1
-  export MOZ_ENABLE_WAYLAND=1
-  export GDK_BACKEND=wayland
-  export GDK_DPI_SCALE=1
-  export WLR_DRM_DEVICES=/dev/dri/card1:/dev/dri/card0
-  '';
+#+NAME: sway.config.session-commands
+#+begin_src bash
+export SDL_VIDEODRIVER=wayland
+export QT_QPA_PLATFORM=wayland
+export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+export _JAVA_AWT_WM_NONREPARENTING=1
+export MOZ_ENABLE_WAYLAND=1
+export GDK_BACKEND=wayland
+export GDK_DPI_SCALE=1
+export WLR_DRM_DEVICES=/dev/dri/card1:/dev/dri/card0
 #+end_src
 
 *** Startup
 
-#+NAME: sway-config-startup
+#+NAME: sway.config.startup
 #+begin_src nix
-{ command =
+{
+  command =
     ''
     exec swayidle -w \
          timeout 300 'swaylock -f' \
@@ -3126,41 +3129,65 @@ extraSessionCommands =
 }
 #+end_src
 
-** Packages
+** Enable
 
-#+NAME: sway-packages
+#+NAME: sway.enable
 #+begin_src nix
-swayidle
-mako
-libnotify
-wl-clipboard
-brightnessctl
-pavucontrol
-<<sway-scripts>>
+wayland.windowManager.sway.enable = true;
+wayland.windowManager.sway.wrapperFeatures.gtk = true;
 #+end_src
 
-** Scripts
+** Packages
 
-#+NAME: sway-scripts
+#+NAME: sway.packages
+#+begin_src nix
+home.packages = with pkgs; [
+  swayidle
+  mako
+  libnotify
+  wl-clipboard
+  brightnessctl
+  pavucontrol
+  <<sway.packages.scripts>>
+];
+#+end_src
+
+*** Scripts
+
+#+NAME: sway.packages.scripts
 #+begin_src nix
 (
-  writeShellScriptBin "sway-screenshot"
-    ''
-    ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" \
-                          -t png \
-                          - | ${pkgs.swappy}/bin/swappy -f -
-    ''
+  <<sway.packages.scripts.sway-screenshot>>
 )
 
 (
-  writeShellScriptBin "sway-exit"
-    ''
-    ${pkgs.sway}/bin/swaynag -t warning \
-                             -m 'End session?' \
-                             -b 'Yes, exit sway' \
-                             'swaymsg exit'
-    ''
+  <<sway.packages.scripts.sway-exit>>
 )
+#+end_src
+
+**** Sway Screenshot
+
+#+NAME: sway.packages.scripts.sway-screenshot
+#+begin_src nix
+writeShellScriptBin "sway-screenshot"
+  ''
+  ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" \
+                        -t png \
+                        - | ${pkgs.swappy}/bin/swappy -f -
+  ''
+#+end_src
+
+**** Sway Exit
+
+#+NAME: sway.packages.scripts.sway-exit
+#+begin_src nix
+writeShellScriptBin "sway-exit"
+  ''
+  ${pkgs.sway}/bin/swaynag -t warning \
+                           -m 'End session?' \
+                           -b 'Yes, exit sway' \
+                           'swaymsg exit'
+  ''
 #+end_src
 
 * Swaylock
