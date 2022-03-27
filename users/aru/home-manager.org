@@ -2761,6 +2761,8 @@ home.packages = with pkgs; [
 
 * SSH
 
+Select the stuff to import:
+
 #+NAME: ssh.imports
 #+begin_src nix
 {
