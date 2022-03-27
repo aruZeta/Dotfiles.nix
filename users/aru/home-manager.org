@@ -60,6 +60,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<swappy-imports>>
     <<sway-imports>>
     <<swaylock-imports>>
+    <<termusic.imports>>
     <<user.imports>>
     <<waybar-imports>>
     <<wezterm.imports>>
@@ -3335,6 +3336,62 @@ xdg.configFile = {
 };
 #+end_src
 
+* Termusic
+
+Select the stuff to import:
+
+#+NAME: termusic.imports
+#+begin_src nix
+{
+  <<termusic.overlays>>
+  <<termusic.packages>>
+}
+#+end_src
+
+** Overlays
+
+#+NAME: termusic.overlays
+#+begin_src nix
+nixpkgs.overlays = [
+  (
+    <<termusic.overlays.termusic-0-6-11>>
+  )
+];
+#+end_src
+
+*** Termusic 0-6-11
+
+#+NAME: termusic.overlays.termusic-0-6-11
+#+begin_src nix
+self: super:
+{
+  termusic-0-6-11 = super.termusic.overrideAttrs(oldAttr: rec {
+    pname = oldAttr.pname;
+    version = "0.6.11";
+
+    src = super.fetchCrate {
+      inherit version pname;
+      sha256 = "sha256-MdFLPlfN+GF1yUkBFH9y22okgUyxnC+/HfcvD7HXDzc=";
+    };
+
+    cargoDeps = oldAttr.cargoDeps.overrideAttrs (super.lib.const {
+      inherit src;
+      name = "${pname}-vendor.tar.gz";
+      outputHash = "sha256-L6tbpzUu5hN5Vy5fflT81K6bt+sI/6ru7IAOI63gDvM=";
+    });
+  });
+}
+#+end_src
+
+** Packages
+
+#+NAME: termusic.packages
+#+begin_src nix
+home.packages = with pkgs; [
+  termusic-0-6-11
+];
+#+end_src
+
 * User
 
 Select the stuff to import:
@@ -3377,7 +3434,6 @@ home.packages = with pkgs; [
   qmk
 
   # Music
-  termusic
   yt-dlp
 ];
 #+end_src
