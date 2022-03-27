@@ -54,7 +54,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<neovim.imports>>
     <<plantuml.imports>>
     <<python.imports>>
-    <<qt-imports>>
+    <<qt.imports>>
     <<ssh.imports>>
     <<starship-imports>>
     <<swappy-imports>>
@@ -2739,30 +2739,24 @@ tkinter
 #+end_src
 
 * QT
-** Imports
 
-#+NAME: qt-imports
+Select the stuff to import:
+
+#+NAME: qt.imports
 #+begin_src nix
 {
-  <<qt-config>>
+  <<qt.packages>>
 }
-#+end_src
-
-** Config
-
-#+NAME: qt-config
-#+begin_src nix
-home.packages = with pkgs; [
-  <<qt-packages>>
-];
 #+end_src
 
 ** Packages
 
-#+NAME: qt-packages
+#+NAME: qt.packages
 #+begin_src nix
-libsForQt5.qtstyleplugins
-qt5ct
+home.packages = with pkgs; [
+  libsForQt5.qtstyleplugins
+  qt5ct
+];
 #+end_src
 
 * SSH
