@@ -57,7 +57,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<qt.imports>>
     <<ssh.imports>>
     <<starship.imports>>
-    <<swappy-imports>>
+    <<swappy.imports>>
     <<sway-imports>>
     <<swaylock-imports>>
     <<termusic.imports>>
@@ -2819,25 +2819,18 @@ programs.starship.enableZshIntegration = true;
 #+end_src
 
 * Swappy
-** Imports
 
-#+NAME: swappy-imports
+Select the stuff to import:
+
+#+NAME: swappy.imports
 #+begin_src nix
 {
-  <<swappy-config>>
+  <<swappy.packages>>
+  <<swappy.symlinked-files>>
 }
 #+end_src
 
 ** Config
-
-#+NAME: swappy-config
-#+begin_src nix
-home.packages = with pkgs; [
-  <<swappy-packages>>
-];
-
-<<swappy-symlinked-files>>
-#+end_src
 
 #+begin_src conf :tangle generated/swappy-config
 [Default]
@@ -2849,20 +2842,20 @@ text_font=Iosevka
 
 ** Packages
 
-#+NAME: swappy-packages
+#+NAME: swappy.packages
 #+begin_src nix
-slurp
-grim
-swappy
+home.packages = with pkgs; [
+  slurp
+  grim
+  swappy
+];
 #+end_src
 
 ** Symlinked files
 
-#+NAME: swappy-symlinked-files
+#+NAME: swappy.symlinked-files
 #+begin_src nix
-xdg.configFile = {
-  "swappy/config".source = ./swappy-config;
-};
+xdg.configFile."swappy/config".source = ./swappy-config;
 #+end_src
 
 * Sway
