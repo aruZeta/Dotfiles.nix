@@ -3907,8 +3907,8 @@ return {
 #+NAME: wezterm.config.fonts
 #+begin_src lua
 font = wezterm.font_with_fallback({
-    "Iosevka",
-    "Noto"
+    { family = "Iosevka", weight = "Medium" },
+    "Noto Sans Symbols2",
 }),
 
 bold_brightens_ansi_colors = true,
