@@ -63,5 +63,6 @@ jobs:
           echo "/users/*/system.org" >> .gitignore
           rm -rf $(git ls-files -i -c --exclude-from=.gitignore)
           git add -A
-          git commit -m "[workflow] Generated"
-          git push
+          git commit -m "[workflow] Generated" \
+                  && git push \
+                  || echo "Nothing to push"
