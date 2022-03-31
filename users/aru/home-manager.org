@@ -1824,7 +1824,7 @@ nixpkgs.overlays = [
 #+begin_src nix
 let
   repo = "https://github.com/nix-community/emacs-overlay";
-  commit = "db771cf7f62799cf46abb9847c28f69630ad74fe";
+  commit = "7ad268f13d72a2e5c357cb83c6def71438217308";
 in import (builtins.fetchTarball {
   url = "${repo}/archive/${commit}.tar.gz";
 })
