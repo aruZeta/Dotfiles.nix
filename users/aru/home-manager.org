@@ -52,6 +52,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<java.imports>>
     # <<koreader.imports>>
     <<neovim.imports>>
+    <<obs-studio.imports>>
     <<plantuml.imports>>
     <<python.imports>>
     <<qt.imports>>
@@ -2643,6 +2644,36 @@ in import (builtins.fetchTarball {
 #+NAME: neovim.symlinked-files
 #+begin_src nix
 xdg.configFile."nvim/init.vim".source = ./neovim-config.vim;
+#+end_src
+
+* OBS Studio
+
+Select the stuff to import:
+
+#+NAME: obs-studio.imports
+#+begin_src nix
+{
+  <<obs-studio.config>>
+  <<obs-studio.enable>>
+}
+#+end_src
+
+** Config
+
+#+NAME: obs-studio.config
+#+begin_src nix
+programs.obs-studio = {
+  plugins = with pkgs.obs-studio-plugins; [
+    wlrobs
+  ];
+};
+#+end_src
+
+** Enable
+
+#+NAME: obs-studio.enable
+#+begin_src nix
+programs.obs-studio.enable = true;
 #+end_src
 
 * Plantuml
