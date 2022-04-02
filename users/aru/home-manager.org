@@ -63,7 +63,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<swaylock.imports>>
     <<termusic.imports>>
     <<user.imports>>
-    <<waybar-imports>>
+    <<waybar.imports>>
     <<wezterm.imports>>
     <<wofi-imports>>
     <<xdg-imports>>
@@ -3503,53 +3503,45 @@ home.sessionVariables = {
 #+end_src
 
 * Waybar
-** Imports
 
-#+NAME: waybar-imports
+Select the stuff to import:
+
+#+NAME: waybar.imports
 #+begin_src nix
 {
-  <<waybar-enable>>
+  <<waybar.config>>
+  <<waybar.enable>>
 }
-
-{
-  <<waybar-config>>
-}
-#+end_src
-
-** Enable
-
-#+NAME: waybar-enable
-#+begin_src nix
-programs.waybar.enable = true;
 #+end_src
 
 ** Config
 
-#+NAME: waybar-config
+#+NAME: waybar.config
 #+begin_src nix
 programs.waybar = {
-  <<waybar-style>>
+  style = ./waybar-style.css;
 
   settings = [(
     let big = text: "<span font='17' rise='-3000'>" + text + "</span>";
     in {
-      <<waybar-config-others>>
-      <<waybar-config-modules-left>>
-      <<waybar-config-modules-center>>
-      <<waybar-config-modules-right>>
+      <<waybar.config.others>>
 
-      <<waybar-config-modules-setup-sway-workspaces>>
-      <<waybar-config-modules-setup-sway-window>>
-      <<waybar-config-modules-setup-clock>>
-      <<waybar-config-modules-setup-idle-inhibitor>>
-      <<waybar-config-modules-setup-cpu>>
-      <<waybar-config-modules-setup-memory>>
-      <<waybar-config-modules-setup-backlight>>
-      <<waybar-config-modules-setup-disk>>
-      <<waybar-config-modules-setup-battery>>
-      <<waybar-config-modules-setup-network>>
-      <<waybar-config-modules-setup-pulse-audio>>
-      <<waybar-config-modules-setup-temperature>>
+      <<waybar.config.modules.left>>
+      <<waybar.config.modules.center>>
+      <<waybar.config.modules.right>>
+
+      <<waybar.config.modules.setup.sway.workspaces>>
+      <<waybar.config.modules.setup.sway.window>>
+      <<waybar.config.modules.setup.clock>>
+      <<waybar.config.modules.setup.idle-inhibitor>>
+      <<waybar.config.modules.setup.cpu>>
+      <<waybar.config.modules.setup.memory>>
+      <<waybar.config.modules.setup.backlight>>
+      <<waybar.config.modules.setup.disk>>
+      <<waybar.config.modules.setup.battery>>
+      <<waybar.config.modules.setup.network>>
+      <<waybar.config.modules.setup.pulse-audio>>
+      <<waybar.config.modules.setup.temperature>>
     }
   )];
 };
@@ -3558,7 +3550,7 @@ programs.waybar = {
 *** Modules
 **** Left
 
-#+NAME: waybar-config-modules-left
+#+NAME: waybar.config.modules.left
 #+begin_src nix
 modules-left = [
   "sway/workspaces"
@@ -3568,7 +3560,7 @@ modules-left = [
 
 **** Center
 
-#+NAME: waybar-config-modules-center
+#+NAME: waybar.config.modules.center
 #+begin_src nix
 modules-center = [
   "clock"
@@ -3578,7 +3570,7 @@ modules-center = [
 
 **** Right
 
-#+NAME: waybar-config-modules-right
+#+NAME: waybar.config.modules.right
 #+begin_src nix
 modules-right = [
   "cpu"
@@ -3592,11 +3584,11 @@ modules-right = [
 ];
 #+end_src
 
-**** Config
+**** Setup
 ***** Sway
 ****** Workspaces
 
-#+NAME: waybar-config-modules-setup-sway-workspaces
+#+NAME: waybar.config.modules.setup.sway.workspaces
 #+begin_src nix
 "sway/workspaces" = {
   format = ''${big "{icon}"}'';
@@ -3620,7 +3612,7 @@ modules-right = [
 
 ****** Window
 
-#+NAME: waybar-config-modules-setup-sway-window
+#+NAME: waybar.config.modules.setup.sway.window
 #+begin_src nix
 "sway/window" = {
   format = "{}";
@@ -3640,7 +3632,7 @@ modules-right = [
 
 ***** Clock
 
-#+NAME: waybar-config-modules-setup-clock
+#+NAME: waybar.config.modules.setup.clock
 #+begin_src nix
 clock = {
   interval = 1;
@@ -3652,7 +3644,7 @@ clock = {
 
 ***** Idle inhibitor
 
-#+NAME: waybar-config-modules-setup-idle-inhibitor
+#+NAME: waybar.config.modules.setup.idle-inhibitor
 #+begin_src nix
 idle_inhibitor = {
   format = ''${big "{icon}"}'';
@@ -3669,7 +3661,7 @@ idle_inhibitor = {
 
 ***** Cpu
 
-#+NAME: waybar-config-modules-setup-cpu
+#+NAME: waybar.config.modules.setup.cpu
 #+begin_src nix
 cpu = {
   interval = 5;
@@ -3686,7 +3678,7 @@ cpu = {
 
 ***** Memory
 
-#+NAME: waybar-config-modules-setup-memory
+#+NAME: waybar.config.modules.setup.memory
 #+begin_src nix
 memory = {
   interval = 5;
@@ -3703,7 +3695,7 @@ memory = {
 
 ***** Backlight
 
-#+NAME: waybar-config-modules-setup-backlight
+#+NAME: waybar.config.modules.setup.backlight
 #+begin_src nix
 backlight = {
   interval = 5;
@@ -3718,7 +3710,7 @@ backlight = {
 
 ***** Disk
 
-#+NAME: waybar-config-modules-setup-disk
+#+NAME: waybar.config.modules.setup.disk
 #+begin_src nix
 disk = {
   interval = 30;
@@ -3736,7 +3728,7 @@ disk = {
 
 ***** Battery
 
-#+NAME: waybar-config-modules-setup-battery
+#+NAME: waybar.config.modules.setup.battery
 #+begin_src nix
 battery = {
   interval = 60;
@@ -3755,7 +3747,7 @@ battery = {
 
 ***** Network
 
-#+NAME: waybar-config-modules-setup-network
+#+NAME: waybar.config.modules.setup.network
 #+begin_src nix
 network = {
   interval = 5;
@@ -3769,7 +3761,7 @@ network = {
 
 ***** Pulse audio
 
-#+NAME: waybar-config-modules-setup-pulse-audio
+#+NAME: waybar.config.modules.setup.pulse-audio
 #+begin_src nix
 pulseaudio = {
   format = ''{volume}% ${big "{icon}"}'';
@@ -3797,7 +3789,7 @@ pulseaudio = {
 
 ***** Temperature
 
-#+NAME: waybar-config-modules-setup-temperature
+#+NAME: waybar.config.modules.setup.temperature
 #+begin_src nix
 temperature = {
   interval = 5;
@@ -3810,11 +3802,6 @@ temperature = {
 #+end_src
 
 *** Style
-
-#+NAME: waybar-style
-#+begin_src nix
-style = ./waybar-style.css;
-#+end_src
 
 #+begin_src css :tangle generated/waybar-style.css
 *{
@@ -3916,11 +3903,18 @@ style = ./waybar-style.css;
 
 *** Others
 
-#+NAME: waybar-config-others
+#+NAME: waybar.config.others
 #+begin_src nix
 height = 30;
 layer = "top";
 margin = "5 5 0";
+#+end_src
+
+** Enable
+
+#+NAME: waybar.enable
+#+begin_src nix
+programs.waybar.enable = true;
 #+end_src
 
 * Wezterm
