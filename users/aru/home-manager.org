@@ -67,7 +67,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<wezterm.imports>>
     <<wofi.imports>>
     <<xdg.imports>>
-    <<zsh-imports>>
+    <<zsh.imports>>
   ];
 }
 #+end_src
@@ -4286,33 +4286,20 @@ home.packages = with pkgs; [
 #+end_src
 
 * Zsh
-** Imports
 
-#+NAME: zsh-imports
+Select the stuff to import:
+
+#+NAME: zsh.imports
 #+begin_src nix
 {
-  <<zsh-enable>>
+  <<zsh.config>>
+  <<zsh.enable>>
 }
-
-{
-  <<zsh-config>>
-}
-#+end_src
-
-** Enable
-
-#+NAME: zsh-enable
-#+begin_src nix
-programs.zsh.enable = true;
-programs.zsh.enableAutosuggestions = true;
-programs.zsh.enableCompletion = true;
-programs.zsh.enableSyntaxHighlighting = true;
-programs.zsh.autocd = true;
 #+end_src
 
 ** Config
 
-#+NAME: zsh-config
+#+NAME: zsh.config
 #+begin_src nix
 programs.zsh = {
   # Gets rid of the $HOME part of $XDG_CONFIG_HOME
@@ -4327,31 +4314,31 @@ programs.zsh = {
     in "${configHome}/zsh";
 
   history = {
-    <<zsh-config-history>>
+    <<zsh.config.history>>
   };
 
   shellAliases = {
-    <<zsh-config-aliases>>
+    <<zsh.config.aliases>>
   };
 
   shellGlobalAliases = {
-    <<zsh-config-shell-global-aliases>>
+    <<zsh.config.shell-global-aliases>>
   };
 
   sessionVariables = {
-    <<zsh-config-session-variables>>
+    <<zsh.config.session-variables>>
   };
 
   initExtra =
     ''
-    <<zsh-config-init-extra>>
+    <<zsh.config.init-extra>>
     '';
 };
 #+end_src
 
 *** History
 
-#+NAME: zsh-config-history
+#+NAME: zsh.config.history
 #+begin_src nix
 extended = true;
 ignoreSpace = true;
@@ -4366,7 +4353,7 @@ path = "${config.xdg.dataHome}/zsh/history";
 
 *** Init extra
 
-#+NAME: zsh-config-init-extra
+#+NAME: zsh.config.init-extra
 #+begin_src shell
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
@@ -4395,24 +4382,35 @@ fi
 
 *** Session variables
 
-#+NAME: zsh-config-session-variables
+#+NAME: zsh.config.session-variables
 #+begin_src nix
 STARSHIP_CACHE = "${config.xdg.cacheHome}/starship/history";
 #+end_src
 
 *** Shell aliases
 
-#+NAME: zsh-config-aliases
+#+NAME: zsh.config.aliases
 #+begin_src nix
 "l" = "ls --color=always --group-directories-first -lhA";
 #+end_src
 
 *** Shell global aliases
 
-#+NAME: zsh-config-shell-global-aliases
+#+NAME: zsh.config.shell-global-aliases
 #+begin_src nix
 G = "| grep";
 L = "| less";
+#+end_src
+
+** Enable
+
+#+NAME: zsh.enable
+#+begin_src nix
+programs.zsh.enable = true;
+programs.zsh.enableAutosuggestions = true;
+programs.zsh.enableCompletion = true;
+programs.zsh.enableSyntaxHighlighting = true;
+programs.zsh.autocd = true;
 #+end_src
 
 * Useful functions
