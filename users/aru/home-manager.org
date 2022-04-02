@@ -65,7 +65,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<user.imports>>
     <<waybar.imports>>
     <<wezterm.imports>>
-    <<wofi-imports>>
+    <<wofi.imports>>
     <<xdg-imports>>
     <<zsh-imports>>
   ];
@@ -4093,36 +4093,29 @@ xdg.configFile = {
 #+end_src
 
 * Wofi
-** Imports
 
-#+NAME: wofi-imports
+Select the stuff to import:
+
+#+NAME: wofi.imports
 #+begin_src nix
 {
-  <<wofi-config>>
+  <<wofi.packages>>
+  <<wofi.symlinked-files>>
 }
 #+end_src
 
 ** Config
 
-#+NAME: wofi-config
-#+begin_src nix
-<<wofi-symlinked-files>>
-
-home.packages = with pkgs; [
-  <<wofi-packages>>
-];
-#+end_src
-
 #+begin_src conf :tangle generated/wofi-config
-<<wofi-config-size>>
-<<wofi-config-images>>
-<<wofi-config-search>>
-<<wofi-config-others>>
+<<wofi.config.size>>
+<<wofi.config.images>>
+<<wofi.config.search>>
+<<wofi.config.others>>
 #+end_src
 
 *** Size
 
-#+NAME: wofi-config-size
+#+NAME: wofi.config.size
 #+begin_src conf
 width=40%
 lines=8
@@ -4130,7 +4123,7 @@ lines=8
 
 *** Images
 
-#+NAME: wofi-config-images
+#+NAME: wofi.config.images
 #+begin_src conf
 allow_images=true
 image_size=24
@@ -4138,7 +4131,7 @@ image_size=24
 
 *** Search
 
-#+NAME: wofi-config-search
+#+NAME: wofi.config.search
 #+begin_src conf
 prompt=
 insensitive=true
@@ -4146,7 +4139,7 @@ insensitive=true
 
 *** Others
 
-#+NAME: wofi-config-others
+#+NAME: wofi.config.others
 #+begin_src conf
 term=alacritty
 #+end_src
@@ -4193,14 +4186,16 @@ window {
 
 ** Packages
 
-#+NAME: wofi-packages
+#+NAME: wofi.packages
 #+begin_src nix
-wofi
+home.packages = with pkgs; [
+  wofi
+];
 #+end_src
 
 ** Symlinked files
 
-#+NAME: wofi-symlinked-files
+#+NAME: wofi.symlinked-files
 #+begin_src nix
 xdg.configFile = {
   "wofi/config".source = ./wofi-config;
