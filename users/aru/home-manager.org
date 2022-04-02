@@ -66,7 +66,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<waybar.imports>>
     <<wezterm.imports>>
     <<wofi.imports>>
-    <<xdg-imports>>
+    <<xdg.imports>>
     <<zsh-imports>>
   ];
 }
@@ -4204,52 +4204,39 @@ xdg.configFile = {
 #+end_src
 
 * Xdg
-** Imports
 
-#+NAME: xdg-imports
+Select the stuff to import:
+
+#+NAME: xdg.imports
 #+begin_src nix
 {
-  <<xdg-enable>>
+  <<xdg.config>>
+  <<xdg.enable>>
+  <<xdg.packages>>
 }
-
-{
-  <<xdg-config>>
-}
-#+end_src
-
-** Enable
-
-#+NAME: xdg-enable
-#+begin_src nix
-xdg.enable = true;
-xdg.mimeApps.enable = true;
-xdg.userDirs.enable = true;
 #+end_src
 
 ** Config
 
-#+NAME: xdg-config
+#+NAME: xdg.config
 #+begin_src nix
 xdg = {
-  <<xdg-config-user-dot-directories>>
+  <<xdg.config.user-dot-directories>>
 
   userDirs = {
-    <<xdg-config-user-directories>>
+    <<xdg.config.user-directories>>
 
     extraConfig = {
-      <<xdg-config-extra-directories>>
+      <<xdg.config.extra-directories>>
     };
   };
-};
 
-home.packages = with pkgs; [
-  <<xdg-packages>>
-];
+};
 #+end_src
 
 *** User directories
 
-#+NAME: xdg-config-user-directories
+#+NAME: xdg.config.user-directories
 #+begin_src nix
 desktop = "$HOME/Tmp/Desktop";
 documents = "$HOME/Archive";
@@ -4262,7 +4249,7 @@ videos = "${config.xdg.userDirs.documents}/Video";
 
 *** User "dot" directories
 
-#+NAME: xdg-config-user-dot-directories
+#+NAME: xdg.config.user-dot-directories
 #+begin_src nix
 configHome = ~/.dotfiles/config;
 cacheHome = ~/.dotfiles/cache;
@@ -4272,19 +4259,30 @@ stateHome = ~/.dotfiles/local/state;
 
 *** Extra directories
 
-#+NAME: xdg-config-extra-directories
+#+NAME: xdg.config.extra-directories
 #+begin_src nix
 XDG_DOTFILES_DIR = "$HOME/Dotfiles.nix";
 XDG_MAIL_DIR = "${config.xdg.userDirs.documents}/Mail";
 XDG_KEYS_DIR = "${config.xdg.userDirs.documents}/Keys";
 #+end_src
 
+** Enable
+
+#+NAME: xdg.enable
+#+begin_src nix
+xdg.enable = true;
+xdg.mimeApps.enable = true;
+xdg.userDirs.enable = true;
+#+end_src
+
 ** Packages
 
-#+NAME: xdg-packages
+#+NAME: xdg.packages
 #+begin_src nix
-xdg-user-dirs
-xdg-utils
+home.packages = with pkgs; [
+  xdg-user-dirs
+  xdg-utils
+];
 #+end_src
 
 * Zsh
