@@ -348,12 +348,10 @@ home.packages = with pkgs; [
 
 ** Session Variables
 
-*TODO: Better xdg config to set this in a better way*.
-
 #+NAME: common-lisp.session-variables
 #+begin_src nix
 home.sessionVariables = {
-  NIX_QUICKLISP_DIR = "${config.home.homeDirectory}/.dotfiles/local/quicklisp";
+  NIX_QUICKLISP_DIR = "${config.xdg.dataHome}/quicklisp";
 };
 #+end_src
 
@@ -1195,11 +1193,6 @@ config:
       mu4e-drafts-folder "/Drafts"
       mu4e-sent-folder "/Sent"
       mu4e-trash-folder "/Trash"
-      mu4e-attachment-dir
-      (concat
-       (shell-command-to-string
-        "echo $(xdg-user-dir MAIL) | awk '{printf(\"%s\", $0);}'")
-       "/aru/Attachments")
       mu4e-compose-signature "Alberto (a.k.a. aru)"
       mu4e-compose-signature-auto-include t
       mu4e-use-fancy-chars t
@@ -1210,6 +1203,10 @@ config:
       mail-user-agent 'mu4e-user-agent
 
       message-send-mail-function 'smtpmail-send-it)
+#+end_src
+
+#+begin_src emacs-lisp :noweb-ref emacs.config.nix-expanded+
+(setq mu4e-attachment-dir "${config.xdg.userDirs.extraConfig.XDG_MAIL_DIR}")
 #+end_src
 
 **** SMTP config
@@ -1230,10 +1227,11 @@ Setting up the auth store:
 
 (setq auth-source-debug t
       auth-source-do-cache nil
-      auth-sources '(password-store)
-      auth-source-pass-filename
-      (shell-command-to-string
-       "echo $(xdg-user-dir KEYS) | awk '{printf(\"%s\", $0);}'"))
+      auth-sources '(password-store))
+#+end_src
+
+#+begin_src emacs-lisp :noweb-ref emacs.config.nix-expanded+
+(setq auth-source-pass-filename "${config.xdg.userDirs.extraConfig.XDG_KEYS_DIR}")
 #+end_src
 
 With that you can create folders in ~XDG_KEYS_HOME~ named with the
@@ -1789,13 +1787,15 @@ Tag folding:
 :END:
 
 #+begin_src emacs-lisp
-(setq backup-directory-alist
-      `(("." . ,(concat (getenv "XDG_CONFIG_HOME") "/emacs/backup/")))
-      backup-by-copying t
+(setq backup-by-copying t
       version-control t
       delete-old-versions t
       kept-new-versions 20
       kept-old-versions 5)
+#+end_src
+
+#+begin_src emacs-lisp :noweb-ref emacs.config.nix-expanded+
+(setq backup-directory-alist '(("." . "${config.xdg.configHome}/emacs/backup/")))
 #+end_src
 
 ** Enable
@@ -1862,7 +1862,12 @@ Files to be symlinked in the user directory (actually under
 #+NAME: emacs.symlinked-files
 #+begin_src nix
 xdg.configFile = {
-  "emacs/init.el".source = ./emacs-config.el;
+  "emacs/init.el".text = builtins.concatStringsSep "\n" [
+    (lib.strings.fileContents ./emacs-config.el)
+    ''
+    <<emacs.config.nix-expanded+>>
+    ''
+  ];
 };
 #+end_src
 
@@ -1892,14 +1897,7 @@ under the xdg config.
 # };
 
 accounts.email = {
-  maildirBasePath =
-    let mailHome =
-          builtins.elemAt
-            (builtins.split
-              "\\$HOME/"
-              config.xdg.userDirs.extraConfig.XDG_MAIL_DIR)
-            2;
-    in mailHome;
+  maildirBasePath = config.xdg.userDirs.extraConfig.XDG_MAIL_DIR;
   accounts = {
     aru =
       <<email.config.aru>>
@@ -4238,9 +4236,9 @@ xdg = {
 
 #+NAME: xdg.config.user-directories
 #+begin_src nix
-desktop = "$HOME/Tmp/Desktop";
-documents = "$HOME/Archive";
-download = "$HOME/Tmp";
+desktop = "${config.xdg.userDirs.download}/Desktop";
+documents = "${config.home.homeDirectory}/Archive";
+download = "${config.home.homeDirectory}/Tmp";
 music = "${config.xdg.userDirs.documents}/Audio";
 pictures = "${config.xdg.userDirs.documents}/Images";
 templates = "${config.xdg.userDirs.documents}/Templates";
@@ -4251,19 +4249,27 @@ videos = "${config.xdg.userDirs.documents}/Video";
 
 #+NAME: xdg.config.user-dot-directories
 #+begin_src nix
-configHome = ~/.dotfiles/config;
-cacheHome = ~/.dotfiles/cache;
-dataHome = ~/.dotfiles/local/share;
-stateHome = ~/.dotfiles/local/state;
+configHome = "${config.home.homeDirectory}/.dotfiles/config";
+cacheHome = "${config.home.homeDirectory}/.dotfiles/cache";
+dataHome = "${config.home.homeDirectory}/.dotfiles/local/share";
+stateHome = "${config.home.homeDirectory}/.dotfiles/local/state";
 #+end_src
 
 *** Extra directories
 
 #+NAME: xdg.config.extra-directories
 #+begin_src nix
-XDG_DOTFILES_DIR = "$HOME/Dotfiles.nix";
+XDG_DOTFILES_DIR = "${config.home.homeDirectory}/Dotfiles.nix";
 XDG_MAIL_DIR = "${config.xdg.userDirs.documents}/Mail";
 XDG_KEYS_DIR = "${config.xdg.userDirs.documents}/Keys";
+#+end_src
+
+*** Default applications
+
+#+NAME: xdg.config.default-applications
+#+begin_src nix
+"application/lrf" = [ "calibre-lrfviewer.desktop" ];
+"application/epub+zip" = [ "calibre-ebook-viewer.desktop" ];
 #+end_src
 
 ** Enable
@@ -4309,7 +4315,7 @@ programs.zsh = {
           builtins.elemAt
             (builtins.split
               "${config.home.homeDirectory}/"
-              "${builtins.toString config.xdg.configHome}")
+              config.xdg.configHome)
             2;
     in "${configHome}/zsh";
 
