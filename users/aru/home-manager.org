@@ -62,6 +62,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<sway.imports>>
     <<swaylock.imports>>
     <<termusic.imports>>
+    <<texlive.imports>>
     <<user.imports>>
     <<waybar.imports>>
     <<wezterm.imports>>
@@ -3443,6 +3444,36 @@ self: super:
 home.packages = with pkgs; [
   termusic-0-6-11
 ];
+#+end_src
+
+* Texlive
+
+Select the stuff to import:
+
+#+NAME: texlive.imports
+#+begin_src nix
+{
+  <<texlive.config>>
+  <<texlive.enable>>
+}
+#+end_src
+
+** Config
+
+#+NAME: texlive.config
+#+begin_src nix
+programs.texlive = {
+  extraPackages = tpkgs: {
+    inherit (tpkgs) scheme-full;
+  };
+};
+#+end_src
+
+** Enable
+
+#+NAME: texlive.enable
+#+begin_src nix
+programs.texlive.enable = true;
 #+end_src
 
 * User
