@@ -1168,6 +1168,14 @@ plantuml-mode
   (org-babel-do-load-languages 'org-babel-load-languages '((shell . t))))
 #+end_src
 
+**** Latex
+***** Basic config
+
+#+begin_src emacs-lisp
+(plist-put org-format-latex-options :scale 2.0)
+(plist-put org-format-latex-options :foreground "#8ec07c")
+#+end_src
+
 *** Email
 :PROPERTIES:
 :header-args: :noweb-ref emacs.config.email
