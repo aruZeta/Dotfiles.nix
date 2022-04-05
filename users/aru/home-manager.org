@@ -1127,7 +1127,8 @@ org-superstar
   (aru/org-faces)
   (aru/org-mode-visual-fill)
   (aru/org-plantuml-mode-hook)
-  (aru/org-shell-mode-hook))
+  (aru/org-shell-mode-hook)
+  (aru/org-latex-hook))
 #+end_src
 
 #+begin_src emacs-lisp
@@ -1172,8 +1173,9 @@ plantuml-mode
 ***** Basic config
 
 #+begin_src emacs-lisp
-(plist-put org-format-latex-options :scale 2.0)
-(plist-put org-format-latex-options :foreground "#8ec07c")
+(defun aru/org-latex-hook ()
+  (plist-put org-format-latex-options :scale 1.0)
+  (plist-put org-format-latex-options :foreground "#8ec07c"))
 #+end_src
 
 *** Email
