@@ -1443,7 +1443,7 @@ Adding scss to lsp languages (giving it an id/name):
 Default variables:
 
 #+begin_src emacs-lisp
-(defcustom aru/do-compile-scss t
+(defcustom aru/do-compile-scss nil
   "Wanna compile scss?"
   :type 'boolean)
 
