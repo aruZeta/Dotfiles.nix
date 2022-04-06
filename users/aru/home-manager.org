@@ -46,6 +46,7 @@ configurations for each package, like alacritty, zsh, nvim, etc.
     <<discord.imports>>
     <<firefox.imports>>
     <<fonts.imports>>
+    <<fzf.imports>>
     <<git.imports>>
     <<gpg.imports>>
     <<gtk.imports>>
@@ -2232,6 +2233,25 @@ noto-fonts-emoji
 #+NAME: fonts.packages.emacs-icons
 #+begin_src nix
 emacs-all-the-icons-fonts
+#+end_src
+
+* Fzf
+
+Select the stuff to import:
+
+#+NAME: fzf.imports
+#+begin_src nix
+{
+  <<fzf.enable>>
+}
+#+end_src
+
+** Enable
+
+#+NAME: fzf.enable
+#+begin_src nix
+programs.fzf.enable = true;
+programs.fzf.enableZshIntegration = true;
 #+end_src
 
 * Git
