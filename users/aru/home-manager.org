@@ -999,22 +999,27 @@ htmlize
 
 ****** Project list
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :noweb-ref emacs.config.nix-expanded+
 (setq org-publish-project-alist
-      '(("S1DAM - Notes" :components ("S1DAM_Notes.org" "S1DAM_Notes.static"))
-        ("S1DAM_Notes.org"
+      (let* ((org-publish-path "${config.xdg.userDirs.extraConfig.XDG_PUBLISH_DIR}")
+             (org-project-path "${config.xdg.userDirs.extraConfig.XDG_ORG_DIR}")
+             (org-project-name (string-replace "/" "_" org-project-path)))
+      `((,org-project-path
+         :components (,(concat org-project-name ".org")
+                      ,(concat org-project-name ".static")))
+        (,(concat org-project-name ".org")
          :headline-levels 6
          :recursive t
          :base-extension "org"
-         :base-directory "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas/docs.org/"
-         :publishing-directory "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas/docs/"
+         :base-directory ,org-project-path
+         :publishing-directory ,(concat org-publish-path "/Org")
          :publishing-function org-html-publish-to-html)
-        ("S1DAM_Notes.static"
+        (,(concat org-project-name ".static")
          :recursive t
-         :base-extension "css\\|png\\|jpg\\|jpeg\\|eot\\|woff2\\|woff\\|ttf\\|svg"
-         :base-directory "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas/docs.org/"
-         :publishing-directory "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas/docs/"
-         :publishing-function org-publish-attachment)))
+         :base-extension "scss"
+         :base-directory ,org-project-path
+         :publishing-directory ,(concat org-publish-path "/Org")
+         :publishing-function org-publish-attachment))))
 #+end_src
 
 ****** Modified export functions
@@ -4325,6 +4330,8 @@ stateHome = "${config.home.homeDirectory}/.dotfiles/local/state";
 XDG_DOTFILES_DIR = "${config.home.homeDirectory}/Dotfiles.nix";
 XDG_MAIL_DIR = "${config.xdg.userDirs.documents}/Mail";
 XDG_KEYS_DIR = "${config.xdg.userDirs.documents}/Keys";
+XDG_ORG_DIR = "${config.xdg.userDirs.documents}/Org";
+XDG_PUBLISH_DIR = "${config.home.homeDirectory}/Publish";
 #+end_src
 
 *** Default applications
