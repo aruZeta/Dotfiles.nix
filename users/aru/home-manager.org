@@ -1033,14 +1033,15 @@ htmlize
 
 #+begin_src emacs-lisp
 (defun aru/org-scss-generation (plist filename pub-dir)
-  (let ((scss-buffer (find-file-noselect filename)))
+  (let* ((visiting (find-buffer-visiting filename))
+         (scss-buffer (or visiting (find-file-noselect filename))))
     (with-current-buffer scss-buffer
       (compile (concat "sass -t compressed --update"
                        " "
                        filename
                        ":"
                        (org-export-output-file-name ".css" nil pub-dir))))
-    (kill-buffer scss-buffer)))
+    (unless visiting (kill-buffer scss-buffer))))
 #+end_src
 
 ****** Modified export functions
