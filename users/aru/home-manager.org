@@ -1044,6 +1044,89 @@ htmlize
     (unless visiting (kill-buffer scss-buffer))))
 #+end_src
 
+****** Fixes
+
+#+begin_src emacs-lisp
+(with-eval-after-load 'org-element
+  (defun org-element-plain-list-parser (limit affiliated structure)
+    "Parse a plain list.
+
+LIMIT bounds the search.  AFFILIATED is a list of which CAR is
+the buffer position at the beginning of the first affiliated
+keyword and CDR is a plist of affiliated keywords along with
+their value.  STRUCTURE is the structure of the plain list being
+parsed.
+
+Return a list whose CAR is `plain-list' and CDR is a plist
+containing `:type', `:begin', `:end', `:contents-begin' and
+`:contents-end', `:structure', `:post-blank' and
+`:post-affiliated' keywords.
+
+Assume point is at the beginning of the list."
+    (save-excursion
+      (let* ((struct (or structure (org-element--list-struct limit)))
+             (ol-alpha nil)
+             (type (cond ((looking-at-p "[ \t]*[a-z]")
+                          (setq ol-alpha 'lower) 'ordered)
+                         ((looking-at-p "[ \t]*[A-Z]")
+                          (setq ol-alpha 'upper) 'ordered)
+                         ((looking-at-p "[ \t]*[0-9]") 'ordered)
+                         ((nth 5 (assq (point) struct)) 'descriptive)
+                         (t 'unordered)))
+             (contents-begin (point))
+             (begin (car affiliated))
+             (contents-end (let* ((item (assq contents-begin struct))
+                                  (ind (nth 1 item))
+                                  (pos (nth 6 item)))
+                             (while (and (setq item (assq pos struct))
+                                         (= (nth 1 item) ind))
+                               (setq pos (nth 6 item)))
+                             pos))
+             (end (progn (goto-char contents-end)
+                         (skip-chars-forward " \r\t\n" limit)
+                         (if (= (point) limit) limit (line-beginning-position)))))
+        ;; Return value.
+        (list 'plain-list
+              (nconc
+               (list :type type
+                     :ol-alpha ol-alpha
+                     :begin begin
+                     :end end
+                     :contents-begin contents-begin
+                     :contents-end contents-end
+                     :structure struct
+                     :post-blank (count-lines contents-end end)
+                     :post-affiliated contents-begin)
+               (cdr affiliated)))))))
+
+(with-eval-after-load 'ox-html
+  (defun org-html-plain-list (plain-list contents _info)
+    "Transcode a PLAIN-LIST element from Org to HTML.
+CONTENTS is the contents of the list.  INFO is a plist holding
+contextual information."
+    (let* ((alpha nil)
+           (type (pcase (org-element-property :type plain-list)
+                   (`ordered (pcase (org-element-property :ol-alpha plain-list)
+                               (`lower (setq alpha "lower-alpha"))
+                               (`upper (setq alpha "upper-alpha")))
+                             "ol")
+                   (`unordered "ul")
+                   (`descriptive "dl")
+                   (other (error "Unknown HTML list type: %s" other))))
+           (class (format "org-%s" type))
+           (attributes (org-export-read-attribute :attr_html plain-list)))
+      (format "<%s %s>\n%s</%s>"
+              type
+              (org-html--make-attribute-string
+               (plist-put attributes :class
+                          (org-trim
+                           (mapconcat #'identity
+                                      (list class alpha (plist-get attributes :class))
+                                      " "))))
+              contents
+              type))))
+#+end_src
+
 ****** Modified export functions
 ******* Removing cells and rows from org tables
 
