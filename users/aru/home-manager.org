@@ -1006,7 +1006,8 @@ htmlize
              (org-project-name (string-replace "/" "_" org-project-path)))
       `((,org-project-path
          :components (,(concat org-project-name ".org")
-                      ,(concat org-project-name ".static")))
+                      ;,(concat org-project-name ".static")
+                      ,(concat org-project-name ".scss-generation")))
         (,(concat org-project-name ".org")
          :headline-levels 6
          :recursive t
@@ -1014,12 +1015,32 @@ htmlize
          :base-directory ,org-project-path
          :publishing-directory ,(concat org-publish-path "/Org")
          :publishing-function org-html-publish-to-html)
-        (,(concat org-project-name ".static")
+        ;(,(concat org-project-name ".static")
+         ;:recursive t
+         ;:base-extension ""
+         ;:base-directory ,org-project-path
+         ;:publishing-directory ,(concat org-publish-path "/Org")
+         ;:publishing-function org-publish-attachment)
+        (,(concat org-project-name ".scss-generation")
          :recursive t
          :base-extension "scss"
          :base-directory ,org-project-path
          :publishing-directory ,(concat org-publish-path "/Org")
-         :publishing-function org-publish-attachment))))
+         :publishing-function aru/org-scss-generation))))
+#+end_src
+
+****** Functions
+
+#+begin_src emacs-lisp
+(defun aru/org-scss-generation (plist filename pub-dir)
+  (let ((scss-buffer (find-file-noselect filename)))
+    (with-current-buffer scss-buffer
+      (compile (concat "sass -t compressed --update"
+                       " "
+                       filename
+                       ":"
+                       (org-export-output-file-name ".css" nil pub-dir))))
+    (kill-buffer scss-buffer)))
 #+end_src
 
 ****** Modified export functions
