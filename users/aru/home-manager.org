@@ -4414,6 +4414,11 @@ xdg = {
     };
   };
 
+  mimeApps = {
+    defaultApplications = {
+      <<xdg.config.default-applications>>
+    };
+  };
 };
 #+end_src
 
