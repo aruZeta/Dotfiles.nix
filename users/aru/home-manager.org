@@ -1287,7 +1287,7 @@ plantuml-mode
 #+begin_src emacs-lisp
 (setq org-format-latex-options '(:foreground "#8ec07c"
                                  :background default
-                                 :scale 2.0
+                                 :scale 1.0
                                  :html-foreground "Black"
                                  :html-background "Transparent"
                                  :html-scale 1.0
