@@ -4120,6 +4120,7 @@ local wezterm = require 'wezterm';
 return {
     enable_wayland = true,
     front_end = "OpenGL",
+    window_close_confirmation = "NeverPrompt",
 
     <<wezterm.config.fonts>>
     <<wezterm.config.tab-bar>>
