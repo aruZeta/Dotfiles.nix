@@ -433,6 +433,10 @@ The config is separated in diferent chunks:
 programs.emacs = {
   package = pkgs.emacsPgtk;
 };
+
+services.emacs = {
+  defaultEditor = true;
+};
 #+end_src
 
 Here is the emacs config, also seperated in chunks:
@@ -1930,6 +1934,11 @@ Tag folding:
 #+NAME: emacs.enable
 #+begin_src nix
 programs.emacs.enable = true;
+
+# Note: not working (at least for me)
+services.emacs.enable = true;
+services.emacs.client.enable = true;
+services.emacs.socketActivation.enable = true;
 #+end_src
 
 ** Overlays
