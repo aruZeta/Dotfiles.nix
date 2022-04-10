@@ -998,6 +998,7 @@ htmlize
       org-html-htmlize-output-type 'css
       org-html-html5-fancy t
       org-html-doctype "html5"
+      org-html-checkbox-type 'unicode
       org-export-allow-bind-keywords t)
 #+end_src
 
