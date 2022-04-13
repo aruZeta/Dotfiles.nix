@@ -3556,9 +3556,32 @@ Select the stuff to import:
 #+NAME: termusic.imports
 #+begin_src nix
 {
+  <<termusic.desktop-entries>>
   <<termusic.overlays>>
   <<termusic.packages>>
 }
+#+end_src
+
+** Desktop entries
+
+#+NAME: termusic.desktop-entries
+#+begin_src nix
+xdg.desktopEntries = {
+  <<termusic.desktop-entries.termusic>>
+};
+#+end_src
+
+*** Termusic
+
+#+NAME: termusic.desktop-entries.termusic
+#+begin_src nix
+termusic = {
+  name = "Termusic";
+  genericName = "Terminal Music Player";
+  exec = "${pkgs.wezterm}/bin/wezterm start --class termusic --always-new-process ${pkgs.termusic}/bin/termusic";
+  categories = [ "Music" "AudioVideo" ];
+  icon = "${pkgs.gruvbox-dark-icons-gtk}/share/icons/oomox-gruvbox-dark/64x64/apps/multimedia-audio-player.svg";
+};
 #+end_src
 
 ** Overlays
@@ -4425,10 +4448,6 @@ xdg = {
       <<xdg.config.default-applications>>
     };
   };
-
-  desktopEntries = {
-    <<xdg.config.desktop-entries>>
-  };
 };
 #+end_src
 
@@ -4472,26 +4491,6 @@ XDG_PUBLISH_DIR = "${config.home.homeDirectory}/Publish";
 #+begin_src nix
 "application/lrf" = [ "calibre-lrfviewer.desktop" ];
 "application/epub+zip" = [ "calibre-ebook-viewer.desktop" ];
-#+end_src
-
-*** Desktop entries
-
-#+NAME: xdg.config.desktop-entries
-#+begin_src nix
-<<xdg.config.desktop-entries.termusic>>
-#+end_src
-
-**** Termusic
-
-#+NAME: xdg.config.desktop-entries.termusic
-#+begin_src nix
-termusic = {
-  name = "Termusic";
-  genericName = "Terminal Music Player";
-  exec = "${pkgs.wezterm}/bin/wezterm start --class termusic --always-new-process ${pkgs.termusic}/bin/termusic";
-  categories = [ "Music" "AudioVideo" ];
-  icon = "${pkgs.gruvbox-dark-icons-gtk}/share/icons/oomox-gruvbox-dark/64x64/apps/multimedia-audio-player.svg";
-};
 #+end_src
 
 ** Enable
