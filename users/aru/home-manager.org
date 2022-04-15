@@ -1930,6 +1930,22 @@ Tag folding:
 (setq backup-directory-alist '(("." . "${config.xdg.configHome}/emacs/backup/")))
 #+end_src
 
+**** Elcord
+***** Basic config
+
+#+begin_src emacs-lisp
+(require 'elcord)
+(elcord-mode)
+
+(setq elcord-refresh-rate 5)
+#+end_src
+
+***** Package
+
+#+begin_src nix :noweb-ref emacs.extra-packages+
+elcord
+#+end_src
+
 ** Enable
 
 #+NAME: emacs.enable
