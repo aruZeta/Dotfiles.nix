@@ -3069,6 +3069,9 @@ Select the stuff to import:
   <<sway.config>>
   <<sway.enable>>
   <<sway.packages>>
+}
+
+{
   <<sway.scripts>>
 }
 #+end_src
@@ -3353,26 +3356,27 @@ home.packages = with pkgs; [
   wl-clipboard
   brightnessctl
   pavucontrol
-  <<sway.packages.scripts>>
 ];
 #+end_src
 
-*** Scripts
+** Scripts
 
-#+NAME: sway.packages.scripts
+#+NAME: sway.scripts
 #+begin_src nix
-(
-  <<sway.packages.scripts.sway-screenshot>>
-)
+home.packages = with pkgs; [
+  (
+    <<sway.scripts.sway-screenshot>>
+  )
 
-(
-  <<sway.packages.scripts.sway-exit>>
-)
+  (
+    <<sway.scripts.sway-exit>>
+  )
+];
 #+end_src
 
-**** Sway Screenshot
+*** Sway Screenshot
 
-#+NAME: sway.packages.scripts.sway-screenshot
+#+NAME: sway.scripts.sway-screenshot
 #+begin_src nix
 writeShellScriptBin "sway-screenshot"
   ''
@@ -3382,9 +3386,9 @@ writeShellScriptBin "sway-screenshot"
   ''
 #+end_src
 
-**** Sway Exit
+*** Sway Exit
 
-#+NAME: sway.packages.scripts.sway-exit
+#+NAME: sway.scripts.sway-exit
 #+begin_src nix
 writeShellScriptBin "sway-exit"
   ''
