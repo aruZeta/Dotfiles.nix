@@ -1,10 +1,8 @@
-{ ...
+{
 }:
 
 {
-  programs.texlive = {
-    extraPackages = tpkgs: {
-      inherit (tpkgs) scheme-full;
-    };
+  extraPackages = tpkgs: {
+    inherit (tpkgs) scheme-full;
   };
 }

@@ -20,10 +20,11 @@ in
 
   nixpkgs.overlays = (import ./overlays.nix {});
 
-  programs = enabledStuff.programs;
+  programs =
+    (import ./programs {inherit pkgs config lib;})
+    // enabledStuff.programs;
 
   imports = [
-    ./programs
     ./others
   ];
 }
