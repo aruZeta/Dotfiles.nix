@@ -4,7 +4,7 @@
 
 with pkgs; [
 ] ++ (
-  if (import ./default.nix {}).programs.wofi.enable
+  if (import ../../enable.nix {}).non-module.wofi.enable
   then  [
     wofi
   ]

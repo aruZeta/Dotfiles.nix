@@ -6,8 +6,6 @@
   xdg =
     let homeDir = config.home.homeDirectory;
     in {
-      enable = true;
-
       configHome = "${homeDir}/.dotfiles/config";
       cacheHome  = "${homeDir}/.dotfiles/cache";
       dataHome   = "${homeDir}/.dotfiles/local/share";
@@ -16,8 +14,6 @@
       userDirs =
         let docsDir = config.xdg.userDirs.documents;
         in {
-          enable = true;
-
           desktop   = "${config.xdg.userDirs.download}/Desktop";
           documents = "${homeDir}/Archive";
           download  = "${homeDir}/Tmp";
@@ -36,8 +32,6 @@
         };
 
       mimeApps = {
-        enable = true;
-
         defaultApplications = {
           "application/lrf"      = [ "calibre-lrfviewer.desktop" ];
           "application/epub+zip" = [ "calibre-ebook-viewer.desktop" ];

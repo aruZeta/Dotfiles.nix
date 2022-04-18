@@ -4,6 +4,8 @@
 , ...
 }:
 
+let enabledStuff = (import ./enable.nix {});
+in
 {
   home = {
     username = "aru";
@@ -18,7 +20,11 @@
 
   nixpkgs.overlays = (import ./overlays.nix {});
 
+  programs = enabledStuff.programs;
+
   imports = [
     ./programs
+    ./others
   ];
 }
+// enabledStuff.others

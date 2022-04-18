@@ -20,4 +20,4 @@ with pkgs; [
 ++ (import ./programs/termusic/packages.nix {inherit pkgs config;})
 ++ (import ./programs/wezterm/packages.nix {inherit pkgs config;})
 ++ (import ./programs/wofi/packages.nix {inherit pkgs config;})
-++ (import ./programs/xdg/packages.nix {inherit pkgs config;})
+++ (import ./others/xdg/packages.nix {inherit pkgs config;})

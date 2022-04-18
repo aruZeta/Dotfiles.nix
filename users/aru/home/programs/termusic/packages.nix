@@ -4,7 +4,7 @@
 
 with pkgs; [
 ] ++ (
-  if (import ./default.nix {}).programs.termusic.enable
+  if (import ../../enable.nix {}).non-module.termusic.enable
   then  [
     termusic
   ]

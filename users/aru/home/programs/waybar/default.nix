@@ -6,7 +6,6 @@
 
 {
   programs.waybar = {
-    enable = true;
     style = ./symlinked/style.css;
 
     settings = [(
