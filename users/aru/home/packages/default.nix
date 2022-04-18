@@ -18,3 +18,4 @@ with pkgs; [
   yt-dlp
 ]
 ++ (import ../programs/wofi/packages.nix {inherit pkgs config;})
+++ (import ../programs/xdg/packages.nix {inherit pkgs config;})
