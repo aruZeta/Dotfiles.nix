@@ -10,4 +10,10 @@
   };
 
   home.packages = (import ./packages {inherit pkgs config;});
+
+  xdg.configFile = (import ./symlinked {inherit config;}).xdg-symlinks;
+
+  imports = [
+    ./programs
+  ];
 }

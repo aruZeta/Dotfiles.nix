@@ -17,3 +17,4 @@ with pkgs; [
   # Music
   yt-dlp
 ]
+++ (import ../programs/wofi/packages.nix {inherit pkgs config;})
