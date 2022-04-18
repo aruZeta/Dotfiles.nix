@@ -1,0 +1,95 @@
+*{
+	border: none;
+	border-radius: inherit;
+	margin: 0;
+	padding: 0;
+	font-family: 'Iosevka', monospace;
+	font-weight: 700;
+	font-size: 13px;
+	background: none;
+	background-color: inherit;
+	box-shadow: none;
+	text-shadow: none;
+}
+
+#workspaces,
+#clock,
+#idle_inhibitor,
+#cpu,
+#temperature,
+#memory,
+#backlight,
+#disk,
+#battery,
+#network,
+#pulseaudio,
+#window {
+	padding: 0 10px;
+	background-color: #282828;
+	border-radius: 15px;
+	margin-left: 10px;
+}
+
+#window {
+	color: #ebdbb2;
+}
+
+#workspaces {
+	padding: 0;
+	margin: 0;
+}
+
+#workspaces button {
+	min-width: 30px;
+	color: #b16286;
+	border-radius: 15px;
+}
+
+#workspaces button:hover {
+	background-color: #3c3836;
+}
+
+#workspaces button.focused {
+	color: #98971a;
+}
+
+#clock,
+#idle_inhibitor {
+	color: #b16286;
+}
+
+#backlight,
+#network,
+#pulseaudio {
+	color: #458588;
+}
+
+#cpu,
+#memory,
+#disk,
+#battery,
+#temperature {
+	color: #689d6a;
+}
+
+#cpu.notIdle,
+#memory.someTabsOpened,
+#disk.cleanDownloads,
+#battery.tisGoinLow {
+	color: #d79921;
+}
+
+#cpu.doinHeavyStuff,
+#memory.VMOpened,
+#disk.cleanNixStore,
+#battery.prepareToRun {
+	color: #d65d0e;
+}
+
+#cpu.compiling,
+#memory.chromeTabsOpened,
+#disk.removeISOsAndVMsLOL,
+#battery.runAndGetTheCharger,
+#temperature.critical {
+	color: #cc241d;
+}
