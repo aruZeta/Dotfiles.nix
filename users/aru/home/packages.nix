@@ -17,6 +17,7 @@ with pkgs; [
   # Music
   yt-dlp
 ]
+++ (import ./programs/termusic/packages.nix {inherit pkgs config;})
 ++ (import ./programs/wezterm/packages.nix {inherit pkgs config;})
 ++ (import ./programs/wofi/packages.nix {inherit pkgs config;})
 ++ (import ./programs/xdg/packages.nix {inherit pkgs config;})

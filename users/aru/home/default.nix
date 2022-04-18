@@ -16,6 +16,8 @@
 
   xdg.configFile = (import ./xdg-symlinks.nix {inherit config;});
 
+  nixpkgs.overlays = (import ./overlays.nix {});
+
   imports = [
     ./programs
   ];
