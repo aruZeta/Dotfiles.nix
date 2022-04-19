@@ -26,4 +26,4 @@
       enabledStuff.others
     ];
 }
-// (import ./others {inherit config;})
+// (import ./others {inherit config pkgs;})

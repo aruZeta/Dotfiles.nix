@@ -1,6 +1,7 @@
 { config
+, pkgs
 }:
 
 {
-  xdg = (import ./xdg {inherit config;});
+  xdg = (import ./xdg {inherit config pkgs;});
 }

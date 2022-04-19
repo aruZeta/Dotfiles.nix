@@ -1,4 +1,5 @@
 { config
+, pkgs
 }:
 
 let homeDir = config.home.homeDirectory;
@@ -9,6 +10,7 @@ in {
   stateHome  = "${homeDir}/.dotfiles/local/state";
 
   configFile = (import ../../xdg-symlinks.nix {inherit config;});
+  desktopEntries = (import ../../desktop-entries.nix {inherit pkgs config;});
 
   userDirs =
     let docsDir = config.xdg.userDirs.documents;
