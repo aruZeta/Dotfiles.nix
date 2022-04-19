@@ -2,4 +2,4 @@
 }:
 
 []
-++ (import ./programs/termusic/overlays.nix {})
+++ (import ./non-module/termusic/overlays.nix {})

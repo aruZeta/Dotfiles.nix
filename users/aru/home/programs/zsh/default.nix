@@ -13,7 +13,7 @@
               config.xdg.configHome)
             2;
     in "${configHome}/zsh";
-  
+
   history = {
     extended = true;
     ignoreSpace = true;
@@ -25,19 +25,19 @@
     size = 99999;
     path = "${config.xdg.dataHome}/zsh/history";
   };
-  
+
   shellAliases = {
     "l" = "ls --color=always --group-directories-first -lhA";
   };
-  
+
   shellGlobalAliases = {
     G = "| grep";
     L = "| less";
   };
-  
+
   sessionVariables = {
     STARSHIP_CACHE = "${config.xdg.cacheHome}/starship/history";
   };
-  
+
   initExtra = lib.strings.fileContents ./insertions/initExtra.sh;
 }

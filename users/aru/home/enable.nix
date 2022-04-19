@@ -28,7 +28,7 @@
   non-module = {
     termusic = {
       enable = true;
-      
+
       overlay = {
         enable = true;
         version = "0.6.11";
@@ -36,7 +36,7 @@
         cargoOutputHash = "sha256-L6tbpzUu5hN5Vy5fflT81K6bt+sI/6ru7IAOI63gDvM=";
       };
     };
-    
+
     wezterm.enable = true;
     wofi.enable = true;
   };

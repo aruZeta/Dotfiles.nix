@@ -1,8 +1,7 @@
-{ ...
+{ config
+, ...
 }:
 
 {
-  imports = [
-    ./xdg
-  ];
+  xdg = (import ./xdg {inherit config;});
 }

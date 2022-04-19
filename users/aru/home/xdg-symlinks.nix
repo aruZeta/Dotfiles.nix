@@ -3,5 +3,6 @@
 }:
 
 {}
-// (import ./programs/wezterm/xdg-symlinks.nix {inherit config;})
-// (import ./programs/wofi/xdg-symlinks.nix {inherit config;})
+# Non-module
+// (import ./non-module/wezterm/xdg-symlinks.nix {inherit config;})
+// (import ./non-module/wofi/xdg-symlinks.nix {inherit config;})
