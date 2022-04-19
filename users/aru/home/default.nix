@@ -4,8 +4,6 @@
 , ...
 }:
 
-let enabledStuff = (import ./enable.nix {});
-in
 {
   home = {
     username = "aru";
@@ -16,14 +14,16 @@ in
     (import ./packages.nix {inherit pkgs config;})
     ++ (import ./scripts.nix {inherit pkgs config lib;});
 
-  xdg.configFile = (import ./xdg-symlinks.nix {inherit config;});
-
   nixpkgs.overlays = (import ./overlays.nix {});
 
   programs = (import ./programs {inherit pkgs config lib;});
 
-  imports = [
-    ./others
-    enabledStuff.others
-  ];
+  # Enable stuff
+  imports =
+    let enabledStuff = (import ./enable.nix {});
+    in [
+      { programs = enabledStuff.programs; }
+      enabledStuff.others
+    ];
 }
+// (import ./others {inherit config;})

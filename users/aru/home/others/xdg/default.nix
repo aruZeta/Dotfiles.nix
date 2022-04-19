@@ -8,6 +8,8 @@ in {
   dataHome   = "${homeDir}/.dotfiles/local/share";
   stateHome  = "${homeDir}/.dotfiles/local/state";
 
+  configFile = (import ../../xdg-symlinks.nix {inherit config;});
+
   userDirs =
     let docsDir = config.xdg.userDirs.documents;
     in {
