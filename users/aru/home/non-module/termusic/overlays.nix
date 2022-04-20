@@ -1,4 +1,6 @@
-let overlay-cfg = (import ../../enable.nix).non-module.termusic.overlay;
+enabledStuff:
+
+let overlay-cfg = enabledStuff.non-module.termusic.overlay;
 in [] ++ (
   if overlay-cfg.enable
   then [

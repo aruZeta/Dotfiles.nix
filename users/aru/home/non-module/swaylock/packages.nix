@@ -1,8 +1,8 @@
-pkgs:
+pkgs: enabledStuff:
 
 with pkgs; [
 ] ++ (
-  if (import ../../enable.nix).non-module.swaylock.enable
+  if enabledStuff.non-module.swaylock.enable
   then  [
     swaylock
   ]

@@ -1,4 +1,4 @@
-pkgs: config: lib:
+pkgs: config: lib: enabledStuff:
 
 [] ++ (builtins.concatMap (val: builtins.attrValues val) [
   # Programs

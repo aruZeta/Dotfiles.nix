@@ -1,6 +1,6 @@
-config:
+enabledStuff:
 
-if config.gtk.enable
+if enabledStuff.others.gtk.enable
 then {
   "Trolltech.conf".source = ./symlinked/Trolltech.conf;
 }

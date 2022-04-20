@@ -1,8 +1,8 @@
-pkgs:
+pkgs: enabledStuff:
 
 with pkgs; [
 ] ++ (
-  if (import ../../enable.nix).non-module.termusic.enable
+  if enabledStuff.non-module.termusic.enable
   then  [
     termusic
   ]

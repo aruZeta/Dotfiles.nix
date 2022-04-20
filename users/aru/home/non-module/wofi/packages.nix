@@ -1,8 +1,8 @@
-pkgs:
+pkgs: enabledStuff:
 
 with pkgs; [
 ] ++ (
-  if (import ../../enable.nix).non-module.wofi.enable
+  if enabledStuff.non-module.wofi.enable
   then  [
     wofi
   ]

@@ -1,8 +1,8 @@
-pkgs:
+pkgs: enabledStuff:
 
 with pkgs; [
 ] ++ (
-  if (import ../../enable.nix).non-module.wezterm.enable
+  if enabledStuff.non-module.wezterm.enable
   then  [
     wezterm
   ]

@@ -1,4 +1,4 @@
-pkgs: config:
+pkgs: config: enabledStuff:
 
 with pkgs; [
   # Utilities
@@ -16,9 +16,9 @@ with pkgs; [
   yt-dlp
 ]
 # Non modules
-++ (import ./non-module/swaylock/packages.nix  pkgs)
-++ (import ./non-module/termusic/packages.nix pkgs)
-++ (import ./non-module/wezterm/packages.nix pkgs)
-++ (import ./non-module/wofi/packages.nix pkgs)
+++ (import ./non-module/swaylock/packages.nix  pkgs enabledStuff)
+++ (import ./non-module/termusic/packages.nix pkgs enabledStuff)
+++ (import ./non-module/wezterm/packages.nix pkgs enabledStuff)
+++ (import ./non-module/wofi/packages.nix pkgs enabledStuff)
 # Others
 ++ (import ./others/xdg/packages.nix pkgs config)
