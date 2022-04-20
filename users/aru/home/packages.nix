@@ -18,6 +18,7 @@ with pkgs; [
   yt-dlp
 ]
 # Non modules
+++ (import ./non-module/swaylock/packages.nix {inherit pkgs;})
 ++ (import ./non-module/termusic/packages.nix {inherit pkgs;})
 ++ (import ./non-module/wezterm/packages.nix {inherit pkgs;})
 ++ (import ./non-module/wofi/packages.nix {inherit pkgs;})

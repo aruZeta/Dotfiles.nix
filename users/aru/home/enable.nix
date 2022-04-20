@@ -28,6 +28,8 @@
   # Local variables not applied directly to home-manager, used to setup
   # overlays, packages, symlinks, scripts, etc.
   non-module = {
+    swaylock.enable = true;
+
     termusic = {
       enable = true;
 
