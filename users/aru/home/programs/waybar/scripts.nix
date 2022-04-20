@@ -1,7 +1,4 @@
-{ pkgs
-, config
-, lib
-}:
+pkgs: config: lib:
 
 with pkgs;
 if config.programs.waybar.enable

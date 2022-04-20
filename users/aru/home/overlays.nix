@@ -1,6 +1,3 @@
-{
-}:
-
 []
 # Non-module
-++ (import ./non-module/termusic/overlays.nix {})
+++ (import ./non-module/termusic/overlays.nix)

@@ -1,7 +1,4 @@
 {
-}:
-
-{
   programs = {
     texlive.enable = true;
     waybar.enable = true;

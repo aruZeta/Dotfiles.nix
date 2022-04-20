@@ -1,8 +1,6 @@
-{ config
-, pkgs
-}:
+config: pkgs:
 
-let enabledStuff = (import ../../enable.nix {});
+let enabledStuff = (import ../../enable.nix);
 in (
   if enabledStuff.non-module.termusic.enable
   then {

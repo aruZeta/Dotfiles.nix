@@ -10,7 +10,7 @@
   home.packages =
     []
     ++ (builtins.attrValues
-      (import ./scripts {inherit pkgs config;})
+      (import ./scripts pkgs config)
     );
 
   imports = [

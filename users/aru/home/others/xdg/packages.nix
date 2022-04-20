@@ -1,6 +1,4 @@
-{ pkgs
-, config
-}:
+pkgs: config :
 
 with pkgs; [
 ] ++ (

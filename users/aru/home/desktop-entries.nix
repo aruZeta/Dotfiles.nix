@@ -1,7 +1,5 @@
-{ pkgs
-, config
-}:
+pkgs: config:
 
 {}
 # Non-module
- // (import ./non-module/termusic/desktop-entries.nix {inherit config pkgs;})
+ // (import ./non-module/termusic/desktop-entries.nix config pkgs)

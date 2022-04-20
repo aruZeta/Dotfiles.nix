@@ -1,6 +1,4 @@
-{ pkgs
-, config
-}:
+pkgs: config:
 
 with pkgs; [
   # Utilities
@@ -18,9 +16,9 @@ with pkgs; [
   yt-dlp
 ]
 # Non modules
-++ (import ./non-module/swaylock/packages.nix {inherit pkgs;})
-++ (import ./non-module/termusic/packages.nix {inherit pkgs;})
-++ (import ./non-module/wezterm/packages.nix {inherit pkgs;})
-++ (import ./non-module/wofi/packages.nix {inherit pkgs;})
+++ (import ./non-module/swaylock/packages.nix  pkgs)
+++ (import ./non-module/termusic/packages.nix pkgs)
+++ (import ./non-module/wezterm/packages.nix pkgs)
+++ (import ./non-module/wofi/packages.nix pkgs)
 # Others
-++ (import ./others/xdg/packages.nix {inherit pkgs config;})
+++ (import ./others/xdg/packages.nix pkgs config)

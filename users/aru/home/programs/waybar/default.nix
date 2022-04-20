@@ -1,14 +1,11 @@
-{ pkgs
-, config
-, lib
-}:
+pkgs: config: lib:
 
 {
   style = ./symlinked/style.css;
 
   settings = [(
     let big = text: "<span font='17' rise='-3000'>" + text + "</span>";
-        scripts = import ./scripts.nix {inherit pkgs config lib;};
+        scripts = import ./scripts.nix pkgs config lib;
     in {
       height = 30;
       layer = "top";

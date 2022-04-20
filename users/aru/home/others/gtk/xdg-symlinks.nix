@@ -1,5 +1,4 @@
-{ config
-}:
+config:
 
 if config.gtk.enable
 then {
