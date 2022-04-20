@@ -16,6 +16,8 @@
   };
 
   others = {
+    gtk.enable = true;
+
     xdg = {
       enable = true;
       userDirs.enable = true;
