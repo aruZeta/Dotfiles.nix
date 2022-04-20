@@ -1,4 +1,4 @@
-{ config
+{
 }:
 
 if (import ../../enable.nix {}).non-module.wofi.enable

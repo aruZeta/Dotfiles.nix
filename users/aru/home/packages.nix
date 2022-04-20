@@ -18,9 +18,8 @@ with pkgs; [
   yt-dlp
 ]
 # Non modules
-++ (import ./non-module/termusic/packages.nix {inherit pkgs config;})
-++ (import ./non-module/wezterm/packages.nix {inherit pkgs config;})
-++ (import ./non-module/wofi/packages.nix {inherit pkgs config;})
-# Programs
+++ (import ./non-module/termusic/packages.nix {inherit pkgs;})
+++ (import ./non-module/wezterm/packages.nix {inherit pkgs;})
+++ (import ./non-module/wofi/packages.nix {inherit pkgs;})
 # Others
 ++ (import ./others/xdg/packages.nix {inherit pkgs config;})
