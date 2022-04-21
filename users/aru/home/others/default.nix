@@ -1,6 +1,12 @@
-config: pkgs: enabledStuff:
+{ config
+, pkgs
+, lib
+, enabledStuff
+, ...
+}:
 
-{
-  gtk = (import ./gtk pkgs);
-  xdg = (import ./xdg config pkgs enabledStuff);
-}
+(builtins.mapAttrs
+  (name: value: (import (./. + "/${name}") {inherit config pkgs lib enabledStuff;}))
+  (lib.filterAttrs
+    (name: value: value == "directory")
+    (builtins.readDir ./.)))

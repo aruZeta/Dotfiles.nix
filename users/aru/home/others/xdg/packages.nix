@@ -1,14 +1,17 @@
-pkgs: config :
+{ pkgs
+, enabledStuff
+, ...
+}:
 
 with pkgs; [
 ] ++ (
-  if config.xdg.enable
+  if enabledStuff.others.xdg.enable
   then [
     xdg-utils
   ]
   else []
 ) ++ (
-  if config.xdg.userDirs.enable
+  if enabledStuff.others.xdg.userDirs.enable
   then [
     xdg-user-dirs
   ]

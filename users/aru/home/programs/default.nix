@@ -1,7 +1,12 @@
-pkgs: config: lib: enabledStuff:
+{ config
+, pkgs
+, lib
+, enabledStuff
+, ...
+}:
 
-{
-  texlive = (import ./texlive);
-  waybar = (import ./waybar pkgs config lib);
-  zsh = (import ./zsh config lib);
-}
+(builtins.mapAttrs
+  (name: value: (import (./. + "/${name}") {inherit config pkgs lib enabledStuff;}))
+  (lib.filterAttrs
+    (name: value: value == "directory")
+    (builtins.readDir ./.)))

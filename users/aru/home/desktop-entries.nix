@@ -1,5 +1,9 @@
-pkgs: config: enabledStuff:
+{ config
+, pkgs
+, enabledStuff
+, ...
+}:
 
 {}
 # Non-module
-// (import ./non-module/termusic/desktop-entries.nix config pkgs enabledStuff)
+// (import ./non-module/termusic/desktop-entries.nix {inherit config pkgs enabledStuff;})

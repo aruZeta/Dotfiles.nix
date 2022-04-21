@@ -1,5 +1,5 @@
-{ pkgs
-, config
+{ config
+, pkgs
 , lib
 , ...
 }:
@@ -12,12 +12,12 @@ in {
   };
 
   home.packages =
-    (import ./packages.nix pkgs config enabledStuff)
-    ++ (import ./scripts.nix pkgs config lib enabledStuff);
+    (import ./packages.nix {inherit config pkgs lib enabledStuff;})
+    ++ (import ./scripts.nix {inherit config pkgs lib enabledStuff;});
 
-  nixpkgs.overlays = (import ./overlays.nix enabledStuff);
+  nixpkgs.overlays = (import ./overlays.nix {inherit config pkgs lib enabledStuff;});
 
-  programs = (import ./programs pkgs config lib enabledStuff);
+  programs = (import ./programs {inherit config pkgs lib enabledStuff;});
 
   # Enable stuff
   imports = [
@@ -25,4 +25,4 @@ in {
     enabledStuff.others
   ];
 }
-// (import ./others config pkgs enabledStuff)
+// (import ./others {inherit config pkgs lib enabledStuff;})

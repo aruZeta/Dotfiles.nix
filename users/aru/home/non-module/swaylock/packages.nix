@@ -1,4 +1,7 @@
-pkgs: enabledStuff:
+{ pkgs
+, enabledStuff
+, ...
+}:
 
 with pkgs; [
 ] ++ (

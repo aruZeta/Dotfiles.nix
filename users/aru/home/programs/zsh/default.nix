@@ -1,4 +1,7 @@
-config: lib:
+{ config
+, lib
+, ...
+}:
 
 {
   # Gets rid of the $HOME part of $XDG_CONFIG_HOME

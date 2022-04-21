@@ -1,4 +1,6 @@
-enabledStuff:
+{ enabledStuff
+, ...
+}:
 
 if enabledStuff.non-module.wofi.enable
 then {

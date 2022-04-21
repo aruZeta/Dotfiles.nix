@@ -1,4 +1,6 @@
-enabledStuff:
+{ enabledStuff
+, ...
+}:
 
 if enabledStuff.others.gtk.enable
 then {

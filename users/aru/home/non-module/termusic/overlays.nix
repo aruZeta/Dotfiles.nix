@@ -1,4 +1,6 @@
-enabledStuff:
+{ enabledStuff
+, ...
+}:
 
 let overlay-cfg = enabledStuff.non-module.termusic.overlay;
 in [] ++ (

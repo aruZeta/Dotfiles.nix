@@ -1,4 +1,8 @@
-config: pkgs: enabledStuff:
+{ config
+, pkgs
+, enabledStuff
+, ...
+}:
 
 if enabledStuff.non-module.termusic.enable
 then {
