@@ -1,6 +1,5 @@
+args @
 { pkgs
-, lib
-, enabledStuff
 , ...
 }:
 
@@ -9,7 +8,7 @@
 
   settings = [(
     let big = text: "<span font='17' rise='-3000'>" + text + "</span>";
-        scripts = import ./scripts.nix {inherit pkgs lib enabledStuff;};
+        scripts = import ./scripts.nix args;
     in {
       height = 30;
       layer = "top";

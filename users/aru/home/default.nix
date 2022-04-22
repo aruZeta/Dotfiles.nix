@@ -4,7 +4,11 @@
 , ...
 }:
 
-let enabledStuff = (import ./enable.nix);
+let
+  enabledStuff = (import ./enable.nix);
+  argSet = {inherit config pkgs lib enabledStuff;};
+  usefulExpresions = (import ./useful-expresions.nix argSet);
+  argSet' = argSet // {inherit usefulExpresions;};
 in {
   home = {
     username = "aru";
@@ -12,12 +16,12 @@ in {
   };
 
   home.packages =
-    (import ./packages.nix {inherit config pkgs lib enabledStuff;})
-    ++ (import ./scripts.nix {inherit config pkgs lib enabledStuff;});
+    (import ./packages.nix argSet')
+    ++ (import ./scripts.nix argSet');
 
-  nixpkgs.overlays = (import ./overlays.nix {inherit config pkgs lib enabledStuff;});
+  nixpkgs.overlays = (import ./overlays.nix argSet');
 
-  programs = (import ./programs {inherit config pkgs lib enabledStuff;});
+  programs = (import ./programs argSet');
 
   # Enable stuff
   imports = [
@@ -25,4 +29,4 @@ in {
     enabledStuff.others
   ];
 }
-// (import ./others {inherit config pkgs lib enabledStuff;})
+// (import ./others argSet')

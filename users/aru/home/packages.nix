@@ -1,7 +1,6 @@
-{ config
-, pkgs
-, lib
-, enabledStuff
+args @
+{ pkgs
+, usefulExpresions
 , ...
 }:
 
@@ -19,11 +18,8 @@ with pkgs; [
 
   # Music
   yt-dlp
-]
-# Non modules
-++ (import ./non-module/swaylock/packages.nix {inherit pkgs enabledStuff;})
-++ (import ./non-module/termusic/packages.nix {inherit pkgs enabledStuff;})
-++ (import ./non-module/wezterm/packages.nix {inherit pkgs enabledStuff;})
-++ (import ./non-module/wofi/packages.nix {inherit pkgs enabledStuff;})
-# Others
-++ (import ./others/xdg/packages.nix {inherit pkgs enabledStuff;})
+] ++ (
+  builtins.concatMap
+    (file: import file args)
+    (usefulExpresions.searchInSearchDirsSubdirs "packages.nix")
+)

@@ -1,11 +1,12 @@
-{ config
-, pkgs
-, lib
-, enabledStuff
+args @
+{ usefulExpresions
 , ...
 }:
 
-[] ++ (builtins.concatMap (val: builtins.attrValues val) [
-  # Programs
-  (import ./programs/waybar/scripts.nix {inherit config pkgs lib enabledStuff;})
-])
+[] ++ (
+  builtins.concatMap
+    (val: builtins.attrValues val)
+    (builtins.map
+      (file: import file args)
+      (usefulExpresions.searchInSearchDirsSubdirs "scripts.nix"))
+)

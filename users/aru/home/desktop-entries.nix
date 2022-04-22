@@ -1,9 +1,12 @@
-{ config
-, pkgs
-, enabledStuff
+args @
+{ usefulExpresions
 , ...
 }:
 
-{}
-# Non-module
-// (import ./non-module/termusic/desktop-entries.nix {inherit config pkgs enabledStuff;})
+with usefulExpresions;
+{} // (
+  concatSets(
+    builtins.map
+      (file: import file args)
+      (searchInSearchDirsSubdirs "desktop-entries.nix"))
+)

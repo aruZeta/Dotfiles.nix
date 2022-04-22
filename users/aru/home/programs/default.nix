@@ -1,12 +1,12 @@
-{ config
-, pkgs
-, lib
-, enabledStuff
+args @
+{ usefulExpresions
 , ...
 }:
 
-(builtins.mapAttrs
-  (name: value: (import (./. + "/${name}") {inherit config pkgs lib enabledStuff;}))
-  (lib.filterAttrs
-    (name: value: value == "directory")
-    (builtins.readDir ./.)))
+with usefulExpresions;
+concatSets
+  (builtins.map
+    (dir: nameValueSet
+      (builtins.baseNameOf dir)
+      (import dir args))
+    (pathSetToList (filterDirectories (dirContents ./.))))

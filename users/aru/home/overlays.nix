@@ -1,10 +1,10 @@
-{ config
-, pkgs
-, lib
-, enabledStuff
+args @
+{ usefulExpresions
 , ...
 }:
 
-[]
-# Non-module
-++ (import ./non-module/termusic/overlays.nix {inherit enabledStuff;})
+[] ++ (
+  builtins.concatMap
+    (file: import file args)
+    (usefulExpresions.searchInSearchDirsSubdirs "overlays.nix")
+)

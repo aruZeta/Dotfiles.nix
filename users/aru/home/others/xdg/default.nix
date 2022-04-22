@@ -1,6 +1,5 @@
+args @
 { config
-, pkgs
-, enabledStuff
 , ...
 }:
 
@@ -11,8 +10,8 @@ in {
   dataHome   = "${homeDir}/.dotfiles/local/share";
   stateHome  = "${homeDir}/.dotfiles/local/state";
 
-  configFile = (import ../../xdg-symlinks.nix {inherit enabledStuff;});
-  desktopEntries = (import ../../desktop-entries.nix {inherit config pkgs enabledStuff;});
+  configFile = (import ../../xdg-symlinks.nix args);
+  desktopEntries = (import ../../desktop-entries.nix args);
 
   userDirs =
     let docsDir = config.xdg.userDirs.documents;
