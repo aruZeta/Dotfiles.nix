@@ -9,19 +9,40 @@ let
   argSet = {inherit config pkgs lib enabledStuff;};
   usefulExpresions = (import ./useful-expresions.nix argSet);
   argSet' = argSet // {inherit usefulExpresions;};
+
+  inherit (builtins)
+    attrValues;
+  inherit (usefulExpresions)
+    dirToImportSet
+    searchImportSet
+    searchImportList;
 in {
   home = {
     username = "aru";
     homeDirectory = "/home/${config.home.username}";
   };
 
-  home.packages =
-    (import ./packages.nix argSet')
-    ++ (import ./scripts.nix argSet');
+  home.packages = with pkgs; [
+    # Utilities
+    sass
+    unzip
 
-  nixpkgs.overlays = (import ./overlays.nix argSet');
+    # Ebook reader & editor
+    sigil
+    # calibre
 
-  programs = (import ./programs argSet');
+    # QMK
+    qmk
+
+    # Music
+    yt-dlp
+  ]
+  ++ (searchImportList "packages.nix" argSet')
+  ++ (attrValues (searchImportSet "scripts.nix" argSet'));
+
+  nixpkgs.overlays = searchImportList "overlays.nix" argSet';
+
+  programs = dirToImportSet ./programs argSet';
 
   # Enable stuff
   imports = [
@@ -29,4 +50,4 @@ in {
     enabledStuff.others
   ];
 }
-// (import ./others argSet')
+// (dirToImportSet ./others argSet')

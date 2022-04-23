@@ -1,17 +1,21 @@
 args @
 { config
+, usefulExpresions
 , ...
 }:
 
-let homeDir = config.home.homeDirectory;
+let
+  inherit (usefulExpresions)
+    searchImportSet;
+  homeDir = config.home.homeDirectory;
 in {
   configHome = "${homeDir}/.dotfiles/config";
   cacheHome  = "${homeDir}/.dotfiles/cache";
   dataHome   = "${homeDir}/.dotfiles/local/share";
   stateHome  = "${homeDir}/.dotfiles/local/state";
 
-  configFile = (import ../../xdg-symlinks.nix args);
-  desktopEntries = (import ../../desktop-entries.nix args);
+  configFile = searchImportSet "xdg-symlinks.nix" args;
+  desktopEntries = searchImportSet "desktop-entries.nix" args;
 
   userDirs =
     let docsDir = config.xdg.userDirs.documents;
