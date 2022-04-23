@@ -15,7 +15,8 @@ let
   inherit (lib)
     filterAttrs
     mapAttrs'
-    nameValuePair;
+    nameValuePair
+    toUpper;
 in
 
 rec {
@@ -47,4 +48,21 @@ rec {
 
   nameValueSet = dir: value:
     { ${dir} = value; };
+
+  genSet = values: fname: fvalue:
+    listToAttrs (map
+      (val: nameValuePair
+        (fname (toString val))
+        (fvalue (toString val)))
+      values);
+
+  genSet' = values: fnames-fvalues:
+    concatSets (map
+      (val: (genSet values (elemAt val 0) (elemAt val 1)))
+      fnames-fvalues);
+
+  capitalize = string:
+    let splits = split "(^.)" string;
+    in (toUpper (elemAt (elemAt splits 1) 0))
+       + (elemAt splits 2);
 }
