@@ -4,13 +4,6 @@ args @
 , ...
 }:
 
-let
-  inherit (builtins)
-    concatMap;
-  inherit (usefulExpresions)
-    searchInSearchDirsSubdirs;
-in
-
 with pkgs; [
   # Utilities
   sass
@@ -25,8 +18,4 @@ with pkgs; [
 
   # Music
   yt-dlp
-] ++ (
-  concatMap
-    (file: import file args)
-    (searchInSearchDirsSubdirs "packages.nix")
-)
+] ++ (usefulExpresions.searchImportList "packages.nix" args)

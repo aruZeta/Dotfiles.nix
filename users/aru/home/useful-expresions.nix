@@ -11,6 +11,7 @@ let
     baseNameOf
     listToAttrs
     elemAt
+    concatMap
     split;
   inherit (lib)
     filterAttrs
@@ -22,6 +23,9 @@ in
 rec {
   concatSets = list:
     foldl' (x: y: x // y) {} list;
+
+  concatMapSets = f: list:
+    concatSets(map f list);
 
   filterDirectories = set:
     filterAttrs (path: type: type == "directory") set;
@@ -48,6 +52,17 @@ rec {
 
   nameValueSet = dir: value:
     { ${dir} = value; };
+
+  dirToImportSet = path: args:
+    concatSets (map
+      (dir: nameValueSet (baseNameOf dir) (import dir args))
+      (pathSetToList (filterDirectories (dirContents path))));
+
+  searchImportList = file: args:
+    concatMap (path: import path args) (searchInSearchDirsSubdirs file);
+
+  searchImportSet = file: args:
+    concatMapSets (path: import path args) (searchInSearchDirsSubdirs file);
 
   genSet = values: fname: fvalue:
     listToAttrs (map
