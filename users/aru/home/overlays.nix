@@ -10,8 +10,6 @@ let
     searchInSearchDirsSubdirs;
 in
 
-[] ++ (
-  concatMap
-    (file: import file args)
-    (searchInSearchDirsSubdirs "overlays.nix")
-)
+concatMap
+  (file: import file args)
+  (searchInSearchDirsSubdirs "overlays.nix")

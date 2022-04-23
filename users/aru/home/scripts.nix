@@ -12,10 +12,8 @@ let
     searchInSearchDirsSubdirs;
 in
 
-[] ++ (
-  concatMap
-    (val: attrValues val)
-    (map
-      (file: import file args)
-      (searchInSearchDirsSubdirs "scripts.nix"))
-)
+concatMap
+  (val: attrValues val)
+  (map
+    (file: import file args)
+    (searchInSearchDirsSubdirs "scripts.nix"))

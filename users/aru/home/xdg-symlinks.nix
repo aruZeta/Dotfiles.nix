@@ -11,8 +11,6 @@ let
     searchInSearchDirsSubdirs;
 in
 
-{} // (
-  concatSets(map
-    (file: import file args)
-    (searchInSearchDirsSubdirs "xdg-symlinks.nix"))
-)
+concatSets(map
+  (file: import file args)
+  (searchInSearchDirsSubdirs "xdg-symlinks.nix"))
