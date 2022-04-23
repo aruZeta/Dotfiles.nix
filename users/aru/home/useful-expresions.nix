@@ -12,6 +12,7 @@ let
     listToAttrs
     elemAt
     concatMap
+    toString
     split;
   inherit (lib)
     filterAttrs
@@ -54,7 +55,7 @@ rec {
 
   /* List of the contents of searchDirs
   */
-  searchDirsContents = concatSets (map (dir: dirContents dir) searchDirs);
+  searchDirsContents = concatMapSets (dir: dirContents dir) searchDirs;
 
   /* Takes a set given from dirContents and turns it in a list of paths
   */
@@ -70,9 +71,9 @@ rec {
   searchInSearchDirsSubdirs = name:
     filter
       (path: (baseNameOf path) == name)
-      (pathSetToList (concatSets (map
+      (pathSetToList (concatMapSets
         (dir: dirContents dir)
-        searchDirsSubdirs)));
+        searchDirsSubdirs));
 
   /* Returns a set { name = value; }
   */
@@ -83,9 +84,9 @@ rec {
      it's default.nix file.
   */
   dirToImportSet = path: args:
-    concatSets (map
-      (dir: nameValueSet (baseNameOf dir) (import dir args))
-      (pathSetToList (filterDirectories (dirContents path))));
+    genSet
+      (pathSetToList (filterDirectories (dirContents path)))
+      (dir: baseNameOf dir) (dir: import dir args);
 
   /* Returns a list with the imports of all files returned by
      searchInSearchDirsSubdirs
@@ -107,11 +108,11 @@ rec {
      => { n1 = "1"; n2 = "2"; n3 = "3"; }
   */
   genSet = values: fname: fvalue:
-    listToAttrs (map
-      (val: nameValuePair
-        (fname (toString val))
-        (fvalue (toString val)))
-      values);
+    concatMapSets
+      (val: nameValueSet
+        (fname val)
+        (fvalue val))
+      values;
 
   /* Same as genSet' but applies each value to a list of fnames and fvalues
 
@@ -119,9 +120,9 @@ rec {
      => { m1 = "1"; m2 = "2"; m3 = "3"; n1 = "1"; n2 = "2"; n3 = "3"; }
   */
   genSet' = values: fnames-fvalues:
-    concatSets (map
+    concatMapSets
       (val: (genSet values (elemAt val 0) (elemAt val 1)))
-      fnames-fvalues);
+      fnames-fvalues;
 
   /* Returns a string with the first char being capitalized
   */
