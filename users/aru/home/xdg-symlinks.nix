@@ -3,10 +3,16 @@ args @
 , ...
 }:
 
-with usefulExpresions;
+let
+  inherit (builtins)
+    map;
+  inherit (usefulExpresions)
+    concatSets
+    searchInSearchDirsSubdirs;
+in
+
 {} // (
-  concatSets(
-    builtins.map
-      (file: import file args)
-      (searchInSearchDirsSubdirs "xdg-symlinks.nix"))
+  concatSets(map
+    (file: import file args)
+    (searchInSearchDirsSubdirs "xdg-symlinks.nix"))
 )

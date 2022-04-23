@@ -3,10 +3,19 @@ args @
 , ...
 }:
 
+let
+  inherit (builtins)
+    concatMap
+    attrValues
+    map;
+  inherit (usefulExpresions)
+    searchInSearchDirsSubdirs;
+in
+
 [] ++ (
-  builtins.concatMap
-    (val: builtins.attrValues val)
-    (builtins.map
+  concatMap
+    (val: attrValues val)
+    (map
       (file: import file args)
-      (usefulExpresions.searchInSearchDirsSubdirs "scripts.nix"))
+      (searchInSearchDirsSubdirs "scripts.nix"))
 )

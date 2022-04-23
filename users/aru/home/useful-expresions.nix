@@ -2,30 +2,48 @@
 , ...
 }:
 
+let
+  inherit (builtins)
+    foldl'
+    readDir
+    attrNames
+    filter
+    baseNameOf
+    listToAttrs
+    elemAt
+    split;
+  inherit (lib)
+    filterAttrs
+    mapAttrs'
+    nameValuePair;
+in
+
 rec {
   concatSets = list:
-    builtins.foldl' (x: y: x // y) {} list;
+    foldl' (x: y: x // y) {} list;
 
   filterDirectories = set:
-    lib.filterAttrs (path: type: type == "directory") set;
+    filterAttrs (path: type: type == "directory") set;
 
   searchDirs = [./programs ./non-module ./others];
 
   dirContents = dirPath:
-    lib.mapAttrs'
-      (name: type: lib.nameValuePair "${toString dirPath}/${name}" type)
-      (builtins.readDir dirPath);
+    mapAttrs'
+      (name: type: nameValuePair "${toString dirPath}/${name}" type)
+      (readDir dirPath);
 
   searchDirsContents = concatSets (map (dir: dirContents dir) searchDirs);
 
-  pathSetToList = set: map (path: /. + path) (builtins.attrNames set);
-  
+  pathSetToList = set: map (path: /. + path) (attrNames set);
+
   searchDirsSubdirs = pathSetToList (filterDirectories searchDirsContents);
 
   searchInSearchDirsSubdirs = name:
-    builtins.filter
-      (path: (builtins.baseNameOf path) == name)
-      (pathSetToList (concatSets (map (dir: dirContents dir) searchDirsSubdirs)));
+    filter
+      (path: (baseNameOf path) == name)
+      (pathSetToList (concatSets (map
+        (dir: dirContents dir)
+        searchDirsSubdirs)));
 
   nameValueSet = dir: value:
     { ${dir} = value; };

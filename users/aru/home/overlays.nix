@@ -3,8 +3,15 @@ args @
 , ...
 }:
 
+let
+  inherit (builtins)
+    concatMap;
+  inherit (usefulExpresions)
+    searchInSearchDirsSubdirs;
+in
+
 [] ++ (
-  builtins.concatMap
+  concatMap
     (file: import file args)
-    (usefulExpresions.searchInSearchDirsSubdirs "overlays.nix")
+    (searchInSearchDirsSubdirs "overlays.nix")
 )

@@ -3,10 +3,21 @@ args @
 , ...
 }:
 
-with usefulExpresions;
+let
+  inherit (builtins)
+    map
+    baseNameOf;
+  inherit (usefulExpresions)
+    concatSets
+    nameValueSet
+    pathSetToList
+    filterDirectories
+    dirContents;
+in
+
 concatSets
-  (builtins.map
+  (map
     (dir: nameValueSet
-      (builtins.baseNameOf dir)
+      (baseNameOf dir)
       (import dir args))
     (pathSetToList (filterDirectories (dirContents ./.))))
