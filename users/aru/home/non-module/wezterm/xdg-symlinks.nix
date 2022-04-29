@@ -1,9 +1,12 @@
 { enabledStuff
+, usefulExpresions
 , ...
 }:
 
-if enabledStuff.non-module.wezterm.enable
-then {
-  "wezterm/wezterm.lua".source = ./symlinked/wezterm.lua;
-}
-else {}
+usefulExpresions.condAndValuesSet [
+  { cond = enabledStuff.non-module.wezterm.enable;
+    vals = {
+      "wezterm/wezterm.lua".source = ./symlinked/wezterm.lua;
+    };
+  }
+]

@@ -1,41 +1,44 @@
-args @
 { config
 , usefulExpresions
 , ...
-}:
+} @ args:
 
 let
+  inherit (config.home)
+    homeDirectory;
+  inherit (config.xdg.userDirs)
+    documents
+    download;
   inherit (usefulExpresions)
     searchImportSet;
-  homeDir = config.home.homeDirectory;
-in {
-  configHome = "${homeDir}/.dotfiles/config";
-  cacheHome  = "${homeDir}/.dotfiles/cache";
-  dataHome   = "${homeDir}/.dotfiles/local/share";
-  stateHome  = "${homeDir}/.dotfiles/local/state";
+in
+
+{
+  configHome = "${homeDirectory}/.dotfiles/config";
+  cacheHome  = "${homeDirectory}/.dotfiles/cache";
+  dataHome   = "${homeDirectory}/.dotfiles/local/share";
+  stateHome  = "${homeDirectory}/.dotfiles/local/state";
 
   configFile = searchImportSet "xdg-symlinks.nix" args;
   desktopEntries = searchImportSet "desktop-entries.nix" args;
 
-  userDirs =
-    let docsDir = config.xdg.userDirs.documents;
-    in {
-      desktop   = "${config.xdg.userDirs.download}/Desktop";
-      documents = "${homeDir}/Archive";
-      download  = "${homeDir}/Tmp";
-      music     = "${docsDir}/Audio";
-      pictures  = "${docsDir}/Images";
-      templates = "${docsDir}/Templates";
-      videos    = "${docsDir}/Video";
-
-      extraConfig = {
-        XDG_DOTFILES_DIR = "${homeDir}/Dotfiles.nix";
-        XDG_PUBLISH_DIR  = "${homeDir}/Publish";
-        XDG_MAIL_DIR     = "${docsDir}/Mail";
-        XDG_KEYS_DIR     = "${docsDir}/Keys";
-        XDG_ORG_DIR      = "${docsDir}/Org";
-      };
+  userDirs = {
+    desktop   = "${download}/Desktop";
+    documents = "${homeDirectory}/Archive";
+    download  = "${homeDirectory}/Tmp";
+    music     = "${documents}/Audio";
+    pictures  = "${documents}/Images";
+    templates = "${documents}/Templates";
+    videos    = "${documents}/Video";
+    
+    extraConfig = {
+      XDG_DOTFILES_DIR = "${homeDirectory}/Dotfiles.nix";
+      XDG_PUBLISH_DIR  = "${homeDirectory}/Publish";
+      XDG_MAIL_DIR     = "${documents}/Mail";
+      XDG_KEYS_DIR     = "${documents}/Keys";
+      XDG_ORG_DIR      = "${documents}/Org";
     };
+  };
 
   mimeApps = {
     defaultApplications = {

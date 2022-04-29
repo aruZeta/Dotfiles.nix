@@ -1,9 +1,12 @@
 { enabledStuff
+, usefulExpresions
 , ...
 }:
 
-if enabledStuff.others.gtk.enable
-then {
-  "Trolltech.conf".source = ./symlinked/Trolltech.conf;
-}
-else {}
+usefulExpresions.condAndValuesSet [
+  { cond = enabledStuff.others.gtk.enable;
+    vals = {
+      "Trolltech.conf".source = ./symlinked/Trolltech.conf;
+    };
+  }
+]

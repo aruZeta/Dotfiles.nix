@@ -1,13 +1,14 @@
 { pkgs
 , enabledStuff
+, usefulExpresions
 , ...
 }:
 
-with pkgs; [
-] ++ (
-  if enabledStuff.non-module.wezterm.enable
-  then  [
-    wezterm
-  ]
-  else []
-)
+with pkgs;
+usefulExpresions.condAndValuesList [
+  { cond = enabledStuff.non-module.wezterm.enable;
+    vals = [
+      wezterm
+    ];
+  }
+]

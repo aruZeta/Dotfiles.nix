@@ -1,13 +1,14 @@
 { pkgs
 , enabledStuff
+, usefulExpresions
 , ...
 }:
 
-with pkgs; [
-] ++ (
-  if enabledStuff.non-module.termusic.enable
-  then  [
-    termusic
-  ]
-  else []
-)
+with pkgs;
+usefulExpresions.condAndValuesList [
+  { cond = enabledStuff.non-module.termusic.enable;
+    vals = [
+      termusic
+    ];
+  }
+]

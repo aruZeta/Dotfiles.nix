@@ -1,6 +1,6 @@
 { config
-, pkgs
 , lib
+, pkgs
 , ...
 }:
 
@@ -14,9 +14,11 @@ let
     attrValues;
   inherit (usefulExpresions)
     dirToImportSet
-    searchImportSet
-    searchImportList;
-in {
+    searchImportList
+    searchImportSet;
+in
+
+{
   home = {
     username = "aru";
     homeDirectory = "/home/${config.home.username}";
@@ -49,5 +51,4 @@ in {
     { programs = enabledStuff.programs; }
     enabledStuff.others
   ];
-}
-// (dirToImportSet ./others argSet')
+} // (dirToImportSet ./others argSet')

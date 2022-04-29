@@ -1,19 +1,19 @@
 { pkgs
 , enabledStuff
+, usefulExpresions
 , ...
 }:
 
-with pkgs; [
-] ++ (
-  if enabledStuff.others.xdg.enable
-  then [
-    xdg-utils
-  ]
-  else []
-) ++ (
-  if enabledStuff.others.xdg.userDirs.enable
-  then [
-    xdg-user-dirs
-  ]
-  else []
-)
+with pkgs;
+usefulExpresions.condAndValuesList [
+  { cond = enabledStuff.others.xdg.enable;
+    vals = [
+      xdg-utils
+    ];
+  }
+  { cond = enabledStuff.others.xdg.userDirs.enable;
+    vals = [
+      xdg-user-dirs
+    ];
+  }
+]

@@ -1,9 +1,12 @@
 { enabledStuff
+, usefulExpresions
 , ...
 }:
 
-if enabledStuff.non-module.swaylock.enable
-then {
-  "swaylock/config".source = ./symlinked/config.conf;
-}
-else {}
+usefulExpresions.condAndValuesSet [
+  { cond = enabledStuff.non-module.swaylock.enable;
+    vals = {
+      "swaylock/config".source = ./symlinked/config.conf;
+    };
+  }
+]

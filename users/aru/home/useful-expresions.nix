@@ -4,16 +4,16 @@
 
 let
   inherit (builtins)
-    foldl'
-    readDir
     attrNames
-    filter
     baseNameOf
-    listToAttrs
-    elemAt
     concatMap
-    toString
-    split;
+    elemAt
+    filter
+    foldl'
+    listToAttrs
+    readDir
+    split
+    toString;
   inherit (lib)
     filterAttrs
     mapAttrs'
@@ -130,4 +130,22 @@ rec {
     let splits = split "(^.)" string;
     in (toUpper (elemAt (elemAt splits 1) 0))
        + (elemAt splits 2);
+
+  /* A better looking way of defining a multi if-elseif-if block
+     where the return value is a list
+     Mostly used in packages.nix and overlays.nix.
+  */
+  condAndValuesList = conds-values:
+    concatMap
+      (val: if val.cond then val.vals else [])
+      conds-values;
+  
+  /* A better looking way of defining a multi if-elseif-if block
+     where the return value is a set.
+     Mostly used in xdg-symlinks.nix, desktop-entries.nix and scripts.nix
+  */
+  condAndValuesSet = conds-values:
+    concatMapSets
+      (val: if val.cond then val.vals else {})
+      conds-values;
 }

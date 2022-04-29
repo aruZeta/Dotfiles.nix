@@ -1,13 +1,14 @@
 { pkgs
 , enabledStuff
+, usefulExpresions
 , ...
 }:
 
-with pkgs; [
-] ++ (
-  if enabledStuff.non-module.wofi.enable
-  then  [
-    wofi
-  ]
-  else []
-)
+with pkgs;
+usefulExpresions.condAndValuesList [
+  { cond = enabledStuff.non-module.wofi.enable;
+    vals = [
+      wofi
+    ];
+  }
+]

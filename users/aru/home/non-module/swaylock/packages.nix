@@ -1,13 +1,14 @@
 { pkgs
 , enabledStuff
+, usefulExpresions
 , ...
 }:
 
-with pkgs; [
-] ++ (
-  if enabledStuff.non-module.swaylock.enable
-  then  [
-    swaylock
-  ]
-  else []
-)
+with pkgs;
+usefulExpresions.condAndValuesList [
+  { cond = enabledStuff.non-module.swaylock.enable;
+    vals = [
+      swaylock
+    ];
+  }
+]
