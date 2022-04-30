@@ -38,6 +38,9 @@ in
 
     # Music
     yt-dlp
+
+    # Discord
+    discord
   ]
   ++ (searchImportList "packages.nix" argSet')
   ++ (attrValues (searchImportSet "scripts.nix" argSet'));
@@ -45,6 +48,10 @@ in
   home.sessionVariables = searchImportSet "session-vars.nix" argSet';
 
   nixpkgs.overlays = searchImportList "overlays.nix" argSet';
+
+  # Only allow the unfreePackages listed in enable.nix
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) enabledStuff.unfreePackages;
 
   programs = dirToImportSet ./programs argSet';
   services = dirToImportSet ./services argSet';

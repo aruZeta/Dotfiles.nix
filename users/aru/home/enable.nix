@@ -114,4 +114,9 @@
     wezterm.enable = true;
     wofi.enable = true;
   };
+
+  # Enabled unfree packages
+  unfreePackages = [
+    "discord"
+  ];
 }
