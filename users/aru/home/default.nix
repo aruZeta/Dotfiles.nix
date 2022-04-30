@@ -46,6 +46,7 @@ in
   ++ (attrValues (searchImportSet "scripts.nix" argSet'));
 
   home.sessionVariables = searchImportSet "session-vars.nix" argSet';
+  home.file = searchImportSet "home-symlinks.nix" argSet';
 
   nixpkgs.overlays = searchImportList "overlays.nix" argSet';
 

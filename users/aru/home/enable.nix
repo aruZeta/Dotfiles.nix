@@ -63,6 +63,8 @@
   # Local variables not applied directly to home-manager, used to setup
   # overlays, packages, symlinks, scripts, etc.
   non-module = {
+    common-lisp.enable = true;
+
     eww.overlay = {
       enable = true;
       version = "fb0e57a0149904e76fb33807a2804d4af82350de";
