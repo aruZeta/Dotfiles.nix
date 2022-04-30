@@ -1,5 +1,6 @@
 {
   programs = {
+    eww.enable = true;
     mbsync.enable = true;
     mu.enable = true;
     firefox.enable = true;
@@ -61,6 +62,13 @@
   # Local variables not applied directly to home-manager, used to setup
   # overlays, packages, symlinks, scripts, etc.
   non-module = {
+    eww.overlay = {
+      enable = true;
+      version = "fb0e57a0149904e76fb33807a2804d4af82350de";
+      sha256 = "sha256-oAbB9aW/nqg02peqGEfETOGgeXarI6ZcAZ6DzDXbOSE=";
+      cargoOutputHash = "sha256-zN6qqCvFYCD3sUIqC9XZyyUVc/9zQ0UB/gRq96Gaf94=";
+    };
+
     koreader = {
       enable = false;
 
