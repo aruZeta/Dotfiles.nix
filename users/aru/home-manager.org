@@ -2822,7 +2822,51 @@ Select the stuff to import:
 #+NAME: python.imports
 #+begin_src nix
 {
+  <<python.overlays>>
   <<python.packages>>
+}
+#+end_src
+
+** Overlays
+
+#+NAME: python.overlays
+#+begin_src nix
+nixpkgs.overlays = [
+  (
+    <<python.overlays.apsw-fix>>
+  )
+];
+#+end_src
+
+*** Apsw fix
+
+#+NAME: python.overlays.apsw-fix
+#+begin_src nix
+overlayFinal: overlayPrev:
+let
+  packageOverrides = (pythonFinal: pythonPrev: {
+    apsw = pythonPrev.apsw.overridePythonAttrs (oldAttrs: {
+      version = "3.38.1-r1";
+      src = overlayPrev.fetchFromGitHub {
+        owner = "rogerbinns";
+        repo = "apsw";
+        rev = "3.38.1-r1";
+        sha256 = "sha256-pbb6wCu1T1mPlgoydB1Y1AKv+kToGkdVUjiom2vTqf4=";
+      };
+      checkInputs = [];
+      # Project uses custom test setup to exclude some tests by default, so using pytest
+      # requires more maintenance
+      # https://github.com/rogerbinns/apsw/issues/335
+      checkPhase = ''
+        python tests.py
+      '';
+      pytestFlagsArray = [];
+      disabledTests = [];
+    });
+  });
+  python' = overlayPrev.python3.override { inherit packageOverrides; };
+in {
+  calibre = overlayPrev.calibre.override { python3Packages = python'.pkgs; };
 }
 #+end_src
 
@@ -2854,8 +2898,27 @@ Select the stuff to import:
 #+NAME: qt.imports
 #+begin_src nix
 {
+  <<qt.config>>
+  <<qt.enable>>
   <<qt.packages>>
 }
+#+end_src
+
+** Config
+
+#+NAME: qt.config
+#+begin_src nix
+qt = {
+  platformTheme = "gtk";
+  style.name = "gtk2";
+};
+#+end_src
+
+** Enable
+
+#+NAME: qt.enable
+#+begin_src nix
+qt.enable = true;
 #+end_src
 
 ** Packages
@@ -2863,7 +2926,6 @@ Select the stuff to import:
 #+NAME: qt.packages
 #+begin_src nix
 home.packages = with pkgs; [
-  libsForQt5.qtstyleplugins
   qt5ct
 ];
 #+end_src
