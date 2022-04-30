@@ -21,6 +21,7 @@
 
   others = {
     gtk.enable = true;
+    qt.enable = true;
 
     wayland.windowManager.sway = {
       enable = true;
