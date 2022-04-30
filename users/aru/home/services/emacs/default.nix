@@ -1,0 +1,6 @@
+{ ...
+}:
+
+{
+  defaultEditor = true;
+}

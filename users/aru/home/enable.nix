@@ -2,6 +2,7 @@
   programs = {
     alacritty.enable = false;
     eclipse.enable = true;
+    emacs.enable = true;
     eww.enable = true;
     mbsync.enable = true;
     mu.enable = true;
@@ -37,6 +38,12 @@
   };
 
   services = {
+    emacs = {
+      enable = true;
+      client.enable = true;
+      socketActivation.enable = true;
+    };
+
     mbsync.enable = false;
 
     gpg-agent = {
@@ -65,6 +72,12 @@
   # overlays, packages, symlinks, scripts, etc.
   non-module = {
     common-lisp.enable = true;
+
+    emacs.overlay = {
+      enable = true;
+      repo = "https://github.com/nix-community/emacs-overlay";
+      commit = "7368fbf298996bc024396c1cdb1e194f7a2cd3c6";
+    };
 
     eww.overlay = {
       enable = true;
