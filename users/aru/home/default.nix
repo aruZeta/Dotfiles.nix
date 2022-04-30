@@ -42,6 +42,8 @@ in
   ++ (searchImportList "packages.nix" argSet')
   ++ (attrValues (searchImportSet "scripts.nix" argSet'));
 
+  home.sessionVariables = searchImportSet "session-vars.nix" argSet';
+
   nixpkgs.overlays = searchImportList "overlays.nix" argSet';
 
   programs = dirToImportSet ./programs argSet';

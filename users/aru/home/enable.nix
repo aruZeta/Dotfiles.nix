@@ -38,6 +38,17 @@
   # Local variables not applied directly to home-manager, used to setup
   # overlays, packages, symlinks, scripts, etc.
   non-module = {
+    plantuml = {
+      enable = true;
+
+      overlay = {
+        enable = true;
+        version = "1.2021.16";
+        repo = "mirror://sourceforge/project/plantuml";
+        sha256 = "sha256-0yN/29VKWiqp2Hi9aIN6GMlfMJPxrewsCQyyPVy6RAM=";
+      };
+    };
+
     python = {
       enable = true;
 
