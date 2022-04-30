@@ -2,6 +2,12 @@
   programs = {
     mbsync.enable = true;
     mu.enable = true;
+
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     git.enable = true;
     gpg.enable = true;
     java.enable = true;
