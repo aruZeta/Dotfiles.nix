@@ -7,7 +7,7 @@
 
 let
   inherit (config.gtk)
-    theme;
+    iconTheme;
 in
 
 usefulExpresions.condAndValuesSet [
@@ -24,11 +24,7 @@ usefulExpresions.condAndValuesSet [
         categories = [ "Music" "AudioVideo" ];
         icon =
           let
-            folder =
-              if theme.name == "gruvbox-dark"
-              then "oomox-gruvbox-dark"
-              else config.gtk.name;
-            path = "${theme.package}/share/icons/${folder}";
+            path = "${iconTheme.package}/share/icons/${iconTheme.name}";
           in "${path}/64x64/apps/multimedia-audio-player.svg";
       };
     };
