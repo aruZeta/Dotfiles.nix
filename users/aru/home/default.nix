@@ -47,10 +47,12 @@ in
   nixpkgs.overlays = searchImportList "overlays.nix" argSet';
 
   programs = dirToImportSet ./programs argSet';
+  services = dirToImportSet ./services argSet';
 
   # Enable stuff
   imports = [
     { programs = enabledStuff.programs; }
+    { services = enabledStuff.services; }
     enabledStuff.others
   ];
 } // (dirToImportSet ./others argSet')

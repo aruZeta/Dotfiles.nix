@@ -51,7 +51,7 @@ rec {
 
   /* Just a variable which holds the dirs with configs
   */
-  searchDirs = [./programs ./non-module ./others];
+  searchDirs = [./programs ./non-module ./others ./services];
 
   /* List of the contents of searchDirs
   */

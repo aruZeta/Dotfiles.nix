@@ -1,5 +1,6 @@
 {
   programs = {
+    gpg.enable = true;
     java.enable = true;
     neovim.enable = true;
     obs-studio.enable = true;
@@ -19,6 +20,13 @@
       enableCompletion = true;
       enableSyntaxHighlighting = true;
       autocd = true;
+    };
+  };
+
+  services = {
+    gpg-agent = {
+      enable = true;
+      enableSshSupport = true;
     };
   };
 
