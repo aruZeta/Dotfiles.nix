@@ -2573,7 +2573,6 @@ Select the stuff to import:
 {
   <<gtk.config>>
   <<gtk.enable>>
-  <<gtk.symlinked-files>>
 }
 #+end_src
 
@@ -2630,30 +2629,11 @@ iconTheme = {
 };
 #+end_src
 
-*** Trolltech
-
-Setting qt to use gtk+ style.
-
-#+begin_src conf :tangle generated/trolltech-config.conf
-[Qt]
-style=GTK+
-#+end_src
-
 ** Enable
 
 #+NAME: gtk.enable
 #+begin_src nix
 gtk.enable = true;
-#+end_src
-
-** Symlinked files
-
-Files to be symlinked in the user directory (actually under
-~XDG_CONFIG_HOME~).
-
-#+NAME: gtk.symlinked-files
-#+begin_src nix
-xdg.configFile."Trolltech.conf".source = ./trolltech-config.conf;
 #+end_src
 
 * Java
@@ -2990,8 +2970,27 @@ Select the stuff to import:
 #+NAME: qt.imports
 #+begin_src nix
 {
+  <<qt.config>>
+  <<qt.enable>>
   <<qt.packages>>
 }
+#+end_src
+
+** Config
+
+#+NAME: qt.config
+#+begin_src nix
+qt = {
+  platformTheme = "gtk";
+  style.name = "gtk2";
+};
+#+end_src
+
+** Enable
+
+#+NAME: qt.enable
+#+begin_src nix
+qt.enable = true;
 #+end_src
 
 ** Packages
@@ -2999,7 +2998,6 @@ Select the stuff to import:
 #+NAME: qt.packages
 #+begin_src nix
 home.packages = with pkgs; [
-  libsForQt5.qtstyleplugins
   qt5ct
 ];
 #+end_src
