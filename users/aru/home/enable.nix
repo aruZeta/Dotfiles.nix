@@ -1,5 +1,10 @@
 {
   programs = {
+    starship = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     texlive.enable = true;
     waybar.enable = true;
 

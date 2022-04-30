@@ -2908,22 +2908,3 @@ Host *
 programs.ssh.enable = true;
 #+end_src
 
-* Starship
-
-Select the stuff to import:
-
-#+NAME: starship.imports
-#+begin_src nix
-{
-  <<starship.enable>>
-}
-#+end_src
-
-** Enable
-
-#+NAME: starship.enable
-#+begin_src nix
-programs.starship.enable = true;
-programs.starship.enableZshIntegration = true;
-#+end_src
-
