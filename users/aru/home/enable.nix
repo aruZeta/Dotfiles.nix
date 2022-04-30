@@ -26,6 +26,8 @@
   };
 
   services = {
+    mbsync.enable = false;
+
     gpg-agent = {
       enable = true;
       enableSshSupport = true;
