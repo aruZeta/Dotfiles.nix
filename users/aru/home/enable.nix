@@ -38,6 +38,14 @@
   # Local variables not applied directly to home-manager, used to setup
   # overlays, packages, symlinks, scripts, etc.
   non-module = {
+    python = {
+      enable = true;
+
+      overlay = {
+        apsw-fix.enable = true;
+      };
+    };
+
     swappy.enable = true;
     swaylock.enable = true;
 
