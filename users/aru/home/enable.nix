@@ -15,6 +15,11 @@
   others = {
     gtk.enable = true;
 
+    wayland.windowManager.sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+    };
+
     xdg = {
       enable = true;
       userDirs.enable = true;
