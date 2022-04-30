@@ -2,6 +2,7 @@
   programs = {
     mbsync.enable = true;
     mu.enable = true;
+    firefox.enable = true;
 
     fzf = {
       enable = true;

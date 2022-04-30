@@ -2162,23 +2162,3 @@ home.packages = with pkgs; [
 ];
 #+end_src
 
-* Firefox
-
-Select the stuff to import:
-
-#+NAME: firefox.imports
-#+begin_src nix
-{
-  <<firefox.packages>>
-}
-#+end_src
-
-** Packages
-
-#+NAME: firefox.packages
-#+begin_src nix
-home.packages = with pkgs; [
-  firefox
-];
-#+end_src
-
