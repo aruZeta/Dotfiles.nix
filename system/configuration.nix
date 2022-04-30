@@ -2,10 +2,13 @@
 }:
 
 {
-  imports = [
-    ./hardware/msi-bravo-15-b5dd.nix
+  system.stateVersion = "22.05";
 
+  imports = [
     # Import your user specific settings
-    ../users/aru/system.nix
+    ../users/aru/system
+
+    # Import your hardware settings
+    ./hardware/msi-bravo-15-b5dd.nix
   ];
 }
