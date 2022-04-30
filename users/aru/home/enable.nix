@@ -40,6 +40,17 @@
   # Local variables not applied directly to home-manager, used to setup
   # overlays, packages, symlinks, scripts, etc.
   non-module = {
+    koreader = {
+      enable = false;
+
+      overlay = {
+        enable = true;
+        version = "2021.12";
+        repo = "https://github.com/koreader/koreader";
+        sha256 = "sha256-duOIbYavqmUUkH6RthTYu/SeM8zOeeLm7CIAQwhw6AY=";
+      };
+    };
+
     neovim.overlay = {
       enable = true;
       repo = "https://github.com/nix-community/neovim-nightly-overlay";
