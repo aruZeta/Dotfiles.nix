@@ -30,6 +30,7 @@
   # Local variables not applied directly to home-manager, used to setup
   # overlays, packages, symlinks, scripts, etc.
   non-module = {
+    swappy.enable = true;
     swaylock.enable = true;
 
     termusic = {
