@@ -1,5 +1,6 @@
 {
   programs = {
+    alacritty.enable = false;
     eclipse.enable = true;
     eww.enable = true;
     mbsync.enable = true;
