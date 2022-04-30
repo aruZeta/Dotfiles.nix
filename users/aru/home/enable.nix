@@ -2,6 +2,7 @@
   programs = {
     mbsync.enable = true;
     mu.enable = true;
+    git.enable = true;
     gpg.enable = true;
     java.enable = true;
     neovim.enable = true;
