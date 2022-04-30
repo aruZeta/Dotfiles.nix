@@ -1,5 +1,6 @@
 {
   programs = {
+    neovim.enable = true;
     obs-studio.enable = true;
     ssh.enable = true;
 
@@ -39,6 +40,12 @@
   # Local variables not applied directly to home-manager, used to setup
   # overlays, packages, symlinks, scripts, etc.
   non-module = {
+    neovim.overlay = {
+      enable = true;
+      repo = "https://github.com/nix-community/neovim-nightly-overlay";
+      commit = "7933df62bb350d2f4a258f9e110decc08baaf627";
+    };
+
     plantuml = {
       enable = true;
 
