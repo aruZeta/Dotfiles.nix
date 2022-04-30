@@ -3,13 +3,13 @@ pkgs: config:
 with pkgs; {
   apply-system = writeShellScriptBin "apply-system" ''
     pushd ${config.xdg.userDirs.extraConfig.XDG_DOTFILES_DIR}
-    sudo nixos-rebuild switch -I nixos-config=./system/configuration.nix
+    sudo nixos-rebuild switch -I nixos-config=./system
     popd
   '';
 
   apply-user = writeShellScriptBin "apply-user" ''
     pushd ${config.xdg.userDirs.extraConfig.XDG_DOTFILES_DIR}
-    home-manager switch -f ./home/home.nix
+    home-manager switch -f ./home
     popd
   '';
 
