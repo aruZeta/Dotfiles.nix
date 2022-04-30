@@ -1,5 +1,6 @@
 {
   programs = {
+    java.enable = true;
     neovim.enable = true;
     obs-studio.enable = true;
     ssh.enable = true;

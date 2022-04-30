@@ -2564,21 +2564,3 @@ services.gpg-agent.enable = true;
 services.gpg-agent.enableSshSupport = true;
 #+end_src
 
-* Java
-
-Select the stuff to import:
-
-#+NAME: java.imports
-#+begin_src nix
-{
-  <<java.enable>>
-}
-#+end_src
-
-** Enable
-
-#+NAME: java.enable
-#+begin_src nix
-programs.java.enable = true;
-#+end_src
-
