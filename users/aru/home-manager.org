@@ -375,39 +375,6 @@ xdg.configFile =
   };
 #+end_src
 
-* Eclipse
-
-Select the stuff to import:
-
-#+NAME: eclipse.imports
-#+begin_src nix
-{
-  <<eclipse.config>>
-  <<eclipse.enable>>
-}
-#+end_src
-
-** Config
-
-Not much config possible for eclipse, just the package to use:
-
-#+NAME: eclipse.config
-#+begin_src nix
-programs.eclipse = {
-  package = pkgs.eclipses.eclipse-java;
-  plugins = with pkgs.eclipses.plugins; [
-    vrapper
-  ];
-};
-#+end_src
-
-** Enable
-
-#+NAME: eclipse.enable
-#+begin_src nix
-programs.eclipse.enable = true;
-#+end_src
-
 * Emacs
 
 Select the stuff to import:

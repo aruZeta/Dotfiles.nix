@@ -1,5 +1,6 @@
 {
   programs = {
+    eclipse.enable = true;
     eww.enable = true;
     mbsync.enable = true;
     mu.enable = true;
