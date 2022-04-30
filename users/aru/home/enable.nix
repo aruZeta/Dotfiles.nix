@@ -1,5 +1,6 @@
 {
   programs = {
+    obs-studio.enable = true;
     ssh.enable = true;
 
     starship = {
