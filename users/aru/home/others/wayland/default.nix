@@ -18,6 +18,8 @@ let
 
   scripts = import ./scripts.nix args;
   sway-screenshot = "${scripts.sway-screenshot}/bin/sway-screenshot";
+  sway-screenshot-full =
+    "${scripts.sway-screenshot-full}/bin/sway-screenshot-full";
   sway-exit = "${scripts.sway-exit}/bin/sway-exit";
   swaylock = "${pkgs.swaylock}/bin/swaylock";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
@@ -37,6 +39,7 @@ in
         "${modifier}+f" = "fullscreen toggle";
         "${modifier}+n" = "move workspace to output right";
         "${modifier}+Shift+s" = "exec ${sway-screenshot}";
+        "${modifier}+s" = "exec ${sway-screenshot-full}";
         "${modifier}+Shift+w" = "kill";
         "${modifier}+Escape" = "exec ${swaylock} -f";
         "${modifier}+Shift+Escape" = "exec ${sway-exit}";
