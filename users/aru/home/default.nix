@@ -31,7 +31,7 @@ in
 
     # Ebook reader & editor
     sigil
-    # calibre
+    calibre
 
     # QMK
     qmk
