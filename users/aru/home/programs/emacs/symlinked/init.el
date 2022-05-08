@@ -20,7 +20,7 @@
                 mu4e-org-mode-hook
                 mu4e~update-mail-mode-hook
                 mu4e-loading-mode-hook))
-        (add-hook mode (lambda () (display-line-numbers-mode 0))))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 (custom-set-variables
  '(inhibit-startup-screen t)
  '(initial-buffer-choice t))
@@ -58,21 +58,21 @@
        :inherit    default))
   "Face for title svg tags"
   :group nil)
-; (setq aru/org-svg-tag-todo
-;       (svg-tag-make "TODO" 'aru/face-org-svg-tag-todo 2 0 5))
+                                        ; (setq aru/org-svg-tag-todo
+                                        ;       (svg-tag-make "TODO" 'aru/face-org-svg-tag-todo 2 0 5))
 
-; (defun aru/org-svg-tag-settings (text)
-;   (svg-tag-make (substring text 2 -1) 'aru/face-org-svg-tag-settings 2 0 5))
+                                        ; (defun aru/org-svg-tag-settings (text)
+                                        ;   (svg-tag-make (substring text 2 -1) 'aru/face-org-svg-tag-settings 2 0 5))
 (setq which-key-idle-delay .5)
 (which-key-mode)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (defun aru/diff-faces ()
   (set-face-attribute 'diff-refine-removed nil
-		      :background "#252122"
-		      :foreground "#fb4934")
+                      :background "#252122"
+                      :foreground "#fb4934")
   (set-face-attribute 'diff-refine-added nil
-		      :background "#212421"
-		      :foreground "#98971a"))
+                      :background "#212421"
+                      :foreground "#98971a"))
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (modify-syntax-entry ?_ "w")
 (setq evil-want-keybinding nil)
@@ -96,12 +96,12 @@
  :prefix "SPC"
  :non-normal-prefix "M-<return>"
 
- ; Treemacs
+                                        ; Treemacs
  "t" '(:ignore t :which-key "Treemacs")
 
  "t t" '(treemacs :which-key "Toggle treemacs sidebar")
 
- ; Buffer
+                                        ; Buffer
  "b" '(:ignore t :which-key "Buffer")
 
  "b <right>" '(switch-to-next-buffer :which-key "Next")
@@ -113,7 +113,7 @@
  "b k o" '(kill-buffer :which-key "Other")
  "b k f" '(kill-current-buffer :which-key "Focused")
 
- ; Window
+                                        ; Window
  "w" '(:ignore t :which-key "Window")
 
  "w <up>" '(windmove-up :which-key "Top")
@@ -133,18 +133,18 @@
  "w d <down>" '(windmove-delete-down :which-key "Bottom")
  "w d <left>" '(windmove-delete-left :which-key "Left")
 
- ; Web server
+                                        ; Web server
  "C-w" '(:ignore t :which-key "Web server")
  "C-w o" '(aru/web-server-open :which-key "Open web server")
  "C-w k" '(aru/web-server-kill :which-key "Kill current web server")
 
- ; Magit
+                                        ; Magit
  "m" '(magit :which-key "Magit")
 
- ; Mu4e (Email)
+                                        ; Mu4e (Email)
  "e" '(mu4e :which-key "Mu4e")
 
- ; Terminal
+                                        ; Terminal
  "v" '(vterm :which-key "Terminal"))
 (setq org-directory "~/Archive/Org/"
 
@@ -214,13 +214,13 @@
                 ((org-agenda-prefix-format " % i%-16 c% s[%e]: ")
                  (org-agenda-overriding-header "\nCompleted today\n")))))
         ("d" "Deadlines"
-          (agenda nil
-                  ((org-agenda-entry-types '(:deadline))
-                   (org-agenda-skip-function
-                    '(org-agenda-skip-entry-if 'nottode '("NEXT")))
-                   (org-agenda-format-date "")
-                   (org-deadline-warning-days 7)
-                   (org-agenda-overriding-header "\nDeadlines\n"))))))
+         (agenda nil
+                 ((org-agenda-entry-types '(:deadline))
+                  (org-agenda-skip-function
+                   '(org-agenda-skip-entry-if 'nottode '("NEXT")))
+                  (org-agenda-format-date "")
+                  (org-deadline-warning-days 7)
+                  (org-agenda-overriding-header "\nDeadlines\n"))))))
 (advice-add 'org-agenda-quit :before
             (lambda (&rest _)
               (org-save-all-org-buffers)))
@@ -234,7 +234,7 @@
         ("@" "Inbox [mu4e]" entry (file "~/Archive/Org/inbox.org")
          "* TODO Reply to \"%a\" %?\n/Entered on/ %U")))
 (setq org-refile-targets '(("~/Documents/ORG/projects.org"
-                      :regexp . "\\(?:\\(?:Note\\|Task\\)s\\)")))
+                            :regexp . "\\(?:\\(?:Note\\|Task\\)s\\)")))
 (advice-add 'org-refile :before
             (lambda (&rest _)
               (org-save-all-org-buffers)))
@@ -243,7 +243,7 @@
   "Log NEXT creation time inthe property drawer under the key 'ACTIVATED'"
   (when (and (string= (org-get-todo-state) "NEXT")
              (not (org-entry-get nil "ACTIVATED")))
-        (org-entry-put nil "ACTIVATED" (format-time-string "[%Y-%m-%d %H:%M]"))))
+    (org-entry-put nil "ACTIVATED" (format-time-string "[%Y-%m-%d %H:%M]"))))
 (add-hook 'org-after-todo-state-change-hook #'aru/log-todo-next-creation-date)
 (setq org-html-head-include-default-style nil
       org-html-htmlize-output-type 'css
@@ -340,51 +340,51 @@ contextual information."
               contents
               type))))
 (defun aru/org-export-delete-special-cols-n-rows (back-end)
-   (while (re-search-forward "^[ \t]*| +\\(<_>\\) +|" nil t)
-          (goto-char (match-beginning 1))
-          (org-table-kill-row)
-          (beginning-of-line))
-   (beginning-of-buffer)
-   (while (re-search-forward "| +\\(<~>\\) +|" nil t)
-          (goto-char (match-beginning 1))
-          (org-table-delete-column)
-          (beginning-of-line)))
+  (while (re-search-forward "^[ \t]*| +\\(<_>\\) +|" nil t)
+    (goto-char (match-beginning 1))
+    (org-table-kill-row)
+    (beginning-of-line))
+  (beginning-of-buffer)
+  (while (re-search-forward "| +\\(<~>\\) +|" nil t)
+    (goto-char (match-beginning 1))
+    (org-table-delete-column)
+    (beginning-of-line)))
 (defun org-html-table-cell (table-cell contents info)
   (let* ((table-cell-address (org-export-table-cell-address table-cell info))
          (table-row (org-export-get-parent table-cell))
          (table (org-export-get-parent-table table-cell))
          (cell-attrs
-           (if (not (plist-get info :html-table-align-individual-fields))
-               ""
-               (format (if (and (boundp 'org-html-format-table-no-css)
-                                org-html-format-table-no-css)
-                           " align=\"%s\""
-                           " class=\"org-%s\"")
-                       (org-export-table-cell-alignment table-cell info)))))
+          (if (not (plist-get info :html-table-align-individual-fields))
+              ""
+            (format (if (and (boundp 'org-html-format-table-no-css)
+                             org-html-format-table-no-css)
+                        " align=\"%s\""
+                      " class=\"org-%s\"")
+                    (org-export-table-cell-alignment table-cell info)))))
     (cond
-      ((or (not contents)
-           (string= "" (org-trim contents)))
-       "")
-      ((and (org-export-table-has-header-p table info)
-            (= 1 (org-export-table-row-group table-row info)))
-       (let ((header-tags (plist-get info :html-table-header-tags)))
-         (concat "\n"
-                 (format (car header-tags) "col" cell-attrs)
-                 contents
-                 (cdr header-tags))))
-      ((and (plist-get info :html-table-use-header-tags-for-first-column)
-            (zerop (cdr (org-export-table-cell-address table-cell info))))
-       (let ((header-tags (plist-get info :html-table-header-tags)))
-         (concat "\n"
-                 (format (car header-tags) "row" cell-attrs)
-                 contents
-                 (cdr header-tags))))
-      (t
-       (let ((data-tags (plist-get info :html-table-data-tags)))
-         (concat "\n"
-                 (format (car data-tags) cell-attrs)
-                 contents
-                 (cdr data-tags)))))))
+     ((or (not contents)
+          (string= "" (org-trim contents)))
+      "")
+     ((and (org-export-table-has-header-p table info)
+           (= 1 (org-export-table-row-group table-row info)))
+      (let ((header-tags (plist-get info :html-table-header-tags)))
+        (concat "\n"
+                (format (car header-tags) "col" cell-attrs)
+                contents
+                (cdr header-tags))))
+     ((and (plist-get info :html-table-use-header-tags-for-first-column)
+           (zerop (cdr (org-export-table-cell-address table-cell info))))
+      (let ((header-tags (plist-get info :html-table-header-tags)))
+        (concat "\n"
+                (format (car header-tags) "row" cell-attrs)
+                contents
+                (cdr header-tags))))
+     (t
+      (let ((data-tags (plist-get info :html-table-data-tags)))
+        (concat "\n"
+                (format (car data-tags) cell-attrs)
+                contents
+                (cdr data-tags)))))))
 (add-hook 'org-export-before-processing-hook
           #'aru/org-export-delete-special-cols-n-rows)
 (defun aru/org-faces ()
@@ -421,12 +421,12 @@ contextual information."
 (defun aru/org-shell-mode-hook ()
   (org-babel-do-load-languages 'org-babel-load-languages '((shell . t))))
 (setq org-format-latex-options '(:foreground "#8ec07c"
-                                 :background default
-                                 :scale 1.0
-                                 :html-foreground "Black"
-                                 :html-background "Transparent"
-                                 :html-scale 1.0
-                                 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
+                                             :background default
+                                             :scale 1.0
+                                             :html-foreground "Black"
+                                             :html-background "Transparent"
+                                             :html-scale 1.0
+                                             :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
 (require 'mu4e)
 (pinentry-start)
 (setq mu4e-refile-folder "/Archive"
@@ -554,7 +554,8 @@ contextual information."
  :states '(insert)
  :keymaps '(lisp-mode-map emacs-lisp-mode-map)
  "(" 'lispy-parens
- ")" 'aru/check-closing-paren)
+ ")" 'aru/check-closing-paren
+ "<tab>" 'indent-region)
 (add-hook 'lisp-mode-hook (lambda () (lispy-mode 1)))
 (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
 (require 'hideshow)
@@ -614,8 +615,8 @@ contextual information."
 (defun aru/web-server--open (name)
   (let* ((port (aru/web-server-get-new-port))
          (cmd (format "python3 -m http.server --directory %s %d"
-                     (projectile-project-root)
-                     port))
+                      (projectile-project-root)
+                      port))
          (buffer-name (format "*%s*" name)))
     (start-process-shell-command name buffer-name cmd)
     (aru/web-server-add-opened-port name port)
