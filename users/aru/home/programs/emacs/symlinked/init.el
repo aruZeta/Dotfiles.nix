@@ -1,3 +1,5 @@
+(load-file (concat user-emacs-directory "./expanded.el"))
+
 (setq user-full-name    "Alberto Robles Gomez"
       user-mail-address "aru_hackZ.official@zohomail.eu")
 (scroll-bar-mode -1)
@@ -643,3 +645,36 @@ contextual information."
 (elcord-mode)
 
 (setq elcord-refresh-rate 5)
+
+(setq org-publish-project-alist
+      (let* ((org-project-name (string-replace "/" "_" sys/xdg-org-dir)))
+        `((,sys/xdg-org-dir
+           :components (,(concat org-project-name ".org")
+                        ;; ,(concat org-project-name ".static")
+                        ,(concat org-project-name ".scss-generation")))
+          (,(concat org-project-name ".org")
+           :headline-levels 6
+           :recursive t
+           :base-extension "org"
+           :base-directory ,sys/xdg-org-dir
+           :publishing-directory ,(concat sys/xdg-publish-dir "/Org")
+           :publishing-function org-html-publish-to-html)
+          ;; (,(concat org-project-name ".static")
+          ;; :recursive t
+          ;; :base-extension ""
+          ;; :base-directory ,sys/xdg-org-dir
+          ;; :publishing-directory ,(concat sys/xdg-publish-dir "/Org")
+          ;; :publishing-function org-publish-attachment)
+          (,(concat org-project-name ".scss-generation")
+           :recursive t
+           :base-extension "scss"
+           :base-directory ,sys/xdg-org-dir
+           :publishing-directory ,(concat sys/xdg-publish-dir "/Org")
+           :publishing-function aru/org-scss-generation))))
+
+(setq mu4e-attachment-dir sys/xdg-mail-dir)
+
+(setq auth-source-pass-filename sys/xdg-keys-dir)
+
+(setq backup-directory-alist
+      `(("." . ,(concat sys/xdg-config-home "/emacs/backup"))))
