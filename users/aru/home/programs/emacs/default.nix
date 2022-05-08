@@ -54,6 +54,7 @@
     treemacs
     treemacs-all-the-icons
     visual-fill-column
+    vterm
     web-mode
     which-key
     yaml-mode

@@ -142,7 +142,10 @@
  "m" '(magit :which-key "Magit")
 
  ; Mu4e (Email)
- "e" '(mu4e :which-key "Mu4e"))
+ "e" '(mu4e :which-key "Mu4e")
+
+ ; Terminal
+ "v" '(vterm :which-key "Terminal"))
 (setq org-directory "~/Archive/Org/"
 
       org-ellipsis " ▾"
