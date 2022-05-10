@@ -26,9 +26,10 @@
 (custom-set-variables
  '(inhibit-startup-screen t)
  '(initial-buffer-choice t))
-(set-face-attribute 'default nil :font "Iosevka" :height 120)
-(set-face-attribute 'fixed-pitch nil :font "Iosevka" :height 120)
-(set-face-attribute 'variable-pitch nil :font "Iosevka" :height 120)
+(custom-set-faces
+ '(default ((t (:family "Iosevka" :height 120))))
+ '(fixed-pitch ((t (:family "Iosevka" :height 120))))
+ '(variable-pitch ((t (:family "Iosevka" :height 120)))))
 (load-theme 'gruvbox-dark-hard t)
 (ivy-mode 1)
 (ivy-rich-mode 1)
