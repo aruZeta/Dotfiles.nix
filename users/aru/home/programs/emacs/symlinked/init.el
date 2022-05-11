@@ -37,3 +37,20 @@
 
 (add-hook 'emacs-lisp-mode-hook #'aru/emacs-lisp-mode-hook)
 
+;;;; Useful functions
+
+(defun aru/align-multiline-setq ()
+  (interactive)
+  (align-regexp (region-beginning)
+                (region-end)
+                "^\\([[:graph:]]+ \\| +\\)[[:graph:]]+\\(\\s-*\\) "
+                2
+                0))
+
+(defun aru/align-multiline-alist ()
+  (interactive)
+  (align-regexp (region-beginning)
+                (region-end)
+                "\\(\\s-*\\) \."
+                1
+                0))
