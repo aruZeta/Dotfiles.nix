@@ -30,3 +30,10 @@
 (set-face 'fixed-pitch    'default)
 (set-face 'variable-pitch 'default)
 
+;;;; Lisp mode
+
+(defun aru/emacs-lisp-mode-hook ()
+  (setq indent-tabs-mode nil))
+
+(add-hook 'emacs-lisp-mode-hook #'aru/emacs-lisp-mode-hook)
+
