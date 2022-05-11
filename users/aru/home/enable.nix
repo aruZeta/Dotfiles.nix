@@ -76,7 +76,7 @@
     emacs.overlay = {
       enable = true;
       repo = "https://github.com/nix-community/emacs-overlay";
-      commit = "7368fbf298996bc024396c1cdb1e194f7a2cd3c6";
+      commit = "2fb72619761bb2478715f7a5f64aad619e94da99";
     };
 
     eww.overlay = {
