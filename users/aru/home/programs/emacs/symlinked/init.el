@@ -3,6 +3,16 @@
 (setq user-full-name    "Alberto Robles Gomez"
       user-mail-address "aru_hackZ.official@zohomail.eu")
 
+;;;; Clean emacs
+
+(setq inhibit-startup-screen  t
+      initial-scratch-message nil)
+
+(scroll-bar-mode 0)
+(tool-bar-mode   0)
+(tooltip-mode    0)
+(menu-bar-mode   0)
+
 ;;;; Evil
 
 (setq evil-want-keybinding nil)
