@@ -10,9 +10,29 @@
 (evil-mode 1)
 (evil-collection-init)
 
-(setq evil-collection-outline-bind-tab-p t
+(setq evil-collection-outline-bind-tab-p         t
       evil-collection-calendar-want-org-bindings t
-      evil-collection-setup-minibuffer t)
+      evil-collection-setup-minibuffer           t)
+
+;;;; Frame
+
+(setq default-frame-alist '((left-fringe          . 0)
+                            (right-fringe         . 0)
+                            (vertical-scroll-bars . nil)))
+
+;;;; Window
+
+(setq-default left-margin-width  5
+              right-margin-width 5)
+
+;;;; Lines
+
+(setq-default line-spacing-vertical-center t ; check my emacs patches
+              line-spacing                 0.3)
+
+;;;; Cursor
+
+(blink-cursor-mode 0)
 
 ;;;; Fonts
 
