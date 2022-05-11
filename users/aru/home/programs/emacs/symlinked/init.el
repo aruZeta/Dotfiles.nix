@@ -14,3 +14,19 @@
       evil-collection-calendar-want-org-bindings t
       evil-collection-setup-minibuffer t)
 
+;;;; Fonts
+
+(defun set-face (face style)
+  "Reset a face and make it inherit style."
+  (set-face-attribute face nil
+   :foreground 'unspecified :background 'unspecified
+   :family     'unspecified :slant      'unspecified
+   :weight     'unspecified :height     'unspecified
+   :underline  'unspecified :overline   'unspecified
+   :box        'unspecified :inherit    style))
+
+(set-face-attribute 'default nil :family "Iosevka" :height 120)
+
+(set-face 'fixed-pitch    'default)
+(set-face 'variable-pitch 'default)
+
