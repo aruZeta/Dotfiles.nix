@@ -81,6 +81,6 @@
   (interactive)
   (align-regexp (region-beginning)
                 (region-end)
-                "\\(\\s-*\\) \."
+                "\\(\\s-*\\) \\."
                 1
                 0))
