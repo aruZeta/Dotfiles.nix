@@ -168,15 +168,6 @@ The name of each variable is aru/colors/THEME-NAME/NAME and the value is COLOR."
   "Face for important selections."
   :group 'aru/faces)
 
-(defun set-face (face style)
-  "Reset a face and make it inherit style."
-  (set-face-attribute face nil
-   :foreground 'unspecified :background 'unspecified
-   :family     'unspecified :slant      'unspecified
-   :weight     'unspecified :height     'unspecified
-   :underline  'unspecified :overline   'unspecified
-   :box        'unspecified :inherit    style))
-
 (defvar *group* "")
 (defun get-symbol (name &optional group)
   (intern-soft (concat (or group *group*) name)))
@@ -234,6 +225,15 @@ The name of each variable is aru/colors/THEME-NAME/NAME and the value is COLOR."
 
 (aru/theme/rose-pine-dawn)
 
+(cl-defun set-face (face style &key height)
+  "Reset a face and make it inherit style."
+  (set-face-attribute face nil
+   :foreground 'unspecified :background 'unspecified
+   :family     'unspecified :slant      'unspecified
+   :weight     'unspecified :height     (or height 'unspecified)
+   :underline  'unspecified :overline   'unspecified
+   :box        'unspecified :inherit    style))
+
 (set-face 'cursor                       'default)
 (set-face 'fixed-pitch                  'default)
 (set-face 'fixed-pitch-serif            'default)
@@ -248,6 +248,19 @@ The name of each variable is aru/colors/THEME-NAME/NAME and the value is COLOR."
 (set-face 'font-lock-variable-name-face 'aru/faces/important)
 (set-face 'minibuffer-prompt            'aru/faces/important)
 (set-face 'info-node                    'aru/faces/important)
+(set-face 'info-title-1                 'aru/faces/important :height 1.40)
+(set-face 'info-title-2                 'aru/faces/important :height 1.30)
+(set-face 'info-title-3                 'aru/faces/important :height 1.20)
+(set-face 'info-title-4                 'aru/faces/important :height 1.10)
+(set-face 'org-document-title           'aru/faces/important :height 1.50)
+(set-face 'org-level-1                  'aru/faces/important :height 1.40)
+(set-face 'org-level-2                  'aru/faces/important :height 1.35)
+(set-face 'org-level-3                  'aru/faces/important :height 1.30)
+(set-face 'org-level-4                  'aru/faces/important :height 1.25)
+(set-face 'org-level-5                  'aru/faces/important :height 1.20)
+(set-face 'org-level-6                  'aru/faces/important :height 1.15)
+(set-face 'org-level-7                  'aru/faces/important :height 1.10)
+(set-face 'org-level-8                  'aru/faces/important :height 1.05)
 
 (set-face 'font-lock-builtin-face       'aru/faces/less-important)
 (set-face 'font-lock-keyword-face       'aru/faces/less-important)
@@ -279,7 +292,7 @@ The name of each variable is aru/colors/THEME-NAME/NAME and the value is COLOR."
 (set-face 'secondary-selection          'aru/faces/selected)
 
 (set-face 'match                        'aru/faces/selected-important)
-(set-face 'trailing-whitespace          'aru/faces/selected-important)   
+(set-face 'trailing-whitespace          'aru/faces/selected-important)
 
 ;;;; Lisp mode
 
