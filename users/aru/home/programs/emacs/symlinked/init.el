@@ -128,6 +128,10 @@ The name of each variable is aru/colors/THEME-NAME/NAME and the value is COLOR."
   :prefix "aru/faces/"
   :group 'faces)
 
+(defface aru/faces/very-important nil
+  "Face for very important information."
+  :group 'aru/faces)
+
 (defface aru/faces/important nil
   "Face for important information."
   :group 'aru/faces)
@@ -140,7 +144,7 @@ The name of each variable is aru/colors/THEME-NAME/NAME and the value is COLOR."
   "Face for not so important information."
   :group 'aru/faces)
 
-(defface aru/faces/important-not-important nil
+(defface aru/faces/not-important-color nil
   "Face for important information between not so important information."
   :group 'aru/faces)
 
@@ -150,6 +154,18 @@ The name of each variable is aru/colors/THEME-NAME/NAME and the value is COLOR."
 
 (defface aru/faces/danger nil
   "Face for errors."
+  :group 'aru/faces)
+
+(defface aru/faces/success nil
+  "Face for things that went well."
+  :group 'aru/faces)
+
+(defface aru/faces/selected nil
+  "Face for selection."
+  :group 'aru/faces)
+
+(defface aru/faces/selected-important nil
+  "Face for important selections."
   :group 'aru/faces)
 
 (defun set-face (face style)
@@ -176,6 +192,9 @@ The name of each variable is aru/colors/THEME-NAME/NAME and the value is COLOR."
                            :family "Iosevka"
                            :height 120)
 
+       (set-face-attribute 'aru/faces/very-important nil
+                           :weight 'ultra-heavy)
+
        (set-face-attribute 'aru/faces/important nil
                            :weight 'bold)
 
@@ -187,7 +206,7 @@ The name of each variable is aru/colors/THEME-NAME/NAME and the value is COLOR."
                            :weight 'light
                            :foreground ,(get-symbol "muted"))
 
-       (set-face-attribute 'aru/faces/important-not-important nil
+       (set-face-attribute 'aru/faces/not-important-color nil
                            :weight 'light
                            :foreground ,(get-symbol "iris"))
 
@@ -197,7 +216,17 @@ The name of each variable is aru/colors/THEME-NAME/NAME and the value is COLOR."
 
        (set-face-attribute 'aru/faces/danger nil
                            :weight 'semi-light
-                           :foreground ,(get-symbol "love")))))
+                           :foreground ,(get-symbol "love"))
+
+       (set-face-attribute 'aru/faces/success nil
+                           :weight 'semi-light
+                           :foreground ,(get-symbol "pine"))
+
+       (set-face-attribute 'aru/faces/selected nil
+                           :background ,(get-symbol "highlight-med"))
+
+       (set-face-attribute 'aru/faces/selected-important nil
+                           :background ,(get-symbol "gold")))))
 
 (aru/theme "rose-pine")
 (aru/theme "rose-pine-moon")
@@ -205,28 +234,52 @@ The name of each variable is aru/colors/THEME-NAME/NAME and the value is COLOR."
 
 (aru/theme/rose-pine-dawn)
 
-(set-face 'fixed-pitch    'default)
-(set-face 'variable-pitch 'default)
+(set-face 'cursor                       'default)
+(set-face 'fixed-pitch                  'default)
+(set-face 'fixed-pitch-serif            'default)
+(set-face 'variable-pitch               'default)
+
+(set-face 'show-paren-match             'aru/faces/very-important)
 
 (set-face 'bold                         'aru/faces/important)
+(set-face 'isearch                      'aru/faces/important)
 (set-face 'buffer-menu-buffer           'aru/faces/important)
 (set-face 'font-lock-function-name-face 'aru/faces/important)
 (set-face 'font-lock-variable-name-face 'aru/faces/important)
+(set-face 'minibuffer-prompt            'aru/faces/important)
+(set-face 'info-node                    'aru/faces/important)
 
-(set-face 'font-lock-type-face     'aru/faces/less-important)
-(set-face 'font-lock-builtin-face  'aru/faces/less-important)
-(set-face 'font-lock-keyword-face  'aru/faces/less-important)
+(set-face 'font-lock-builtin-face       'aru/faces/less-important)
+(set-face 'font-lock-keyword-face       'aru/faces/less-important)
+(set-face 'font-lock-type-face          'aru/faces/less-important)
+(set-face 'link                         'aru/faces/less-important)
 
-(set-face 'font-lock-comment-face 'aru/faces/not-important)
-(set-face 'font-lock-doc-face     'aru/faces/not-important)
+(set-face 'font-lock-comment-face       'aru/faces/not-important)
+(set-face 'font-lock-doc-face           'aru/faces/not-important)
+(set-face 'shadow                       'aru/faces/not-important)
+(set-face 'fringe                       'aru/faces/not-important)
+(set-face 'Info-quoted                  'aru/faces/not-important)
 
-(set-face 'font-lock-doc-markup-face 'aru/faces/important-not-important)
-(set-face 'font-lock-constant-face 'aru/faces/important-not-important)
+(set-face 'font-lock-constant-face      'aru/faces/not-important-color)
+(set-face 'font-lock-doc-markup-face    'aru/faces/not-important-color)
 
-(set-face 'font-lock-string-face 'aru/faces/warning)
-(set-face 'font-lock-warning-face 'aru/faces/warning)
+(set-face 'font-lock-string-face        'aru/faces/warning)
+(set-face 'font-lock-warning-face       'aru/faces/warning)
+(set-face 'warning                      'aru/faces/warning)
 
+(set-face 'error                        'aru/faces/danger)
 (set-face 'font-lock-negation-char-face 'aru/faces/danger)
+(set-face 'isearch-fail                 'aru/faces/danger)
+
+(set-face 'success                      'aru/faces/success)
+
+(set-face 'region                       'aru/faces/selected)
+(set-face 'highlight                    'aru/faces/selected)
+(set-face 'lazy-highlight               'aru/faces/selected)
+(set-face 'secondary-selection          'aru/faces/selected)
+
+(set-face 'match                        'aru/faces/selected-important)
+(set-face 'trailing-whitespace          'aru/faces/selected-important)   
 
 ;;;; Lisp mode
 
