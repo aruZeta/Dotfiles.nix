@@ -161,36 +161,47 @@ The name of each variable is aru/colors/THEME-NAME/NAME and the value is COLOR."
    :underline  'unspecified :overline   'unspecified
    :box        'unspecified :inherit    style))
 
-(defun aru/theme/rose-pine-dawn ()
-  (set-background-color aru/colors/rose-pine-dawn/base)
-  (set-foreground-color aru/colors/rose-pine-dawn/text)
-  
-  (set-face-attribute 'default nil
-                      :family "Iosevka"
-                      :height 120)
-  
-  (set-face-attribute 'aru/faces/important nil
-                      :weight 'bold)
-  
-  (set-face-attribute 'aru/faces/less-important nil
-                      :weight 'medium
-                      :foreground aru/colors/rose-pine-dawn/foam)
-  
-  (set-face-attribute 'aru/faces/not-important nil
-                      :weight 'light
-                      :foreground aru/colors/rose-pine-dawn/muted)
-  
-  (set-face-attribute 'aru/faces/important-not-important nil
-                      :weight 'light
-                      :foreground aru/colors/rose-pine-dawn/iris)
-  
-  (set-face-attribute 'aru/faces/warning nil
-                      :weight 'semi-light
-                      :foreground aru/colors/rose-pine-dawn/gold)
-  
-  (set-face-attribute 'aru/faces/danger nil
-                      :weight 'semi-light
-                      :foreground aru/colors/rose-pine-dawn/love))
+(defvar *group* "")
+(defun get-symbol (name &optional group)
+  (intern-soft (concat (or group *group*) name)))
+
+(defmacro aru/theme (theme-name)
+  "Set color theme to VARIANT."
+  (let ((*group* (concat "aru/colors/" theme-name "/")))
+    `(defun ,(intern (concat "aru/theme/" theme-name)) ()
+       (set-background-color ,(get-symbol "base"))
+       (set-foreground-color ,(get-symbol "text"))
+
+       (set-face-attribute 'default nil
+                           :family "Iosevka"
+                           :height 120)
+
+       (set-face-attribute 'aru/faces/important nil
+                           :weight 'bold)
+
+       (set-face-attribute 'aru/faces/less-important nil
+                           :weight 'medium
+                           :foreground ,(get-symbol "foam"))
+
+       (set-face-attribute 'aru/faces/not-important nil
+                           :weight 'light
+                           :foreground ,(get-symbol "muted"))
+
+       (set-face-attribute 'aru/faces/important-not-important nil
+                           :weight 'light
+                           :foreground ,(get-symbol "iris"))
+
+       (set-face-attribute 'aru/faces/warning nil
+                           :weight 'semi-light
+                           :foreground ,(get-symbol "gold"))
+
+       (set-face-attribute 'aru/faces/danger nil
+                           :weight 'semi-light
+                           :foreground ,(get-symbol "love")))))
+
+(aru/theme "rose-pine")
+(aru/theme "rose-pine-moon")
+(aru/theme "rose-pine-dawn")
 
 (aru/theme/rose-pine-dawn)
 
