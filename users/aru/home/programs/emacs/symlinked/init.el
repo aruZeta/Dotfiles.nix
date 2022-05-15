@@ -168,6 +168,18 @@ The name of each variable is aru/colors/THEME-NAME/NAME and the value is COLOR."
   "Face for important selections."
   :group 'aru/faces)
 
+(defface aru/faces/diff-added nil
+  "Face for added stuff in diffs."
+  :group 'aru/faces)
+
+(defface aru/faces/diff-removed nil
+  "Face for removed stuff in diffs."
+  :group 'aru/faces)
+
+(defface aru/faces/diff-changed nil
+  "Face for changed stuff in diffs."
+  :group 'aru/faces)
+
 (defvar *group* "")
 (defun get-symbol (name &optional group)
   (intern-soft (concat (or group *group*) name)))
@@ -217,7 +229,19 @@ The name of each variable is aru/colors/THEME-NAME/NAME and the value is COLOR."
                            :background ,(get-symbol "highlight-med"))
 
        (set-face-attribute 'aru/faces/selected-important nil
-                           :background ,(get-symbol "gold")))))
+                           :background ,(get-symbol "gold"))
+
+       (set-face-attribute 'aru/faces/diff-added nil
+                           :weight 'bold
+                           :foreground ,(get-symbol "pine"))
+
+       (set-face-attribute 'aru/faces/diff-removed nil
+                           :weight 'bold
+                           :foreground ,(get-symbol "love"))
+
+       (set-face-attribute 'aru/faces/diff-changed nil
+                           :weight 'bold
+                           :foreground ,(get-symbol "gold")))))
 
 (aru/theme "rose-pine")
 (aru/theme "rose-pine-moon")
@@ -234,65 +258,102 @@ The name of each variable is aru/colors/THEME-NAME/NAME and the value is COLOR."
    :underline  'unspecified :overline   'unspecified
    :box        'unspecified :inherit    style))
 
-(set-face 'cursor                       'default)
-(set-face 'fixed-pitch                  'default)
-(set-face 'fixed-pitch-serif            'default)
-(set-face 'variable-pitch               'default)
+(set-face 'cursor                              'default)
+(set-face 'fixed-pitch                         'default)
+(set-face 'fixed-pitch-serif                   'default)
+(set-face 'variable-pitch                      'default)
 
-(set-face 'show-paren-match             'aru/faces/very-important)
+(set-face 'show-paren-match                    'aru/faces/very-important)
 
-(set-face 'bold                         'aru/faces/important)
-(set-face 'isearch                      'aru/faces/important)
-(set-face 'buffer-menu-buffer           'aru/faces/important)
-(set-face 'font-lock-function-name-face 'aru/faces/important)
-(set-face 'font-lock-variable-name-face 'aru/faces/important)
-(set-face 'minibuffer-prompt            'aru/faces/important)
-(set-face 'info-node                    'aru/faces/important)
-(set-face 'info-title-1                 'aru/faces/important :height 1.40)
-(set-face 'info-title-2                 'aru/faces/important :height 1.30)
-(set-face 'info-title-3                 'aru/faces/important :height 1.20)
-(set-face 'info-title-4                 'aru/faces/important :height 1.10)
-(set-face 'org-document-title           'aru/faces/important :height 1.50)
-(set-face 'org-level-1                  'aru/faces/important :height 1.40)
-(set-face 'org-level-2                  'aru/faces/important :height 1.35)
-(set-face 'org-level-3                  'aru/faces/important :height 1.30)
-(set-face 'org-level-4                  'aru/faces/important :height 1.25)
-(set-face 'org-level-5                  'aru/faces/important :height 1.20)
-(set-face 'org-level-6                  'aru/faces/important :height 1.15)
-(set-face 'org-level-7                  'aru/faces/important :height 1.10)
-(set-face 'org-level-8                  'aru/faces/important :height 1.05)
+(set-face 'bold                                'aru/faces/important)
+(set-face 'buffer-menu-buffer                  'aru/faces/important)
+(set-face 'font-lock-function-name-face        'aru/faces/important)
+(set-face 'font-lock-variable-name-face        'aru/faces/important)
+(set-face 'info-node                           'aru/faces/important)
+(set-face 'info-title-1                        'aru/faces/important :height 1.40)
+(set-face 'info-title-2                        'aru/faces/important :height 1.30)
+(set-face 'info-title-3                        'aru/faces/important :height 1.20)
+(set-face 'info-title-4                        'aru/faces/important :height 1.10)
+(set-face 'isearch                             'aru/faces/important)
+(set-face 'minibuffer-prompt                   'aru/faces/important)
 
-(set-face 'font-lock-builtin-face       'aru/faces/less-important)
-(set-face 'font-lock-keyword-face       'aru/faces/less-important)
-(set-face 'font-lock-type-face          'aru/faces/less-important)
-(set-face 'link                         'aru/faces/less-important)
+;;; Org
+(with-eval-after-load "org"
+  (set-face 'org-document-title                'aru/faces/important :height 1.50)
+  (set-face 'org-level-1                       'aru/faces/important :height 1.40)
+  (set-face 'org-level-2                       'aru/faces/important :height 1.35)
+  (set-face 'org-level-3                       'aru/faces/important :height 1.30)
+  (set-face 'org-level-4                       'aru/faces/important :height 1.25)
+  (set-face 'org-level-5                       'aru/faces/important :height 1.20)
+  (set-face 'org-level-6                       'aru/faces/important :height 1.15)
+  (set-face 'org-level-7                       'aru/faces/important :height 1.10)
+  (set-face 'org-level-8                       'aru/faces/important :height 1.05))
 
-(set-face 'font-lock-comment-face       'aru/faces/not-important)
-(set-face 'font-lock-doc-face           'aru/faces/not-important)
-(set-face 'shadow                       'aru/faces/not-important)
-(set-face 'fringe                       'aru/faces/not-important)
-(set-face 'Info-quoted                  'aru/faces/not-important)
+(set-face 'font-lock-builtin-face              'aru/faces/less-important)
+(set-face 'font-lock-keyword-face              'aru/faces/less-important)
+(set-face 'font-lock-type-face                 'aru/faces/less-important)
+(set-face 'link                                'aru/faces/less-important)
 
-(set-face 'font-lock-constant-face      'aru/faces/not-important-color)
-(set-face 'font-lock-doc-markup-face    'aru/faces/not-important-color)
+(set-face 'font-lock-comment-face              'aru/faces/not-important)
+(set-face 'font-lock-doc-face                  'aru/faces/not-important)
+(set-face 'fringe                              'aru/faces/not-important)
+(set-face 'Info-quoted                         'aru/faces/not-important)
+(set-face 'shadow                              'aru/faces/not-important)
 
-(set-face 'font-lock-string-face        'aru/faces/warning)
-(set-face 'font-lock-warning-face       'aru/faces/warning)
-(set-face 'warning                      'aru/faces/warning)
+(set-face 'font-lock-constant-face             'aru/faces/not-important-color)
+(set-face 'font-lock-doc-markup-face           'aru/faces/not-important-color)
 
-(set-face 'error                        'aru/faces/danger)
-(set-face 'font-lock-negation-char-face 'aru/faces/danger)
-(set-face 'isearch-fail                 'aru/faces/danger)
+(set-face 'font-lock-string-face               'aru/faces/warning)
+(set-face 'font-lock-warning-face              'aru/faces/warning)
+(set-face 'warning                             'aru/faces/warning)
 
-(set-face 'success                      'aru/faces/success)
+(set-face 'error                               'aru/faces/danger)
+(set-face 'font-lock-negation-char-face        'aru/faces/danger)
+(set-face 'isearch-fail                        'aru/faces/danger)
 
-(set-face 'region                       'aru/faces/selected)
-(set-face 'highlight                    'aru/faces/selected)
-(set-face 'lazy-highlight               'aru/faces/selected)
-(set-face 'secondary-selection          'aru/faces/selected)
+(set-face 'success                             'aru/faces/success)
 
-(set-face 'match                        'aru/faces/selected-important)
-(set-face 'trailing-whitespace          'aru/faces/selected-important)
+(set-face 'highlight                           'aru/faces/selected)
+(set-face 'lazy-highlight                      'aru/faces/selected)
+(set-face 'region                              'aru/faces/selected)
+(set-face 'secondary-selection                 'aru/faces/selected)
+
+(set-face 'match                               'aru/faces/selected-important)
+(set-face 'trailing-whitespace                 'aru/faces/selected-important)
+
+;;; Magit
+(with-eval-after-load "magit"
+  (set-face 'magit-keyword                     'aru/faces/less-important)
+  (set-face 'git-commit-keyword                'aru/faces/less-important)
+  (set-face 'git-commit-comment-heading        'default)
+  (set-face 'magit-diff-revision-summary       nil)
+  (set-face 'git-commit-summary                'default)
+  (set-face 'git-commit-comment-file           'aru/faces/important)
+  (set-face 'git-commit-comment-action         'aru/faces/important)
+  (set-face 'magit-diff-added                  'aru/faces/diff-added)
+  (set-face 'magit-diffstat-added              'aru/faces/diff-added)
+  (set-face 'diff-refine-added                 'aru/faces/diff-added)
+  (set-face 'magit-diff-added-highlight        'aru/faces/diff-added)
+  (set-face 'magit-diff-hunk-heading           'aru/faces/not-important-color)
+  (set-face 'magit-diff-hunk-heading-highlight nil)
+  (set-face 'magit-diff-hunk-heading-selection nil)
+  (set-face 'magit-diff-context                'aru/faces/not-important)
+  (set-face 'magit-diff-context-highlight      'aru/faces/not-important)
+  (set-face 'magit-diff-file-heading           'aru/faces/important)
+  (set-face 'magit-diff-removed                'aru/faces/diff-removed)
+  (set-face 'magit-diffstat-removed            'aru/faces/diff-removed)
+  (set-face 'diff-refine-removed               'aru/faces/diff-removed)
+  (set-face 'magit-diff-removed-highlight      'aru/faces/diff-removed)
+  (set-face 'magit-diff-lines-heading          'aru/faces/selected)
+  (set-face 'magit-section-highlight           nil)
+  (set-face 'magit-section-heading             'aru/faces/warning)
+  (set-face 'magit-section-secondary-heading   'aru/faces/warning)
+  (set-face 'magit-branch-local                'aru/faces/important)
+  (set-face 'magit-branch-remote               'aru/faces/important)
+  (set-face 'magit-branch-remote-head          'aru/faces/important)
+  (set-face 'magit-branch-upstream             'aru/faces/important)
+  (set-face 'magit-hash                        'aru/faces/not-important)
+  (set-face 'magit-section-heading-selection   nil))
 
 ;;;; Lisp mode
 
