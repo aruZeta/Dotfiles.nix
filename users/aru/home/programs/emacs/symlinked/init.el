@@ -1,5 +1,9 @@
+;;;; Loading stuff
+
 (add-to-list 'load-path (concat user-emacs-directory "my-libs"))
 (setq custom-theme-directory (concat user-emacs-directory "my-libs"))
+
+(require 'nix/expanded)
 
 ;;;; User
 
@@ -83,3 +87,8 @@
                 "\\(\\s-*\\) \\."
                 1
                 0))
+
+;;;; Backup
+
+(setq backup-directory-alist
+      `(("." . ,(concat nix/xdg-config-home "/emacs/backup"))))

@@ -19,13 +19,15 @@ usefulExpresions.condAndValuesSet [
   { cond = enabledStuff.programs.emacs.enable;
     vals = {
       "emacs/init.el".source = ./symlinked/init.el;
-      "emacs/my-libs".source = ./symlinked/my-libs;
-      "emacs/expanded.el".text = ''
-        (defvar sys/xdg-config-home "${configHome}")
-        (defvar sys/xdg-publish-dir "${XDG_PUBLISH_DIR}")
-        (defvar sys/xdg-mail-dir    "${XDG_MAIL_DIR}")
-        (defvar sys/xdg-keys-dir    "${XDG_KEYS_DIR}")
-        (defvar sys/xdg-org-dir     "${XDG_ORG_DIR}")
+      "emacs/my-libs/aru".source = ./symlinked/my-libs/aru;
+      "emacs/my-libs/nix/expanded.el".text = ''
+        (defvar nix/xdg-config-home "${configHome}")
+        (defvar nix/xdg-publish-dir "${XDG_PUBLISH_DIR}")
+        (defvar nix/xdg-mail-dir    "${XDG_MAIL_DIR}")
+        (defvar nix/xdg-keys-dir    "${XDG_KEYS_DIR}")
+        (defvar nix/xdg-org-dir     "${XDG_ORG_DIR}")
+
+        (provide 'nix/expanded)
       '';
     };
   }
