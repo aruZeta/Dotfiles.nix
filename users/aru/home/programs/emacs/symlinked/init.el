@@ -311,6 +311,14 @@ The name of each variable is aru/colors/THEME-NAME/NAME and the value is COLOR."
                 2
                 0))
 
+(defun aru/align-multiline-2nd-space ()
+  (interactive)
+  (align-regexp (region-beginning)
+                (region-end)
+                "^\\s-*[[:graph:]]+ [[:graph:]]+\\(\\s-*\\) "
+                1
+                0))
+
 (defun aru/align-multiline-alist ()
   (interactive)
   (align-regexp (region-beginning)
