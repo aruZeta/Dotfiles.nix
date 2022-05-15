@@ -19,6 +19,7 @@ usefulExpresions.condAndValuesSet [
   { cond = enabledStuff.programs.emacs.enable;
     vals = {
       "emacs/init.el".source = ./symlinked/init.el;
+      "emacs/my-libs".source = ./symlinked/my-libs;
       "emacs/expanded.el".text = ''
         (defvar sys/xdg-config-home "${configHome}")
         (defvar sys/xdg-publish-dir "${XDG_PUBLISH_DIR}")
