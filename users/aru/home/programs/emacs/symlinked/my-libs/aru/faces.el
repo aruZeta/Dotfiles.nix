@@ -1,7 +1,11 @@
+;;;; Face group
+
 (defgroup aru/faces nil
   "Group for faces."
   :prefix "aru/faces/"
   :group 'faces)
+
+;;;; My faces
 
 (defface aru/faces/very-important nil
   "Face for very important information."
@@ -55,6 +59,8 @@
   "Face for changed stuff in diffs."
   :group 'aru/faces)
 
+;;;; Helpful functions
+
 (cl-defun set-face (face style &key height)
   "Reset a face and make it inherit style."
   (set-face-attribute face nil
@@ -64,24 +70,57 @@
    :underline  'unspecified :overline   'unspecified
    :box        'unspecified :inherit    style))
 
+;;;; Faces
+
+;;; Structural
+(set-face 'bold                                'aru/faces/important)
 (set-face 'cursor                              'default)
 (set-face 'fixed-pitch                         'default)
 (set-face 'fixed-pitch-serif                   'default)
+(set-face 'highlight                           'aru/faces/selected)
+(set-face 'region                              'aru/faces/selected)
 (set-face 'variable-pitch                      'default)
 
-(set-face 'show-paren-match                    'aru/faces/very-important)
+;;; Semantic
+(set-face 'error                               'aru/faces/danger)
+(set-face 'match                               'aru/faces/selected-important)
+(set-face 'shadow                              'aru/faces/not-important)
+(set-face 'success                             'aru/faces/success)
+(set-face 'warning                             'aru/faces/warning)
 
-(set-face 'bold                                'aru/faces/important)
+;;; General
 (set-face 'buffer-menu-buffer                  'aru/faces/important)
+(set-face 'fringe                              'aru/faces/not-important)
+(set-face 'isearch                             'aru/faces/important)
+(set-face 'isearch-fail                        'aru/faces/danger)
+(set-face 'lazy-highlight                      'aru/faces/selected)
+(set-face 'link                                'aru/faces/less-important)
+(set-face 'minibuffer-prompt                   'aru/faces/important)
+(set-face 'secondary-selection                 'aru/faces/selected)
+(set-face 'show-paren-match                    'aru/faces/very-important)
+(set-face 'trailing-whitespace                 'aru/faces/selected-important)
+
+;;; Programmation mode
+(set-face 'font-lock-builtin-face              'aru/faces/less-important)
+(set-face 'font-lock-comment-face              'aru/faces/not-important)
+(set-face 'font-lock-constant-face             'aru/faces/not-important-color)
+(set-face 'font-lock-doc-face                  'aru/faces/not-important)
+(set-face 'font-lock-doc-markup-face           'aru/faces/not-important-color)
 (set-face 'font-lock-function-name-face        'aru/faces/important)
+(set-face 'font-lock-keyword-face              'aru/faces/less-important)
+(set-face 'font-lock-negation-char-face        'aru/faces/danger)
+(set-face 'font-lock-string-face               'aru/faces/warning)
+(set-face 'font-lock-type-face                 'aru/faces/less-important)
 (set-face 'font-lock-variable-name-face        'aru/faces/important)
+(set-face 'font-lock-warning-face              'aru/faces/warning)
+
+;;; Documentation
 (set-face 'info-node                           'aru/faces/important)
+(set-face 'Info-quoted                         'aru/faces/not-important)
 (set-face 'info-title-1                        'aru/faces/important :height 1.40)
 (set-face 'info-title-2                        'aru/faces/important :height 1.30)
 (set-face 'info-title-3                        'aru/faces/important :height 1.20)
 (set-face 'info-title-4                        'aru/faces/important :height 1.10)
-(set-face 'isearch                             'aru/faces/important)
-(set-face 'minibuffer-prompt                   'aru/faces/important)
 
 ;;; Org
 (with-eval-after-load "org"
@@ -94,38 +133,6 @@
   (set-face 'org-level-6                       'aru/faces/important :height 1.15)
   (set-face 'org-level-7                       'aru/faces/important :height 1.10)
   (set-face 'org-level-8                       'aru/faces/important :height 1.05))
-
-(set-face 'font-lock-builtin-face              'aru/faces/less-important)
-(set-face 'font-lock-keyword-face              'aru/faces/less-important)
-(set-face 'font-lock-type-face                 'aru/faces/less-important)
-(set-face 'link                                'aru/faces/less-important)
-
-(set-face 'font-lock-comment-face              'aru/faces/not-important)
-(set-face 'font-lock-doc-face                  'aru/faces/not-important)
-(set-face 'fringe                              'aru/faces/not-important)
-(set-face 'Info-quoted                         'aru/faces/not-important)
-(set-face 'shadow                              'aru/faces/not-important)
-
-(set-face 'font-lock-constant-face             'aru/faces/not-important-color)
-(set-face 'font-lock-doc-markup-face           'aru/faces/not-important-color)
-
-(set-face 'font-lock-string-face               'aru/faces/warning)
-(set-face 'font-lock-warning-face              'aru/faces/warning)
-(set-face 'warning                             'aru/faces/warning)
-
-(set-face 'error                               'aru/faces/danger)
-(set-face 'font-lock-negation-char-face        'aru/faces/danger)
-(set-face 'isearch-fail                        'aru/faces/danger)
-
-(set-face 'success                             'aru/faces/success)
-
-(set-face 'highlight                           'aru/faces/selected)
-(set-face 'lazy-highlight                      'aru/faces/selected)
-(set-face 'region                              'aru/faces/selected)
-(set-face 'secondary-selection                 'aru/faces/selected)
-
-(set-face 'match                               'aru/faces/selected-important)
-(set-face 'trailing-whitespace                 'aru/faces/selected-important)
 
 ;;; Magit
 (with-eval-after-load "magit"
