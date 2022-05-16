@@ -119,13 +119,6 @@
 
 (load-theme 'aru/themes/rose-pine-dawn t)
 
-;;;; Lisp mode
-
-(defun aru/emacs-lisp-mode-hook ()
-  (setq indent-tabs-mode nil))
-
-(add-hook 'emacs-lisp-mode-hook #'aru/emacs-lisp-mode-hook)
-
 ;;;; Useful functions
 
 (defun aru/align-multiline-setq ()
@@ -156,3 +149,7 @@
 
 (setq backup-directory-alist
       `(("." . ,(concat nix/xdg-config-home "/emacs/backup"))))
+
+;;;; General config for programming
+
+(setq-default indent-tabs-mode nil)
