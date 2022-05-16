@@ -31,6 +31,70 @@
       evil-collection-calendar-want-org-bindings t
       evil-collection-setup-minibuffer           t)
 
+;;;; General
+
+(setq general-override-states '(insert
+                                emacs
+                                hybrid
+                                normal
+                                visual
+                                motion
+                                operator
+                                replace))
+
+;;; Keys
+
+(general-define-key
+ :states '(normal visual motion)
+ :keymaps 'override
+ :prefix "SPC"
+ :non-normal-prefix "M-<return>"
+
+ ;; Treemacs
+ "t"           '(:ignore t :which-key "Treemacs")
+ "t t"         '(treemacs :which-key "Toggle treemacs sidebar")
+
+ ;; Buffer
+ "b"           '(:ignore t :which-key "Buffer")
+ "b <right>"   '(switch-to-next-buffer :which-key "Next")
+ "b <left>"    '(switch-to-prev-buffer :which-key "Previous")
+ "b s"         '(switch-to-buffer :which-key "Select")
+ "b w"         '(switch-to-buffer-other-window :which-key "Select to other window")
+ "b k"         '(:ignore t :which-key "Kill")
+ "b k o"       '(kill-buffer :which-key "Other")
+ "b k f"       '(kill-current-buffer :which-key "Focused")
+
+ ;; Window
+ "w"           '(:ignore t :which-key "Window")
+ "w <up>"      '(windmove-up :which-key "Top")
+ "w <right>"   '(windmove-right :which-key "Right")
+ "w <down>"    '(windmove-down :which-key "Bottom")
+ "w <left>"    '(windmove-left :which-key "Left")
+ "w s"         '(:ignore t :which-key "Split")
+ "w s <right>" '(split-window-right :which-key "Right")
+ "w s <down>"  '(split-window-below :which-key "Below")
+ "w d"         '(:ignore t :which-key "Delete")
+ "w d o"       '(delete-other-window :which-key "Other")
+ "w d f"       '(delete-window :which-key "Focused")
+ "w d <up>"    '(windmove-delete-up :which-key "Top")
+ "w d <right>" '(windmove-delete-right :which-key "Right")
+ "w d <down>"  '(windmove-delete-down :which-key "Bottom")
+ "w d <left>"  '(windmove-delete-left :which-key "Left")
+
+ ;; Web server
+ "C-w"         '(:ignore t :which-key "Web server")
+ "C-w o"       '(aru/web-server-open :which-key "Open web server")
+ "C-w k"       '(aru/web-server-kill :which-key "Kill current web server")
+
+ ;; Magit
+ "m"           '(magit :which-key "Magit")
+
+ ;; Mu4e (Email)
+ "e"           '(mu4e :which-key "Mu4e")
+
+ ;; Terminal
+ "v"           '(vterm :which-key "Terminal"))
+
 ;;;; Frame
 
 (setq default-frame-alist '((left-fringe          . 0)
