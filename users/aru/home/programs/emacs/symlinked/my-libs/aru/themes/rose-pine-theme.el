@@ -1,4 +1,4 @@
-(deftheme aru/theme/rose-pine
+(deftheme aru/themes/rose-pine
   "Rose pine themes.")
 
 (require 'aru/themes/rose-pine-common)
