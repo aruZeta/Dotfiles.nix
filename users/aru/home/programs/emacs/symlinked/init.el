@@ -154,6 +154,13 @@
 
 (modify-syntax-entry ?_ "w") ; Make _ part of a word
 
+;;;; Magit
+
+(setq magit-diff-highlight-trailing       t
+      magit-diff-paint-whitespace         t
+      magit-diff-refine-ignore-whitespace nil
+      magit-diff-refine-hunk              'all)
+
 ;;;; General config for programming
 
 (setq-default indent-tabs-mode nil)
