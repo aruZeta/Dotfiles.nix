@@ -150,6 +150,10 @@
 (setq backup-directory-alist
       `(("." . ,(concat nix/xdg-config-home "/emacs/backup"))))
 
+;;;; Syntax tables
+
+(modify-syntax-entry ?_ "w") ; Make _ part of a word
+
 ;;;; General config for programming
 
 (setq-default indent-tabs-mode nil)
