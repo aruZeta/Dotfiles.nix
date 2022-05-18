@@ -239,6 +239,52 @@
         visual-fill-column-center-text t)
   (visual-fill-column-mode 1))
 
+;;;; Org
+
+(setq org-directory                    nix/xdg-org-dir
+      org-ellipsis                     " ▾"
+      org-startup-folded               t
+      org-startup-indented             t
+      org-list-allow-alphabetical      t
+      org-edit-src-content-indentation 0)
+
+(setq org-html-head-include-default-style nil
+      org-html-htmlize-output-type        'css
+      org-html-html5-fancy                t
+      org-html-doctype                    "html5"
+      org-html-checkbox-type              'unicode
+      org-export-allow-bind-keywords      t)
+
+(add-hook 'org-mode-hook #'org-superstar-mode)
+(add-hook 'org-mode-hook #'auto-fill-mode)
+(add-hook 'org-mode-hook #'aru/visual-fill)
+
+(with-eval-after-load 'org
+  (aru/plantuml-org-mode-setup)
+  (aru/shell-org-mode-setup))
+
+;;;; Org superstar
+
+(setq org-superstar-headline-bullets-list '("◉" "◈" "⬠" "⬡" "○"))
+
+;;;; Plantuml
+
+(setq plantuml-executable-path   (getenv "PLANTUML_BIN")
+      plantuml-default-exec-mode 'executable)
+
+(defun aru/plantuml-org-mode-setup ()
+  (setq org-plantuml-executable-path (getenv "PLANTUML_BIN")
+        org-plantuml-exec-mode       'plantuml)
+  (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+  (org-babel-do-load-languages 'org-babel-load-languages
+                               '((plantuml . t)))))
+
+;;;; Shell
+
+(defun aru/shell-org-mode-setup ()
+(org-babel-do-load-languages 'org-babel-load-languages
+                             '((shell . t))))
+
 ;;;; Nix
 
 (add-to-list 'auto-mode-alist '("\\.nix?\\'" . nix-mode))
@@ -250,3 +296,14 @@
 ;;;; Emacs lisp
 
 (add-hook 'emacs-lisp-mode-hook #'lispy-mode)
+
+;;;; Latex
+
+(setq org-format-latex-options
+      '(:foreground "#8ec07c"
+                    :background default
+                    :scale 1.0
+                    :html-foreground "Black"
+                    :html-background "Transparent"
+                    :html-scale 1.0
+                    :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
