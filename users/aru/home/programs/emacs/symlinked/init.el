@@ -361,3 +361,47 @@
   (delete-process process)
   (message "Web server on port %d closed."
            (aru/web-server-remove-opened-port name)))
+
+;;;; Pinentry
+
+(pinentry-start)
+
+;;;; Mu4e
+
+(setq auth-source-debug                   t
+      auth-source-do-cache                nil
+      auth-source-pass-filename           nix/xdg-keys-dir
+      auth-sources                        '(password-store)
+      mail-user-agent                     'mu4e-user-agent
+      message-send-mail-function          'smtpmail-send-it
+      mml-secure-openpgp-sign-with-sender t
+      mu4e-attachment-dir                 nix/xdg-mail-dir
+      mu4e-compose-signature              "Alberto (a.k.a. aru)"
+      mu4e-compose-signature-auto-include t
+      mu4e-drafts-folder                  "/Drafts"
+      mu4e-get-mail-command               "mbsync aru"
+      mu4e-refile-folder                  "/Archive"
+      mu4e-sent-folder                    "/Sent"
+      mu4e-sent-messages-behavior         'sent
+      mu4e-trash-folder                   "/Trash"
+      mu4e-update-interval                60
+      mu4e-use-fancy-chars                t
+      smtpmail-smtp-server                "smtp.zoho.eu"
+      smtpmail-smtp-service               465
+      smtpmail-smtp-user                  "aru_hackZ.official@zohomail.eu"
+      smtpmail-stream-type                'ssl
+      mml-secure-key-preferences
+      '((OpenPGP
+         (sign ("aru_hackZ.official@zohomail.eu"
+                "D7D93ECFDA731BE3159F6BD93A581BDE765C0DFA"))
+         (encrypt ("aru_hackZ.official@zohomail.eu"
+                   "D7D93ECFDA731BE3159F6BD93A581BDE765C0DFA")))))
+
+(auth-source-pass-enable)
+(mu4e-alert-set-default-style 'libnotify)
+
+(mu4e)
+
+(add-hook 'message-send-hook #'mml-secure-message-sign-pgpmime)
+(add-hook 'mu4e-mode-hook #'mu4e-alert-enable-notifications)
+(add-hook 'mu4e-mode-hook #'mu4e-alert-enable-mode-line-display)
