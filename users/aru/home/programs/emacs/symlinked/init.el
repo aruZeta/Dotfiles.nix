@@ -277,7 +277,7 @@
         org-plantuml-exec-mode       'plantuml)
   (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
   (org-babel-do-load-languages 'org-babel-load-languages
-                               '((plantuml . t)))))
+                               '((plantuml . t))))
 
 ;;;; Shell
 
