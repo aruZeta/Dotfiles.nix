@@ -168,4 +168,11 @@
   (set-face 'magit-hash                        'aru/faces/not-important)
   (set-face 'magit-section-heading-selection   nil))
 
+;;; Nxml
+
+(with-eval-after-load "nxml"
+  (set-face 'nxml-attribute-local-name 'aru/faces/less-important)
+  (set-face 'nxml-element-prefix 'aru/faces/not-important-color)
+  (set-face 'nxml-element-colon 'aru/faces/not-important-color))
+
 (provide 'aru/faces)
