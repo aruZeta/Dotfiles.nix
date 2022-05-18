@@ -221,6 +221,21 @@
 (add-hook 'nxml-mode-hook #'lsp)
 (add-hook 'nxml-mode-hook #'aru/nxml-mode-hook)
 
+;;;; Lua
+
+(setq lua-indent-level 4)
+
+;;;; Java
+
+(defun aru/java-mode-hook ()
+  (setq tab-width        4))
+(add-hook 'java-mode-hook #'lsp)
+(add-hook 'java-mode-hook #'aru/java-mode-hook)
+
+;;;; Nix
+
+(add-to-list 'auto-mode-alist '("\\.nix?\\'" . nix-mode))
+
 ;;;; Lisp
 
 (add-hook 'lisp-mode-hook #'lispy-mode)
