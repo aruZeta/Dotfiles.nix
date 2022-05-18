@@ -155,6 +155,12 @@
       backup-directory-alist
       `(("." . ,(concat nix/xdg-config-home "/emacs/backup"))))
 
+;;;; Elcord
+
+(setq elcord-refresh-rate 5)
+
+(elcord-mode)
+
 ;;;; Syntax tables
 
 (modify-syntax-entry ?_ "w") ; Make _ part of a word
