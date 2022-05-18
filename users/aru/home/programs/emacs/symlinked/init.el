@@ -189,3 +189,30 @@
 ;;;; Yasnippet
 
 (add-hook 'after-init-hook #'yas-global-mode)
+
+;;;; Web mode
+
+(defun aru/web-mode-hook ()
+  (setq tab-width 2))
+
+(add-hook 'web-mode-hook #'lsp)
+(add-hook 'web-mode-hook #'emmet-mode)
+(add-hook 'web-mode-hook #'aru/web-mode-hook)
+
+;;;; Emmet
+
+(setq emmet-self-closing-tag-style     " /"
+      emmet-move-cursor-between-quotes t)
+
+(with-eval-after-load 'emmet
+  (aru/emmet-mode-setup))
+
+;;;; Nxml mode
+
+(setq nxml-attribute-indent 2)
+
+(defun aru/nxml-mode-hook ()
+  (setq tab-width 2))
+
+(add-hook 'nxml-mode-hook #'lsp)
+(add-hook 'nxml-mode-hook #'aru/nxml-mode-hook)
