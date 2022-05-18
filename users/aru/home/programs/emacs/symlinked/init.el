@@ -175,3 +175,17 @@
 ;;;; General config for programming
 
 (setq-default indent-tabs-mode nil)
+
+;;;; Lsp
+
+(add-hook 'lsp-mode-hook #'lsp-ui-mode)
+(add-hook 'lsp-mode-hook #'flycheck-mode)
+(add-hook 'lsp-mode-hook #'lsp-treemacs-sync-mode)
+
+;;;; Company
+
+(add-hook 'after-init-hook #'global-company-mode)
+
+;;;; Yasnippet
+
+(add-hook 'after-init-hook #'yas-global-mode)
