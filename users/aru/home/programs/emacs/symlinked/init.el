@@ -190,6 +190,10 @@
 
 (add-hook 'after-init-hook #'yas-global-mode)
 
+;;;; Sbcl
+
+(setq inferior-lisp-program "sbcl")
+
 ;;;; Web mode
 
 (defun aru/web-mode-hook ()
@@ -216,3 +220,11 @@
 
 (add-hook 'nxml-mode-hook #'lsp)
 (add-hook 'nxml-mode-hook #'aru/nxml-mode-hook)
+
+;;;; Lisp
+
+(add-hook 'lisp-mode-hook #'lispy-mode)
+
+;;;; Emacs lisp
+
+(add-hook 'emacs-lisp-mode-hook #'lispy-mode)
