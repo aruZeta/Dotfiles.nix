@@ -232,6 +232,13 @@
 (add-hook 'java-mode-hook #'lsp)
 (add-hook 'java-mode-hook #'aru/java-mode-hook)
 
+;;;; Visual fill
+
+(defun aru/visual-fill (&optional width)
+  (setq visual-fill-column-width (or width 80)
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+
 ;;;; Nix
 
 (add-to-list 'auto-mode-alist '("\\.nix?\\'" . nix-mode))
