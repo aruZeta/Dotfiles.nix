@@ -307,3 +307,57 @@
                     :html-background "Transparent"
                     :html-scale 1.0
                     :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
+
+;;;; Web server
+
+(defvar *aru/web-server-ports-opened* '())
+(defvar *aru/web-server-port-default* 8000)
+
+(defun aru/web-server-add-opened-port (name port)
+  (push (cons name port) *aru/web-server-ports-opened*))
+
+(defun aru/web-server-remove-opened-port (name)
+  (let ((name-port-cons (assoc name *aru/web-server-ports-opened*)))
+    (setq *aru/web-server-ports-opened*
+          (delq name-port-cons *aru/web-server-ports-opened*))
+    (cdr name-port-cons)))
+
+(defun aru/web-server-get-new-port ()
+  (require 'dash)
+  (if (length= *aru/web-server-ports-opened* 0)
+      *aru/web-server-port-default*
+    (1+ (cdr (--max-by (> (cdr it) (cdr other))
+                       *aru/web-server-ports-opened*)))))
+
+(defun aru/web-server-get-name ()
+  (format "web-server-%s" (projectile-project-name)))
+
+(defun aru/web-server-open ()
+  (interactive)
+  (let ((name (aru/web-server-get-name)))
+    (if (get-process name)
+        (message "Web server already started in this project.")
+      (aru/web-server--open name))))
+
+(defun aru/web-server--open (name)
+  (let* ((port (aru/web-server-get-new-port))
+         (cmd (format "python3 -m http.server --directory %s %d"
+                      (projectile-project-root)
+                      port))
+         (buffer-name (format "*%s*" name)))
+    (start-process-shell-command name buffer-name cmd)
+    (aru/web-server-add-opened-port name port)
+    (message "Web server started on port %d" port)))
+
+(defun aru/web-server-kill ()
+  (interactive)
+  (let* ((name (aru/web-server-get-name))
+         (process (get-process name)))
+    (if process
+        (aru/web-server--kill process name)
+      (message "Can't stop what isn't started."))))
+
+(defun aru/web-server--kill (process name)
+  (delete-process process)
+  (message "Web server on port %d closed."
+           (aru/web-server-remove-opened-port name)))
