@@ -147,7 +147,12 @@
 
 ;;;; Backup
 
-(setq backup-directory-alist
+(setq backup-by-copying   t
+      version-control     t
+      delete-old-versions t
+      kept-new-versions   20
+      kept-old-versions   5
+      backup-directory-alist
       `(("." . ,(concat nix/xdg-config-home "/emacs/backup"))))
 
 ;;;; Syntax tables
