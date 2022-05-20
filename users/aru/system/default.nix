@@ -1,4 +1,5 @@
 { pkgs
+, lib
 , ...
 }:
 
@@ -34,12 +35,22 @@
     settings.allowed-users = [ "aru" ];
   };
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-runtime"
+  ];
+
   time.timeZone = "Europe/Madrid";
   i18n.defaultLocale = "en_US.UTF-8";
 
   programs = {
     # So home-manager doesn't complain (when adding gtk)
     dconf.enable = true;
+
+    steam = {
+      enable = true;
+    };
   };
 
   security = {
