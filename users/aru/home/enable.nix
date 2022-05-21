@@ -143,5 +143,7 @@
   # Enabled unfree packages
   unfreePackages = [
     "discord"
+    "steam"
+    "steam-original"
   ];
 }

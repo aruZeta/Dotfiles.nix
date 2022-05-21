@@ -41,6 +41,13 @@ in
 
     # Discord
     discord
+
+    # Gaming
+    heroic
+    wineWowPackages.waylandFull
+    winetricks
+    samba
+    gamemode
   ]
   ++ (searchImportList "packages.nix" argSet')
   ++ (attrValues (searchImportSet "scripts.nix" argSet'));
