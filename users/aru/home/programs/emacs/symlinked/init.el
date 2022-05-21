@@ -176,11 +176,38 @@
 
 (setq-default indent-tabs-mode nil)
 
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
+;;;; Which key
+
+(setq which-key-idle-delay .5)
+
+(which-key-mode)
+
 ;;;; Lsp
 
 (add-hook 'lsp-mode-hook #'lsp-ui-mode)
 (add-hook 'lsp-mode-hook #'flycheck-mode)
 (add-hook 'lsp-mode-hook #'lsp-treemacs-sync-mode)
+
+;;;; Ivy
+
+(ivy-mode 1)
+(ivy-rich-mode 1)
+(all-the-icons-ivy-rich-mode)
+
+;;;; Counsel
+
+(counsel-mode 1)
+
+;;;; Treemacs
+
+(require 'treemacs-all-the-icons)
+(treemacs-load-theme "all-the-icons")
+
+;;;; Dired
+
+(add-hook 'dired-mode-hook #'all-the-icons-dired-mode)
 
 ;;;; Company
 
