@@ -71,6 +71,13 @@
   # Local variables not applied directly to home-manager, used to setup
   # overlays, packages, symlinks, scripts, etc.
   non-module = {
+    calibre.overlay = {
+      enable = true;
+      version = "5.37.0";
+      repo = "https://download.calibre-ebook.com";
+      sha256 = "sha256-x2u4v0k05WMATSsuo76NnqChIz8BcTuZfPkZa0uLnMY=";
+    };
+
     common-lisp.enable = true;
 
     emacs.overlay = {
