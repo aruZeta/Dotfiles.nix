@@ -248,6 +248,19 @@
 (add-hook 'nxml-mode-hook #'lsp)
 (add-hook 'nxml-mode-hook #'aru/nxml-mode-hook)
 
+;;;; Scss
+
+(defun aru/org-scss-generation (plist filename pub-dir)
+  (let* ((visiting (find-buffer-visiting filename))
+         (scss-buffer (or visiting (find-file-noselect filename))))
+    (with-current-buffer scss-buffer
+      (compile (concat "sass -t compressed --update"
+                       " "
+                       filename
+                       ":"
+                       (org-export-output-file-name ".css" nil pub-dir))))
+    (unless visiting (kill-buffer scss-buffer))))
+
 ;;;; Lua
 
 (setq lua-indent-level 4)
@@ -281,6 +294,48 @@
       org-html-doctype                    "html5"
       org-html-checkbox-type              'unicode
       org-export-allow-bind-keywords      t)
+
+(defun aru/org/publish-project (project-path &optional org static scss)
+  (let* ((publish-dir (concat nix/xdg-publish-dir "/Org"))
+         (project-component-name (string-replace "/" "_" project-path))
+         (org-component-name
+          (when org (concat project-component-name ".org")))
+         (static-component-name
+          (when static (concat project-component-name ".static")))
+         (scss-component-name
+          (when scss (concat project-component-name ".scss-generation"))))
+    (remove
+     nil
+     `((,project-path
+        :components ,(remove nil `(,org-component-name
+                                   ,static-component-name
+                                   ,scss-component-name)))
+       ,(when org
+          `(,org-component-name
+            :headline-levels 6
+            :recursive t
+            :base-extension "org"
+            :base-directory ,project-path
+            :publishing-directory ,publish-dir
+            :publishing-function org-html-publish-to-html))
+       ,(when static
+          `(,static-component-name
+            :recursive t
+            :base-extension ""
+            :base-directory ,project-path
+            :publishing-directory ,publish-dir
+            :publishing-function org-publish-attachment))
+       ,(when scss
+          `(,scss-component-name
+            :recursive t
+            :base-extension "scss"
+            :base-directory ,project-path
+            :publishing-directory ,publish-dir
+            :publishing-function aru/org-scss-generation))))))
+
+(setq org-publish-project-alist
+      (append
+       (aru/org/publish-project nix/xdg-org-dir t nil t)))
 
 (add-hook 'org-mode-hook #'org-superstar-mode)
 (add-hook 'org-mode-hook #'auto-fill-mode)
