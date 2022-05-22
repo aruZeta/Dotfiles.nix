@@ -321,7 +321,7 @@ using the defaults, else using the values of the PLIST."
                                    ,scss-component-name)))
        ,(when org
           `(,org-component-name
-            :headline-levels 6
+            :headline-levels ,(or (plist-get org :headline-levels) 6)
             :recursive t
             :base-extension "org"
             :base-directory ,project-path
@@ -330,7 +330,7 @@ using the defaults, else using the values of the PLIST."
        ,(when static
           `(,static-component-name
             :recursive t
-            :base-extension ""
+            :base-extension ,(or (plist-get static :base-extension) "")
             :base-directory ,project-path
             :publishing-directory ,publish-dir
             :publishing-function org-publish-attachment))
@@ -338,7 +338,7 @@ using the defaults, else using the values of the PLIST."
           `(,scss-component-name
             :recursive t
             :base-extension "scss"
-            :base-directory ,project-path
+            :base-directory ,(or (plist-get scss :dir) project-path)
             :publishing-directory ,publish-dir
             :publishing-function aru/org-scss-generation))))))
 
