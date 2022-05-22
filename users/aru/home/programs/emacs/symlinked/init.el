@@ -305,7 +305,7 @@ get the scss from.
 
 If one of those is NIL then the component is not added, if it is T it is added
 using the defaults, else using the values of the PLIST."
-  (let* ((publish-dir (concat nix/xdg-publish-dir "/Org"))
+  (let* ((publish-dir (concat nix/xdg-publish-dir "/" (file-name-base project-path)))
          (project-component-name (string-replace "/" "_" project-path))
          (org-component-name
           (when org (concat project-component-name ".org")))
