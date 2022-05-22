@@ -296,6 +296,15 @@
       org-export-allow-bind-keywords      t)
 
 (defun aru/org/publish-project (project-path &optional org static scss)
+  "Easier way to create `org-publish-project-alist' entries.
+PROJECT-PATH is the path of the project.
+ORG if non NIL is a PLIST with values like :headline-levels.
+STATIC if non NIL is a PLIST with values like :base-extension.
+SCSS if non NIL is a PLIST with values like :dir which is the project to
+get the scss from.
+
+If one of those is NIL then the component is not added, if it is T it is added
+using the defaults, else using the values of the PLIST."
   (let* ((publish-dir (concat nix/xdg-publish-dir "/Org"))
          (project-component-name (string-replace "/" "_" project-path))
          (org-component-name
