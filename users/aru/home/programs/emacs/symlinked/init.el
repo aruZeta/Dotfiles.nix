@@ -344,7 +344,12 @@ using the defaults, else using the values of the PLIST."
 
 (setq org-publish-project-alist
       (append
-       (aru/org/publish-project nix/xdg-org-dir t nil t)))
+       (aru/org/publish-project nix/xdg-org-dir t nil t)
+       (aru/org/publish-project
+        "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas"
+        t
+        '(:base-extension "png\\|jpg\\|jpeg\\|svg")
+        `(:dir ,nix/xdg-org-dir))))
 
 (add-hook 'org-mode-hook #'org-superstar-mode)
 (add-hook 'org-mode-hook #'auto-fill-mode)
