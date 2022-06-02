@@ -62,6 +62,22 @@
   };
 
   services = {
+    locate = {
+      enable = true;
+      locate = pkgs.mlocate;
+      localuser = null;
+      prunePaths = [
+        "/tmp"
+        "/var/tmp"
+        "/var/cache"
+        "/var/lock"
+        "/var/run"
+        "/var/spool"
+        # "/nix/store" # So I can locate header files mostly
+        "/nix/var/log/nix"
+      ];
+    };
+
     udev.packages = with pkgs; [
       qmk-udev-rules
     ];
@@ -96,6 +112,7 @@
           "vboxusers"
           "GitReposEditors"
           "video"
+          "mlocate"
         ];
       };
     };
