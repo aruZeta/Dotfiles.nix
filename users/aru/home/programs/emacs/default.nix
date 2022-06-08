@@ -42,6 +42,7 @@
     pkgs.mu
 
     mu4e-alert
+    nasm-mode
     nix-mode
     org-superstar
     pinentry

@@ -48,6 +48,9 @@ in
     winetricks
     samba
     gamemode
+
+    # Programming
+    man-pages
   ]
   ++ (searchImportList "packages.nix" argSet')
   ++ (attrValues (searchImportSet "scripts.nix" argSet'));

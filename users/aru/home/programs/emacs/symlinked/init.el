@@ -20,6 +20,11 @@
 (tooltip-mode    0)
 (menu-bar-mode   0)
 
+;;;; Other emacs stuff
+
+(setq gc-cons-threshold       (* 1024 1024 50) ; 50MiB
+      read-process-output-max (* 1024 1024))   ; 1MiB
+
 ;;;; Evil
 
 (setq evil-want-keybinding nil)
@@ -223,8 +228,14 @@
 
 ;;;; Web mode
 
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+
 (defun aru/web-mode-hook ()
-  (setq tab-width 2))
+  (setq tab-width                     2)
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset    2)
+  (setq web-mode-code-indent-offset   2)
+  (setq web-mode-indent-style         2))
 
 (add-hook 'web-mode-hook #'lsp)
 (add-hook 'web-mode-hook #'emmet-mode)
@@ -271,6 +282,10 @@
   (setq tab-width        4))
 (add-hook 'java-mode-hook #'lsp)
 (add-hook 'java-mode-hook #'aru/java-mode-hook)
+
+;;;; Javascript
+
+(add-hook 'js-mode-hook #'lsp)
 
 ;;;; Visual fill
 
@@ -384,6 +399,10 @@ using the defaults, else using the values of the PLIST."
 ;;;; Nix
 
 (add-to-list 'auto-mode-alist '("\\.nix?\\'" . nix-mode))
+
+;;;; Assembly
+
+(add-to-list 'auto-mode-alist '("\\.asm?\\'" . nasm-mode))
 
 ;;;; Lisp
 
