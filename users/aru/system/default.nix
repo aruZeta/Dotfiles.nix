@@ -31,8 +31,20 @@
     # Interfaces are activated in /system/hardware/<your-laptop-or-pc-model>.nix
   };
 
-  nix = {
-    settings.allowed-users = [ "aru" ];
+  nix.settings = {
+    allowed-users = [ "aru" ];
+
+    substituters = [
+      "https://my-dotfiles.cachix.org/"
+    ];
+
+    trusted-substituters = [
+      "https://my-dotfiles.cachix.org/"
+    ];
+
+    trusted-public-keys = [
+      "my-dotfiles.cachix.org-1:YDHITP4F3601yKboAauidYKxrxhyPverDppC2vwAqHM="
+    ];
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
