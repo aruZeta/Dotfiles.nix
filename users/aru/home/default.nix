@@ -36,9 +36,6 @@ in
     # QMK
     qmk
 
-    # Music
-    yt-dlp
-
     # Discord
     discord
 
