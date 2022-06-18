@@ -1,9 +1,10 @@
 (deftheme aru/themes/rose-pine-dawn
   "Rose pine dawn theme.")
 
-(require 'aru/themes/rose-pine-common)
+(require 'aru/themes)
+(require 'aru/colors)
 
-(aru/themes/rose-pine-generate-colors
+(aru/colors/generate-colors
  "rose-pine-dawn"
  (("base"           . "#faf4ed")
   ("surface"        . "#fffaf3")
@@ -21,6 +22,6 @@
   ("highlight-med"  . "#dfdad9")
   ("highlight-high" . "#cecacd")))
 
-(aru/themes/rose-pine-set-theme "rose-pine-dawn")
+(aru/themes/generate-theme "rose-pine-dawn")
 
 (provide-theme 'aru/themes/rose-pine-dawn)

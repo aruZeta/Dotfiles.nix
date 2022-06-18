@@ -1,9 +1,10 @@
 (deftheme aru/themes/rose-pine-moon
   "Rose pine moon theme.")
 
-(require 'aru/themes/rose-pine-common)
+(require 'aru/themes)
+(require 'aru/colors)
 
-(aru/themes/rose-pine-generate-colors
+(aru/colors/generate-colors
  "rose-pine-moon"
  (("base"           . "#232136")
   ("surface"        . "#2a273f")
@@ -21,6 +22,6 @@
   ("highlight-med"  . "#44415a")
   ("highlight-high" . "#56526e")))
 
-(aru/themes/rose-pine-set-theme "rose-pine-moon")
+(aru/themes/generate-theme "rose-pine-moon")
 
 (provide-theme 'aru/themes/rose-pine-moon)
