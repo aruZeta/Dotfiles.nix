@@ -122,7 +122,7 @@
 
 ;;;; Themes
 
-(load-theme 'aru/themes/rose-pine-dawn t)
+(load-theme 'aru/themes/gruvbox-dark t)
 
 ;;;; Useful functions
 
