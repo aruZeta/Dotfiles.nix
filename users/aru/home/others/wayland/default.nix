@@ -108,6 +108,50 @@ in
         command = "${pkgs.waybar}/bin/waybar";
       }];
 
+      colors = {
+        background = "#1d2021";
+
+        focused = {
+          background = "#1d2021";
+          border = "#3c3836";
+          childBorder = "#3c3836";
+          indicator = "#3c3836";
+          text = "#ebdbb2";
+        };
+
+        focusedInactive = {
+          background = "#1d2021";
+          border = "#282828";
+          childBorder = "#282828";
+          indicator = "#282828";
+          text = "#ebdbb2";
+        };
+
+        placeholder = {
+          background = "#1d2021";
+          border = "#282828";
+          childBorder = "#282828";
+          indicator = "#282828";
+          text = "#ebdbb2";
+        };
+
+        unfocused = {
+          background = "#1d2021";
+          border = "#1d2021";
+          childBorder = "#1d2021";
+          indicator = "#1d2021";
+          text = "#ebdbb2";
+        };
+
+        urgent = {
+          background = "#1d2021";
+          border = "#cc241d";
+          childBorder = "#cc241d";
+          indicator = "#cc241d";
+          text = "#ebdbb2";
+        };
+      };
+
       assigns = {
         "1" = [
           { app_id = "firefox"; }
