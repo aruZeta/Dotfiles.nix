@@ -2,9 +2,13 @@ name: Home Build
 
 on:
   push:
-    branches: [ "main" ]
+    paths:
+      - 'home/**'
+      - 'users/*/home/**'
   pull_request:
-    branches: [ "main" ]
+    paths:
+      - 'home/**'
+      - 'users/*/home/**'
 
 jobs:
   build_n_push:
