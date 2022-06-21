@@ -23,6 +23,7 @@
     evil
     evil-collection
     flycheck
+    flycheck-nim
     general
     gruvbox-theme
     htmlize
@@ -43,6 +44,7 @@
 
     mu4e-alert
     nasm-mode
+    nim-mode
     nix-mode
     org-superstar
     pinentry

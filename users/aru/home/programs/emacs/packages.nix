@@ -12,6 +12,7 @@ usefulExpresions.condAndValuesList [
       nodePackages.vscode-langservers-extracted
       nodePackages.eslint
       nodejs
+      nimlsp
     ];
   }
 ]
