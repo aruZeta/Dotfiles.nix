@@ -259,6 +259,10 @@
 (add-hook 'nxml-mode-hook #'lsp)
 (add-hook 'nxml-mode-hook #'aru/nxml-mode-hook)
 
+;;;; Nim mode
+
+(add-hook 'nim-mode-hook #'lsp)
+
 ;;;; Scss
 
 (defun aru/org-scss-generation (plist filename pub-dir)
