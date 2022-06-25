@@ -3,10 +3,12 @@ name: Home Build
 on:
   push:
     paths:
+      - 'default.nix'
       - 'home/**'
       - 'users/*/home/**'
   pull_request:
     paths:
+      - 'default.nix'
       - 'home/**'
       - 'users/*/home/**'
 
