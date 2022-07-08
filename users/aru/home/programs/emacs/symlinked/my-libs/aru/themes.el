@@ -61,6 +61,13 @@
 
        (set-face-attribute 'aru/faces/diff-changed nil
                            :weight 'bold
-                           :foreground ,(get-symbol "gold")))))
+                           :foreground ,(get-symbol "gold"))
+
+       (set-face-attribute 'aru/faces/modeline nil
+                           :background ,(get-symbol "surface"))
+
+       (set-face-attribute 'aru/faces/modeline-inactive nil
+                           :background ,(get-symbol "surface")
+                           :foreground ,(get-symbol "faded")))))
 
 (provide 'aru/themes)

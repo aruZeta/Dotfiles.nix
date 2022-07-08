@@ -59,6 +59,14 @@
   "Face for changed stuff in diffs."
   :group 'aru/faces)
 
+(defface aru/faces/modeline nil
+  "Face for modeline."
+  :group 'aru/faces)
+
+(defface aru/faces/modeline-inactive nil
+  "Face for modeline in inactive buffers."
+  :group 'aru/faces)
+
 ;;;; Helpful functions
 
 (cl-defun set-face (face style &key height)
@@ -121,6 +129,14 @@
 (set-face 'info-title-2                        'aru/faces/important :height 1.30)
 (set-face 'info-title-3                        'aru/faces/important :height 1.20)
 (set-face 'info-title-4                        'aru/faces/important :height 1.10)
+
+;;; Modeline
+(set-face 'mode-line                           'aru/faces/modeline)
+(set-face 'doom-modeline-spc-face              'aru/faces/modeline)
+(set-face 'doom-modeline-vspc-face             'aru/faces/modeline)
+(set-face 'doom-modeline-spc-inactive-face     'aru/faces/modeline)
+(set-face 'doom-modeline-vspc-inactive-face    'aru/faces/modeline)
+(set-face 'mode-line-inactive                  'aru/faces/modeline-inactive)
 
 ;;; Org
 (with-eval-after-load "org"
