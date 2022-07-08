@@ -36,6 +36,10 @@
       evil-collection-calendar-want-org-bindings t
       evil-collection-setup-minibuffer           t)
 
+;;;; Doom modeline
+
+(doom-modeline-mode 1)
+
 ;;;; General
 
 (setq general-override-states '(insert
