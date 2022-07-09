@@ -36,6 +36,10 @@
       evil-collection-calendar-want-org-bindings t
       evil-collection-setup-minibuffer           t)
 
+;;;; Modeline
+
+(setq column-number-mode 1)
+
 ;;;; Doom modeline
 
 (doom-modeline-mode 1)
