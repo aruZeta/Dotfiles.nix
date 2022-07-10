@@ -68,6 +68,10 @@
 
        (set-face-attribute 'aru/faces/modeline-inactive nil
                            :background ,(get-symbol "surface")
-                           :foreground ,(get-symbol "faded")))))
+                           :foreground ,(get-symbol "faded"))
+
+       (set-face-attribute 'aru/faces/wont-see nil
+                           :background ,(get-symbol "base")
+                           :foreground ,(get-symbol "base")))))
 
 (provide 'aru/themes)

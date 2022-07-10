@@ -67,6 +67,10 @@
   "Face for modeline in inactive buffers."
   :group 'aru/faces)
 
+(defface aru/faces/wont-see nil
+  "Face for things you don't want to see."
+  :group 'aru/faces)
+
 ;;;; Helpful functions
 
 (cl-defun set-face (face style &key height)
@@ -142,6 +146,9 @@
 (set-face 'doom-modeline-bar-inactive          'aru/faces/modeline-inactive)
 (set-face 'doom-modeline-spc-inactive-face     'aru/faces/modeline-inactive)
 (set-face 'doom-modeline-vspc-inactive-face    'aru/faces/modeline-inactive)
+
+;;; Window
+(set-face 'vertical-border                     'aru/faces/wont-see)
 
 ;;; Org
 (with-eval-after-load "org"
