@@ -132,11 +132,16 @@
 
 ;;; Modeline
 (set-face 'mode-line                           'aru/faces/modeline)
+(set-face 'mode-line-active                    'aru/faces/modeline)
+(set-face 'mode-line-inactive                  'aru/faces/modeline-inactive)
+
+;;; Doom modeline
+(set-face 'doom-modeline-bar                   'aru/faces/modeline)
 (set-face 'doom-modeline-spc-face              'aru/faces/modeline)
 (set-face 'doom-modeline-vspc-face             'aru/faces/modeline)
-(set-face 'doom-modeline-spc-inactive-face     'aru/faces/modeline)
-(set-face 'doom-modeline-vspc-inactive-face    'aru/faces/modeline)
-(set-face 'mode-line-inactive                  'aru/faces/modeline-inactive)
+(set-face 'doom-modeline-bar-inactive          'aru/faces/modeline-inactive)
+(set-face 'doom-modeline-spc-inactive-face     'aru/faces/modeline-inactive)
+(set-face 'doom-modeline-vspc-inactive-face    'aru/faces/modeline-inactive)
 
 ;;; Org
 (with-eval-after-load "org"
@@ -185,7 +190,6 @@
   (set-face 'magit-section-heading-selection   nil))
 
 ;;; Nxml
-
 (with-eval-after-load "nxml"
   (set-face 'nxml-attribute-local-name 'aru/faces/less-important)
   (set-face 'nxml-element-prefix 'aru/faces/not-important-color)

@@ -64,7 +64,7 @@
                            :foreground ,(get-symbol "gold"))
 
        (set-face-attribute 'aru/faces/modeline nil
-                           :background ,(get-symbol "surface"))
+                           :background ,(get-symbol "overlay"))
 
        (set-face-attribute 'aru/faces/modeline-inactive nil
                            :background ,(get-symbol "surface")
