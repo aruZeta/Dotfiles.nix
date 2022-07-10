@@ -1,6 +1,6 @@
 #+AUTHOR: aru
 * aru's Dotfiles made with nix
 
-[[https://github.com/aru-hackZ/Dotfiles.nix/actions/workflows/HomeBuild.yml][https://github.com/aru-hackZ/Dotfiles.nix/actions/workflows/HomeBuild.yml/badge.svg]]
+[[https://github.com/aruZeta/Dotfiles.nix/actions/workflows/HomeBuild.yml][https://github.com/aruZeta/Dotfiles.nix/actions/workflows/HomeBuild.yml/badge.svg]]
 
 TODO: future me should write something here, present me is too lazy

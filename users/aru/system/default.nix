@@ -21,7 +21,7 @@
   };
 
   networking = {
-    hostName = "aru-hackZ";
+    hostName = "aruZetaMachine";
 
     # This one is deprecated
     useDHCP = false;
