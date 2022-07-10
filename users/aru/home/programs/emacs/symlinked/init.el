@@ -237,6 +237,11 @@
 (require 'treemacs-all-the-icons)
 (treemacs-load-theme "all-the-icons")
 
+(defun aru/treemacs-mode-hook()
+  (setq left-margin-width 1))
+
+(add-hook 'treemacs-mode-hook  #'aru/treemacs-mode-hook)
+
 ;;;; Dired
 
 (add-hook 'dired-mode-hook #'all-the-icons-dired-mode)
