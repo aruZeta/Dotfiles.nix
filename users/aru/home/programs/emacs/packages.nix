@@ -13,6 +13,7 @@ usefulExpresions.condAndValuesList [
       nodePackages.eslint
       nodejs
       nimlsp
+      ripgrep
     ];
   }
 ]

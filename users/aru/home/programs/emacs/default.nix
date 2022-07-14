@@ -51,6 +51,7 @@
     plantuml-mode
     projectile
     rainbow-delimiters
+    ripgrep
     slime
     slime-company
     svg-tag-mode
