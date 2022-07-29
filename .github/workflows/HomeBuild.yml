@@ -11,6 +11,7 @@ on:
       - 'default.nix'
       - 'home/**'
       - 'users/*/home/**'
+  workflow_dispatch:
 
 jobs:
   build_n_push:
