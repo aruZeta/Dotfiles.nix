@@ -3,4 +3,6 @@
 
 [[https://github.com/aruZeta/Dotfiles.nix/actions/workflows/HomeBuild.yml][https://github.com/aruZeta/Dotfiles.nix/actions/workflows/HomeBuild.yml/badge.svg]]
 
-TODO: future me should write something here, present me is too lazy
+Simple emacs screenshot:
+
+[[file:share/img/README/emacs.png]]
