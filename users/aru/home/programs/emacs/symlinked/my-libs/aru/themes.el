@@ -72,6 +72,38 @@
 
        (set-face-attribute 'aru/faces/wont-see nil
                            :background ,(get-symbol "base")
-                           :foreground ,(get-symbol "base")))))
+                           :foreground ,(get-symbol "base"))
+
+       (set-face-attribute 'aru/faces/term-base nil
+                           :background ,(get-symbol "base")
+                           :foreground ,(get-symbol "base"))
+
+       (set-face-attribute 'aru/faces/term-love nil
+                           :background ,(get-symbol "love")
+                           :foreground ,(get-symbol "love"))
+
+       (set-face-attribute 'aru/faces/term-pine nil
+                           :background ,(get-symbol "pine")
+                           :foreground ,(get-symbol "pine"))
+
+       (set-face-attribute 'aru/faces/term-gold nil
+                           :background ,(get-symbol "gold")
+                           :foreground ,(get-symbol "gold"))
+
+       (set-face-attribute 'aru/faces/term-foam nil
+                           :background ,(get-symbol "foam")
+                           :foreground ,(get-symbol "foam"))
+
+       (set-face-attribute 'aru/faces/term-iris nil
+                           :background ,(get-symbol "iris")
+                           :foreground ,(get-symbol "iris"))
+
+       (set-face-attribute 'aru/faces/term-rose nil
+                           :background ,(get-symbol "iris")
+                           :foreground ,(get-symbol "iris"))
+
+       (set-face-attribute 'aru/faces/term-text nil
+                           :background ,(get-symbol "text")
+                           :foreground ,(get-symbol "text")))))
 
 (provide 'aru/themes)

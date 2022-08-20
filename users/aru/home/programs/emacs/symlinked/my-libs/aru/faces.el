@@ -71,6 +71,38 @@
   "Face for things you don't want to see."
   :group 'aru/faces)
 
+(defface aru/faces/term-base nil
+  "Face for terminal black."
+  :group 'aru/faces)
+
+(defface aru/faces/term-love nil
+  "Face for terminal red."
+  :group 'aru/faces)
+
+(defface aru/faces/term-pine nil
+  "Face for terminal green."
+  :group 'aru/faces)
+
+(defface aru/faces/term-gold nil
+  "Face for terminal yellow."
+  :group 'aru/faces)
+
+(defface aru/faces/term-foam nil
+  "Face for terminal blue."
+  :group 'aru/faces)
+
+(defface aru/faces/term-iris nil
+  "Face for terminal magenta."
+  :group 'aru/faces)
+
+(defface aru/faces/term-rose nil
+  "Face for terminal cyan."
+  :group 'aru/faces)
+
+(defface aru/faces/term-text nil
+  "Face for terminal white."
+  :group 'aru/faces)
+
 ;;;; Helpful functions
 
 (cl-defun set-face (face style &key height)
@@ -201,5 +233,15 @@
   (set-face 'nxml-attribute-local-name 'aru/faces/less-important)
   (set-face 'nxml-element-prefix 'aru/faces/not-important-color)
   (set-face 'nxml-element-colon 'aru/faces/not-important-color))
+
+(with-eval-after-load "vterm"
+  (set-face 'vterm-color-black   'aru/faces/term-base)
+  (set-face 'vterm-color-red     'aru/faces/term-love)
+  (set-face 'vterm-color-green   'aru/faces/term-pine)
+  (set-face 'vterm-color-yellow  'aru/faces/term-gold)
+  (set-face 'vterm-color-blue    'aru/faces/term-foam)
+  (set-face 'vterm-color-magenta 'aru/faces/term-iris)
+  (set-face 'vterm-color-cyan    'aru/faces/term-rose)
+  (set-face 'vterm-color-white   'aru/faces/term-text))
 
 (provide 'aru/faces)
