@@ -75,7 +75,7 @@
                            :foreground ,(get-symbol "base"))
 
        (set-face-attribute 'aru/faces/term-base nil
-                           :background ,(get-symbol "base")
+                           :background ,(get-symbol "overlay")
                            :foreground ,(get-symbol "base"))
 
        (set-face-attribute 'aru/faces/term-love nil
