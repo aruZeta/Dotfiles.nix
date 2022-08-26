@@ -171,7 +171,8 @@
 
 ;;;; Elcord
 
-(setq elcord-refresh-rate 5)
+(setq elcord-refresh-rate 5
+      elcord-display-buffer-details nil)
 
 (elcord-mode)
 
