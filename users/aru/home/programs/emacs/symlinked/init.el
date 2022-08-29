@@ -482,6 +482,7 @@ using the defaults, else using the values of the PLIST."
                        *aru/web-server-ports-opened*)))))
 
 (defun aru/web-server-get-name ()
+  (require 'projectile)
   (format "web-server-%s" (projectile-project-name)))
 
 (defun aru/web-server-open ()
@@ -492,6 +493,7 @@ using the defaults, else using the values of the PLIST."
       (aru/web-server--open name))))
 
 (defun aru/web-server--open (name)
+  (require 'projectile)
   (let* ((port (aru/web-server-get-new-port))
          (cmd (format "python3 -m http.server --directory %s %d"
                       (projectile-project-root)
