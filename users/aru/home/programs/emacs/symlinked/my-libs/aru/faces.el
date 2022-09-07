@@ -172,12 +172,8 @@
 (set-face 'mode-line-inactive                  'aru/faces/modeline-inactive)
 
 ;;; Doom modeline
-(set-face 'doom-modeline-bar                   'aru/faces/modeline)
-(set-face 'doom-modeline-spc-face              'aru/faces/modeline)
-(set-face 'doom-modeline-vspc-face             'aru/faces/modeline)
+(set-face 'doom-modeline-bar                   'aru/faces/modeline-inactive)
 (set-face 'doom-modeline-bar-inactive          'aru/faces/modeline-inactive)
-(set-face 'doom-modeline-spc-inactive-face     'aru/faces/modeline-inactive)
-(set-face 'doom-modeline-vspc-inactive-face    'aru/faces/modeline-inactive)
 
 ;;; Window
 (set-face 'vertical-border                     'aru/faces/wont-see)
