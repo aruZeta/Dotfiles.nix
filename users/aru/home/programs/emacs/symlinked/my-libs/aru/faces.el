@@ -181,6 +181,9 @@
 ;;; Org
 (with-eval-after-load "org"
   (set-face 'org-document-title                'aru/faces/important :height 1.50)
+  (set-face-attribute 'org-ellipsis nil
+                      :foreground 'unspecified
+                      :underline  'unspecified)
   (set-face 'org-level-1                       'aru/faces/important :height 1.40)
   (set-face 'org-level-2                       'aru/faces/important :height 1.35)
   (set-face 'org-level-3                       'aru/faces/important :height 1.30)
