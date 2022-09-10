@@ -292,9 +292,13 @@
 (add-hook 'nxml-mode-hook #'lsp)
 (add-hook 'nxml-mode-hook #'aru/nxml-mode-hook)
 
-;;;; Nim mode
+;;;; Nim
 
 (add-hook 'nim-mode-hook #'lsp)
+
+(defun aru/nim-org-mode-setup ()
+  (org-babel-do-load-languages 'org-babel-load-languages
+                               '((nim . t))))
 
 ;;;; Scss
 
@@ -409,7 +413,8 @@ using the defaults, else using the values of the PLIST."
 
 (with-eval-after-load 'org
   (aru/plantuml-org-mode-setup)
-  (aru/shell-org-mode-setup))
+  (aru/shell-org-mode-setup)
+  (aru/nim-org-mode-setup))
 
 ;;;; Org superstar
 

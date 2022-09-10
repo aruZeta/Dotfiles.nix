@@ -46,6 +46,7 @@
     nasm-mode
     nim-mode
     nix-mode
+    ob-nim
     org-superstar
     pinentry
     plantuml-mode
