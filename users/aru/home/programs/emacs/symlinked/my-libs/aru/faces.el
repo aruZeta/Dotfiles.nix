@@ -191,7 +191,8 @@
   (set-face 'org-level-5                       'aru/faces/important :height 1.20)
   (set-face 'org-level-6                       'aru/faces/important :height 1.15)
   (set-face 'org-level-7                       'aru/faces/important :height 1.10)
-  (set-face 'org-level-8                       'aru/faces/important :height 1.05))
+  (set-face 'org-level-8                       'aru/faces/important :height 1.05)
+  (set-face 'org-block                         'default))
 
 ;;; Magit
 (with-eval-after-load "magit"
