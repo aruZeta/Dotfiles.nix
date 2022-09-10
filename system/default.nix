@@ -2,7 +2,7 @@
 }:
 
 {
-  system.stateVersion = "22.05";
+  system.stateVersion = "22.11";
 
   imports = [
     # Import your user specific settings

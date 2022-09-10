@@ -3,9 +3,9 @@
 
 let
   home-manager = builtins.fetchTarball {
-    name = "home-manager-22.05";
-    url = "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
-    sha256 = "sha256:0sdirpwqk61hnq8lvz4r2j60fxpcpwc8ffmicail2n4h6zifcn9n";
+    name = "home-manager-unstable";
+    url = "https://github.com/nix-community/home-manager/archive/9f7fe353b613d0e45d7a5cdbd1f13c96c15803dd.tar.gz";
+    sha256 = "sha256:0n8lg7dm6cdnr2111pbfg16lqy3slv9a0cg3dy8d1f8ry40ippwn";
   };
 
   evalHome = import "${toString home-manager}/modules";

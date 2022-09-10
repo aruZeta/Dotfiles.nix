@@ -52,8 +52,8 @@
     projectile
     rainbow-delimiters
     ripgrep
-    slime
-    slime-company
+    #slime
+    #slime-company
     svg-tag-mode
     treemacs
     treemacs-all-the-icons

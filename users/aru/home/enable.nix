@@ -83,14 +83,7 @@
     emacs.overlay = {
       enable = true;
       repo = "https://github.com/nix-community/emacs-overlay";
-      commit = "65255005b89ed3adb49d2f552188e34ad98d64d0";
-    };
-
-    eww.overlay = {
-      enable = true;
-      version = "fb0e57a0149904e76fb33807a2804d4af82350de";
-      sha256 = "sha256-oAbB9aW/nqg02peqGEfETOGgeXarI6ZcAZ6DzDXbOSE=";
-      cargoOutputHash = "sha256-zN6qqCvFYCD3sUIqC9XZyyUVc/9zQ0UB/gRq96Gaf94=";
+      commit = "c1cc59de6fe2c4218fe79356ff46b3f3d46cf204";
     };
 
     koreader = {
