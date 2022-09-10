@@ -31,20 +31,27 @@
     # Interfaces are activated in /system/hardware/<your-laptop-or-pc-model>.nix
   };
 
-  nix.settings = {
-    allowed-users = [ "aru" ];
+  nix= {
+    settings = {
+      allowed-users = [ "aru" ];
 
-    substituters = [
-      "https://my-dotfiles.cachix.org/"
-    ];
+      substituters = [
+        "https://my-dotfiles.cachix.org/"
+      ];
 
-    trusted-substituters = [
-      "https://my-dotfiles.cachix.org/"
-    ];
+      trusted-substituters = [
+        "https://my-dotfiles.cachix.org/"
+      ];
 
-    trusted-public-keys = [
-      "my-dotfiles.cachix.org-1:YDHITP4F3601yKboAauidYKxrxhyPverDppC2vwAqHM="
-    ];
+      trusted-public-keys = [
+        "my-dotfiles.cachix.org-1:YDHITP4F3601yKboAauidYKxrxhyPverDppC2vwAqHM="
+      ];
+    };
+
+    extraOptions = ''
+      keep-outputs = true
+      keep-derivations = true
+    '';
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [

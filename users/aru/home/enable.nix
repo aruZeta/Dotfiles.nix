@@ -1,11 +1,15 @@
 {
   programs = {
     alacritty.enable = false;
+
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+
     eclipse.enable = true;
     emacs.enable = true;
     eww.enable = true;
-    mbsync.enable = true;
-    mu.enable = true;
     firefox.enable = true;
 
     fzf = {
@@ -16,6 +20,8 @@
     git.enable = true;
     gpg.enable = true;
     java.enable = true;
+    mbsync.enable = true;
+    mu.enable = true;
     neovim.enable = true;
     obs-studio.enable = true;
     ssh.enable = true;

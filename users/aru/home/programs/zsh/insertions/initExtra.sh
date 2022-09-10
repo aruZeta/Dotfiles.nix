@@ -21,3 +21,5 @@ if [ "$TERM" = "linux" ]; then
     echo -en "\e]PFEBDBB2" #white
     clear #for background artifacting
 fi
+
+eval "$(direnv hook zsh)"

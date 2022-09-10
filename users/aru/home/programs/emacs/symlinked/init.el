@@ -562,3 +562,7 @@ using the defaults, else using the values of the PLIST."
 (add-hook 'message-send-hook #'mml-secure-message-sign-pgpmime)
 (add-hook 'mu4e-mode-hook #'mu4e-alert-enable-notifications)
 (add-hook 'mu4e-mode-hook #'mu4e-alert-enable-mode-line-display)
+
+;;;; Direnv
+
+(direnv-mode)

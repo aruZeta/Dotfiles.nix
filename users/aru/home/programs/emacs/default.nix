@@ -17,6 +17,7 @@
     company-lua
     counsel
     dap-mode
+    direnv
     doom-modeline
     elcord
     emmet-mode
