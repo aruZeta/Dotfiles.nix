@@ -21,6 +21,10 @@
        (set-face-attribute 'aru/faces/important nil
                            :weight 'bold)
 
+       (set-face-attribute 'aru/faces/important-color nil
+                           :weight 'bold
+                           :foreground ,(get-symbol "iris"))
+
        (set-face-attribute 'aru/faces/less-important nil
                            :weight 'medium
                            :foreground ,(get-symbol "foam"))

@@ -49,6 +49,8 @@
     nix-mode
     ob-nim
     org-superstar
+    org-tree-slide
+    org-tree-slide-pauses
     pinentry
     plantuml-mode
     projectile

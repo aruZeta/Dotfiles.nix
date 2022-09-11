@@ -15,6 +15,10 @@
   "Face for important information."
   :group 'aru/faces)
 
+(defface aru/faces/important-color nil
+  "Face for important information."
+  :group 'aru/faces)
+
 (defface aru/faces/less-important nil
   "Face for information which is not as important as `aru/faces/important'."
   :group 'aru/faces)
@@ -180,19 +184,41 @@
 
 ;;; Org
 (with-eval-after-load "org"
-  (set-face 'org-document-title                'aru/faces/important :height 1.50)
+  (set-face 'org-document-title
+            'aru/faces/important-color
+            :height 1.50)
+  (set-face 'org-level-1
+            'aru/faces/important-color
+            :height 1.30)
+  (set-face 'org-level-2
+            'aru/faces/important-color
+            :height 1.25)
+  (set-face 'org-level-3
+            'aru/faces/important-color
+            :height 1.20)
+  (set-face 'org-level-4
+            'aru/faces/important-color
+            :height 1.15)
+  (set-face 'org-level-5
+            'aru/faces/important-color
+            :height 1.10)
+  (set-face 'org-level-6
+            'aru/faces/important-color
+            :height 1.08)
+  (set-face 'org-level-7
+            'aru/faces/important-color
+            :height 1.05)
+  (set-face 'org-level-8
+            'aru/faces/important-color
+            :height 1.02)
+  (set-face 'org-document-info 'aru/faces/less-important)
   (set-face-attribute 'org-ellipsis nil
                       :foreground 'unspecified
                       :underline  'unspecified)
-  (set-face 'org-level-1                       'aru/faces/important :height 1.40)
-  (set-face 'org-level-2                       'aru/faces/important :height 1.35)
-  (set-face 'org-level-3                       'aru/faces/important :height 1.30)
-  (set-face 'org-level-4                       'aru/faces/important :height 1.25)
-  (set-face 'org-level-5                       'aru/faces/important :height 1.20)
-  (set-face 'org-level-6                       'aru/faces/important :height 1.15)
-  (set-face 'org-level-7                       'aru/faces/important :height 1.10)
-  (set-face 'org-level-8                       'aru/faces/important :height 1.05)
-  (set-face 'org-block                         'default))
+  (set-face 'org-block 'default)
+  (set-face-attribute 'org-block nil
+                      :background (face-attribute 'aru/faces/modeline-inactive
+                                                  :background)))
 
 ;;; Magit
 (with-eval-after-load "magit"

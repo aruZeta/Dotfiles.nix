@@ -342,7 +342,8 @@
       org-startup-folded               t
       org-startup-indented             t
       org-list-allow-alphabetical      t
-      org-edit-src-content-indentation 0)
+      org-edit-src-content-indentation 0
+      org-confirm-babel-evaluate       nil)
 
 (setq org-html-head-include-default-style nil
       org-html-htmlize-output-type        'css
@@ -350,6 +351,12 @@
       org-html-doctype                    "html5"
       org-html-checkbox-type              'unicode
       org-export-allow-bind-keywords      t)
+
+(defun aru/org/hide-meta-line ()
+  (set-face 'org-meta-line 'aru/faces/wont-see))
+
+(defun aru/org/show-meta-line ()
+  (set-face 'org-meta-line 'aru/faces/not-important))
 
 (defun aru/org/publish-project (project-path &optional org static scss)
   "Easier way to create `org-publish-project-alist' entries.
@@ -419,6 +426,29 @@ using the defaults, else using the values of the PLIST."
 ;;;; Org superstar
 
 (setq org-superstar-headline-bullets-list '("◉" "◈" "⬠" "⬡" "○"))
+
+;;;; Org tree slide
+
+(defun aru/org-tree-slide-play-setup ()
+  (aru/org/hide-meta-line)
+  (org-babel-result-hide-all)
+  (org-display-inline-images)
+  (setq org-image-actual-width '(400)
+        text-scale-mode-amount 2)
+  (text-scale-mode))
+
+(defun aru/org-tree-slide-stop-setup ()
+  (aru/org/show-meta-line)
+  (setq text-scale-mode-amount 0)
+  (text-scale-mode))
+
+(with-eval-after-load 'org-tree-slide
+  (setq org-tree-slide-activate-message "Presentation started!"
+        org-tree-slide-deactivate-message "Presentation ended!"))
+
+(add-hook 'org-tree-slide-mode-hook (apply-partially #'aru/visual-fill 90))
+(add-hook 'org-tree-slide-play-hook #'aru/org-tree-slide-play-setup)
+(add-hook 'org-tree-slide-stop-hook #'aru/org-tree-slide-stop-setup)
 
 ;;;; Plantuml
 
