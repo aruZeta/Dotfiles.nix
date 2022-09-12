@@ -21,6 +21,7 @@
     git.enable = true;
     gpg.enable = true;
     java.enable = true;
+    mako.enable = true;
     mbsync.enable = true;
     mu.enable = true;
     neovim.enable = true;
