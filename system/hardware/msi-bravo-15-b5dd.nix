@@ -13,6 +13,8 @@
   boot = {
     initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
     initrd.kernelModules = [ "amdgpu" ];
+    initrd.supportedFilesystems = [ "btrfs" ];
+    supportedFilesystems = [ "btrfs" ];
     kernelModules = [ "kvm-amd" ];
 
     # doesn't seem to solve anything, will leave it there anyway
@@ -26,7 +28,7 @@
     "/" = {
       device = "/dev/disk/by-uuid/8effeb50-01d2-4e51-9802-b47d369dedd5";
       fsType = "btrfs";
-      options = [ "subvol=@nixos" ];
+      options = [ "subvol=@nixos" "x-systemd.automount" "noatime" ];
     };
 
     "/boot" = {
@@ -34,16 +36,22 @@
       fsType = "vfat";
     };
 
+    "/nix/store" = {
+      device = "/dev/disk/by-uuid/8effeb50-01d2-4e51-9802-b47d369dedd5";
+      fsType = "btrfs";
+      options = [ "subvol=@store" "x-systemd.requires-mounts-for=/home" "noatime" ];
+    };
+
     "/GitRepos" = {
       device = "/dev/disk/by-uuid/8effeb50-01d2-4e51-9802-b47d369dedd5";
       fsType = "btrfs";
-      options = [ "subvol=@GitRepos" ];
+      options = [ "subvol=@GitRepos" "noatime" ];
     };
 
     "/home" = {
       device = "/dev/disk/by-uuid/8effeb50-01d2-4e51-9802-b47d369dedd5";
       fsType = "btrfs";
-      options = [ "subvol=@nixos/home" ];
+      options = [ "subvol=@nixos/home" "x-systemd.requires-mounts-for=/" "noatime" ];
     };
 
     "/swap" = {
