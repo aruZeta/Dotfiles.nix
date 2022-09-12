@@ -18,7 +18,7 @@ return {
     -- hide_tab_bar_if_only_one_tab = true,
     tab_bar_at_bottom = true,
     scrollback_lines = 10000,
-    check_for_updatess = false,
+    check_for_updates = false,
     show_update_window = false,
 
     colors = {
