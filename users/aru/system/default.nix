@@ -31,7 +31,7 @@
     # Interfaces are activated in /system/hardware/<your-laptop-or-pc-model>.nix
   };
 
-  nix= {
+  nix = {
     settings = {
       allowed-users = [ "aru" ];
 
@@ -132,6 +132,7 @@
           "GitReposEditors"
           "video"
           "mlocate"
+          "libvirtd"
         ];
       };
     };
@@ -144,8 +145,13 @@
   };
 
   virtualisation = {
-    # virtualbox.host.enable = true;
+    virtualbox.host.enable = true;
+    libvirtd.enable = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    virt-manager
+  ];
 
   xdg = {
     portal = {
