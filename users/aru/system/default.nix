@@ -66,6 +66,7 @@
   programs = {
     # So home-manager doesn't complain (when adding gtk)
     dconf.enable = true;
+    nix-ld.enable = true;
 
     steam = {
       enable = true;
