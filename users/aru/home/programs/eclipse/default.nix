@@ -3,7 +3,7 @@
 }:
 
 {
-  package = pkgs.eclipses.eclipse-java;
+  package = pkgs.eclipses.eclipse-jee;
 
   plugins = with pkgs.eclipses.plugins; [
     vrapper
