@@ -15,6 +15,6 @@
 
   imports = [
     # Import your user specific config
-    ../users/aru/home
+    ../users/psp-azure-machine/home
   ];
 }
