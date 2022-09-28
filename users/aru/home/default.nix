@@ -57,6 +57,8 @@ in
 
   nixpkgs.overlays = searchImportList "overlays.nix" argSet';
 
+  systemd.user.services = searchImportSet "services.nix" argSet';
+
   # Only allow the unfreePackages listed in enable.nix
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) enabledStuff.unfreePackages;
