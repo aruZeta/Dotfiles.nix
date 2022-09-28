@@ -65,6 +65,7 @@
 
   programs = {
     # So home-manager doesn't complain (when adding gtk)
+    adb.enable = true;
     dconf.enable = true;
     nix-ld.enable = true;
 
@@ -134,6 +135,7 @@
           "video"
           "mlocate"
           "libvirtd"
+          "adbusers"
         ];
       };
     };
