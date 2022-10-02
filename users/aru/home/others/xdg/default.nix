@@ -14,10 +14,10 @@ let
 in
 
 {
-  configHome = "${homeDirectory}/.dotfiles/config";
-  cacheHome  = "${homeDirectory}/.dotfiles/cache";
-  dataHome   = "${homeDirectory}/.dotfiles/local/share";
-  stateHome  = "${homeDirectory}/.dotfiles/local/state";
+  configHome = "${homeDirectory}/.config";
+  cacheHome  = "${homeDirectory}/.cache";
+  dataHome   = "${homeDirectory}/.local/share";
+  stateHome  = "${homeDirectory}/.local/state";
 
   configFile = searchImportSet "xdg-symlinks.nix" args;
   desktopEntries = searchImportSet "desktop-entries.nix" args;
