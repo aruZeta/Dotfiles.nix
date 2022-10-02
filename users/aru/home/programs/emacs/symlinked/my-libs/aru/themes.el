@@ -8,8 +8,8 @@
   "Set color theme to VARIANT."
   (let ((*group* (concat "aru/colors/" theme-name "/")))
     `(progn
-       (set-background-color ,(get-symbol "base"))
-       (set-foreground-color ,(get-symbol "text"))
+       (add-to-list 'default-frame-alist (cons 'background-color ,(get-symbol "base")))
+       (add-to-list 'default-frame-alist (cons 'foreground-color ,(get-symbol "text")))
 
        (set-face-attribute 'default nil
                            :family "Iosevka"
