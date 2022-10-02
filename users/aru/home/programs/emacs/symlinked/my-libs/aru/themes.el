@@ -72,7 +72,7 @@
 
        (set-face-attribute 'aru/faces/modeline-inactive nil
                            :background ,(get-symbol "surface")
-                           :foreground ,(get-symbol "faded"))
+                           :foreground ,(get-symbol "muted"))
 
        (set-face-attribute 'aru/faces/wont-see nil
                            :background ,(get-symbol "base")
