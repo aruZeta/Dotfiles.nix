@@ -145,13 +145,13 @@
       };
     };
 
+    webcord.enable = true;
     wezterm.enable = true;
     wofi.enable = true;
   };
 
   # Enabled unfree packages
   unfreePackages = [
-    "discord"
     "steam"
     "steam-original"
   ];

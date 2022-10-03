@@ -36,9 +36,6 @@ in
     # QMK
     qmk
 
-    # Discord
-    discord
-
     # Gaming
     heroic
     wineWowPackages.waylandFull
