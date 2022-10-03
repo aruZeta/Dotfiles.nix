@@ -38,6 +38,7 @@ in
 
     # Gaming
     heroic
+    legendary-gl
     wineWowPackages.waylandFull
     winetricks
     samba
