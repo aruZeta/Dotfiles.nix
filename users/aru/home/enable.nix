@@ -24,7 +24,7 @@
     mako.enable = true;
     mbsync.enable = true;
     mu.enable = true;
-    neovim.enable = true;
+    neovim.enable = false;
     obs-studio.enable = true;
     ssh.enable = true;
 
