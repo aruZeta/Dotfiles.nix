@@ -30,8 +30,7 @@ in
 {
   windowManager.sway = {
     extraSessionCommands =
-      (lib.strings.fileContents ./insertions/extra-session-commands.sh) +
-      "\n${config.programs.emacs.finalPackage}/bin/emacs --daemon";
+      lib.strings.fileContents ./insertions/extra-session-commands.sh;
 
     config = {
       keybindings = {
