@@ -174,7 +174,7 @@
 (setq elcord-refresh-rate 5
       elcord-display-buffer-details nil)
 
-(elcord-mode)
+; (elcord-mode)
 
 ;;;; Syntax tables
 
