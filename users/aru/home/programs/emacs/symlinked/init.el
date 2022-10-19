@@ -328,6 +328,10 @@
 
 (add-hook 'js-mode-hook #'lsp)
 
+;;;; Zig
+
+(add-hook 'zig-mode-hook #'lsp)
+
 ;;;; Visual fill
 
 (defun aru/visual-fill (&optional width)
