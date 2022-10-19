@@ -186,7 +186,7 @@ in
         ];
 
         "9" = [
-          { class = "discord"; }
+          { app_id = "Electron"; }
         ];
       };
 
