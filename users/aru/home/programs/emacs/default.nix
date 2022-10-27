@@ -59,8 +59,10 @@
     #slime
     #slime-company
     svg-tag-mode
+    tide
     treemacs
     treemacs-all-the-icons
+    typescript-mode
     visual-fill-column
     vterm
     web-mode

@@ -321,12 +321,36 @@
 
 (defun aru/java-mode-hook ()
   (setq tab-width        4))
+
 (add-hook 'java-mode-hook #'lsp)
 (add-hook 'java-mode-hook #'aru/java-mode-hook)
 
 ;;;; Javascript
 
+(defun aru/js-mode-hook ()
+  (setq tab-width 2))
+
 (add-hook 'js-mode-hook #'lsp)
+(add-hook 'js-mode-hook #'aru/js-mode-hook)
+
+;;;; Typescript
+
+(defun aru/tide-setup ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  (company-mode +1)
+  (add-hook 'before-save-hook 'tide-format-before-save))
+
+(defun aru/typescript-mode-hook ()
+  (setq typescript-indent-level 2)
+  (aru/tide-setup))
+
+(add-hook 'typescript-mode-hook #'lsp)
+(add-hook 'typescript-mode-hook #'aru/typescript-mode-hook)
 
 ;;;; Zig
 
