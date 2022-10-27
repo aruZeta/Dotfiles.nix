@@ -445,6 +445,11 @@ using the defaults, else using the values of the PLIST."
         "/GitRepos/s2dam-azarquiel-2022/aru-sistemas-gestion/PresentacionERP"
         t
         '(:base-extension "png\\|jpg\\|jpeg\\|svg")
+        `(:dir ,nix/xdg-org-dir))
+       (aru/org/publish-project
+        "/GitRepos/s2dam-azarquiel-2022/aru-sistemas-gestion/Examen1"
+        t
+        '(:base-extension "png\\|jpg\\|jpeg\\|svg")
         `(:dir ,nix/xdg-org-dir))))
 
 (add-hook 'org-mode-hook #'org-superstar-mode)
