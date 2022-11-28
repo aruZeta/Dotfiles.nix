@@ -328,7 +328,7 @@
 ;;;; Javascript
 
 (defun aru/js-mode-hook ()
-  (setq tab-width 2))
+  (setq js-indent-level 2))
 
 (add-hook 'js-mode-hook #'lsp)
 (add-hook 'js-mode-hook #'aru/js-mode-hook)
