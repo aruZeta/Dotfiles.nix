@@ -58,6 +58,7 @@
     "steam"
     "steam-original"
     "steam-runtime"
+    "steam-run"
   ];
 
   time.timeZone = "Europe/Madrid";
