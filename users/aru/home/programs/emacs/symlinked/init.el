@@ -446,12 +446,7 @@ using the defaults, else using the values of the PLIST."
         '(:base-extension "png\\|jpg\\|jpeg\\|svg")
         `(:dir ,nix/xdg-org-dir))
        (aru/org/publish-project
-        "/GitRepos/s2dam-azarquiel-2022/aru-sistemas-gestion/PresentacionERP"
-        t
-        '(:base-extension "png\\|jpg\\|jpeg\\|svg")
-        `(:dir ,nix/xdg-org-dir))
-       (aru/org/publish-project
-        "/GitRepos/s2dam-azarquiel-2022/aru-sistemas-gestion/Examen1"
+        "/GitRepos/s2dam-azarquiel-2022/aru-sistemas-gestion"
         t
         '(:base-extension "png\\|jpg\\|jpeg\\|svg")
         `(:dir ,nix/xdg-org-dir))))
