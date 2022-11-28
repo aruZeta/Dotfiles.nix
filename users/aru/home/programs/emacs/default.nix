@@ -30,6 +30,7 @@
     htmlize
     ivy
     ivy-rich
+    json-mode
     lispy
     lsp-ivy
     lsp-java
