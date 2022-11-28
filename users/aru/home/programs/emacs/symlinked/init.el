@@ -333,6 +333,10 @@
 (add-hook 'js-mode-hook #'lsp)
 (add-hook 'js-mode-hook #'aru/js-mode-hook)
 
+;;;; JSON
+
+(add-hook 'json-mode-hook #'aru/js-mode-hook)
+
 ;;;; Typescript
 
 (defun aru/tide-setup ()
