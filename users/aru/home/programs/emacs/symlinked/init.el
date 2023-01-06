@@ -521,6 +521,10 @@ using the defaults, else using the values of the PLIST."
 
 (add-hook 'emacs-lisp-mode-hook #'lispy-mode)
 
+;;;; Elixir
+
+(add-hook 'elixir-mode-hook #'lsp)
+
 ;;;; Exercism
 
 (require 'exercism)
