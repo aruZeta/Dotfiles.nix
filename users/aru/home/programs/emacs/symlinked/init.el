@@ -521,6 +521,10 @@ using the defaults, else using the values of the PLIST."
 
 (add-hook 'emacs-lisp-mode-hook #'lispy-mode)
 
+;;;; Exercism
+
+(require 'exercism)
+
 ;;;; Latex
 
 (setq org-format-latex-options

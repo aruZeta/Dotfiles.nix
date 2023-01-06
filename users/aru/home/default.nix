@@ -46,6 +46,9 @@ in
 
     # Programming
     man-pages
+
+    # Challenges
+    exercism
   ]
   ++ (searchImportList "packages.nix" argSet')
   ++ (attrValues (searchImportSet "scripts.nix" argSet'));

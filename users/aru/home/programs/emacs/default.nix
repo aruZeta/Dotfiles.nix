@@ -23,6 +23,7 @@
     emmet-mode
     evil
     evil-collection
+    exercism
     flycheck
     flycheck-nim
     general
