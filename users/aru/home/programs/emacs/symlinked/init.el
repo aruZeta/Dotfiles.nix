@@ -106,6 +106,9 @@
  ;; Mu4e (Email)
  "e"           '(mu4e :which-key "Mu4e")
 
+ ;; Exercism
+ "C-e"         '(exercism :which-key "Exercism")
+
  ;; Terminal
  "v"           '(vterm :which-key "Terminal"))
 
