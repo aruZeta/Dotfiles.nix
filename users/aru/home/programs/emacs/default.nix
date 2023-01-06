@@ -20,6 +20,7 @@
     direnv
     doom-modeline
     elcord
+    elixir-mode
     emmet-mode
     evil
     evil-collection
