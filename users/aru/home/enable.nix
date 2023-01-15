@@ -112,6 +112,11 @@
       commit = "7933df62bb350d2f4a258f9e110decc08baaf627";
     };
 
+    netbeans = {
+      enable = true;
+      overlay.enable = true;
+    };
+
     plantuml = {
       enable = true;
 
