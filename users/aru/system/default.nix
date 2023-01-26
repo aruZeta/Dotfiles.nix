@@ -69,6 +69,10 @@
     adb.enable = true;
     dconf.enable = true;
     nix-ld.enable = true;
+    wireshark = {
+      enable = true;
+      package = pkgs.wireshark;
+    };
 
     steam = {
       enable = true;
@@ -137,6 +141,7 @@
           "mlocate"
           "libvirtd"
           "adbusers"
+          "wireshark"
         ];
       };
     };
