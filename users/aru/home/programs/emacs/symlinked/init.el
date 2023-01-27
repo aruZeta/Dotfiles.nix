@@ -3,8 +3,6 @@
 (add-to-list 'load-path (concat user-emacs-directory "my-libs"))
 (setq custom-theme-directory (concat user-emacs-directory "my-libs"))
 
-(require 'nix/expanded)
-
 ;;;; User
 
 (setq user-full-name    "Alberto Robles Gomez"
@@ -170,7 +168,7 @@
       kept-new-versions   20
       kept-old-versions   5
       backup-directory-alist
-      `(("." . ,(concat nix/xdg-config-home "/emacs/backup"))))
+      `(("." . ,(concat (getenv "XDG_CONFIG_HOME") "/emacs/backup"))))
 
 ;;;; Elcord
 
@@ -372,7 +370,7 @@
 
 ;;;; Org
 
-(setq org-directory                    nix/xdg-org-dir
+(setq org-directory                    (getenv "XDG_ORG_DIR")
       org-ellipsis                     " ▾"
       org-startup-folded               t
       org-startup-indented             t
@@ -403,7 +401,10 @@ get the scss from.
 
 If one of those is NIL then the component is not added, if it is T it is added
 using the defaults, else using the values of the PLIST."
-  (let* ((publish-dir (concat nix/xdg-publish-dir "/" (file-name-base project-path)))
+  (let* ((publish-dir (concat
+                       (getenv "XDG_PUBLISH_DIR")
+                       "/"
+                       (file-name-base project-path)))
          (project-component-name (string-replace "/" "_" project-path))
          (org-component-name
           (when org (concat project-component-name ".org")))
@@ -442,17 +443,17 @@ using the defaults, else using the values of the PLIST."
 
 (setq org-publish-project-alist
       (append
-       (aru/org/publish-project nix/xdg-org-dir t nil t)
+       (aru/org/publish-project (getenv "XDG_ORG_DIR") t nil t)
        (aru/org/publish-project
         "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas"
         t
         '(:base-extension "png\\|jpg\\|jpeg\\|svg")
-        `(:dir ,nix/xdg-org-dir))
+        `(:dir ,(getenv "XDG_ORG_DIR")))
        (aru/org/publish-project
         "/GitRepos/s2dam-azarquiel-2022/aru-sistemas-gestion"
         t
         '(:base-extension "png\\|jpg\\|jpeg\\|svg")
-        `(:dir ,nix/xdg-org-dir))))
+        `(:dir ,(getenv "XDG_ORG_DIR")))))
 
 (add-hook 'org-mode-hook #'org-superstar-mode)
 (add-hook 'org-mode-hook #'auto-fill-mode)
@@ -607,12 +608,12 @@ using the defaults, else using the values of the PLIST."
 
 (setq auth-source-debug                   t
       auth-source-do-cache                nil
-      auth-source-pass-filename           nix/xdg-keys-dir
+      auth-source-pass-filename           (getenv "XDG_KEYS_DIR")
       auth-sources                        '(password-store)
       mail-user-agent                     'mu4e-user-agent
       message-send-mail-function          'smtpmail-send-it
       mml-secure-openpgp-sign-with-sender t
-      mu4e-attachment-dir                 nix/xdg-mail-dir
+      mu4e-attachment-dir                 (getenv "XDG_MAIL_DIR")
       mu4e-compose-signature              "Alberto (a.k.a. aru)"
       mu4e-compose-signature-auto-include t
       mu4e-drafts-folder                  "/Drafts"
