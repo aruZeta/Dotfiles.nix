@@ -161,6 +161,7 @@ in
           { app_id = "emacs"; }
           { app_id = "Eclipse"; }
           { app_id = "calibre-ebook-edit"; }
+          { class = "NetBeans IDE 8.2"; }
         ];
 
         "3" = [
@@ -170,6 +171,7 @@ in
         "4" = [
           { class = "VirtualBox Manager"; }
           { class = "VirtualBox Machine"; }
+          { class = "virt-manager"; }
         ];
 
         "5" = [
@@ -183,10 +185,15 @@ in
 
         "7" = [
           { app_id = "termusic"; }
+          { class = "Spotify"; } # Not working
+        ];
+
+        "8" = [
+          { app_id = "org.inkscape.Inkscape"; }
         ];
 
         "9" = [
-          { app_id = "Electron"; }
+          { class = "discord"; }
         ];
       };
 

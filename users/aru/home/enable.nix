@@ -150,7 +150,7 @@
       };
     };
 
-    webcord.enable = true;
+    webcord.enable = false;
     wezterm.enable = true;
     wofi.enable = true;
   };
@@ -159,5 +159,6 @@
   unfreePackages = [
     "steam"
     "steam-original"
+    "discord"
   ];
 }

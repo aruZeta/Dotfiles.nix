@@ -36,6 +36,9 @@ in
     # QMK
     qmk
 
+    # Discord
+    discord
+
     # Gaming
     heroic
     legendary-gl
