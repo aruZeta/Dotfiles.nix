@@ -6,6 +6,7 @@ on:
       - 'default.nix'
       - 'home/**'
       - 'users/*/home/**'
+      - '.github/workflows/**'
   workflow_dispatch:
 
 jobs:
