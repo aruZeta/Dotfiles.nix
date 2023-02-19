@@ -3,7 +3,7 @@
 }:
 
 {
-  package = pkgs.emacsPgtkNativeComp;
+  package = pkgs.emacsPgtk;
 
   overrides = self: super: {
     org = self.elpaPackages.org;

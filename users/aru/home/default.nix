@@ -56,7 +56,9 @@ in
   ++ (searchImportList "packages.nix" argSet')
   ++ (attrValues (searchImportSet "scripts.nix" argSet'));
 
-  home.sessionVariables = searchImportSet "session-vars.nix" argSet';
+  home.sessionVariables = {
+    NIX_LD = lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
+  } // searchImportSet "session-vars.nix" argSet';
   home.file = searchImportSet "home-symlinks.nix" argSet';
 
   nixpkgs.overlays = searchImportList "overlays.nix" argSet';
@@ -69,6 +71,11 @@ in
 
   programs = dirToImportSet ./programs argSet';
   services = dirToImportSet ./services argSet';
+
+  # Weird bug
+  manual.manpages.enable = false;
+  manual.html.enable = false;
+  manual.json.enable = false;
 
   # Enable stuff
   imports = [

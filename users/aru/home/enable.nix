@@ -92,7 +92,7 @@
     emacs.overlay = {
       enable = true;
       repo = "https://github.com/nix-community/emacs-overlay";
-      commit = "246ff03a67d0ae7b3fcc6f40658395fe79d3b1ff";
+      commit = "ea9ceddec99ab3c66017ab3104fb86863e26154a";
     };
 
     koreader = {

@@ -4,7 +4,7 @@
 let
   home-manager = builtins.fetchTarball {
     name = "home-manager-unstable";
-    url = "https://github.com/nix-community/home-manager/archive/9f7fe353b613d0e45d7a5cdbd1f13c96c15803dd.tar.gz";
+    url = "https://github.com/nix-community/home-manager/archive/da72e6fc6b7dc0c3f94edbd310aae7cd95c678b5.tar.gz";
     sha256 = "sha256:0n8lg7dm6cdnr2111pbfg16lqy3slv9a0cg3dy8d1f8ry40ippwn";
   };
 
