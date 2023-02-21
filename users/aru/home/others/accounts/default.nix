@@ -13,14 +13,14 @@ in
     maildirBasePath = XDG_MAIL_DIR;
     accounts = {
       aru =
-        let email = "aru_hackZ.official@zohomail.eu";
+        let email = "me@aruzeta.com";
             imapHost = "imap.zoho.eu";
         in {
           address = email;
           userName = email;
           realName = "Alberto Robles Gomez";
           primary = true;
-          mu.enable = true;
+          mu.enable = false;
 
           passwordCommand =
             "gpg --quiet --decrypt ${XDG_KEYS_DIR}/${imapHost}/${email}.gpg";

@@ -6,7 +6,7 @@
   userEmail = config.accounts.email.accounts.aru.address;
   userName = "aruZeta";
   signing.signByDefault = true;
-  signing.key = "62F49107DB7386A7";
+  signing.key = "A5B52CC3B6DDFB33";
 
   ignores = [
     "*~"

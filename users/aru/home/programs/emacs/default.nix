@@ -44,9 +44,9 @@
 
     # To make sure that mu is in load-path, since it seems there are people
     # reporting it doesn't appear in their's, no problem in mine tho
-    pkgs.mu
+    # pkgs.mu
 
-    mu4e-alert
+    # mu4e-alert
     nasm-mode
     nim-mode
     nix-mode
