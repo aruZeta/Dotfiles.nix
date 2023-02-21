@@ -153,6 +153,10 @@
     webcord.enable = false;
     wezterm.enable = true;
     wofi.enable = true;
+
+    zohomail = {
+      enable = true;
+    };
   };
 
   # Enabled unfree packages
