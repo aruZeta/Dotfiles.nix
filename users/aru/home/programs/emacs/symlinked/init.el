@@ -529,6 +529,10 @@ using the defaults, else using the values of the PLIST."
 
 (add-hook 'elixir-mode-hook #'lsp)
 
+;;;; Rust
+
+(add-hook 'rust-mode-hook #'lsp)
+
 ;;;; Exercism
 
 (require 'exercism)

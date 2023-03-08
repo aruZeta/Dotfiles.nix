@@ -59,6 +59,7 @@
     projectile
     rainbow-delimiters
     ripgrep
+    rust-mode
     #slime
     #slime-company
     svg-tag-mode
