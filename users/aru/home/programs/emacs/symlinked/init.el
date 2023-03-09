@@ -230,6 +230,14 @@
     (:before (&rest _) ivy-rich-reset-cache)
   (clrhash ivy-rich--ivy-switch-buffer-cache))
 
+;;; Emacs 30 bug fix from
+;;; https://github.com/Yevgnen/ivy-rich/issues/115#issuecomment-1336951680
+
+(defun ivy-rich--switch-buffer-directory! (orig-fun &rest args)
+  (cl-letf (((symbol-function 'directory-file-name) #'file-name-directory))
+    (apply orig-fun args)))
+(advice-add 'ivy-rich--switch-buffer-directory :around #'ivy-rich--switch-buffer-directory!)
+
 ;;;; Counsel
 
 (counsel-mode 1)
