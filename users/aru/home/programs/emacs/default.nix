@@ -18,6 +18,7 @@
     counsel
     dap-mode
     direnv
+    dockerfile-mode
     doom-modeline
     elcord
     elixir-mode
