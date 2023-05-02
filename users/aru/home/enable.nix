@@ -164,5 +164,7 @@
     "steam"
     "steam-original"
     "discord"
+    "android-studio"
+    "android-studio-canary"
   ];
 }
