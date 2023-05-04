@@ -142,6 +142,7 @@
           "libvirtd"
           "adbusers"
           "wireshark"
+          "docker"
         ];
       };
     };
