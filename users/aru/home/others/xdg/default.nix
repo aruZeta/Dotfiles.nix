@@ -32,11 +32,12 @@ in
     videos    = "${documents}/Video";
     
     extraConfig = {
-      XDG_DOTFILES_DIR = "${homeDirectory}/Dotfiles.nix";
-      XDG_PUBLISH_DIR  = "${homeDirectory}/Publish";
-      XDG_MAIL_DIR     = "${documents}/Mail";
-      XDG_KEYS_DIR     = "${documents}/Keys";
-      XDG_ORG_DIR      = "${documents}/Org";
+      XDG_DOTFILES_DIR  = "${homeDirectory}/Dotfiles.nix";
+      XDG_PUBLISH_DIR   = "${homeDirectory}/Publish";
+      XDG_MAIL_DIR      = "${documents}/Mail";
+      XDG_KEYS_DIR      = "${documents}/Keys";
+      XDG_ORG_DIR       = "${documents}/Org";
+      XDG_GIT_REPOS_DIR = "/GitRepos";
     };
   };
 
