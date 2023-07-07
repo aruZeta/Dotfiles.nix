@@ -2,8 +2,6 @@
 }:
 
 {
-  system.stateVersion = "22.11";
-
   imports = [
     # Import your user specific settings
     ../users/aru/system

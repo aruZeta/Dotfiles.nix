@@ -20,6 +20,7 @@ in
 
 {
   home = {
+    stateVersion = "22.11";
     username = "aru";
     homeDirectory = "/home/${config.home.username}";
   };
