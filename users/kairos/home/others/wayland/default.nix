@@ -193,7 +193,7 @@ in
         ];
 
         "9" = [
-          { class = "discord"; }
+          { class = "Slack"; }
         ];
       };
 
