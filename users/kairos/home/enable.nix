@@ -91,5 +91,6 @@
   unfreePackages = [
     "google-chrome"
     "slack"
+    "spotify"
   ];
 }

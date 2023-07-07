@@ -37,6 +37,9 @@ in
 
     # Editors
     jetbrains.idea-community
+
+    # Music
+    spotify
   ]
   ++ (searchImportList "packages.nix" argSet')
   ++ (attrValues (searchImportSet "scripts.nix" argSet'));
