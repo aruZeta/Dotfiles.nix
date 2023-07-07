@@ -468,3 +468,7 @@ using the defaults, else using the values of the PLIST."
 ;;;; Direnv
 
 (direnv-mode)
+
+;;;; native comp warnings hack (just dont show them!)
+
+(setq native-comp-async-report-warnings-errors nil)
