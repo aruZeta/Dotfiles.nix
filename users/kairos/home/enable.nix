@@ -37,10 +37,9 @@
 
   services = {
     emacs = {
-      enable = true;
+      enable = false;
       client.enable = true;
-      socketActivation.enable = true;
-      startWithUserSession = true;
+      socketActivation.enable = false;
     };
 
     gpg-agent = {
