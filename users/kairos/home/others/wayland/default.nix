@@ -184,8 +184,7 @@ in
         ];
 
         "7" = [
-          { app_id = "termusic"; }
-          { class = "Spotify"; } # Not working
+          { class = "Spotify"; }
         ];
 
         "8" = [
