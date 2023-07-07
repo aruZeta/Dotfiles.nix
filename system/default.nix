@@ -4,9 +4,9 @@
 {
   imports = [
     # Import your user specific settings
-    ../users/aru/system
+    ../users/kairos/system
 
     # Import your hardware settings
-    ./hardware/msi-bravo-15-b5dd.nix
+    ./hardware/slimbook-prox14-amd.nix
   ];
 }

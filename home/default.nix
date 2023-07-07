@@ -14,6 +14,6 @@
 
   imports = [
     # Import your user specific config
-    ../users/aru/home
+    ../users/kairos/home
   ];
 }
