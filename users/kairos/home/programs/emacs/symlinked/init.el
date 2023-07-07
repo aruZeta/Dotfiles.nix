@@ -167,13 +167,6 @@
       backup-directory-alist
       `(("." . ,(concat (getenv "XDG_CONFIG_HOME") "/emacs/backup"))))
 
-;;;; Elcord
-
-(setq elcord-refresh-rate 5
-      elcord-display-buffer-details nil)
-
-; (elcord-mode)
-
 ;;;; Syntax tables
 
 (modify-syntax-entry ?_ "w") ; Make _ part of a word
@@ -260,111 +253,6 @@
 ;;;; Yasnippet
 
 (add-hook 'after-init-hook #'yas-global-mode)
-
-;;;; Sbcl
-
-(setq inferior-lisp-program "sbcl")
-
-;;;; Web mode
-
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-
-(defun aru/web-mode-hook ()
-  (setq tab-width                     2)
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-css-indent-offset    2)
-  (setq web-mode-code-indent-offset   2)
-  (setq web-mode-indent-style         2))
-
-(add-hook 'web-mode-hook #'lsp)
-(add-hook 'web-mode-hook #'emmet-mode)
-(add-hook 'web-mode-hook #'aru/web-mode-hook)
-
-;;;; Emmet
-
-(setq emmet-self-closing-tag-style     " /"
-      emmet-move-cursor-between-quotes t)
-
-(with-eval-after-load 'emmet
-  (aru/emmet-mode-setup))
-
-;;;; Nxml mode
-
-(setq nxml-attribute-indent 2)
-
-(defun aru/nxml-mode-hook ()
-  (setq tab-width 2))
-
-(add-hook 'nxml-mode-hook #'lsp)
-(add-hook 'nxml-mode-hook #'aru/nxml-mode-hook)
-
-;;;; Nim
-
-(add-hook 'nim-mode-hook #'lsp)
-
-(defun aru/nim-org-mode-setup ()
-  (org-babel-do-load-languages 'org-babel-load-languages
-                               '((nim . t))))
-
-;;;; Scss
-
-(defun aru/org-scss-generation (plist filename pub-dir)
-  (let* ((visiting (find-buffer-visiting filename))
-         (scss-buffer (or visiting (find-file-noselect filename))))
-    (with-current-buffer scss-buffer
-      (compile (concat "sass -t compressed --update"
-                       " "
-                       filename
-                       ":"
-                       (org-export-output-file-name ".css" nil pub-dir))))
-    (unless visiting (kill-buffer scss-buffer))))
-
-;;;; Lua
-
-(setq lua-indent-level 4)
-
-;;;; Java
-
-(defun aru/java-mode-hook ()
-  (setq tab-width        4))
-
-(add-hook 'java-mode-hook #'lsp)
-(add-hook 'java-mode-hook #'aru/java-mode-hook)
-
-;;;; Javascript
-
-(defun aru/js-mode-hook ()
-  (setq js-indent-level 2))
-
-(add-hook 'js-mode-hook #'lsp)
-(add-hook 'js-mode-hook #'aru/js-mode-hook)
-
-;;;; JSON
-
-(add-hook 'json-mode-hook #'aru/js-mode-hook)
-
-;;;; Typescript
-
-(defun aru/tide-setup ()
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  (company-mode +1)
-  (add-hook 'before-save-hook 'tide-format-before-save))
-
-(defun aru/typescript-mode-hook ()
-  (setq typescript-indent-level 2)
-  (aru/tide-setup))
-
-(add-hook 'typescript-mode-hook #'lsp)
-(add-hook 'typescript-mode-hook #'aru/typescript-mode-hook)
-
-;;;; Zig
-
-(add-hook 'zig-mode-hook #'lsp)
 
 ;;;; Visual fill
 
@@ -496,18 +384,6 @@ using the defaults, else using the values of the PLIST."
 (add-hook 'org-tree-slide-play-hook #'aru/org-tree-slide-play-setup)
 (add-hook 'org-tree-slide-stop-hook #'aru/org-tree-slide-stop-setup)
 
-;;;; Plantuml
-
-(setq plantuml-executable-path   (getenv "PLANTUML_BIN")
-      plantuml-default-exec-mode 'executable)
-
-(defun aru/plantuml-org-mode-setup ()
-  (setq org-plantuml-executable-path (getenv "PLANTUML_BIN")
-        org-plantuml-exec-mode       'plantuml)
-  (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
-  (org-babel-do-load-languages 'org-babel-load-languages
-                               '((plantuml . t))))
-
 ;;;; Shell
 
 (defun aru/shell-org-mode-setup ()
@@ -517,26 +393,6 @@ using the defaults, else using the values of the PLIST."
 ;;;; Nix
 
 (add-to-list 'auto-mode-alist '("\\.nix?\\'" . nix-mode))
-
-;;;; Assembly
-
-(add-to-list 'auto-mode-alist '("\\.asm?\\'" . nasm-mode))
-
-;;;; Lisp
-
-(add-hook 'lisp-mode-hook #'lispy-mode)
-
-;;;; Emacs lisp
-
-(add-hook 'emacs-lisp-mode-hook #'lispy-mode)
-
-;;;; Elixir
-
-(add-hook 'elixir-mode-hook #'lsp)
-
-;;;; Rust
-
-(add-hook 'rust-mode-hook #'lsp)
 
 ;;;; Latex
 
@@ -608,44 +464,6 @@ using the defaults, else using the values of the PLIST."
 ;;;; Pinentry
 
 (pinentry-start)
-
-;;;; Mu4e
-
-;; (setq auth-source-debug                   t
-;;       auth-source-do-cache                nil
-;;       auth-source-pass-filename           (getenv "XDG_KEYS_DIR")
-;;       auth-sources                        '(password-store)
-;;       mail-user-agent                     'mu4e-user-agent
-;;       message-send-mail-function          'smtpmail-send-it
-;;       mml-secure-openpgp-sign-with-sender t
-;;       mu4e-attachment-dir                 (getenv "XDG_MAIL_DIR")
-;;       mu4e-compose-signature              "Alberto (a.k.a. aru)"
-;;       mu4e-compose-signature-auto-include t
-;;       mu4e-drafts-folder                  "/Drafts"
-;;       mu4e-get-mail-command               "mbsync aru"
-;;       mu4e-refile-folder                  "/Archive"
-;;       mu4e-sent-folder                    "/Sent"
-;;       mu4e-sent-messages-behavior         'sent
-;;       mu4e-trash-folder                   "/Trash"
-;;       mu4e-update-interval                60
-;;       mu4e-use-fancy-chars                t
-;;       smtpmail-smtp-server                "smtp.zoho.eu"
-;;       smtpmail-smtp-service               465
-;;       smtpmail-smtp-user                  "me@aruzeta.com"
-;;       smtpmail-stream-type                'ssl
-;;       mml-secure-key-preferences
-;;       '((OpenPGP
-;;          (sign ("me@aruzeta.com"
-;;                 "D7D93ECFDA731BE3159F6BD93A581BDE765C0DFA"))
-;;          (encrypt ("me@aruzeta.com"
-;;                    "D7D93ECFDA731BE3159F6BD93A581BDE765C0DFA")))))
-
-;; (auth-source-pass-enable)
-;; (mu4e-alert-set-default-style 'libnotify)
-
-;; (add-hook 'message-send-hook #'mml-secure-message-sign-pgpmime)
-;; (add-hook 'mu4e-mode-hook #'mu4e-alert-enable-notifications)
-;; (add-hook 'mu4e-mode-hook #'mu4e-alert-enable-mode-line-display)
 
 ;;;; Direnv
 
