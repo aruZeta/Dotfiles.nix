@@ -9,7 +9,6 @@ usefulExpresions.condAndValuesList [
   { cond = enabledStuff.programs.emacs.enable;
     vals = [
       ripgrep
-      exercism
     ];
   }
 ]
