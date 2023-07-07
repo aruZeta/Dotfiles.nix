@@ -11,9 +11,4 @@
     ++ (builtins.attrValues
       (import ./scripts pkgs config)
     );
-
-  imports = [
-    # Import your user specific config
-    ../users/kairos/home
-  ];
 }
