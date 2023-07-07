@@ -36,7 +36,7 @@ in
     slack
 
     # Editors
-    idea-community
+    jetbrains.idea-community
   ]
   ++ (searchImportList "packages.nix" argSet')
   ++ (attrValues (searchImportSet "scripts.nix" argSet'));
