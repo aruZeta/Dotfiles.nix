@@ -40,6 +40,9 @@ in
 
     # Music
     spotify
+
+    # containers
+    docker-compose
   ]
   ++ (searchImportList "packages.nix" argSet')
   ++ (attrValues (searchImportSet "scripts.nix" argSet'));
