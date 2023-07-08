@@ -42,12 +42,12 @@ in
       
       format-icons = {
         "1" = "";
-        "2" = ""; # I need an emacs icon # Edit: THE LORDS HAVE LISTENED TO MEEE
-        "3" = "󰞷";
+        "2" = "";
+        "3" = "";
         "4" = "";
-        "5" = "";
+        "5" = ""; # I need an emacs icon # Edit: THE LORDS HAVE LISTENED TO MEEE
         "6" = "";
-        "7" = "";
+        "7" = "󰓇";
         "8" = "";
         "9" = "󰒱";
         "urgent" = "";
