@@ -154,33 +154,25 @@ in
 
       assigns = {
         "1" = [
-          { app_id = "firefox"; }
+          { class = "Google-chrome"; }
         ];
 
         "2" = [
-          { app_id = "emacs"; }
-          { app_id = "Eclipse"; }
-          { app_id = "calibre-ebook-edit"; }
-          { class = "NetBeans IDE 8.2"; }
+          { class = "jetbrains-idea-ce"; }
         ];
 
         "3" = [
-          { app_id = "Alacritty"; }
+          { app_id = "org.wezfurlong.wezterm"; }
         ];
 
         "4" = [
-          { class = "VirtualBox Manager"; }
-          { class = "VirtualBox Machine"; }
-          { class = "virt-manager"; }
         ];
 
         "5" = [
-          { app_id = "luajit-2.1.0-beta3"; } # koreader
-          { app_id = "calibre-ebook-viewer"; }
+          { app_id = "emacs"; }
         ];
 
         "6" = [
-          { app_id = "calibre-gui"; }
         ];
 
         "7" = [
@@ -188,7 +180,6 @@ in
         ];
 
         "8" = [
-          { app_id = "org.inkscape.Inkscape"; }
         ];
 
         "9" = [
