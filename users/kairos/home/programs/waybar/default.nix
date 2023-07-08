@@ -3,8 +3,8 @@
 } @ args:
 
 let
-  lessBig = text: "<span font='10' rise='-10000'>" + text + "</span>";
-  big = text: "<span font='12' rise='-2500'>" + text + "</span>";
+  big = text: "<span font='10' rise='1000'>" + text + "</span>";
+  icon = text: "<span font='10'>" + text + "</span>";
   scripts = import ./scripts.nix args;
 in
 
@@ -38,7 +38,7 @@ in
     ];
     
     "sway/workspaces" = {
-      format = ''${big "{icon}"}'';
+      format = ''${icon "{icon}"}'';
       
       format-icons = {
         "1" = "";
@@ -75,7 +75,7 @@ in
     };
     
     idle_inhibitor = {
-      format = ''${lessBig "{icon}"}'';
+      format = ''${icon "{icon}"}'';
       on-click-right = "exec swaylock -f";
       on-click-middle = "${scripts.swayidle-sleep-now}/bin/swayidle-sleep-now";
       tooltip = false;
