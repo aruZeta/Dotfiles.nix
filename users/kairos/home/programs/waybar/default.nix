@@ -63,7 +63,7 @@ in
       tooltip = false;
       
       rewrite = {
-        "(.*) - GNU Emacs.*" = ''${big ""} $1'';
+        "(.*) - GNU Emacs.*" = ''${big " "} $1'';
       };
     };
     
