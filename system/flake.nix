@@ -25,11 +25,22 @@
         if self ? rev
         then self.rev
         else throw "Refusing to build from a dirty Git tree!";
+      domain = "machine.aruzeta.com";
+      hostName = {
+        mainLaptop = "main-laptop";
+      };
     in {
       nixosConfigurations = {
-        "main-laptop.machine.aruZeta.com" = nixpkgs_23_05.lib.nixosSystem {
+        ${hostName.mainLaptop} = nixpkgs_23_05.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            # Set hostname and domain
+            { networking = {
+                hostName = hostName.mainLaptop;
+                domain = domain;
+              };
+            }
+
             # Hardware
             ./hardware/msi-bravo-15-b5dd.nix
 

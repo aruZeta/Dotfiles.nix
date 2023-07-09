@@ -23,8 +23,6 @@
   };
 
   networking = {
-    hostName = "aruZetaMachine";
-
     # This one is deprecated
     useDHCP = false;
 
