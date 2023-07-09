@@ -202,12 +202,12 @@ in
         # Browser, VBox, Reader, Music
         { workspace = "1"; output = "eDP-1 HDMI-A-1"; }
         { workspace = "4"; output = "eDP-1 HDMI-A-1"; }
-        { workspace = "5"; output = "eDP-1 HDMI-A-1"; }
         { workspace = "7"; output = "eDP-1 HDMI-A-1"; }
 
         # Editor, Terminal, DB, Image Edition, Messages
         { workspace = "2"; output = "HDMI-A-1 eDP-1"; }
         { workspace = "3"; output = "HDMI-A-1 eDP-1"; }
+        { workspace = "5"; output = "HDMI-A-1 eDP-1"; }
         { workspace = "6"; output = "HDMI-A-1 eDP-1"; }
         { workspace = "8"; output = "HDMI-A-1 eDP-1"; }
         { workspace = "9"; output = "HDMI-A-1 eDP-1"; }
