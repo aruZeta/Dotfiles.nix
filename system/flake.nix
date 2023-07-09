@@ -27,8 +27,8 @@
             # Config
             ../users/aru/system/default.nix
 
-            # Others
-            ({ ... }: { system.configurationRevision = noAllowDirty; })
+            # Don't allow dirty git trees
+            { system.configurationRevision = noAllowDirty; }
           ];
         };
       };
