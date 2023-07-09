@@ -4,6 +4,8 @@
 }:
 
 {
+  system.stateVersion = "23.05";
+
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
 
