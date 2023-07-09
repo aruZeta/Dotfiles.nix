@@ -8,7 +8,7 @@
   borderRadius = 15;
   borderSize = 0;
   defaultTimeout = 5 * 60 * 1000;
-  font = "Iosevka Term 12";
+  font = "Iosevka 12";
   height = 150;
   ignoreTimeout = true;
   margin = "15";

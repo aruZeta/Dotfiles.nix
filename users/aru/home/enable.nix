@@ -21,7 +21,6 @@
     git.enable = true;
     gpg.enable = true;
     java.enable = true;
-    mako.enable = true;
     mbsync.enable = false;
     mu.enable = false;
     neovim.enable = false;
@@ -52,6 +51,7 @@
       socketActivation.enable = false;
     };
 
+    mako.enable = true;
     mbsync.enable = false;
 
     gpg-agent = {

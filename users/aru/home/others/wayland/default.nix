@@ -158,14 +158,14 @@ in
         ];
 
         "2" = [
-          { app_id = "emacs"; }
           { app_id = "Eclipse"; }
           { app_id = "calibre-ebook-edit"; }
           { class = "NetBeans IDE 8.2"; }
+          { class = "jetbrains-idea-ce"; }
         ];
 
         "3" = [
-          { app_id = "Alacritty"; }
+          { app_id = "org.wezfurlong.wezterm"; }
         ];
 
         "4" = [
@@ -175,17 +175,18 @@ in
         ];
 
         "5" = [
-          { app_id = "luajit-2.1.0-beta3"; } # koreader
-          { app_id = "calibre-ebook-viewer"; }
+          { app_id = "emacs"; }
         ];
 
         "6" = [
           { app_id = "calibre-gui"; }
+          { app_id = "luajit-2.1.0-beta3"; } # koreader
+          { app_id = "calibre-ebook-viewer"; }
         ];
 
         "7" = [
           { app_id = "termusic"; }
-          { class = "Spotify"; } # Not working
+          { class = "Spotify"; }
         ];
 
         "8" = [
@@ -216,10 +217,16 @@ in
       menu = "${pkgs.wofi}/bin/wofi";
       terminal = "${pkgs.wezterm}/bin/wezterm";
       workspaceAutoBackAndForth = true;
+
       fonts = {
         names = [ "Iosevka" ];
         style = "Regular";
         size = 12.0;
+      };
+
+      window = {
+        border = 2;
+        titlebar = false;
       };
     };
   };

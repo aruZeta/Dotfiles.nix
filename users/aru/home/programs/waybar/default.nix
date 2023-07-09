@@ -3,7 +3,8 @@
 } @ args:
 
 let
-  big = text: "<span font='17' rise='-3000'>" + text + "</span>";
+  big = text: "<span font='10' rise='1000'>" + text + "</span>";
+  icon = text: "<span font='10'>" + text + "</span>";
   scripts = import ./scripts.nix args;
 in
 
@@ -37,18 +38,18 @@ in
     ];
     
     "sway/workspaces" = {
-      format = ''${big "{icon}"}'';
+      format = ''${icon "{icon}"}'';
       
       format-icons = {
-        "1" = "";
-        "2" = ""; # I need an emacs icon
-        "3" = "";
-        "4" = ""; # There is no vbox icon
-        "5" = "";
+        "1" = "󰈹";
+        "2" = "";
+        "3" = "";
+        "4" = "󰡨";
+        "5" = ""; # I need an emacs icon # Edit: THE LORDS HAVE LISTENED TO MEEE
         "6" = "";
-        "7" = "";
+        "7" = "󰓇";
         "8" = "";
-        "9" = "ﭮ";
+        "9" = "󰒱";
         "urgent" = "";
         "focused" = "";
         "default" = "";
@@ -62,37 +63,35 @@ in
       tooltip = false;
       
       rewrite = {
-        "(.*) — Mozilla Firefox" = ''${big ""} $1'';
-        "(.*) — Mozilla Firefox \\(Private Browsing\\)" = ''${big " ﴣ"} $1'';
-        "(.*) - GNU Emacs.*" = ''${big ""} $1'';
-        "(.*) - Eclipse IDE.*" = ''${big ""} $1'';
-        "(.*) - Oracle VM VirtualBox" = ''${big ""} $1'';
+        "(.*) — Mozilla Firefox" = ''${big " "} $1'';
+        "(.*) — Mozilla Firefox \\(Private Browsing\\)" = ''${big " 󰗹 "} $1'';
+        "(.*) - GNU Emacs.*" = ''${big " "} $1'';
       };
     };
     
     clock = {
       interval = 1;
       format = ''{:%H:%M:%S} ${big ""}'';
-      format-alt = ''{:%A %d, %B %Y} ${big ""}'';
+      format-alt = ''{:%A %d, %B %Y} ${big "󰃭"}'';
       tooltip = false;
     };
     
     idle_inhibitor = {
-      format = ''${big "{icon}"}'';
+      format = ''${icon "{icon}"}'';
       on-click-right = "exec swaylock -f";
       on-click-middle = "${scripts.swayidle-sleep-now}/bin/swayidle-sleep-now";
       tooltip = false;
       
       format-icons = {
-        activated = "";
-        deactivated = "";
+        activated = " ";
+        deactivated = " ";
       };
     };
     
     cpu = {
       interval = 5;
-      format = ''{usage}% ${big ""}'';
-      format-alt = ''${big " "}'';
+      format = ''{usage}% ${big ""}'';
+      format-alt = ''${big " "}'';
       tooltip = false;
       
       states = {
@@ -119,7 +118,7 @@ in
       interval = 5;
       format = ''{percent}% ${big "{icon}"}'';
       format-alt = ''${big " {icon}"}'';
-      format-icons = [ "" "" ];
+      format-icons = [ "󰃞" "󰃟" "󰃠" ];
       tooltip = false;
       on-scroll-up = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +1%";
       on-scroll-down = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 1%-";
@@ -127,8 +126,8 @@ in
     
     disk = {
       interval = 30;
-      format = ''${big " "}'';
-      format-alt = ''{used}/{total} ${big ""}'';
+      format = ''${big " "}'';
+      format-alt = ''{used}/{total} ${big ""}'';
       path = "/";
       tooltip = false;
       
@@ -144,7 +143,7 @@ in
       bat = "BAT1";
       format = ''{capacity}% ${big "{icon}"}'';
       format-alt = ''${big " {icon}"}'';
-      format-icons = [ "" "" "" "" "" ];
+      format-icons = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
       tooltip = false;
       
       states = {
@@ -156,16 +155,16 @@ in
     
     network = {
       interval = 5;
-      format-wifi = ''${big " 直"}'';
-      format-ethernet = ''${big " "}'';
-      format-disconnected = ''${big ""}'';
-      format-alt = ''{essid}: {ipaddr} | {bandwidthUpBits} ${big ""} {bandwidthDownBits} ${big ""}'';
+      format-wifi = ''${big " 󰖩"}'';
+      format-ethernet = ''${big " 󰈀"}'';
+      format-disconnected = ''${big ""}'';
+      format-alt = ''{essid}: {ipaddr} | {bandwidthUpBits} ${big ""} {bandwidthDownBits} ${big ""}'';
       tooltip = false;
     };
     
     pulseaudio = {
       format = ''{volume}% ${big "{icon}"}'';
-      format-muted = ''{volume}% ${big " {icon}"}'';
+      format-muted = ''{volume}% ${big "󰝟 {icon}"}'';
       format-source-muted = ''{volume}% ${big " {icon}"}'';
       format-alt = ''${big " {icon}"}'';
       tooltip = false;
@@ -173,14 +172,14 @@ in
       on-click-middle = "exec ${pkgs.pavucontrol}/bin/pavucontrol";
       
       format-icons = {
-        headphone = "";
-        headset = "";
+        headphone = "󰋋";
+        headset = "󰋎";
         hands-free = "";
-        speaker = "蓼";
-        hifi = "醙";
-        hdmi = "﴿";
-        phone = "";
-        portable = "";
+        speaker = "󰓃";
+        hifi = "󰤽";
+        hdmi = "󰡁";
+        phone = "󰏲";
+        portable = "󰏲";
         car = "";
         default = [ "" "" "" ];
       };
