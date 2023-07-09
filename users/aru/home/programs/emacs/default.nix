@@ -1,10 +1,9 @@
 { pkgs
-, emacs_23_07_09
 , ...
 }:
 
 {
-  package = emacs_23_07_09.emacsPgtk;
+  package = pkgs.emacs-pgtk;
 
   overrides = self: super: {
     org = self.elpaPackages.org;

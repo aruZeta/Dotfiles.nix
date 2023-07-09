@@ -1,20 +1,19 @@
 { pkgs
+, emacs_23_07_09
 , enabledStuff
 , usefulExpresions
 , ...
 }:
 
 let
-  inherit (enabledStuff.non-module.emacs)
-    overlay;
+  inherit (enabledStuff.programs)
+    emacs;
 in
 
 usefulExpresions.condAndValuesList [
-  { cond = overlay.enable;
+  { cond = emacs.enable;
     vals = [
-      (import (builtins.fetchTarball {
-        url = "${overlay.repo}/archive/${overlay.commit}.tar.gz";
-      }))
+      emacs_23_07_09.overlay
 
       # (self: super: {
       #   emacsPgtk = super.emacsPgtk.overrideAttrs (oldAttrs: {
