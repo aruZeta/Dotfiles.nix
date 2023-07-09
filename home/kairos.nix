@@ -4,8 +4,9 @@
 }:
 
 {
+  home.packages = import ./scripts pkgs config;
+
   imports = [
-    ./default.nix
     ../users/kairos/home
   ];
 }
