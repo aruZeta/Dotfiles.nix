@@ -58,7 +58,7 @@ in
   ++ (attrValues (searchImportSet "scripts.nix" argSet'));
 
   home.sessionVariables = {
-    NIX_LD = lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
+    # NIX_LD = lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
   } // searchImportSet "session-vars.nix" argSet';
   home.file = searchImportSet "home-symlinks.nix" argSet';
 
