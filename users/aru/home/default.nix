@@ -53,6 +53,25 @@ in
 
     # Challenges
     exercism
+
+    # IDEs
+    jetbrains.idea-community
+
+    # Editing
+    gimp
+    inkscape
+
+    # Containers
+    docker-compose
+
+    # Utils
+    postman
+
+    # Music
+    spotify
+
+    # Files
+    xfce.thunar
   ]
   ++ (searchImportList "packages.nix" argSet')
   ++ (attrValues (searchImportSet "scripts.nix" argSet'));

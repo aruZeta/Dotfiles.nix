@@ -101,5 +101,7 @@
     "discord"
     "android-studio"
     "android-studio-stable"
+    "postman"
+    "spotify"
   ];
 }
