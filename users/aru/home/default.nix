@@ -53,9 +53,6 @@ in
 
     # Challenges
     exercism
-
-    # IDEs
-    my-android-studio
   ]
   ++ (searchImportList "packages.nix" argSet')
   ++ (attrValues (searchImportSet "scripts.nix" argSet'));
