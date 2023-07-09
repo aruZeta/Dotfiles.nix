@@ -45,7 +45,7 @@
             ./hardware/msi-bravo-15-b5dd.nix
 
             # Config
-            ../users/aru/system/default.nix
+            ./users/aru/system/default.nix
 
             # Don't allow dirty git trees
             { system.configurationRevision = noAllowDirty; }
@@ -57,7 +57,7 @@
             {
               home-manager.useGlobalPkgs = false;
               home-manager.useUserPackages = true;
-              home-manager.users.aru = import ../home/aru.nix;
+              home-manager.users.aru = import ./home/aru.nix;
               home-manager.extraSpecialArgs = inputs;
             }
           ];
