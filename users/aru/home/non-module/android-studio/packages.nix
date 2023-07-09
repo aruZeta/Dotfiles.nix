@@ -6,9 +6,9 @@
 
 with pkgs;
 usefulExpresions.condAndValuesList [
-  { cond = enabledStuff.non-module.termusic.enable;
+  { cond = enabledStuff.non-module.android-studio.enable;
     vals = [
-      my-android-studio
+      android-studio
     ];
   }
 ]

@@ -8,9 +8,9 @@
       nix-direnv.enable = true;
     };
 
-    eclipse.enable = true;
+    eclipse.enable = false;
     emacs.enable = true;
-    eww.enable = true;
+    eww.enable = false;
     firefox.enable = true;
 
     fzf = {
@@ -22,8 +22,8 @@
     gpg.enable = true;
     java.enable = true;
     mako.enable = true;
-    mbsync.enable = true;
-    mu.enable = true;
+    mbsync.enable = false;
+    mu.enable = false;
     neovim.enable = false;
     obs-studio.enable = true;
     ssh.enable = true;
@@ -80,83 +80,18 @@
   # Local variables not applied directly to home-manager, used to setup
   # overlays, packages, symlinks, scripts, etc.
   non-module = {
-    calibre.overlay = {
-      enable = true;
-      version = "5.37.0";
-      repo = "https://download.calibre-ebook.com";
-      sha256 = "sha256-x2u4v0k05WMATSsuo76NnqChIz8BcTuZfPkZa0uLnMY=";
-    };
-
+    android-studio.enable = true;
+    calibre.enable = true;
     common-lisp.enable = true;
-
-    emacs.overlay = {
-      enable = true;
-      repo = "https://github.com/nix-community/emacs-overlay";
-      commit = "ea9ceddec99ab3c66017ab3104fb86863e26154a";
-    };
-
-    koreader = {
-      enable = false;
-
-      overlay = {
-        enable = true;
-        version = "2021.12";
-        repo = "https://github.com/koreader/koreader";
-        sha256 = "sha256-duOIbYavqmUUkH6RthTYu/SeM8zOeeLm7CIAQwhw6AY=";
-      };
-    };
-
-    neovim.overlay = {
-      enable = true;
-      repo = "https://github.com/nix-community/neovim-nightly-overlay";
-      commit = "7933df62bb350d2f4a258f9e110decc08baaf627";
-    };
-
-    netbeans = {
-      enable = true;
-      overlay.enable = true;
-    };
-
-    plantuml = {
-      enable = true;
-
-      overlay = {
-        enable = true;
-        version = "1.2021.16";
-        repo = "mirror://sourceforge/project/plantuml";
-        sha256 = "sha256-0yN/29VKWiqp2Hi9aIN6GMlfMJPxrewsCQyyPVy6RAM=";
-      };
-    };
-
-    python = {
-      enable = true;
-
-      overlay = {
-        apsw-fix.enable = true;
-      };
-    };
-
+    koreader.enable = false;
+    python.enable = true;
     swappy.enable = true;
     swaylock.enable = true;
-
-    termusic = {
-      enable = true;
-
-      overlay = {
-        enable = true;
-        version = "0.6.11";
-        sha256 = "sha256-MdFLPlfN+GF1yUkBFH9y22okgUyxnC+/HfcvD7HXDzc=";
-        cargoOutputHash = "sha256-L6tbpzUu5hN5Vy5fflT81K6bt+sI/6ru7IAOI63gDvM=";
-      };
-    };
-
+    termusic.enable = false;
     webcord.enable = false;
     wezterm.enable = true;
     wofi.enable = true;
-
-    zohomail = {
-      enable = true;
-    };
+    zohomail.enable = false;
   };
 
   # Enabled unfree packages

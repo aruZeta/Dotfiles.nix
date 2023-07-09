@@ -2,11 +2,11 @@
 , lib
 , pkgs
 , ...
-}:
+} @ inputs:
 
 let
   enabledStuff = (import ./enable.nix);
-  argSet = {inherit config pkgs lib enabledStuff;};
+  argSet = inputs // {inherit enabledStuff;};
   usefulExpresions = (import ./useful-expresions.nix argSet);
   argSet' = argSet // {inherit usefulExpresions;};
 
