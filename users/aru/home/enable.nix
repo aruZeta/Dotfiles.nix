@@ -100,6 +100,6 @@
     "steam-original"
     "discord"
     "android-studio"
-    "android-studio-canary"
+    "android-studio-stable"
   ];
 }
