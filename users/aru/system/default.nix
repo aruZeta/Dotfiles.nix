@@ -79,6 +79,8 @@
     steam = {
       enable = true;
     };
+
+    zsh.enable = true;
   };
 
   security = {
@@ -115,8 +117,7 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      media-session.enable = true;
-      wireplumber.enable = false;
+      wireplumber.enable = true;
     };
   };
 
