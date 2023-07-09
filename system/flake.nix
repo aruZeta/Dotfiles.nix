@@ -6,6 +6,7 @@
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs_23_05";
     };
+    emacs_23_07_09.url = "github:nix-community/emacs-overlay/2a779188014aad4cfc73860c97121d9707259e2a";
   };
 
   outputs =
@@ -43,6 +44,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.aru = import ../home/aru.nix;
+              home-manager.extraSpecialArgs = inputs;
             }
           ];
         };
