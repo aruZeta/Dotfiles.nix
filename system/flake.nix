@@ -41,7 +41,7 @@
 
             # Home manager config
             {
-              home-manager.useGlobalPkgs = true;
+              home-manager.useGlobalPkgs = false;
               home-manager.useUserPackages = true;
               home-manager.users.aru = import ../home/aru.nix;
               home-manager.extraSpecialArgs = inputs;
