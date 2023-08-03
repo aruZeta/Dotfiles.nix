@@ -72,6 +72,9 @@ in
 
     # Files
     xfce.thunar
+
+    # Note taking and organization
+    obsidian
   ]
   ++ (searchImportList "packages.nix" argSet')
   ++ (attrValues (searchImportSet "scripts.nix" argSet'));

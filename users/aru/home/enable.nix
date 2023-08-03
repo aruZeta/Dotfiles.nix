@@ -103,5 +103,6 @@
     "android-studio-stable"
     "postman"
     "spotify"
+    "obsidian"
   ];
 }
