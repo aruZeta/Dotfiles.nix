@@ -10,6 +10,7 @@
       url = "github:nix-community/emacs-overlay/2a779188014aad4cfc73860c97121d9707259e2a";
       inputs.nixpkgs.follows = "nixpkgs_23_05";
     };
+    nur.url = "github:nix-community/NUR";
   };
 
   outputs =
@@ -17,6 +18,7 @@
     , nixpkgs_23_05
     , nixpkgs_unstable
     , home-manager_23_05
+    , nur
     , ...
     } @ inputs:
 

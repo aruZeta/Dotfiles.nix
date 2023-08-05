@@ -1,12 +1,17 @@
 { config
 , lib
 , pkgs
+, nur
 , ...
 } @ inputs:
 
 let
   enabledStuff = (import ./enable.nix);
-  argSet = inputs // {inherit enabledStuff;};
+  nurPkgs = import nur { pkgs = pkgs; nurpkgs = pkgs; };
+  argSet = inputs // {
+    inherit enabledStuff;
+    inherit nurPkgs;
+  };
   usefulExpresions = (import ./useful-expresions.nix argSet);
   argSet' = argSet // {inherit usefulExpresions;};
 
@@ -69,6 +74,7 @@ in
 
     # Music
     spotify
+ 	  nurPkgs.repos.milahu.spotify-adblock
 
     # Files
     xfce.thunar
