@@ -169,6 +169,9 @@ in
         ];
 
         "4" = [
+          { class = "obsidian"; }
+
+          # May be removed
           { class = "VirtualBox Manager"; }
           { class = "VirtualBox Machine"; }
           { class = "virt-manager"; }
@@ -201,12 +204,12 @@ in
       workspaceOutputAssign = [
         # Browser, VBox, Reader, Music
         { workspace = "1"; output = "eDP-1 HDMI-A-1"; }
-        { workspace = "4"; output = "eDP-1 HDMI-A-1"; }
         { workspace = "7"; output = "eDP-1 HDMI-A-1"; }
 
-        # Editor, Terminal, DB, Image Edition, Messages
+        # Editor, Terminal, Notes, DB, Image Edition, Messages
         { workspace = "2"; output = "HDMI-A-1 eDP-1"; }
         { workspace = "3"; output = "HDMI-A-1 eDP-1"; }
+        { workspace = "4"; output = "HDMI-A-1 eDP-1"; }
         { workspace = "5"; output = "HDMI-A-1 eDP-1"; }
         { workspace = "6"; output = "HDMI-A-1 eDP-1"; }
         { workspace = "8"; output = "HDMI-A-1 eDP-1"; }
