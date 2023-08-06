@@ -95,7 +95,7 @@ in
         };
 
         "*" = {
-          bg = "#1d2021 solid_color";
+          bg = "${config.xdg.userDirs.extraConfig.XDG_DOTFILES_DIR}/share/img/kairos-bg.png fill";
         };
       };
 
