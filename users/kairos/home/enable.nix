@@ -92,5 +92,6 @@
     "google-chrome"
     "slack"
     "spotify"
+    "postman"
   ];
 }

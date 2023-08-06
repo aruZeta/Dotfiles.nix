@@ -43,6 +43,9 @@ in
 
     # containers
     docker-compose
+
+    # Tools
+    postman
   ]
   ++ (searchImportList "packages.nix" argSet')
   ++ (attrValues (searchImportSet "scripts.nix" argSet'));
