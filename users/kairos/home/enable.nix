@@ -93,5 +93,6 @@
     "slack"
     "spotify"
     "postman"
+    "obsidian"
   ];
 }
