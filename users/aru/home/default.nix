@@ -61,6 +61,10 @@ in
 
     # IDEs
     jetbrains.idea-community
+    jetbrains.idea-ultimate
+    jetbrains.webstorm
+    jetbrains.goland
+    jetbrains.datagrip
 
     # Editing
     gimp

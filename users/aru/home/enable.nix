@@ -104,5 +104,9 @@
     "postman"
     "spotify"
     "obsidian"
+    "idea-ultimate"
+    "webstorm"
+    "goland"
+    "datagrip"
   ];
 }
