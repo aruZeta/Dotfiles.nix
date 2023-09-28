@@ -77,8 +77,7 @@ in
     postman
 
     # Music
-    spotify
- 	  nurPkgs.repos.milahu.spotify-adblock
+    nurPkgs.repos.milahu.spotify-adblock
 
     # Files
     xfce.thunar
