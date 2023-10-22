@@ -32,16 +32,16 @@
   };
 
   nix = {
-    settings = {
-      allowed-users = [ "aru" ];
+    settings = rec {
+      trusted-users = [ "root" "aru" ];
 
-      substituters = [
-        "https://my-dotfiles.cachix.org/"
-      ];
+      allowed-users = trusted-users;
 
       trusted-substituters = [
         "https://my-dotfiles.cachix.org/"
       ];
+
+      substituters = trusted-substituters;
 
       trusted-public-keys = [
         "my-dotfiles.cachix.org-1:YDHITP4F3601yKboAauidYKxrxhyPverDppC2vwAqHM="
