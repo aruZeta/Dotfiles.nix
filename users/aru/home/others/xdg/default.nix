@@ -45,6 +45,7 @@ in
     defaultApplications = {
       "application/lrf"      = [ "calibre-lrfviewer.desktop" ];
       "application/epub+zip" = [ "calibre-ebook-viewer.desktop" ];
+      "x-scheme-handler/postman" = [ "Postman.desktop" ];
     };
   };
 }
