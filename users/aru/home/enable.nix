@@ -80,6 +80,8 @@
   # Local variables not applied directly to home-manager, used to setup
   # overlays, packages, symlinks, scripts, etc.
   non-module = {
+    direnv.flakez.enable = true;
+    
     android-studio.enable = true;
     calibre.enable = true;
     common-lisp.enable = true;

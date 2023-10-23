@@ -11,6 +11,7 @@
       inputs.nixpkgs.follows = "nixpkgs_23_05";
     };
     nur.url = "github:nix-community/NUR";
+    flakez.url = "github:aruZeta/flakez";
   };
 
   outputs =
@@ -19,6 +20,7 @@
     , nixpkgs_unstable
     , home-manager_23_05
     , nur
+    , flakez
     , ...
     } @ inputs:
 
