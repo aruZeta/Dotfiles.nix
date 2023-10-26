@@ -33,6 +33,7 @@
 
     texlive.enable = true;
     waybar.enable = true;
+    wofi.enable = true;
 
     zsh = {
       enable = true;
