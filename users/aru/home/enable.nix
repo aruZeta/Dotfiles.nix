@@ -20,7 +20,6 @@
 
     git.enable = true;
     gpg.enable = true;
-    java.enable = true;
     mbsync.enable = false;
     mu.enable = false;
     neovim.enable = false;
