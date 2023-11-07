@@ -29,4 +29,4 @@ jobs:
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
 
       - name: Build system
-        run: nix build home-manager
+        run: nix build .#nixosConfigurations.main-laptop.config.system.build.toplevel
