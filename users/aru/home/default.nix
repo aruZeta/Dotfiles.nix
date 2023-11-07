@@ -7,7 +7,15 @@
 
 let
   enabledStuff = (import ./enable.nix);
+  nixpkgsConfig = {
+    # Only allow the unfreePackages listed in enable.nix
+    allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkg) enabledStuff.unfreePackages;
+    # Only allow the insecurePackages listed in enable.nix
+    permittedInsecurePackages = enabledStuff.insecurePackages;
+  };
   nurPkgs = import nur { pkgs = pkgs; nurpkgs = pkgs; };
+  pkgsUnstable = inputs.pkgsUnstable nixpkgsConfig;
   argSet = inputs // {
     inherit enabledStuff;
     inherit nurPkgs;
@@ -97,12 +105,7 @@ in
 
   systemd.user.services = searchImportSet "services.nix" argSet';
 
-  # Only allow the unfreePackages listed in enable.nix
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) enabledStuff.unfreePackages;
-
-  # Only allow the insecurePackages listed in enable.nix
-  nixpkgs.config.permittedInsecurePackages = enabledStuff.insecurePackages;
+  nixpkgs.config = nixpkgsConfig;
 
   programs = dirToImportSet ./programs argSet';
   services = dirToImportSet ./services argSet';

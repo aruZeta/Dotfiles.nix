@@ -30,42 +30,57 @@
         then self.rev
         else throw "Refusing to build from a dirty Git tree!";
       domain = "machine.aruzeta.com";
-      hostName = {
-        mainLaptop = "main-laptop";
-      };
-    in {
-      nixosConfigurations = {
-        ${hostName.mainLaptop} = nixpkgs_23_05.lib.nixosSystem {
+      hosts = {
+        mainLaptop = {
+          name = "main-laptop";
           system = "x86_64-linux";
-          modules = [
-            # Set hostname and domain
-            { networking = {
-                hostName = hostName.mainLaptop;
-                domain = domain;
-              };
-            }
-
-            # Hardware
-            ./hardware/msi-bravo-15-b5dd.nix
-
-            # Config
-            ./users/aru/system/default.nix
-
-            # Don't allow dirty git trees
-            { system.configurationRevision = noAllowDirty; }
-
-            # Home manager
-            home-manager_23_05.nixosModules.home-manager
-
-            # Home manager config
-            {
-              home-manager.useGlobalPkgs = false;
-              home-manager.useUserPackages = true;
-              home-manager.users.aru = import ./home/aru.nix;
-              home-manager.extraSpecialArgs = inputs;
-            }
-          ];
         };
       };
+      apply = host: modules:
+        let
+          conf = {
+            system = host.system;
+            modules = (modules host) ++ [
+              # Set hostname and domain
+              (networking host)
+
+              # Don't allow dirty git trees
+              { system.configurationRevision = noAllowDirty; }
+            ];
+          };
+        in {
+        ${host.name} = nixpkgs_23_05.lib.nixosSystem conf;
+      };
+      networking = host:
+        { networking = {
+            hostName = host.name;
+            domain = domain;
+          };
+        };
+    in {
+      nixosConfigurations = {
+      } // (apply hosts.mainLaptop (host: [
+        # Hardware
+        ./hardware/msi-bravo-15-b5dd.nix
+
+        # Config
+        ./users/aru/system/default.nix
+
+        # Home manager
+        home-manager_23_05.nixosModules.home-manager
+
+        # Home manager config
+        {
+          home-manager.useGlobalPkgs = false;
+          home-manager.useUserPackages = true;
+          home-manager.users.aru = import ./home/aru.nix;
+          home-manager.extraSpecialArgs = inputs // {
+            pkgsUnstable = config: import nixpkgs_unstable {
+              system = host.system;
+              inherit config;
+            };
+          };
+        }
+      ]));
     };
 }
