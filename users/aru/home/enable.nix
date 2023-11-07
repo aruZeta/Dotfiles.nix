@@ -111,4 +111,8 @@
     "goland"
     "datagrip"
   ];
+
+  insecurePackages = [
+    "electron-24.8.6"
+  ];
 }

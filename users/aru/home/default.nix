@@ -101,6 +101,9 @@ in
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) enabledStuff.unfreePackages;
 
+  # Only allow the insecurePackages listed in enable.nix
+  nixpkgs.config.permittedInsecurePackages = enabledStuff.insecurePackages;
+
   programs = dirToImportSet ./programs argSet';
   services = dirToImportSet ./services argSet';
 
