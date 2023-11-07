@@ -3,10 +3,10 @@ name: Home Build
 on:
   push:
     paths:
-      - 'default.nix'
+      - 'flake.*'
       - 'home/**'
       - 'users/*/home/**'
-      - '.github/workflows/**'
+      - '.github/workflows/HomeBuild.yml'
   workflow_dispatch:
 
 jobs:
