@@ -68,8 +68,8 @@ in
     exercism
 
     # IDEs
-    jetbrains.idea-community
-    jetbrains.idea-ultimate
+    # jetbrains.idea-community
+    pkgsUnstable.jetbrains.idea-ultimate
     jetbrains.webstorm
     jetbrains.goland
     jetbrains.datagrip
