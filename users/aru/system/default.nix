@@ -65,10 +65,12 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   programs = {
-    # So home-manager doesn't complain (when adding gtk)
     adb.enable = true;
-    dconf.enable = true;
     nix-ld.enable = true;
+
+    # So home-manager doesn't complain (when adding gtk)
+    dconf.enable = true;
+
     wireshark = {
       enable = true;
       package = pkgs.wireshark;
@@ -156,8 +158,8 @@
   };
 
   virtualisation = {
-    virtualbox.host.enable = true;
-    libvirtd.enable = true;
+    # virtualbox.host.enable = true;
+    # libvirtd.enable = true;
 
     docker = {
       enable = true;
@@ -166,7 +168,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    virt-manager
+    # virt-manager
   ];
 
   xdg = {
