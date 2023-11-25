@@ -12,6 +12,20 @@
     };
     nur.url = "github:nix-community/NUR";
     flakez.url = "github:aruZeta/flakez";
+
+    # Mac
+    nixpkgs-darwin_23_05.url = "github:NixOS/nixpkgs/nixpkgs-23.05-darwin";
+    nixpkgs-darwin_unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
+    darwin = {
+      url = "github:LnL7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs-darwin_unstable";
+    };
+
+    home-manager-darwin = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs-darwin_unstable";
+    };
   };
 
   outputs =
@@ -21,6 +35,10 @@
     , home-manager_23_05
     , nur
     , flakez
+    , nixpkgs-darwin_23_05
+    , nixpkgs-darwin_unstable
+    , darwin
+    , home-manager-darwin
     , ...
     } @ inputs:
 
@@ -34,6 +52,10 @@
         mainLaptop = {
           name = "main-laptop";
           system = "x86_64-linux";
+        };
+        work.kairos.mac = {
+          name = "work-kairos-mac";
+          system = "aarch64-darwin";
         };
       };
       apply = host: modules:
@@ -49,8 +71,24 @@
             ];
           };
         in {
-        ${host.name} = nixpkgs_23_05.lib.nixosSystem conf;
-      };
+          ${host.name} = nixpkgs_23_05.lib.nixosSystem conf;
+        };
+      applyDarwin = host: extra: modules:
+        let
+          user = extra.user;
+          conf = {
+            system = host.system;
+            specialArgs = inputs // {
+              inherit user;
+            };
+            modules = (modules host user) ++ [
+              # Don't allow dirty git trees
+              { system.configurationRevision = noAllowDirty; }
+            ];
+          };
+        in {
+          ${host.name} = darwin.lib.darwinSystem conf;
+        };
       networking = host:
         { networking = {
             hostName = host.name;
@@ -79,6 +117,33 @@
               system = host.system;
               inherit config;
             };
+          };
+        }
+      ]));
+
+      darwinConfigurations = {
+      } // (applyDarwin hosts.work.kairos.mac {
+        user = rec {
+          name = "aru";
+          home = "/Users/${name}";
+        };
+      } (host: user: [
+        # Config
+        ./users/work-kairos-mac/system
+
+        # Home manager
+	home-manager-darwin.darwinModules.home-manager
+
+        # Home manager config
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.users.aru = import ./home/work-kairos-mac.nix;
+          home-manager.extraSpecialArgs = inputs // {
+            pkgsUnstable = config: import nixpkgs-darwin_unstable {
+              system = host.system;
+              inherit config;
+            };
+            inherit user;
           };
         }
       ]));
