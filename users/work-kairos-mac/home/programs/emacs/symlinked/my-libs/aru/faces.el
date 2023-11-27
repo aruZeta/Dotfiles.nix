@@ -172,7 +172,7 @@
 
 ;;; Modeline
 (set-face 'mode-line                           'aru/faces/modeline)
-(set-face 'mode-line-active                    'aru/faces/modeline)
+;(set-face 'mode-line-active                    'aru/faces/modeline)
 (set-face 'mode-line-inactive                  'aru/faces/modeline-inactive)
 
 ;;; Doom modeline

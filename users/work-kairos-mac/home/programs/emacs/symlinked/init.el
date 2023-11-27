@@ -255,7 +255,9 @@
 
 ;;;; Org
 
-(setq org-directory                    (getenv "XDG_ORG_DIR")
+(setq aru/publish-dir (concat (getenv "HOME") "/Publish"))
+
+(setq org-directory                    aru/publish-dir
       org-ellipsis                     " ▾"
       org-startup-folded               t
       org-startup-indented             t
@@ -287,7 +289,7 @@ get the scss from.
 If one of those is NIL then the component is not added, if it is T it is added
 using the defaults, else using the values of the PLIST."
   (let* ((publish-dir (concat
-                       (getenv "XDG_PUBLISH_DIR")
+                       aru/publish-dir
                        "/"
                        (file-name-base project-path)))
          (project-component-name (string-replace "/" "_" project-path))
@@ -326,19 +328,7 @@ using the defaults, else using the values of the PLIST."
             :publishing-directory ,publish-dir
             :publishing-function aru/org-scss-generation))))))
 
-(setq org-publish-project-alist
-      (append
-       (aru/org/publish-project (getenv "XDG_ORG_DIR") t nil t)
-       (aru/org/publish-project
-        "/GitRepos/s1dam-azarquiel-2021/aru-notas-practicas"
-        t
-        '(:base-extension "png\\|jpg\\|jpeg\\|svg")
-        `(:dir ,(getenv "XDG_ORG_DIR")))
-       (aru/org/publish-project
-        "/GitRepos/s2dam-azarquiel-2022/aru-sistemas-gestion"
-        t
-        '(:base-extension "png\\|jpg\\|jpeg\\|svg")
-        `(:dir ,(getenv "XDG_ORG_DIR")))))
+(setq org-publish-project-alist nil)
 
 (add-hook 'org-mode-hook #'org-superstar-mode)
 (add-hook 'org-mode-hook #'auto-fill-mode)

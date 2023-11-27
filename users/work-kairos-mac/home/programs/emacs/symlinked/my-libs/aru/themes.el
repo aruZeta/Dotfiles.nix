@@ -16,7 +16,7 @@
                            :height 150)
 
        (set-face-attribute 'aru/faces/very-important nil
-                           :weight 'ultra-heavy)
+                           :weight 'ultra-bold)
 
        (set-face-attribute 'aru/faces/important nil
                            :weight 'bold)
