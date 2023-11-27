@@ -3,7 +3,7 @@
 }:
 
 {
-  package = pkgs.emacs-pgtk;
+  # package = pkgs.emacs-pgtk;
 
   overrides = self: super: {
     org = self.elpaPackages.org;

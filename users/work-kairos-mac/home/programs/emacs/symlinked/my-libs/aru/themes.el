@@ -13,7 +13,7 @@
 
        (set-face-attribute 'default nil
                            :family "Iosevka"
-                           :height 120)
+                           :height 150)
 
        (set-face-attribute 'aru/faces/very-important nil
                            :weight 'ultra-heavy)
