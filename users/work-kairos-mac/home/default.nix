@@ -60,6 +60,9 @@ in
 
     # nurPkgs.repos.milahu.spotify-adblock # need to find one for M1
     spotify
+
+    # Note taking and organization
+    obsidian
   ]
   ++ (searchImportList "packages.nix" argSet')
   ++ (attrValues (searchImportSet "scripts.nix" argSet'));
