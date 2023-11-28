@@ -335,9 +335,7 @@ using the defaults, else using the values of the PLIST."
 (add-hook 'org-mode-hook #'aru/visual-fill)
 
 (with-eval-after-load 'org
-  (aru/plantuml-org-mode-setup)
-  (aru/shell-org-mode-setup)
-  (aru/nim-org-mode-setup))
+  (aru/shell-org-mode-setup))
 
 ;;;; Org superstar
 
