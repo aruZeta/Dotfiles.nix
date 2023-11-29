@@ -18,6 +18,7 @@ usefulExpresions.condAndValuesSet [
       '';
       ".gnupg/sshcontrol".text = ''
         9F9BC86D61E29C3F97ACBF528223DB2B62D6741B
+        A44FFE78F18C1248BDEBD829F10EBEC0116A5B26
       '';
     };
   }
