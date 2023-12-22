@@ -51,7 +51,7 @@ in
     qmk
 
     # Discord
-    discord
+    pkgsUnstable.discord-screenaudio
 
     # Gaming
     heroic
