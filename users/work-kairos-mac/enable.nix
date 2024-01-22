@@ -57,5 +57,6 @@
     "obsidian"
     "idea-ultimate"
     "webstorm"
+    "goland"
   ];
 }

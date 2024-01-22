@@ -52,6 +52,7 @@ in
   home.packages = with pkgs; [
     pkgsUnstable.jetbrains.idea-ultimate
     pkgsUnstable.jetbrains.webstorm
+    pkgsUnstable.jetbrains.goland
 
     # https://github.com/NixOS/nixpkgs/issues/267680
     # postman is a POS, if possible I will migrate all projects I'm working on to bruno
