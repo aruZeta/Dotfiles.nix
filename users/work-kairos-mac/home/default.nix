@@ -63,7 +63,7 @@ in
     spotify
 
     # Note taking and organization
-    obsidian
+    pkgsUnstable.obsidian
   ]
   ++ (searchImportList "packages.nix" argSet')
   ++ (attrValues (searchImportSet "scripts.nix" argSet'));

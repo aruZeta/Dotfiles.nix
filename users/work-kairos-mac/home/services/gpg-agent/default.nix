@@ -1,4 +1,5 @@
 { lib
+, pkgs
 , ...
 }:
 
@@ -10,5 +11,5 @@
   maxCacheTtl        = 3600 * 8;
   defaultCacheTtlSsh = 3600 * 8;
   maxCacheTtlSsh     = 3600 * 8;
-  pinentryFlavor = "mac";
+  pinentryPackage = pkgs.pinentry_mac;
 }

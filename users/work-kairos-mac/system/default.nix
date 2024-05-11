@@ -23,7 +23,7 @@ in
   services.nix-daemon.enable = true;
   
   nix = {
-    package = pkgs.nixUnstable;
+    package = pkgs.nixFlakes;
 
     settings = rec {
       trusted-users = [ "@admin" "aru" ];
