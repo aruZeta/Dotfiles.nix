@@ -119,6 +119,11 @@
       pulse.enable = true;
       wireplumber.enable = true;
     };
+
+    openssh = {
+      enable = true;
+      passwordAuthentication = true;
+    };
   };
 
   users = {
